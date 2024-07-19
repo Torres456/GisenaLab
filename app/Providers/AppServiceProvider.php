@@ -3,13 +3,13 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use Laravel\Fortify\Contracts\LoginResponse;
 use Laravel\Fortify\Contracts\RegisterResponse;
+use Illuminate\Support\Facades\Auth;
 
 class AppServiceProvider extends ServiceProvider
 {
-    /**
-     * Register any application services.
-     */
+
     public function register(): void
     {
         $this->app->instance(RegisterResponse::class, new class implements RegisterResponse
@@ -18,6 +18,31 @@ class AppServiceProvider extends ServiceProvider
             {
 
                 return redirect('/dashboard');
+            }
+        });
+
+        $this->app->instance(LoginResponse::class, new class implements LoginResponse
+        {
+            public function toResponse($request)
+            {
+
+
+
+                if (Auth::check()) {
+
+                    $user = Auth::user();
+
+
+                    if ($user->idtipo_usuario == 1) {
+
+                        return redirect('/administrador');
+                    } else if ($user->idtipo_usuario == 2) {
+
+                        return redirect('/dashboard');
+                    }
+                } else {
+                    return redirect('/login');
+                }
             }
         });
     }
