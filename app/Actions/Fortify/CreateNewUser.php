@@ -65,6 +65,7 @@ class CreateNewUser implements CreatesNewUsers
             return $e->getMessage();
         }
 
+
         return $usuario_sistema;
     }
 }
