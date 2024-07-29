@@ -16,17 +16,6 @@ class DatabaseSeeder extends Seeder
     {
         // User::factory(10)->create();
 
-        User::factory()->create([
-            'name' => 'Test User',
-            'email' => 'test@example.com',
-        ]);
-
-        $user = new User();
-        $user->name = 'Luis Luna';
-        $user->email = 'lued1006@gmail.com';
-        $user->password = bcrypt('Hmcnjsa1*.');
-        $user->save();
-
         $rutas= new rutas();
         $rutas->title="Unidades de Medida";
         $rutas->content="Agregar y editar Unidades de Medida";
