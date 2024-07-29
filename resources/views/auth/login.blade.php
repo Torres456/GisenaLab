@@ -1,5 +1,8 @@
 <x-guest-layout>
-    <x-authentication-card>
+
+    <x-header />
+
+    <x-authentication-card class="mt-2">
         <x-slot name="logo">
             <x-authentication-card-logo />
         </x-slot>
@@ -17,12 +20,14 @@
 
             <div>
                 <x-label for="correo" value="{{ __('Correo') }}" />
-                <x-input id="correo" class="block mt-1 w-full" type="email" name="correo" :value="old('correo')" required autofocus autocomplete="username" />
+                <x-input id="correo" class="block mt-1 w-full" type="email" name="correo" :value="old('correo')" required
+                    autofocus autocomplete="username" />
             </div>
 
             <div class="mt-4">
                 <x-label for="password" value="{{ __('Password') }}" />
-                <x-input id="password" class="block mt-1 w-full" type="password" name="password" required autocomplete="current-password" />
+                <x-input id="password" class="block mt-1 w-full" type="password" name="password" required
+                    autocomplete="current-password" />
             </div>
 
             {{-- <div class="block mt-4">
@@ -45,4 +50,5 @@
             </div>
         </form>
     </x-authentication-card>
+
 </x-guest-layout>
