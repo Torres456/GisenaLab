@@ -16,6 +16,10 @@ class Unidadmetodos extends Component
     //&================================================================= Filtros
     public $search;
     public $view_dates=10;
+    public function updatingSearch()
+    {
+        $this->resetPage();
+    }
 
     //&================================================================= Nuevo Registro
     public $new = false;
@@ -43,6 +47,7 @@ class Unidadmetodos extends Component
         ]);
         $this->new = false;
         $this->reset('newRegister');
+        session()->flash('green','Agregada correctamente');
     }
 
     public function new_cancel()
@@ -70,7 +75,7 @@ class Unidadmetodos extends Component
     {
         //validations
         $this->validate([
-            'editRegister.descripcion' => 'required|max:100|unique:unidad_metodo,descripcion',
+            'editRegister.descripcion' => 'required|max:100|unique:unidad_metodo,descripcion,'.$this->editId .',id_unidad_metodo',
         ], [
             'editRegister.descripcion.required' => __('El nombre de la unidad de metodo es requerida'),
             'editRegister.descripcion.max' => __('El nombre debe tener máximo 100 caracteres'),
@@ -83,6 +88,8 @@ class Unidadmetodos extends Component
         ]);
         $this->edit = false;
         $this->reset('editRegister');
+        session()->flash('blue','Editado correctamente');
+
     }
     public function edit_cancel()
     {
@@ -101,7 +108,8 @@ class Unidadmetodos extends Component
     //&================================================================= Render
     public function render()
     {
+        $count= unidad_metodo::where('descripcion','LIKE','%' . $this->search . '%')->count();
         $datos = unidad_metodo::where('descripcion','LIKE','%' . $this->search . '%')->paginate($this->view_dates);
-        return view('livewire.catalogos.unidadmetodos', compact('datos'));
+        return view('livewire.catalogos.unidadmetodos', compact('datos', 'count'));
     }
 }

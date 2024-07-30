@@ -19,6 +19,10 @@ class TipoMuestras extends Component
     //&================================================================= Filtros
     public $search = '';
     public $view_dates = 10;
+    public function updatingSearch()
+    {
+        $this->resetPage();
+    }
 
     //&================================================================= Datos de select
     public $subcategorias, $unidad_medidas, $unidad_metodos;
@@ -78,6 +82,8 @@ class TipoMuestras extends Component
         ]);
         $this->new = false;
         $this->reset('newRegister');
+        session()->flash('green','Agregada correctamente');
+
     }
 
     public function new_cancel()
@@ -144,6 +150,8 @@ class TipoMuestras extends Component
         ]);
         $this->edit = false;
         $this->reset('editRegister');
+        session()->flash('blue','Editado correctamente');
+
     }
     public function edit_cancel()
     {
@@ -161,9 +169,12 @@ class TipoMuestras extends Component
     public function render()
     {
         $search = $this->search;
+        $count = catalogo_tipo_muestra::with('subcategoria')->whereHas('subcategoria', function ($query) use ($search) {
+            $query->where('nom_subcategoria', 'LIKE', "%{$search}%");
+        })->orWhere('nom_tipo_muestra', 'LIKE', "%{$search}%")->count();
         $tipo_muestras = catalogo_tipo_muestra::with('subcategoria')->whereHas('subcategoria', function ($query) use ($search) {
             $query->where('nom_subcategoria', 'LIKE', "%{$search}%");
         })->orWhere('nom_tipo_muestra', 'LIKE', "%{$search}%")->paginate($this->view_dates);
-        return view('livewire.catalogos.tipo-muestras', compact('tipo_muestras'));
+        return view('livewire.catalogos.tipo-muestras', compact('tipo_muestras','count'));
     }
 }

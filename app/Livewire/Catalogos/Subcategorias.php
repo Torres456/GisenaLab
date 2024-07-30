@@ -17,6 +17,10 @@ class Subcategorias extends Component
     //&================================================================= Filtros
     public $search = '';
     public $view_dates=10;
+    public function updatingSearch()
+    {
+        $this->resetPage();
+    }
 
     //&================================================================= Mostar Datos
     public $categorias;
@@ -55,11 +59,15 @@ class Subcategorias extends Component
             'id_categoria' => $this->newRegister['categoria'],
         ]);
         $this->new = false;
+        $this->reset('newRegister');
+        session()->flash('green','Agregada correctamente');
+
     }
 
     public function new_cancel()
     {
         $this->new = false;
+        $this->reset('newRegister');
     }
 
     //&================================================================= Editar Registro
@@ -83,9 +91,10 @@ class Subcategorias extends Component
     {
         //validations
         $this->validate([
-            'editRegister.nombre' => 'required|max:50',
+            'editRegister.nombre' => 'required|max:50|unique:catalogo_subcategoria,nom_subcategoria,' . $this->editId . ',id_subcategoria',
             'editRegister.categoria' => 'required',
         ], [
+            'editRegister.nombre.unique' => __('Esta subcategoría ya está registrada'),
             'editRegister.nombre.required' => __('El nombre es requerido'),
             'editRegister.nombre.max' => __('El nombre debe tener máximo 50 caracteres'),
             'editRegister.categoria.required' => __('La categoria es requerida'),
@@ -97,10 +106,15 @@ class Subcategorias extends Component
             'id_categoria' => $this->editRegister['categoria'],
         ]);
         $this->edit = false;
+        $this->reset('editRegister');
+        session()->flash('blue','Editado correctamente');
+
     }
     public function edit_cancel()
     {
         $this->edit = false;
+        $this->reset('editRegister');
+
     }
 
     //&================================================================= Lazy Load
@@ -113,9 +127,12 @@ class Subcategorias extends Component
     public function render()
     {
         $search = $this->search;
+        $count=catalogo_subcategoria::with('categoria')->whereHas('categoria', function ($query) use ($search) {
+            $query->where('nombre_categoria', 'LIKE', "%{$search}%");
+        })->orWhere('nom_subcategoria', 'LIKE', "%{$search}%")->count();
         $subcategorias = catalogo_subcategoria::with('categoria')->whereHas('categoria', function ($query) use ($search) {
             $query->where('nombre_categoria', 'LIKE', "%{$search}%");
         })->orWhere('nom_subcategoria', 'LIKE', "%{$search}%")->paginate($this->view_dates);
-        return view('livewire.catalogos.subcategorias', compact('subcategorias'));
+        return view('livewire.catalogos.subcategorias', compact('subcategorias','count'));
     }
 }

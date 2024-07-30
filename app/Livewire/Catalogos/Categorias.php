@@ -16,6 +16,10 @@ class Categorias extends Component
     //&================================================================= Filtros
     public $search;
     public $view_dates=10;
+    public function updatingSearch()
+    {
+        $this->resetPage();
+    }
 
     //&================================================================= Nuevo Registro
     public $new = false;
@@ -49,6 +53,8 @@ class Categorias extends Component
         ]);
         $this->new = false;
         $this->reset('newRegister');
+        session()->flash('green','Agregada correctamente');
+
     }
 
     public function new_cancel()
@@ -78,7 +84,7 @@ class Categorias extends Component
     {
         //validations
         $this->validate([
-            'editRegister.nombre' => 'required|max:100',
+            'editRegister.nombre' => 'required|max:100|unique:catalogo_categoria,nombre_categoria,'.$this->editId .',id_categoria',
             'editRegister.descripcion' => 'required|max:100',
         ], [
             'editRegister.nombre.required' => __('El nombrede es requerido'),
@@ -95,6 +101,8 @@ class Categorias extends Component
         ]);
         $this->edit = false;
         $this->reset('editRegister');
+        session()->flash('blue','Editado correctamente');
+
     }
     public function edit_cancel()
     {
@@ -111,9 +119,12 @@ class Categorias extends Component
     //&================================================================= Render
     public function render()
     {
+        $count=catalogo_categoria::where(function ($query) {
+            $query->where('nombre_categoria', 'LIKE', '%' . $this->search . '%')->orWhere('id_categoria', 'LIKE', '%' . $this->search . '%');
+        })->count();
         $categorias = catalogo_categoria::where(function ($query) {
             $query->where('nombre_categoria', 'LIKE', '%' . $this->search . '%')->orWhere('id_categoria', 'LIKE', '%' . $this->search . '%');
         })->paginate($this->view_dates);
-        return view('livewire.catalogos.categorias', compact('categorias'));
+        return view('livewire.catalogos.categorias', compact('categorias','count'));
     }
 }

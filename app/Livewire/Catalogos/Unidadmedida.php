@@ -16,7 +16,11 @@ class Unidadmedida extends Component
 
     //&================================================================= Filtros
     public $search;
-    public $view_dates=10;
+    public $view_dates = 10;
+    public function updatingSearch()
+    {
+        $this->resetPage();
+    }
 
     //&================================================================= Nuevo Registro
 
@@ -26,6 +30,7 @@ class Unidadmedida extends Component
         'descripcion' => '',
         'abreviatura' => '',
     ];
+
     public function new_register()
     {
         $this->new = true;
@@ -51,6 +56,7 @@ class Unidadmedida extends Component
         ]);
         $this->new = false;
         $this->reset('newRegister');
+        session()->flash('green', 'Agregada correctamente');
     }
 
     public function new_cancel()
@@ -80,7 +86,7 @@ class Unidadmedida extends Component
     {
         //validations
         $this->validate([
-            'editRegister.descripcion' => 'required|max:100',
+            'editRegister.descripcion' => 'required|max:100|unique:unidad_medida,nombre_unidad,'.$this->editId .',id_unidad_medida',
             'editRegister.abreviatura' => 'required|max:10',
         ], [
             'editRegister.descripcion.required' => __('El nombre de la unidad de medida es requerida'),
@@ -97,6 +103,7 @@ class Unidadmedida extends Component
         ]);
         $this->edit = false;
         $this->reset('editRegister');
+        session()->flash('blue', 'Editado correctamente');
     }
     public function edit_cancel()
     {
@@ -114,7 +121,8 @@ class Unidadmedida extends Component
     //&================================================================= Render
     public function render()
     {
+        $count=unidad_medida::where('nombre_unidad', 'LIKE', '%' . $this->search . '%')->count();
         $datos = unidad_medida::where('nombre_unidad', 'LIKE', '%' . $this->search . '%')->paginate($this->view_dates);
-        return view('livewire.catalogos.unidadmedida', compact('datos'));
+        return view('livewire.catalogos.unidadmedida', compact('datos','count'));
     }
 }

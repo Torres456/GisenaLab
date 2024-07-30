@@ -17,6 +17,10 @@ class Metodos extends Component
     //&================================================================= Filtros
     public $search;
     public $view_dates=10;
+    public function updatingSearch()
+    {
+        $this->resetPage();
+    }
 
     //&================================================================= Nuevo Registros
 
@@ -45,6 +49,8 @@ class Metodos extends Component
         ]);
         $this->new = false;
         $this->reset('newRegister');
+        session()->flash('green','Agregada correctamente');
+        
     }
 
     public function new_cancel()
@@ -74,7 +80,7 @@ class Metodos extends Component
     {
         //validations
         $this->validate([
-            'editRegister.descripcion' => 'required|max:100|unique:metodo,descripcion',
+            'editRegister.descripcion' => 'required|max:100|unique:metodo,descripcion,' . $this->editId . ',id_metodo',
         ], [
             'editRegister.descripcion.required' => __('El nombre de método es requerido'),
             'editRegister.descripcion.max' => __('El nombre debe tener máximo 100 caracteres'),
@@ -87,6 +93,8 @@ class Metodos extends Component
         ]);
         $this->edit = false;
         $this->reset('editRegister');
+        session()->flash('blue','Editado correctamente');
+
     }
 
     public function edit_cancel()
@@ -105,7 +113,8 @@ class Metodos extends Component
     //&================================================================= Render
     public function render()
     {
+        $count= metodo::where('descripcion','LIKE','%' . $this->search . '%')->count();
         $datos = metodo::where('descripcion','LIKE','%' . $this->search . '%')->paginate($this->view_dates);
-        return view('livewire.catalogos.metodos', compact('datos'));
+        return view('livewire.catalogos.metodos', compact('datos', 'count'));
     }
 }

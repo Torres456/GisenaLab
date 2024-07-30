@@ -3,9 +3,11 @@
 namespace App\Livewire\Catalogos;
 
 use App\Models\estatus_muestras;
+use Livewire\Attributes\Lazy;
 use Livewire\Component;
 use Livewire\WithPagination;
 
+#[Lazy()]
 class StatusMuestras extends Component
 {
     //&================================================================= Paginacion
@@ -14,6 +16,10 @@ class StatusMuestras extends Component
     //&================================================================= Filtros
     public $search;
     public $view_dates = 10;
+    public function updatingSearch()
+    {
+        $this->resetPage();
+    }
 
     //&================================================================= Nuevo Registro
     public $new = false;
@@ -47,6 +53,8 @@ class StatusMuestras extends Component
         ]);
         $this->new = false;
         $this->reset('newRegister');
+        session()->flash('green','Agregada correctamente');
+
     }
 
     public function new_cancel()
@@ -76,11 +84,12 @@ class StatusMuestras extends Component
     {
         //validations
         $this->validate([
-            'editRegister.nombre' => 'required|max:45',
+            'editRegister.nombre' => 'required|max:45|unique:status_muestra,nombre_status,' . $this->editId . ',idstatus_muestra',
             'editRegister.descripcion' => 'required|max:250',
         ], [
             'editRegister.nombre.required' => __('El nombre  es requerido'),
             'editRegister.nombre.max' => __('El nombre debe tener máximo 45 caracteres'),
+            'editRegister.nombre.unique' => __('Este recipiente ya está registrado'),
             'editRegister.descripcion.required' => __('La descripcion es requerida'),
             'editRegister.descripcion.max' => __('La descripcion debe tener máximo 250 caracteres'),
         ]);
@@ -92,6 +101,8 @@ class StatusMuestras extends Component
         ]);
         $this->edit = false;
         $this->reset('editRegister');
+        session()->flash('blue','Editado correctamente');
+
     }
     public function edit_cancel()
     {
@@ -108,7 +119,8 @@ class StatusMuestras extends Component
     //&================================================================= Render
     public function render()
     {
+        $count= estatus_muestras::where('nombre_status', 'LIKE', '%' . $this->search . '%')->count();
         $status = estatus_muestras::where('nombre_status', 'LIKE', '%' . $this->search . '%')->paginate($this->view_dates);
-        return view('livewire.catalogos.status-muestras', compact('status'));
+        return view('livewire.catalogos.status-muestras', compact('status','count'));
     }
 }

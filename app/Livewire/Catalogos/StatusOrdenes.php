@@ -16,6 +16,10 @@ class StatusOrdenes extends Component
     //&================================================================= Filtros
     public $search;
     public $view_dates = 10;
+    public function updatingSearch()
+    {
+        $this->resetPage();
+    }
 
     //&================================================================= Nuevo Registro
     public $new = false;
@@ -49,6 +53,8 @@ class StatusOrdenes extends Component
         ]);
         $this->new = false;
         $this->reset('newRegister');
+        session()->flash('green','Agregada correctamente');
+
     }
 
     public function new_cancel()
@@ -78,10 +84,12 @@ class StatusOrdenes extends Component
     {
         //validations
         $this->validate([
-            'editRegister.nombre' => 'required|max:45',
+            'editRegister.nombre' => 'required|max:45|unique:status_muestra,nombre_status,' . $this->editId . ',idstatus_muestra',
             'editRegister.descripcion' => 'required|max:250',
         ], [
+
             'editRegister.nombre.required' => __('El nombre  es requerido'),
+            'editRegister.nombre.unique' => __('Este recipiente ya está registrado'),
             'editRegister.nombre.max' => __('El nombre debe tener máximo 45 caracteres'),
             'editRegister.descripcion.required' => __('La descripcion es requerida'),
             'editRegister.descripcion.max' => __('La descripcion debe tener máximo 250 caracteres'),
@@ -94,6 +102,8 @@ class StatusOrdenes extends Component
         ]);
         $this->edit = false;
         $this->reset('editRegister');
+        session()->flash('blue','Editado correctamente');
+
     }
     public function edit_cancel()
     {
@@ -110,7 +120,8 @@ class StatusOrdenes extends Component
     //&================================================================= Render
     public function render()
     {
+        $count=estatus_orden_servicio::where('nombre','LIKE','%' . $this->search . '%')->count();
         $status=estatus_orden_servicio::where('nombre','LIKE','%' . $this->search . '%')->paginate($this->view_dates);
-        return view('livewire.catalogos.status-ordenes',compact('status'));
+        return view('livewire.catalogos.status-ordenes',compact('status','count'));
     }
 }

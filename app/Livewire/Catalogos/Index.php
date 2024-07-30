@@ -17,6 +17,11 @@ class Index extends Component
     //&================================================================= Filtos
     public $search = '';
 
+    public function updatingSearch()
+    {
+        $this->resetPage();
+    }
+
     //&================================================================= Lazy
     public function placeholder()
     {
@@ -26,8 +31,9 @@ class Index extends Component
     //&================================================================= Render
 
     public function render()
-    {
+    { 
+        $count=rutas::where('title','LIKE','%' . $this->search . '%')->count();
         $cards=rutas::where('title','LIKE','%' . $this->search . '%')->where('estado',1)->paginate(9);
-        return view('livewire.catalogos.index', compact('cards'));
+        return view('livewire.catalogos.index', compact('cards','count'));
     }
 }

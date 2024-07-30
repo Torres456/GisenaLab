@@ -17,6 +17,10 @@ class AnalisisEspecifico extends Component
     //&================================================================= Filtros
     public $search = '';
     public $view_dates = 10;
+    public function updatingSearch()
+    {
+        $this->resetPage();
+    }
 
     //&================================================================= Datos de delects
     public $Tipo_Analisis;
@@ -66,7 +70,7 @@ class AnalisisEspecifico extends Component
             'newRegister.precio_urgente' => ['required', 'numeric'],
             'newRegister.tiempo_ordinario' => ['required', 'numeric'],
             'newRegister.tiempo_urgente' => ['required', 'numeric'],
-            'newRegister.capacidad' => ['required'],
+            'newRegister.capacidad' => ['required','numeric'],
         ], [
             'newRegister.nombre.required' => __('El nombre es requerido'),
             'newRegister.nombre.max' => __('El nombre debe tener máximo 50 caracteres'),
@@ -90,7 +94,8 @@ class AnalisisEspecifico extends Component
             'newRegister.tiempo_ordinario.required' => __('El tiempo ordinario es requerido'),
             'newRegister.tiempo_ordinario.numeric' => __('El tiempo ordinario debe ser un número'),
             'newRegister.tiempo_urgente.required' => __('El tiempo urgente es requerido'),
-            'newRegister.capacidad.required' => __('La capacidad es requerida'),
+            'newRegister.capacidad.required' => __('La capacidad instalada es requerida'),
+            'newRegister.capacidad.numeric' => __('La capacidad instalada debe ser un número'),
         ]);
         //store
         catalogo_analisis_especifico::create([
@@ -112,6 +117,8 @@ class AnalisisEspecifico extends Component
         ]);
         $this->new = false;
         $this->reset('newRegister');
+        session()->flash('green','Agregado correctamente');
+
     }
 
     public function new_cancel()
@@ -178,7 +185,7 @@ class AnalisisEspecifico extends Component
             'editRegister.precio_urgente' => ['required', 'numeric'],
             'editRegister.tiempo_ordinario' => ['required', 'numeric'],
             'editRegister.tiempo_urgente' => ['required', 'numeric'],
-            'editRegister.capacidad' => ['required'],
+            'editRegister.capacidad' => ['required', 'numeric'],
         ], [
             'editRegister.nombre.required' => __('El nombre es requerido'),
             'editRegister.nombre.max' => __('El nombre debe tener máximo 50 caracteres'),
@@ -202,7 +209,8 @@ class AnalisisEspecifico extends Component
             'editRegister.tiempo_ordinario.required' => __('El tiempo ordinario es requerido'),
             'editRegister.tiempo_ordinario.numeric' => __('El tiempo ordinario debe ser un número'),
             'editRegister.tiempo_urgente.required' => __('El tiempo urgente es requerido'),
-            'editRegister.capacidad.required' => __('La capacidad es requerida'),
+            'editRegister.capacidad.required' => __('La capacidad instalada es requerida'),
+            'editRegister.capacidad.numeric' => __('La capacidad instalada debe ser un número'),
         ]);
         //store
         $categoria = catalogo_analisis_especifico::find($this->editId);
@@ -225,6 +233,8 @@ class AnalisisEspecifico extends Component
         ]);
         $this->edit = false;
         $this->reset('editRegister');
+        session()->flash('blue','Editado correctamente');
+
     }
     public function edit_cancel()
     {
@@ -241,7 +251,8 @@ class AnalisisEspecifico extends Component
     //&================================================================= Render
     public function render()
     {
+        $count= catalogo_analisis_especifico::where('nombre_comercial_analisis_especifico', 'LIKE', '%' . $this->search . '%')->count();
         $analisis_especificos = catalogo_analisis_especifico::where('nombre_comercial_analisis_especifico', 'LIKE', '%' . $this->search . '%')->paginate($this->view_dates);
-        return view('livewire.catalogos.analisis-especifico', compact('analisis_especificos'));
+        return view('livewire.catalogos.analisis-especifico', compact('analisis_especificos','count'));
     }
 }

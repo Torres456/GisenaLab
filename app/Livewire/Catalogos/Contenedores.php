@@ -17,6 +17,10 @@ class Contenedores extends Component
     //&================================================================= Filtros
     public $search;
     public $view_dates = 10;
+    public function updatingSearch()
+    {
+        $this->resetPage();
+    }
 
     //&================================================================= Nuevo Registro
     public $new = false;
@@ -45,6 +49,8 @@ class Contenedores extends Component
         ]);
         $this->new = false;
         $this->reset('newRegister');
+        session()->flash('green','Agregada correctamente');
+
     }
 
     public function new_cancel()
@@ -72,7 +78,7 @@ class Contenedores extends Component
     {
         //validations
         $this->validate([
-            'editRegister.tipo_contenedor' => 'required|max:100',
+            'editRegister.tipo_contenedor' => 'required|max:100|unique:contenedores,tipo_contenedor,'.$this->editId .',idcontenedor',
         ], [
             'editRegister.tipo_contenedor.required' => __('El nombre del contenedor es requerido'),
             'editRegister.tipo_contenedor.max' => __('El nombre contenedor debe tener máximo 45 caracteres'),
@@ -85,6 +91,8 @@ class Contenedores extends Component
         ]);
         $this->edit = false;
         $this->reset('editRegister');
+        session()->flash('blue','Editado correctamente');
+
     }
     public function edit_cancel()
     {
@@ -102,7 +110,8 @@ class Contenedores extends Component
 
     public function render()
     {
+        $count=ModelsContenedores::where('tipo_contenedor', 'LIKE', '%' . $this->search . '%')->count();
         $contenedores = ModelsContenedores::where('tipo_contenedor', 'LIKE', '%' . $this->search . '%')->paginate($this->view_dates);
-        return view('livewire.catalogos.contenedores', compact('contenedores'));
+        return view('livewire.catalogos.contenedores', compact('contenedores', 'count'));
     }
 }

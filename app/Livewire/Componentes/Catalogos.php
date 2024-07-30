@@ -22,7 +22,7 @@ class Catalogos extends Component
     //&================================================================= Render
     public function render()
     {
-        $cards=rutas::where('title','LIKE','%' . $this->search . '%')->where('estado',1)->paginate(15);
+        $cards=rutas::all();
         return view('livewire.componentes.catalogos', compact('cards'));
     }
 }

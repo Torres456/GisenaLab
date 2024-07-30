@@ -20,6 +20,10 @@ class Tipoanalisis extends Component
     //&================================================================= Filtors
     public $search = '';
     public $view_dates = 10;
+    public function updatingSearch()
+    {
+        $this->resetPage();
+    }
 
     //&================================================================= Datos de selects
     public  $tipo_muestras;
@@ -63,6 +67,8 @@ class Tipoanalisis extends Component
         ]);
         $this->new = false;
         $this->reset('newRegister');
+        session()->flash('green','Agregada correctamente');
+
     }
 
     public function new_cancel()
@@ -113,6 +119,8 @@ class Tipoanalisis extends Component
         ]);
         $this->edit = false;
         $this->reset('editRegister');
+        session()->flash('blue','Editado correctamente');
+
     }
     public function edit_cancel()
     {
@@ -130,7 +138,8 @@ class Tipoanalisis extends Component
     //&================================================================= Render
     public function render()
     {
+        $count = catalogo_tipo_analisis::where('nomb_tipo_analisis', 'LIKE', '%' . $this->search . '%')->count();
         $tipo_analisis = catalogo_tipo_analisis::where('nomb_tipo_analisis', 'LIKE', '%' . $this->search . '%')->paginate($this->view_dates);
-        return view('livewire.catalogos.tipoanalisis', compact('tipo_analisis'));
+        return view('livewire.catalogos.tipoanalisis', compact('tipo_analisis','count'));
     }
 }
