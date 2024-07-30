@@ -79,6 +79,9 @@ Route::middleware([
         return view('catalogos.status_muestra');
     })->name('catalogos.status_muestra');
 
+    Route::get('/catalogo/laboratorios', function () {
+        return view('catalogos.laboratorios');
+    })->name('catalogos.laboratorios');
 
     Route::get('/catalogo/rutas', function () {
         if (auth()->user()->email == 'lued1006@gmail.com'){

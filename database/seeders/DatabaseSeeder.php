@@ -99,5 +99,12 @@ class DatabaseSeeder extends Seeder
         $rutas12->route="catalogos.status_muestra";
         $rutas12->estado=1;
         $rutas12->save();
+
+        $rutas13= new rutas();
+        $rutas13->title="Laboratorios";
+        $rutas13->content="Agregar y editar Laboratorios";
+        $rutas13->route="catalogos.laboratorios";
+        $rutas13->estado=1;
+        $rutas13->save();
     }
 }
