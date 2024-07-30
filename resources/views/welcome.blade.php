@@ -2,4 +2,5 @@
 
     <x-header />
 
+
 </x-guest-layout>
