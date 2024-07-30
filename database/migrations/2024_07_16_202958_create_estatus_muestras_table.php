@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('status_muestra', function (Blueprint $table) {
             $table->id('idstatus_muestra');
             $table->string('nombre_status',45);
-            $table->string('descripcion',45);
+            $table->string('descripcion',250);
             $table->timestamps();
         });
     }

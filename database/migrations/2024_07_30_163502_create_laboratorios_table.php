@@ -11,10 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('status_orden_servicio', function (Blueprint $table) {
-            $table->id('idstatus_orden_servicio');
-            $table->string('nombre',45);
-            $table->string('descripcion',250);
+        Schema::create('laboratorios', function (Blueprint $table) {
+            $table->id('id_laboratorio');
+            $table->string('descripcion_laboratorio',100)->unique()->nullable(false);
             $table->timestamps();
         });
     }
@@ -24,6 +23,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('estatus_orden_servicios');
+        Schema::dropIfExists('laboratorios');
     }
 };
