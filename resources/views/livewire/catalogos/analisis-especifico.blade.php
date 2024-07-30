@@ -1,4 +1,5 @@
 <div>
+    <x-message />
     <div class="flex gap-3 items-center dark:text-white mb-5 max-md:flex-col">
         <div class="flex flex-row w-full gap-2">
             <div class="flex flex-col">
@@ -51,45 +52,59 @@
                     </th>
                 </tr>
             </thead>
-            <tbody>
-                @foreach ($analisis_especificos as $analisis_especifico)
+            @if ($count != 0)
+                <tbody>
+                    @foreach ($analisis_especificos as $analisis_especifico)
+                        <tr
+                            class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+                            <th scope="row"
+                                class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white text-center">
+                                {{ $analisis_especifico->id_analisis_especifico }}
+                            </th>
+                            <td class="px-6 py-4 text-center">
+                                {{ $analisis_especifico->nombre_comercial_analisis_especifico }}
+                            </td>
+                            <td class="px-6 py-4 text-center">
+                                {{ $analisis_especifico->descripcion }}
+                            </td>
+                            <td class="px-6 py-4 text-center">
+                                {{ $analisis_especifico->tipo_analisis->nomb_tipo_analisis }}
+                            </td>
+                            <td class="px-6 py-4 text-center">
+                                {{ $analisis_especifico->clave_analisis }}
+                            </td>
+                            <td class="px-6 py-4 text-center">
+                                {{ $analisis_especifico->capacidad_instalada }}
+                            </td>
+                            <td class="px-6 py-4 text-center">
+                                <x-button
+                                    wire:click="edit_register({{ $analisis_especifico->id_analisis_especifico }})">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                        viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                        stroke-linecap="round" stroke-linejoin="round"
+                                        class="icon icon-tabler icons-tabler-outline icon-tabler-edit">
+                                        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                        <path d="M7 7h-1a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-1" />
+                                        <path
+                                            d="M20.385 6.585a2.1 2.1 0 0 0 -2.97 -2.97l-8.415 8.385v3h3l8.385 -8.415z" />
+                                        <path d="M16 5l3 3" />
+                                    </svg>
+                                </x-button>
+                            </td>
+                        </tr>
+                    @endforeach
+                </tbody>
+            @else
+                <tbody>
                     <tr
-                        class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+                        class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600 ">
                         <th scope="row"
                             class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white text-center">
-                            {{ $analisis_especifico->id_analisis_especifico }}
+                            No se encontraron resultados
                         </th>
-                        <td class="px-6 py-4 text-center">
-                            {{ $analisis_especifico->nombre_comercial_analisis_especifico }}
-                        </td>
-                        <td class="px-6 py-4 text-center">
-                            {{ $analisis_especifico->descripcion }}
-                        </td>
-                        <td class="px-6 py-4 text-center">
-                            {{ $analisis_especifico->tipo_analisis->nomb_tipo_analisis }}
-                        </td>
-                        <td class="px-6 py-4 text-center">
-                            {{ $analisis_especifico->clave_analisis }}
-                        </td>
-                        <td class="px-6 py-4 text-center">
-                            {{ $analisis_especifico->capacidad_instalada }}
-                        </td>
-                        <td class="px-6 py-4 text-center">
-                            <x-button wire:click="edit_register({{ $analisis_especifico->id_analisis_especifico }})">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                    viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                    stroke-linecap="round" stroke-linejoin="round"
-                                    class="icon icon-tabler icons-tabler-outline icon-tabler-edit">
-                                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                                    <path d="M7 7h-1a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-1" />
-                                    <path d="M20.385 6.585a2.1 2.1 0 0 0 -2.97 -2.97l-8.415 8.385v3h3l8.385 -8.415z" />
-                                    <path d="M16 5l3 3" />
-                                </svg>
-                            </x-button>
-                        </td>
                     </tr>
-                @endforeach
-            </tbody>
+                </tbody>
+            @endif
         </table>
     </div>
     <div class="p-5">
@@ -104,12 +119,14 @@
             <form wire:submit="new_form">
                 <div>
                     <x-label>Nombre Comercial:</x-label>
-                    <x-input wire:model="newRegister.nombre" type="text" class="block mt-1 w-full" />
+                    <x-input wire:model="newRegister.nombre" type="text" class="block mt-1 w-full"
+                        onkeyup="mayuscula(this)" />
                     <x-input-error for="newRegister.nombre" />
                 </div>
                 <div>
                     <x-label>Descripción:</x-label>
-                    <x-input wire:model="newRegister.descripcion" type="text" class="block mt-1 w-full" />
+                    <x-input wire:model="newRegister.descripcion" type="text" class="block mt-1 w-full"
+                        onkeyup="mayuscula(this)" />
                     <x-input-error for="newRegister.descripcion" />
                 </div>
                 <div>
@@ -201,12 +218,14 @@
             <form wire:submit="edit_form">
                 <div>
                     <x-label>Nombre Comercial:</x-label>
-                    <x-input wire:model="editRegister.nombre" type="text" class="block mt-1 w-full" />
+                    <x-input wire:model="editRegister.nombre" type="text" class="block mt-1 w-full"
+                        onkeyup="mayuscula(this)" />
                     <x-input-error for="editRegister.nombre" />
                 </div>
                 <div>
                     <x-label>Descripción:</x-label>
-                    <x-input wire:model="editRegister.descripcion" type="text" class="block mt-1 w-full" />
+                    <x-input wire:model="editRegister.descripcion" type="text" class="block mt-1 w-full"
+                        onkeyup="mayuscula(this)" />
                     <x-input-error for="editRegister.descripcion" />
                 </div>
                 <div>

@@ -1,4 +1,5 @@
 <div>
+    <x-message/>
     <div class="flex gap-3 items-center dark:text-white mb-5 max-md:flex-col">
         <div class="flex flex-row w-full gap-2">
             <div class="flex flex-col">
@@ -34,6 +35,7 @@
                     </th>
                 </tr>
             </thead>
+            @if($count != 0)
             <tbody>
                 @foreach ($status as $statu)
                 <tr
@@ -55,6 +57,17 @@
                 </tr>
                 @endforeach
             </tbody>
+            @else
+                <tbody>
+                    <tr
+                        class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600 ">
+                        <th scope="row"
+                            class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white text-center">
+                            No se encontraron resultados
+                        </th>
+                    </tr>
+                </tbody>
+            @endif
         </table>
     </div>
     <div class="p-5">
@@ -72,12 +85,12 @@
             <form wire:submit="new_form">
                 <div>
                     <x-label>Nombre Estatus:</x-label>
-                    <x-input wire:model="newRegister.nombre" type="text" class="block mt-1 w-full" />
+                    <x-input wire:model="newRegister.nombre" type="text" class="block mt-1 w-full" onkeyup="mayuscula(this)"/>
                     <x-input-error for="newRegister.nombre" />
                 </div>
                 <div>
                     <x-label>Descripción:</x-label>
-                    <x-input wire:model="newRegister.descripcion" type="text" class="block mt-1 w-full" />
+                    <x-input wire:model="newRegister.descripcion" type="text" class="block mt-1 w-full" onkeyup="mayuscula(this)"/>
                     <x-input-error for="newRegister.descripcion" />
                 </div>
                 <div class="mt-5 flex justify-around">
@@ -102,12 +115,12 @@
             <form wire:submit="edit_form">
                 <div>
                     <x-label>Nombre Estatus:</x-label>
-                    <x-input wire:model="editRegister.nombre" type="text" class="block mt-1 w-full" />
+                    <x-input wire:model="editRegister.nombre" type="text" class="block mt-1 w-full" onkeyup="mayuscula(this)"/>
                     <x-input-error for="editRegister.nombre" />
                 </div>
                 <div>
                     <x-label>Descripción:</x-label>
-                    <x-input wire:model="editRegister.descripcion" type="text" class="block mt-1 w-full" />
+                    <x-input wire:model="editRegister.descripcion" type="text" class="block mt-1 w-full" onkeyup="mayuscula(this)"/>
                     <x-input-error for="editRegister.descripcion" />
                 </div>
                 <div class="mt-5 flex justify-around">
