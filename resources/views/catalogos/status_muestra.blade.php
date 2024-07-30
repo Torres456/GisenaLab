@@ -1,9 +1,12 @@
 <x-app-layout>
     <x-slot name="header">
         <div class="flex justify-between items-center max-md:flex-col max-md:gap-3">
-            <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-                {{ __('Estatus Muestras Orden Servicio') }}
-            </h2>
+            <div>
+                <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
+                    {{ __('Estatus Muestras') }}
+                </h2>
+                <P class="text-gray-600">Este estatus es para las muestras que tendrá una orden de servicio</P>
+            </div>
             <x-menu-catalogos />
         </div>
     </x-slot>
@@ -16,3 +19,4 @@
         </div>
     </div>
 </x-app-layout>
+<script src="{{ asset('js/mayusculas.js') }}"></script><script src="{{ asset('js/mayusculas.js') }}"></script>

@@ -16,3 +16,5 @@
         </div>
     </div>
 </x-app-layout>
+
+<script src="{{ asset('js/mayusculas.js') }}"></script>
