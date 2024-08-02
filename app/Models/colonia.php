@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class colonia extends Model
@@ -23,6 +24,11 @@ class colonia extends Model
     public function municipio(): BelongsTo
     {
         return $this->belongsTo(municipio::class, 'id_municipio');
+    }
+
+    public function sucursales(): HasMany
+    {
+        return $this->hasMany(sucursales_gisena::class, 'id_colonia');
     }
 
 

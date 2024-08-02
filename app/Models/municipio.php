@@ -32,4 +32,9 @@ class municipio extends Model
     {
         return $this->hasMany(colonia::class, 'id_municipio');
     }
+
+    public function sucursales(): HasMany
+    {
+        return $this->hasMany(sucursales_gisena::class, 'id_municipio');
+    }
 }

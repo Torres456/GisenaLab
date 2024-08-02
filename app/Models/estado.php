@@ -23,6 +23,12 @@ class estado extends Model
     {
         return $this->hasMany(municipio::class,'id_estado');
     }
+
+    //Relacion con sucursales
+    public function sucursales(): HasMany
+    {
+        return $this->hasMany(sucursales_gisena::class, 'id_estado');
+    }
     
     // //Zona representacion
     // public function zona(): BelongsToMany

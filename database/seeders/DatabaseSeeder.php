@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\rutas;
+use App\Models\tipo_usuario;
 use App\Models\User;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -15,6 +16,16 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
         // User::factory(10)->create();
+
+        $TipoUser= new tipo_usuario();
+        $TipoUser->idtipo_usuario=1;
+        $TipoUser->descripcion="Administrador";
+        $TipoUser->save();
+
+        $TipoUser= new tipo_usuario();
+        $TipoUser->idtipo_usuario=2;
+        $TipoUser->descripcion="Usuario";
+        $TipoUser->save();
 
         $rutas= new rutas();
         $rutas->title="Unidades de Medida";
@@ -106,5 +117,33 @@ class DatabaseSeeder extends Seeder
         $rutas13->route="catalogos.laboratorios";
         $rutas13->estado=1;
         $rutas13->save();
+
+        $rutas14= new rutas();
+        $rutas14->title="Estados";
+        $rutas14->content="Agregar y editar Estados";
+        $rutas14->route="direcciones.estados";
+        $rutas14->estado=1;
+        $rutas14->save();
+
+        $rutas15= new rutas();
+        $rutas15->title="Municipios";
+        $rutas15->content="Agregar y editar Municipios";
+        $rutas15->route="direcciones.municipios";
+        $rutas15->estado=1;
+        $rutas15->save();
+
+        $rutas16= new rutas();
+        $rutas16->title="Colonias";
+        $rutas16->content="Agregar y editar Colonias";
+        $rutas16->route="direcciones.colonias";
+        $rutas16->estado=1;
+        $rutas16->save();
+
+        $rutas17= new rutas();
+        $rutas17->title="Sucursales de Gisena";
+        $rutas17->content="Agregar y editar Sucursales";
+        $rutas17->route="direcciones.sucursales";
+        $rutas17->estado=1;
+        $rutas17->save();
     }
 }
