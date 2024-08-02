@@ -1,6 +1,8 @@
 <?php
 
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
+use App\Mail\VerifiMailable;
 
 Route::get('/', function () {
     return view('welcome');
@@ -83,8 +85,24 @@ Route::middleware([
         return view('catalogos.laboratorios');
     })->name('catalogos.laboratorios');
 
+    Route::get('/catalogo/estados', function () {
+        return view('direcciones.estados');
+    })->name('direcciones.estados');
+
+    Route::get('/catalogo/municipios', function () {
+        return view('direcciones.municipios');
+    })->name('direcciones.municipios');
+
+    Route::get('/catalogo/colonias', function () {
+        return view('direcciones.colonias');
+    })->name('direcciones.colonias');
+
+    Route::get('/catalogo/sucursales', function () {
+        return view('direcciones.sucursales');
+    })->name('direcciones.sucursales');
+
     Route::get('/catalogo/rutas', function () {
-        if (auth()->user()->email == 'lued1006@gmail.com'){
+        if (auth()->user()->correo == 'lued1006@gmail.com'){
             return view('rutas.index');
         }else{
             abort(404);
