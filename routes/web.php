@@ -101,6 +101,10 @@ Route::middleware([
         return view('direcciones.sucursales');
     })->name('direcciones.sucursales');
 
+    Route::get('/catalogo/procedencias', function () {
+        return view('direcciones.procedencias');
+    })->name('direcciones.procedencias');
+
     Route::get('/catalogo/rutas', function () {
         if (auth()->user()->correo == 'lued1006@gmail.com'){
             return view('rutas.index');

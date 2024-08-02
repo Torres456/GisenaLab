@@ -17,15 +17,20 @@ class DatabaseSeeder extends Seeder
     {
         // User::factory(10)->create();
 
-        $TipoUser= new tipo_usuario();
-        $TipoUser->idtipo_usuario=1;
-        $TipoUser->descripcion="Administrador";
-        $TipoUser->save();
+        $TipoUser1= new tipo_usuario();
+        $TipoUser1->idtipo_usuario=1;
+        $TipoUser1->descripcion="Administrador";
+        $TipoUser1->save();
 
-        $TipoUser= new tipo_usuario();
-        $TipoUser->idtipo_usuario=2;
-        $TipoUser->descripcion="Usuario";
-        $TipoUser->save();
+        $TipoUser2= new tipo_usuario();
+        $TipoUser2->idtipo_usuario=2;
+        $TipoUser2->descripcion="Usuario";
+        $TipoUser2->save();
+
+        $TipoUser3= new tipo_usuario();
+        $TipoUser3->idtipo_usuario=3;
+        $TipoUser3->descripcion="Gestores";
+        $TipoUser3->save();
 
         $rutas= new rutas();
         $rutas->title="Unidades de Medida";
@@ -112,38 +117,45 @@ class DatabaseSeeder extends Seeder
         $rutas12->save();
 
         $rutas13= new rutas();
-        $rutas13->title="Laboratorios";
-        $rutas13->content="Agregar y editar Laboratorios";
-        $rutas13->route="catalogos.laboratorios";
+        $rutas13->title="Procedencias";
+        $rutas13->content="Agregar y editar Procedencias de las muestras";
+        $rutas13->route="direcciones.procedencias";
         $rutas13->estado=1;
         $rutas13->save();
 
         $rutas14= new rutas();
-        $rutas14->title="Estados";
-        $rutas14->content="Agregar y editar Estados";
-        $rutas14->route="direcciones.estados";
+        $rutas14->title="Laboratorios";
+        $rutas14->content="Agregar y editar Laboratorios";
+        $rutas14->route="catalogos.laboratorios";
         $rutas14->estado=1;
         $rutas14->save();
 
         $rutas15= new rutas();
-        $rutas15->title="Municipios";
-        $rutas15->content="Agregar y editar Municipios";
-        $rutas15->route="direcciones.municipios";
+        $rutas15->title="Estados";
+        $rutas15->content="Agregar y editar Estados";
+        $rutas15->route="direcciones.estados";
         $rutas15->estado=1;
         $rutas15->save();
 
         $rutas16= new rutas();
-        $rutas16->title="Colonias";
-        $rutas16->content="Agregar y editar Colonias";
-        $rutas16->route="direcciones.colonias";
+        $rutas16->title="Municipios";
+        $rutas16->content="Agregar y editar Municipios";
+        $rutas16->route="direcciones.municipios";
         $rutas16->estado=1;
         $rutas16->save();
 
         $rutas17= new rutas();
-        $rutas17->title="Sucursales de Gisena";
-        $rutas17->content="Agregar y editar Sucursales";
-        $rutas17->route="direcciones.sucursales";
+        $rutas17->title="Colonias";
+        $rutas17->content="Agregar y editar Colonias";
+        $rutas17->route="direcciones.colonias";
         $rutas17->estado=1;
         $rutas17->save();
+
+        $rutas18= new rutas();
+        $rutas18->title="Sucursales de Gisena";
+        $rutas18->content="Agregar y editar Sucursales";
+        $rutas18->route="direcciones.sucursales";
+        $rutas18->estado=1;
+        $rutas18->save();
     }
 }
