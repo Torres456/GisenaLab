@@ -1,4 +1,4 @@
-<div class="flex gap-4 justify-center items-center">
+<div class="flex gap-4 justify-center items-center max-md:flex-row-reverse">
     <x-dropdown-catalogos>
         <x-slot name="trigger">
             <div class="flex dark:text-white justify-center items-center gap-2 cursor-pointer">

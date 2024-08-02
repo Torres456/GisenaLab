@@ -2,7 +2,7 @@
 
     <x-header />
 
-    <x-authentication-card class="mt-2">
+    <x-authentication-card >
         <x-slot name="logo">
             <x-authentication-card-logo />
         </x-slot>
@@ -17,7 +17,6 @@
 
         <form method="POST" action="{{ route('login') }}">
             @csrf
-
             <div>
                 <x-label for="correo" value="{{ __('Correo') }}" />
                 <x-input id="correo" class="block mt-1 w-full" type="email" name="correo" :value="old('correo')" required
@@ -44,6 +43,9 @@
                     </a>
                 @endif --}}
 
+                {{--<a href="{{ route('register') }}" class="underline text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-offset-gray-800" >
+                    {{ __('¿No tienes cuenta? Regístrate') }}
+                </a>--}}
                 <x-button class="ms-4">
                     {{ __('Log in') }}
                 </x-button>
