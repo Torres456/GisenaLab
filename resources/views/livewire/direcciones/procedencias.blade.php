@@ -60,7 +60,7 @@
                             </th>
                             <td class="px-6 py-4 text-center">
                                 {{ $procedencia->sitio_muestreo }}
-                            </td>s
+                            </td>
                             <td class="px-6 py-4 text-center">
                                 {{ $procedencia->nombre_sitio_muestreo }}
                             </td>

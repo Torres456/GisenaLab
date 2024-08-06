@@ -18,5 +18,11 @@ class catalogo_categoria extends Model
     public function subcategorias(){
         return $this->hasMany(Catalogo_subcategoria::class, 'id_categoria', 'id_categoria');
     }
+
+    public function muestras(){
+        return $this->hasMany(mustra_orden_servicio::class, 'id_categoria', 'id_categoria');
+    }
+
+
     use HasFactory;
 }

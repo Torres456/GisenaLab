@@ -53,4 +53,15 @@ class direccion extends Model
     {
         return $this->hasMany(cliente_direccion::class,'id_direccion');
     }
+
+    public function mustra_internacional(): HasMany
+    {
+        return $this->hasMany(mustra_internacional::class,'id_direccion');
+    }
+
+    //relacion uno a uno con interesados
+    public function interesados(): BelongsTo
+    {
+        return $this->belongsTo(interesado::class, 'direccion', 'id_direccion', 'id_direccion');
+    }
 }

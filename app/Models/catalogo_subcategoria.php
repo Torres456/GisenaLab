@@ -21,5 +21,12 @@ class catalogo_subcategoria extends Model
     public function tipo_muestras(){
         return $this->hasMany(catalogo_tipo_muestra::class, 'id_subcategoria', 'subcategoria_id_subcategoria');
     }
+
+    public function muestras(){
+        return $this->hasMany(mustra_orden_servicio::class, 'id_subcategoria', 'id_subcategoria');
+    }
+
+
+
     use HasFactory;
 }

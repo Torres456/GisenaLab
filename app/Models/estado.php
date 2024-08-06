@@ -29,6 +29,10 @@ class estado extends Model
     {
         return $this->hasMany(sucursales_gisena::class, 'id_estado');
     }
+    public function procedencias(): HasMany
+    {
+        return $this->hasMany(procedencias::class, 'id_estado');
+    }
     
     // //Zona representacion
     // public function zona(): BelongsToMany

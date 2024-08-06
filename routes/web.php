@@ -99,6 +99,10 @@ Route::middleware([
         return view('catalogos.laboratorios');
     })->name('catalogos.laboratorios');
 
+    Route::get('/catalogo/datos_muestra', function () {
+        return view('catalogos.datos_muestra');
+    })->name('catalogos.datos_muestra');
+
     Route::get('/catalogo/estados', function () {
         return view('direcciones.estados');
     })->name('direcciones.estados');

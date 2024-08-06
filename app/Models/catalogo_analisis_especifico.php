@@ -31,5 +31,10 @@ class catalogo_analisis_especifico extends Model
         return $this->belongsTo(catalogo_tipo_analisis::class, 'id_tipo_analisis','id_tipo_analisis');
     }
 
+    public function muestras(){
+        return $this->hasMany(mustra_orden_servicio::class, 'id_analisis_especifico', 'id_analisis_especifico');
+    }
+
+
     use HasFactory;
 }

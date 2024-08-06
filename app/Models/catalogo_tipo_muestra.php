@@ -34,5 +34,10 @@ class catalogo_tipo_muestra extends Model
     public function tipo_analisis(){
         return $this->hasMany(catalogo_tipo_analisis::class, 'id_unidad_metodo', 'id_unidad_metodo');
     }
+
+    public function muestras(){
+        return $this->hasMany(mustra_orden_servicio::class, 'id_tipo_muestra', 'id_tipo_muestra');
+    }
+
     use HasFactory;
 }
