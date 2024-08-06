@@ -12,6 +12,8 @@ use Laravel\Fortify\TwoFactorAuthenticatable;
 use Laravel\Jetstream\HasProfilePhoto;
 use Laravel\Sanctum\HasApiTokens;
 
+use Illuminate\Notifications\Notification;
+
 class User extends Authenticatable implements MustVerifyEmail
 {
     use HasApiTokens;
@@ -22,7 +24,7 @@ class User extends Authenticatable implements MustVerifyEmail
 
     protected $table = 'usuario_sistema';
     protected $primaryKey = 'idusuario_sistema';
-  
+
 
     protected $fillable = [
         'correo',
@@ -31,7 +33,7 @@ class User extends Authenticatable implements MustVerifyEmail
         'idtipo_usuario'
     ];
 
-   
+
     protected $hidden = [
         'contraseña',
         'remember_token',
@@ -61,5 +63,10 @@ class User extends Authenticatable implements MustVerifyEmail
     public function cliente(): HasOne
     {
         return $this->hasOne(cliente::class);
+    }
+
+    public function routeNotificationForMail(Notification $notification): array
+    {
+        return [$this->correo => $this->correo];
     }
 }
