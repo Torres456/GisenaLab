@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('mustra_orden_servicios', function (Blueprint $table) {
+        Schema::create('muestra_orden_servicio', function (Blueprint $table) {
             $table->id('id_muestra_orden_servicio');
             $table->unsignedBigInteger('numero_orden_servicio');
             $table->foreign('numero_orden_servicio')->references('numero_orden_servicio')->on('orden_servicio');
@@ -35,7 +35,7 @@ return new class extends Migration
             $table->string('idioma_informe',100)->default('Español');
             $table->unsignedBigInteger('idprocedencia_orden');
             $table->unsignedBigInteger('idmuestra_internacional');
-            $table->foreign('idmuestra_internacional')->references('idmuestra_internacional')->on('mustra_internacional');
+            $table->foreign('idmuestra_internacional')->references('idmuestra_internacional')->on('meustra_internacional');
             $table->integer('tiempo_respuesta');
             $table->unsignedBigInteger('idstatus_muestra');
             $table->foreign('idstatus_muestra')->references('idstatus_muestra')->on('status_muestra');

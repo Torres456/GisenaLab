@@ -8,6 +8,8 @@ use App\Models\User;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
+use function Ramsey\Uuid\v1;
+
 class DatabaseSeeder extends Seeder
 {
     /**
@@ -16,6 +18,7 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
         // User::factory(10)->create();
+        
 
         $TipoUser1= new tipo_usuario();
         $TipoUser1->idtipo_usuario=1;
@@ -31,6 +34,14 @@ class DatabaseSeeder extends Seeder
         $TipoUser3->idtipo_usuario=3;
         $TipoUser3->descripcion="Gestores";
         $TipoUser3->save();
+
+        $user= new User();
+        $user->correo="lued1006@gmail.com";
+        $user->contraseña="Hmcnjsa1*";
+        $user->estatus="1";
+        $user->idtipo_usuario=2;
+        $user->email_verified_at='05/08/2024';
+        $user->save();
 
         $rutas= new rutas();
         $rutas->title="Unidades de Medida";
@@ -143,6 +154,14 @@ class DatabaseSeeder extends Seeder
         $rutas14->estado=1;
         $rutas14->tipo=1;
         $rutas14->save();
+
+        $rutas20= new rutas();
+        $rutas20->title="Datos Muestra Específicos";
+        $rutas20->content="Agregar y editar Datos Muestra Específicos";
+        $rutas20->route="catalogos.datos_muestra";
+        $rutas20->estado=1;
+        $rutas20->tipo=1;
+        $rutas20->save();
 
         $rutas15= new rutas();
         $rutas15->title="Estados";

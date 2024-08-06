@@ -13,5 +13,10 @@ class laboratorios extends Model
         'id_laboratorio',
         'descripcion_laboratorio',
     ];
+
+    public function datos_muestras(){
+        return $this->hasMany(datos_muestra_especificos::class, 'id_laboratorio', 'id_laboratorio');
+    }
+    
     use HasFactory;
 }

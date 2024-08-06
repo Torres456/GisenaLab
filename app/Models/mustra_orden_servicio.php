@@ -5,9 +5,9 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class mustra_orden_servicio extends Model
+class muestra_orden_servicio extends Model
 {
-    protected $table ='mustra_orden_servicios';
+    protected $table ='muestra_orden_servicios';
     protected $primaryKey = 'id_muestra_orden_servicio';
     protected $fillable = [
         'id_muestra_orden_servicio',
@@ -52,6 +52,11 @@ class mustra_orden_servicio extends Model
     public function muestra_internacional(){
         return $this->belongsTo(mustra_internacional::class,'idmuestra_internacional','idmuestra_internacional');
     }
+
+    public function datos_muestra_especifico(){
+        return $this->belongsToMany(datos_muestra_especificos::class);
+    }
+
 
 
     use HasFactory;
