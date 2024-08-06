@@ -1,5 +1,5 @@
 <div>
-    <div class="p-5">
+    <div class="py-5">
         <x-input wire:model.live="search"  type="text" placeholder="Buscar catalogo" class="w-full" />
     </div>
     <div class="card-container">

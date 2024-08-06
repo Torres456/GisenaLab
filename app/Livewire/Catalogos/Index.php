@@ -33,7 +33,7 @@ class Index extends Component
     public function render()
     { 
         $count=rutas::where('title','LIKE','%' . $this->search . '%')->count();
-        $cards=rutas::where('title','LIKE','%' . $this->search . '%')->where('estado',1)->paginate(9);
+        $cards=rutas::where('title','LIKE','%' . $this->search . '%')->where('estado',1)->where('tipo',1)->paginate(9);
         return view('livewire.catalogos.index', compact('cards','count'));
     }
 }
