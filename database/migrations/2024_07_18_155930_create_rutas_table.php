@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('content',250)->nullable(false);
             $table->string('route',100)->nullable(false);
             $table->integer('estado')->default(1);
+            $table->integer('tipo')->default(1);
             $table->timestamps();
         });
     }
