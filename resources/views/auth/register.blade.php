@@ -80,5 +80,6 @@
                 </x-button>
             </div>
         </form>
+
     </x-authentication-card>
 </x-guest-layout>
