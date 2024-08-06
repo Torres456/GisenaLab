@@ -8,6 +8,20 @@ Route::get('/', function () {
     return view('welcome');
 })->name('welcome');
 
+// auth
+Route::get('/tipo-persona', function () {
+    return view('auth.tipo-persona');
+})->name('tipo-persona');
+
+Route::get('/registro-persona-fisica', function () {
+    return view('auth.registro-fisica');
+})->name('persona-fisica');
+
+Route::get('/registro-persona-moral', function () {
+    return view('auth.registro-moral');
+})->name('persona-moral');
+
+
 
 Route::middleware([
     'auth:sanctum',
@@ -106,9 +120,9 @@ Route::middleware([
     })->name('direcciones.procedencias');
 
     Route::get('/catalogo/rutas', function () {
-        if (auth()->user()->correo == 'lued1006@gmail.com'){
+        if (auth()->user()->correo == 'lued1006@gmail.com') {
             return view('rutas.index');
-        }else{
+        } else {
             abort(404);
         }
     })->name('rutas.index');
