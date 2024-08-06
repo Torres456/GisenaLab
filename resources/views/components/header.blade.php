@@ -132,7 +132,7 @@
                                         {{ __('Inicia sesión') }}
                                     </x-dropdown-link>
 
-                                    <x-dropdown-link href="{{ route('register') }}" wire:navigate.hover>
+                                    <x-dropdown-link href="{{ route('tipo-persona') }}" wire:navigate.hover>
                                         {{ __('Crea una cuenta') }}
                                     </x-dropdown-link>
                                 @endif
@@ -224,7 +224,7 @@
                         {{ __('Inicia sesión') }}
                     </x-dropdown-link>
 
-                    <x-dropdown-link href="{{ route('register') }}" wire:navigate.hover>
+                    <x-dropdown-link href="{{ route('tipo-persona') }}" wire:navigate.hover>
                         {{ __('Crea una cuenta') }}
                     </x-dropdown-link>
                 @endif
