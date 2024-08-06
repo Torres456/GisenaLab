@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('mustra_internacional', function (Blueprint $table) {
+        Schema::create('muestra_internacional', function (Blueprint $table) {
             $table->id('idmuestra_internacional');
             $table->date('fecha_recepcion')->nullable(true);
             $table->string('sucursal',45);

@@ -35,7 +35,7 @@ return new class extends Migration
             $table->string('idioma_informe',100)->default('Español');
             $table->unsignedBigInteger('idprocedencia_orden');
             $table->unsignedBigInteger('idmuestra_internacional');
-            $table->foreign('idmuestra_internacional')->references('idmuestra_internacional')->on('meustra_internacional');
+            $table->foreign('idmuestra_internacional')->references('idmuestra_internacional')->on('muestra_internacional');
             $table->integer('tiempo_respuesta');
             $table->unsignedBigInteger('idstatus_muestra');
             $table->foreign('idstatus_muestra')->references('idstatus_muestra')->on('status_muestra');
