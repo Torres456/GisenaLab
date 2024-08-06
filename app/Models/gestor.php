@@ -42,6 +42,11 @@ class gestor extends Model
         return $this->hasOne(zona_representacion::class,'idzona_representacion');
     }
 
+    //un gestor puede tener barios interesados
+    public function barrios_interesados(): HasMany
+    {
+        return $this->hasMany(interesado::class,'id_gestor');
+    }
   
     public function comments(): HasMany
     {

@@ -31,5 +31,10 @@ class colonia extends Model
         return $this->hasMany(sucursales_gisena::class, 'id_colonia');
     }
 
+    public function procedencias(): HasMany
+    {
+        return $this->hasMany(procedencias::class, 'id_colonia');
+    }
+
 
 }
