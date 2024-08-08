@@ -25,14 +25,12 @@ class User extends Authenticatable implements MustVerifyEmail
     protected $table = 'usuario_sistema';
     protected $primaryKey = 'idusuario_sistema';
 
-
     protected $fillable = [
         'correo',
         'contraseña',
         'estatus',
         'idtipo_usuario'
     ];
-
 
     protected $hidden = [
         'contraseña',
@@ -48,7 +46,6 @@ class User extends Authenticatable implements MustVerifyEmail
         ];
     }
 
-
     public function tipo(): BelongsTo
     {
         return $this->belongsTo(tipo_usuario::class, 'idtipo_usuario');
@@ -59,7 +56,6 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->hasOne(gestor::class);
     }
 
-
     public function cliente(): HasOne
     {
         return $this->hasOne(cliente::class);
@@ -68,5 +64,10 @@ class User extends Authenticatable implements MustVerifyEmail
     public function routeNotificationForMail(Notification $notification): array
     {
         return [$this->correo => $this->correo];
+    }
+
+    public function getEmailForPasswordReset()
+    {
+        return $this->correo;
     }
 }
