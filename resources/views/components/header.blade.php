@@ -135,7 +135,7 @@
                     </div>
                     <div class="md:hidden ml-3">
                         <button @click="open = ! open" x-on:click.away="open=false"
-                            class="bg-lime-600 p-2 rounded-md text-white dark:text-gray-500 dark:hover:text-gray-400 hover:bg-blue-800 dark:hover:bg-gray-900 focus:outline-none focus:bg-blue-800 dark:focus:bg-gray-900 dark:focus:text-gray-400 transition duration-150 ease-in-out">
+                            class="bg-lime-600 p-2 rounded-md text-white dark:text-white dark:hover:text-gray-400 hover:bg-blue-800 dark:hover:bg-gray-900 focus:outline-none focus:bg-blue-800 dark:focus:bg-gray-900 dark:focus:text-gray-400 transition duration-150 ease-in-out">
 
                             <svg class="h-3 w-3 mini:h-6 mini:w-6" stroke="currentColor" fill="none"
                                 viewBox="0 0 24 24">
