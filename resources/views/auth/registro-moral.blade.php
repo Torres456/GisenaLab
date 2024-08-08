@@ -2,13 +2,14 @@
     <x-header />
 
     <x-authentication-card>
+
         <x-slot name="logo">
             <x-authentication-card-logo />
         </x-slot>
 
         <x-validation-errors class="mb-4" />
 
-        <div class=" text-center p-4 font-bold">
+        <div class="text-center p-4 font-bold">
             <h1>Registro de persona moral</h1>
         </div>
 
@@ -16,12 +17,12 @@
             @csrf
 
             <x-input id="tipo" class="block mt-1 w-full" type="hidden" name="tipo" value="moral" />
+
             <div>
                 <x-label for="nombre_moral" value="{{ __('Nombre, denominación o razón social.') }}" />
                 <x-input id="nombre_moral" class="block mt-1 w-full" type="text" name="nombre_moral"
                     :value="old('nombre_moral')" autofocus autocomplete="nombre_moral" required maxlength=255 />
             </div>
-
 
             <div class="mt-4">
                 <x-label-tooltip value="{{ __('RFC') }}"
@@ -39,7 +40,8 @@
             </div>
 
             <div class="mt-4">
-                <x-label for="password" value="{{ __('Contraseña') }}" />
+                <x-label-tooltip value="{{ __('Contraseña') }}"
+                    message-text="Tu contraseña debe contener, minimo 8 caracteres, conbinación de números y letras, utilizar almenos una mayúscula y un simbolo." />
                 <x-input id="password" class="block mt-1 w-full" type="password" name="password" required
                     autocomplete="new-password" maxlength=255 />
             </div>
