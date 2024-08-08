@@ -56,7 +56,8 @@
             </div>
 
             <div class="mt-4">
-                <x-label for="password" value="{{ __('Contraseña') }}" />
+                <x-label-tooltip value="{{ __('Contraseña') }}"
+                    message-text="Tu contraseña debe contener, minimo 8 caracteres, conbinación de números y letras, utilizar almenos una mayúscula y un simbolo." />
                 <x-input id="password" class="block mt-1 w-full" type="password" name="password" required
                     autocomplete="new-password" maxlength=255 />
             </div>
@@ -113,9 +114,7 @@
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                             d="M17 8l4 4m0 0l-4 4m4-4H3" />
                     </svg>
-
                     <span class="text-sm font-medium">Elegir otro tipo de persona.</span>
-
                 </a>
             </div>
         </form>
