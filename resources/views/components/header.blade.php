@@ -1,19 +1,18 @@
 <div>
     <header x-data="{ open: false }" class="bg-white dark:bg-gray-800 border-b border-gray-100 dark:border-gray-700">
-        {{-- Contenedor-todo-ancho --}}
+
         <div class="max-w-screen-xl mx-auto px-1 mini:px-4 sm:px-6 lg:px-8">
-            {{-- Contenedor-todo-display --}}
+
             <div class="flex h-16 justify-between">
-                {{-- contenedor-logo-botton --}}
+
                 <div class="flex">
                     <div class="flex gap-2 mini:gap-4 items-center">
                         <a href="">
-                            {{-- max-w-[150px] --}}
                             <x-application-mark class="block h-9 w-auto" />
                         </a>
                     </div>
-                    {{-- contenedor-links --}}
-                    <div class="space-x-8 sm:-my-px sm:ms-10 md:flex hidden ">
+
+                    <div class="space-x-8 sm:-my-px sm:ms-10 md:flex hidden">
                         <x-nav-link href="{{ route('welcome') }}" :active="request()->routeIs('welcome')">
                             {{ __('Inicio') }}
                         </x-nav-link>
@@ -30,19 +29,14 @@
                             {{ __('Reconocimientos') }}
                         </x-nav-link>
 
-                        {{-- <x-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
-                            {{ __('Noticias') }}
-                        </x-nav-link> --}}
                     </div>
                 </div>
 
-                {{-- contenedor imagenes --}}
-                <div class="flex items-center">
-                    @if (!Auth::user() || Auth::user()->idtipo_usuario != 1)
-                        <div class="ms-3 relative">
-                            <button type="button"
-                                class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 dark:text-gray-400 bg-white dark:bg-gray-800 hover:text-gray-700 dark:hover:text-gray-300 focus:outline-none focus:bg-gray-50 dark:focus:bg-gray-700 active:bg-gray-50 dark:active:bg-gray-700 transition ease-in-out duration-150">
-                                {{-- 36px Carrito  --}}
+                <div class="flex items-center gap-4">
+                    @if (!Auth::check() || Auth::user()->idtipo_usuario != 1)
+                        <div class="relative mt-2">
+                            <a
+                                class="inline-flex items-center border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 dark:text-gray-400 bg-white dark:bg-gray-800 hover:text-gray-700 dark:hover:text-gray-300 focus:outline-none focus:bg-gray-50 dark:focus:bg-gray-700 active:bg-gray-50 dark:active:bg-gray-700 transition ease-in-out duration-150 cursor-pointer">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36"
                                     viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                                     stroke-linecap="round" stroke-linejoin="round"
@@ -53,20 +47,20 @@
                                     <path d="M17 17h-11v-14h-2" />
                                     <path d="M6 5l14 1l-1 7h-13" />
                                 </svg>
-                                {{-- w-5 h-5 border-2 text-xs -top-1 -end-1 --}}
-                                <div
-                                    class="absolute inline-flex items-center justify-center w-4 h-4 mini:w-5 mini:h-5 text-[6px] mini:text-xs font-bold text-white bg-red-500 border-2 border-white rounded-full -top-0 -end-0 mini:-top-1 mini:-end-1 dark:border-gray-900">
-                                    30</div>
-                            </button>
+                            </a>
+                            <div
+                                class="absolute inline-flex items-center justify-center w-4 h-4 mini:w-5 mini:h-5 text-[6px] mini:text-xs font-bold text-white bg-red-500 border-2 border-white rounded-full -top-0 -end-0 mini:-top-1 mini:-end-1 dark:border-gray-900">
+                                <samp>30</samp>
+                            </div>
                         </div>
                     @endif
 
-                    <div class="ms-3 relative max-md:hidden">
+                    <div class="ms-3 relative max-md:hidden mt-2">
                         <x-dropdown align="right" width="48">
                             <x-slot name="trigger">
-                                <span class="class="inline-flex rounded-md"">
+                                <span class="inline-flex rounded-md">
                                     <button type="button"
-                                        class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 dark:text-gray-400 bg-white dark:bg-gray-800 hover:text-gray-700 dark:hover:text-gray-300 focus:outline-none focus:bg-gray-50 dark:focus:bg-gray-700 active:bg-gray-50 dark:active:bg-gray-700 transition ease-in-out duration-150">
+                                        class="inline-flex items-center border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 dark:text-gray-400 bg-white dark:bg-gray-800 hover:text-gray-700 dark:hover:text-gray-300 focus:outline-none focus:bg-gray-50 dark:focus:bg-gray-700 active:bg-gray-50 dark:active:bg-gray-700 transition ease-in-out duration-150">
                                         {{-- Perfile --}}
                                         <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36"
                                             viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
@@ -77,8 +71,7 @@
                                             <path d="M12 10m-3 0a3 3 0 1 0 6 0a3 3 0 1 0 -6 0" />
                                             <path d="M6.168 18.849a4 4 0 0 1 3.832 -2.849h4a4 4 0 0 1 3.834 2.855" />
                                         </svg>
-                                        {{-- w-4 h-4 
-                                        <div
+                                        {{-- <div
                                             class="absolute inline-flex items-center justify-center w-3 h-3 mini:w-4 mini:h-4  {{ Auth::check() ? 'bg-green-500' : 'bg-red-500' }} rounded-full -top-0 -end-0  mini:-top-0 mini:-end-0 dark:border-gray-900">
                                         </div> --}}
                                     </button>
@@ -140,10 +133,10 @@
                             </x-slot>
                         </x-dropdown>
                     </div>
-                    <div class="md:hidden ml-1">
+                    <div class="md:hidden ml-3">
                         <button @click="open = ! open" x-on:click.away="open=false"
-                            class="  p-2 rounded-md text-white dark:text-gray-500 dark:hover:text-gray-400 hover:bg-blue-800 dark:hover:bg-gray-900 focus:outline-none focus:bg-blue-800 dark:focus:bg-gray-900 dark:focus:text-gray-400 transition duration-150 ease-in-out">
-                            {{-- h-6 w-6 --}}
+                            class="bg-lime-600 p-2 rounded-md text-white dark:text-gray-500 dark:hover:text-gray-400 hover:bg-blue-800 dark:hover:bg-gray-900 focus:outline-none focus:bg-blue-800 dark:focus:bg-gray-900 dark:focus:text-gray-400 transition duration-150 ease-in-out">
+
                             <svg class="h-3 w-3 mini:h-6 mini:w-6" stroke="currentColor" fill="none"
                                 viewBox="0 0 24 24">
                                 <path :class="{ 'hidden': open, 'inline-flex': !open }" class="inline-flex"
@@ -153,6 +146,7 @@
                                     stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                     d="M6 18L18 6M6 6l12 12" />
                             </svg>
+
                         </button>
                     </div>
                 </div>
