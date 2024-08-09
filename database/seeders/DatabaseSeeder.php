@@ -26,7 +26,7 @@ class DatabaseSeeder extends Seeder
         $TipoUser1->save();
 
         $TipoUser2= new tipo_usuario();
-        $TipoUser2->idtipo_usuario=2;
+        $TipoUser2->idtipo_usuario=1;
         $TipoUser2->descripcion="Usuario";
         $TipoUser2->save();
 
@@ -202,5 +202,13 @@ class DatabaseSeeder extends Seeder
         $rutas19->estado=1;
         $rutas19->tipo=1;
         $rutas19->save();
+        $rutas20= new rutas();
+        
+        $rutas20->title="Procedencias";
+        $rutas20->content="Agregar y editar Procedencias";
+        $rutas20->route="admin.direcciones.procedencias";
+        $rutas20->estado=1;
+        $rutas20->tipo=1;
+        $rutas20->save();
     }
 }

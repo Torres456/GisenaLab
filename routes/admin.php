@@ -86,6 +86,10 @@ Route::get('/catalogo/procedencias', function () {
     return view('direcciones.procedencias');
 })->name('direcciones.procedencias');
 
+Route::get('/catalogo/representacion', function () {
+    return view('direcciones.representacion');
+})->name('direcciones.representacion');
+
 Route::get('/catalogo/rutas', function () {
     return view('rutas.index');
 })->name('drutas.index');

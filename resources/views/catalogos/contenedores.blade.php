@@ -1,19 +1,17 @@
-<x-app-layout>
-    <x-slot name="header">
-        <div class="flex justify-between items-center max-md:flex-col max-md:gap-3">
-            <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-                {{ __('Contenedores') }}
-            </h2>
-            <x-menu-catalogos />
-        </div>
-    </x-slot>
 
-    <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-xl sm:rounded-lg p-5">
-                @livewire('catalogos.contenedores')
-            </div>
-        </div>
-    </div>
+<x-app-layout>
+    <x-panel-menu>
+        <x-slot name="content">
+            @livewire('catalogos.contenedores')
+        </x-slot>
+    </x-panel-menu>
 </x-app-layout>
+
 <script src="{{ asset('js/mayusculas.js') }}"></script>
+<style>
+    .custom-scroll {
+    overflow-y: scroll;
+    scrollbar-width: thin;
+    scrollbar-color: #5fa631 #111827;
+}
+</style>
