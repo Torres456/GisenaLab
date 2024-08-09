@@ -93,3 +93,7 @@ Route::get('/catalogo/representacion', function () {
 Route::get('/catalogo/rutas', function () {
     return view('rutas.index');
 })->name('drutas.index');
+
+Route::get('/orden_servicio', function () {
+    return view('administrador.ordenes');
+})->name('administrador.ordenes');
