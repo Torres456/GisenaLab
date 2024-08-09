@@ -1,8 +1,7 @@
-
 <x-app-layout>
     <x-panel-menu>
         <x-slot name="content">
-            @livewire('catalogos.metodos')
+            @livewire('catalogos.laboratorios')
         </x-slot>
     </x-panel-menu>
 </x-app-layout>
