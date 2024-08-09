@@ -15,14 +15,71 @@ use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Str;
 use Laravel\Fortify\Fortify;
 
+use Laravel\Fortify\Contracts\LogoutResponse;
+use Laravel\Fortify\Contracts\LoginResponse;
+use Laravel\Fortify\Contracts\RegisterResponse;
+use Illuminate\Support\Facades\Auth;
+
 class FortifyServiceProvider extends ServiceProvider
 {
-    /**
-     * Register any application services.
-     */
+
     public function register(): void
     {
-        //
+        $this->app->instance(LoginResponse::class, new class implements LoginResponse
+        {
+            public function toResponse($request)
+            {
+
+                if (Auth::check()) {
+
+                    $user = User::where('correo', $request->correo)->first();
+
+                    if ($user->idtipo_usuario == '1') {
+
+                        return redirect()->route('admin.panel');
+                    } else if ($user->idtipo_usuario == '2') {
+
+                        return redirect()->route('welcome');
+                    } else {
+                        abort(500);
+                    }
+                } else {
+                    return redirect()->route('welcome');
+                }
+            }
+        });
+
+        $this->app->instance(RegisterResponse::class, new class implements RegisterResponse
+        {
+            public function toResponse($request)
+            {
+
+                if (Auth::check()) {
+
+                    $user = User::where('correo', $request->correo)->first();
+
+                    if ($user->idtipo_usuario == '1') {
+
+                        return redirect()->route('admin.panel');
+                    } else if ($user->idtipo_usuario == '2') {
+
+                        return redirect()->route('cliente.panel');
+                    } else {
+                        abort(500);
+                    }
+                } else {
+                    return redirect()->route('welcome');
+                }
+            }
+        });
+
+        $this->app->instance(LogoutResponse::class, new class implements LogoutResponse
+        {
+            public function toResponse($request)
+            {
+                return redirect()->route('welcome');
+            }
+        });
     }
 
     /**
