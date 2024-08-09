@@ -71,9 +71,9 @@
                                             <path d="M12 10m-3 0a3 3 0 1 0 6 0a3 3 0 1 0 -6 0" />
                                             <path d="M6.168 18.849a4 4 0 0 1 3.832 -2.849h4a4 4 0 0 1 3.834 2.855" />
                                         </svg>
-                                        {{-- <div
+                                        <div
                                             class="absolute inline-flex items-center justify-center w-3 h-3 mini:w-4 mini:h-4  {{ Auth::check() ? 'bg-green-500' : 'bg-red-500' }} rounded-full -top-0 -end-0  mini:-top-0 mini:-end-0 dark:border-gray-900">
-                                        </div> --}}
+                                        </div>
                                     </button>
                                 </span>
                             </x-slot>
@@ -81,32 +81,22 @@
                             <x-slot name="content">
 
                                 @if (Auth::check())
-                                    <div class="block px-4 py-2 text-xs text-gray-400">
-                                        {{ __('Email') }}
-                                    </div>
-                                    <div class="block px-4 py-2 text-base text-gray-400">
-                                        {{ Auth::user()->correo }}
-                                    </div>
+
+                                    @if (Auth::user()->idtipo_usuario == 1)
+                                        <div class="block px-4 py-2 text-xs text-gray-400">
+                                            {{ __('Administrador') }}
+                                        </div>
+                                        <div class="border-t border-gray-200 dark:border-gray-600"></div>
+                                        <x-dropdown-link href="{{ route('admin.panel') }}" wire:navigate.hover>
+                                            {{ __('Panel') }}
+                                        </x-dropdown-link>
+                                    @else
+                                        <div class="block px-4 py-2 text-xs text-gray-400">
+                                            {{ __('Administrar cuenta') }}
+                                        </div>
+                                    @endif
 
                                     <div class="border-t border-gray-200 dark:border-gray-600"></div>
-
-                                    <div class="border-t border-gray-200 dark:border-gray-600"></div>
-
-                                    <div class="block px-4 py-2 text-xs text-gray-400">
-                                        {{ __('Administrar cuenta') }}
-                                    </div>
-
-                                    <x-dropdown-link href="{{ route('dashboard') }}" wire:navigate.hover>
-                                        {{ __('Dashboard') }}
-                                    </x-dropdown-link>
-
-                                    <x-dropdown-link href="{{ route('profile.show') }}" wire:navigate.hover>
-                                        {{ __('Profile') }}
-                                    </x-dropdown-link>
-
-
-                                    <div class="border-t border-gray-200 dark:border-gray-600"></div>
-
 
                                     <form method="POST" action="{{ route('logout') }}" x-data>
                                         @csrf
@@ -120,10 +110,13 @@
                                         {{ __('GisenaLabs') }}
                                     </div>
 
+                                    <div class="border-t border-gray-200 dark:border-gray-600"></div>
 
                                     <x-dropdown-link href="{{ route('login') }}" wire:navigate.hover>
                                         {{ __('Inicia sesión') }}
                                     </x-dropdown-link>
+
+                                    <div class="border-t border-gray-200 dark:border-gray-600"></div>
 
                                     <x-dropdown-link href="{{ route('tipo-persona') }}" wire:navigate.hover>
                                         {{ __('Crea una cuenta') }}
@@ -186,21 +179,35 @@
                     {{ __('Reconocimeintos') }}
                 </x-responsive-nav-link>
                 @if (Auth::check())
-                    <div class="border-t border-gray-200 dark:border-gray-600"></div>
+
+
+                    @if (Auth::user()->idtipo_usuario == 1)
+                        <div class="block px-4 py-2 text-xs text-gray-400">
+                            {{ __('Administrador') }}
+                        </div>
+                        <div class="border-t border-gray-200 dark:border-gray-600"></div>
+                        <x-dropdown-link href="{{ route('admin.panel') }}" wire:navigate.hover>
+                            {{ __('Panel') }}
+                        </x-dropdown-link>
+                    @else
+                        <div class="block px-4 py-2 text-xs text-gray-400">
+                            {{ __('Administrar cuenta') }}
+                        </div>
+                    @endif
+                    {{-- <div class="border-t border-gray-200 dark:border-gray-600"></div>
 
                     <div class="block px-4 py-2 text-xs text-gray-400">
                         {{ __('Administrar cuenta') }}
-                    </div>
+                    </div> --}}
 
-                    <x-dropdown-link href="{{ route('dashboard') }}" wire:navigate.hover>
+                    {{-- <x-dropdown-link href="{{ route('dashboard') }}" wire:navigate.hover>
                         {{ __('Dashboard') }}
-                    </x-dropdown-link>
-
+                    </x-dropdown-link> --}}
+                    {{-- 
                     <x-dropdown-link href="{{ route('profile.show') }}" wire:navigate.hover>
                         {{ __('Profile') }}
                     </x-dropdown-link>
                     <div class="border-t border-gray-200 dark:border-gray-600"></div>
-
 
                     <form method="POST" action="{{ route('logout') }}" x-data>
                         @csrf
@@ -208,7 +215,7 @@
                         <x-dropdown-link href="{{ route('logout') }}" @click.prevent="$root.submit();">
                             {{ __('Log Out') }}
                         </x-dropdown-link>
-                    </form>
+                    </form> --}}
                 @else
                     <div class="border-t border-gray-200 dark:border-gray-600"></div>
                     <div class="block px-4 py-2 text-xs text-gray-400">
@@ -223,20 +230,6 @@
                     </x-dropdown-link>
                 @endif
             </div>
-            @if (Auth::check())
-                <div class="pt-4 pb-1 border-t border-lime-600 dark:border-gray-600">
-                    <div class="flex items-center px-4">
-                        <div>
-                            <div class="font-medium text-base text-gray-800 dark:text-gray-200">
-                                {{ Auth::user()->nombre }}
-                            </div>
-                            <div class="font-medium text-sm text-gray-500">
-                                {{ Auth::user()->correo }}</div>
-                        </div>
-                    </div>
-
-                </div>
-            @endif
         </div>
     </header>
 
