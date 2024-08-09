@@ -10,7 +10,7 @@
         <div class="text-center ">
 
             <h1 class="font-black text-xl mb-4">Selecciona tu tipo de contribuyente.</h1>
-            <p>Selecciona como el SAT te clasifica como contribuyente.</p>
+
         </div>
 
         <div class="flex gap-10 justify-center mt-5">
@@ -49,13 +49,6 @@
             </a>
         </div>
 
-
-
-
-
     </x-authentication-card>
-
-
-
 
 </x-guest-layout>
