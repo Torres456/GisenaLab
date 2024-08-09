@@ -61,13 +61,21 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->hasOne(cliente::class);
     }
 
+    //get Email for email notification
     public function routeNotificationForMail(Notification $notification): array
     {
         return [$this->correo => $this->correo];
     }
 
+    //get Email for password reset form
     public function getEmailForPasswordReset()
     {
         return $this->correo;
+    }
+
+    //Check user type
+    public function hasRole($role)
+    {
+        return $this->where('correo', $this->correo)->where('idtipo_usuario', $role)->exists();
     }
 }
