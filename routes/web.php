@@ -6,22 +6,32 @@ use Illuminate\Support\Facades\Password;
 
 //web
 Route::get('/', function () {
-
     return view('welcome');
 })->name('welcome');
 
 // auth
 Route::get('/tipo-persona', function () {
     return view('auth.tipo-persona');
-})->name('tipo-persona');
+})->middleware(['guest:' . config('fortify.guard')])->name('tipo-persona');
 
 Route::get('/registro-persona-fisica', function () {
     return view('auth.registro-fisica');
-})->name('persona-fisica');
+})->middleware(['guest:' . config('fortify.guard')])->name('persona-fisica');
 
 Route::get('/registro-persona-moral', function () {
     return view('auth.registro-moral');
-})->name('persona-moral');
+})->middleware(['guest:' . config('fortify.guard')])->name('persona-moral');
+
+//email
+Route::middleware([
+    'auth:sanctum',
+    config('jetstream.auth_session'),
+    'email',
+])->group(function () {
+    Route::get('/cambio-correo', function () {
+        return view('auth.cambio-email');
+    })->name('cambio-correo');
+});
 
 //password
 Route::get('/forgot-password', function () {
