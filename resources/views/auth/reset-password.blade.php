@@ -1,6 +1,6 @@
 <x-guest-layout>
 
-    <x-authentication-card>
+    <x-authenticationemail-card>
 
         <x-slot name="logo">
             <x-authentication-card-logo />
@@ -20,7 +20,8 @@
             </div>
 
             <div class="mt-4">
-                <x-label for="password" value="{{ __('Password') }}" />
+                <x-label-tooltip value="{{ __('Contraseña') }}"
+                    message-text="Tu contraseña debe contener, minimo 8 caracteres, conbinación de números y letras, utilizar almenos una mayúscula y un simbolo." />
                 <x-input id="password" class="block mt-1 w-full" type="password" name="password" required
                     autocomplete="new-password" />
             </div>
@@ -49,5 +50,5 @@
                 <span class="text-sm font-medium">Regresar.</span>
             </a>
         </div>
-    </x-authentication-card>
+    </x-authenticationemail-card>
 </x-guest-layout>

@@ -14,6 +14,12 @@
             </div>
         @endif
 
+        @if (Session::has('success'))
+            <div class="mb-4 font-medium text-sm text-green-600 dark:text-green-400">
+                {{ Session::get('success') }}
+            </div>
+        @endif
+
         <div class="mt-4 flex items-center justify-between flex-col">
             <form method="POST" action="{{ route('verification.send') }}">
                 @csrf
@@ -26,9 +32,9 @@
             </form>
 
             <div class="w-full grid grid-cols-2 place-items-center mt-3">
-                <a href="{{ route('profile.show') }}"
+                <a href="{{ route('cambio-correo') }}"
                     class="underline text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-offset-gray-800">
-                    {{ __('Edit Profile') }}</a>
+                    {{ __('Cambio de correo') }}</a>
 
                 <form method="POST" action="{{ route('logout') }}" class="inline">
                     @csrf

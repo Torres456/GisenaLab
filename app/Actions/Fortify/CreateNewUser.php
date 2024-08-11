@@ -11,6 +11,7 @@ use Laravel\Jetstream\Jetstream;
 use Illuminate\Support\Facades\DB;
 
 use App\Rules\Fisica;
+use App\Rules\Les;
 use App\Rules\Moral;
 use App\Rules\Password;
 
@@ -37,13 +38,16 @@ class CreateNewUser implements CreatesNewUsers
             'nombre_moral.max' => 'El campo Nombre, denominación o razón social, no debe ser mayor que 255 caracteres.',
             'nombre_moral.required' => 'El campo Nombre, denominación o razón social es obligatorio.',
         ];
+
+
+
         if ($input['tipo'] == "fisica") {
             Validator::make($input, [
-                'nombre' => ['required', 'string', 'max:255'],
-                'paterno' => ['required', 'string', 'max:255'],
-                'materno' => ['required', 'string', 'max:255'],
+                'nombre' => ['required', 'string', 'max:255', new Les],
+                'paterno' => ['required', 'string', 'max:255', new Les],
+                'materno' => ['required', 'string', 'max:255', new Les],
                 'rfc' => ['required', 'string', 'min:13', 'max:13', new Fisica, 'unique:cliente'],
-                'correo' => ['required', 'string', 'email', 'max:255', 'unique:usuario_sistema'],
+                'correo' => ['required', 'string', 'email', 'max:255', 'unique:usuario_sistema', 'unique:cliente'],
                 'password' => ['required', 'string', Password::default(), 'confirmed'],
                 'terms' => Jetstream::hasTermsAndPrivacyPolicyFeature() ? ['accepted', 'required'] : '',
             ], $messages)->validate();
@@ -51,10 +55,11 @@ class CreateNewUser implements CreatesNewUsers
             Validator::make($input, [
                 'nombre_moral' => ['required', 'string', 'max:255'],
                 'rfc' => ['required', 'string', 'min:12', 'max:12', new Moral, 'unique:cliente'],
-                'correo' => ['required', 'string', 'email', 'max:255', 'unique:usuario_sistema'],
+                'correo' => ['required', 'string', 'email', 'max:255', 'unique:usuario_sistema', 'unique:cliente'],
                 'password' => ['required', 'string', Password::default(), 'confirmed'],
                 'terms' => Jetstream::hasTermsAndPrivacyPolicyFeature() ? ['accepted', 'required'] : '',
             ], $messages)->validate();
+        } else {
         }
         DB::beginTransaction();
         try {
@@ -86,6 +91,8 @@ class CreateNewUser implements CreatesNewUsers
                     'correo' => $input['correo'],
                     'idusuario_sistema' => $id
                 ]);
+            } else {
+                abort(500);
             }
 
             DB::commit();
