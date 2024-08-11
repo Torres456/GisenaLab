@@ -23,7 +23,7 @@ class Fisica implements ValidationRule
             $fail('El campo RFC debe contener puras mayúsculas.');
         }
 
-        if (preg_match('/^[a-zA-ZñÑáéíóúÁÉÍÓÚ]+$/u', $primerosCaracteres)) {
+        if (preg_match('/^[a-zA-Z]+$/u', $primerosCaracteres)) {
         } else {
             $fail('Campo RFC incorrecto.');
         }
