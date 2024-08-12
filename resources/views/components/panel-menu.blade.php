@@ -60,6 +60,7 @@
                                         </x-responsive-nav-link>
                                     </li>
                                     <li>
+
                                         <x-responsive-nav-link href="{{ route('admin.administrador.ordenes') }}"
                                             :active="request()->routeIs('admin.catalogos.*')" wire:navigate.hover>
                                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
@@ -79,6 +80,7 @@
                                     <li>
                                         <x-responsive-nav-link href="{{ route('admin.catalogos.index') }}"
                                             :active="request()->routeIs('admin.catalogos.*')" wire:navigate.hover>
+
                                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                                                 viewBox="0 0 24 24" fill="currentColor"
                                                 class="icon icon-tabler icons-tabler-filled icon-tabler-category">
@@ -197,6 +199,7 @@
                 </x-nav-link>
             </li>
             <li>
+
                 <x-nav-link href="{{ route('admin.administrador.ordenes') }}" :active="request()->routeIs('admin.administrador.ordenes')" wire:navigate.hover>
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                         fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
@@ -210,6 +213,7 @@
                 </x-nav-link>
             </li>
             <li>
+
                 <x-nav-link href="{{ route('admin.catalogos.index') }}" :active="request()->routeIs('admin.catalogos.*')" wire:navigate.hover>
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                         fill="currentColor" class="icon icon-tabler icons-tabler-filled icon-tabler-category">
