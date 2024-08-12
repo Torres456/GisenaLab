@@ -22,8 +22,8 @@ return new class extends Migration
             $table->unsignedBigInteger('id_colonia');
             $table->foreign('id_colonia')->references('id_colonia')->on('colonia');
             $table->string('calle', 255);
-            $table->integer('num_exterior')->nullable(true);
-            $table->integer('num_interior')->nullable(true);
+            $table->string('num_exterior',15)->nullable(false);
+            $table->string('num_interior',15)->nullable(false);
             $table->integer('cp')->nullable(false);
             $table->timestamps();
         });

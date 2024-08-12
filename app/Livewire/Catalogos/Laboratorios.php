@@ -35,9 +35,9 @@ class Laboratorios extends Component
        $this->validate([
            'newRegister.descripcion' => 'required|max:100|unique:laboratorios,descripcion_laboratorio',
        ], [
-           'newRegister.descripcion.required' => __('El nombre de la unidad de metodo es requerida'),
+           'newRegister.descripcion.required' => __('El nombre del laboratorio es requerido'),
            'newRegister.descripcion.max' => __('El nombre debe tener máximo 100 caracteres'),
-           'newRegister.descripcion.unique' => __('Esta unidad de metodo ya está registrada'),
+           'newRegister.descripcion.unique' => __('Este laboratorio ya está registrado'),
        ]);
        //store
        ModelsLaboratorios::create([
