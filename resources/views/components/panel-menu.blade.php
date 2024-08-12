@@ -198,8 +198,7 @@
                     <span class="ms-3">{{ __('Dashboard') }}</span>
                 </x-nav-link>
             </li>
-            <li>
-
+            {{-- <li>
                 <x-nav-link href="{{ route('admin.administrador.ordenes') }}" :active="request()->routeIs('admin.administrador.ordenes')" wire:navigate.hover>
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                         fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
@@ -211,7 +210,7 @@
                     </svg>
                     <span class="ms-3">{{ __('Órdenes Servicio') }}</span>
                 </x-nav-link>
-            </li>
+            </li> --}}
             <li>
 
                 <x-nav-link href="{{ route('admin.catalogos.index') }}" :active="request()->routeIs('admin.catalogos.*')" wire:navigate.hover>

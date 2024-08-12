@@ -12,7 +12,7 @@
 
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link href="{{ route('admin.panel') }}" :active="request()->routeIs('dashboard')" wire:navigate.hover>
+                    <x-nav-link href="{{ route('admin.panel') }}" :active="request()->routeIs('admin.panel')" wire:navigate.hover>
                         {{ __('Dashboard') }}
                     </x-nav-link>
                 </div>
@@ -166,9 +166,6 @@
     <!--========================================================================================================== Responsive Navigation Menu -->
     <div :class="{ 'block': open, 'hidden': !open }" class="hidden sm:hidden">
         <div class="pt-2 pb-3 space-y-1">
-            {{-- <x-responsive-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')" wire:navigate.hover>
-                {{ __('Dashboard') }}
-            </x-responsive-nav-link> --}}
             <x-responsive-nav-link href="{{ route('admin.catalogos.index') }}" :active="request()->routeIs('catalogos.*')" wire:navigate.hover>
                 {{ __('Catálogos') }}
             </x-responsive-nav-link>
