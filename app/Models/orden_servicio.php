@@ -36,7 +36,6 @@ class orden_servicio extends Model
     public function muestras(){
         return $this->hasMany(muestra_orden_servicio::class, 'id_categoria', 'id_categoria');
     }
-
     //relacion cotizacion uno a uno
     public function cotizacion(){
         return $this->belongsTo(cotizacion::class, 'id_cotizacion','id_cotizacion');
