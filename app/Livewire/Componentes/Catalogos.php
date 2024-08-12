@@ -23,6 +23,11 @@ class Catalogos extends Component
     public function render()
     {
         $cards=rutas::all();
+        $cards = rutas::where('estado',1)
+              ->where('tipo',1)
+              ->orderBy('title', 'asc') // Ordenamos por el campo 'title' en orden ascendente
+              ->get();
+
         return view('livewire.componentes.catalogos', compact('cards'));
     }
 }
