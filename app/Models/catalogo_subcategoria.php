@@ -23,7 +23,7 @@ class catalogo_subcategoria extends Model
     }
 
     public function muestras(){
-        return $this->hasMany(mustra_orden_servicio::class, 'id_subcategoria', 'id_subcategoria');
+        return $this->hasMany(muestra_orden_servicio::class, 'id_categoria', 'id_categoria');
     }
 
 
