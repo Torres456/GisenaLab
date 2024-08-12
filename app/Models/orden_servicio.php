@@ -32,8 +32,9 @@ class orden_servicio extends Model
     public function status_orden_servicio(){
         return $this->belongsTo(estatus_orden_servicio::class, 'idstatus_orden_servicio','idstatus_orden_servicio');
     }
+    
     public function muestras(){
-        return $this->hasMany(mustra_orden_servicio::class, 'numero_orden_servicio','numero_orden_servicio');
+        return $this->hasMany(muestra_orden_servicio::class, 'id_categoria', 'id_categoria');
     }
 
     //relacion cotizacion uno a uno

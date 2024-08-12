@@ -32,7 +32,7 @@ class mustra_internacional extends Model
     }
 
     public function muestras(){
-        return $this->hasMany(mustra_orden_servicio::class, 'idmuestra_internacional', 'idmuestra_internacional');
+        return $this->hasMany(muestra_orden_servicio::class, 'id_categoria', 'id_categoria');
     }
     
     use HasFactory;
