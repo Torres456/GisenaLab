@@ -97,3 +97,9 @@ Route::get('/catalogo/rutas', function () {
 Route::get('/orden_servicio', function () {
     return view('administrador.ordenes');
 })->name('administrador.ordenes');
+
+Route::get('/gestores', function () {
+    return view('gestores.index');
+})->name('gestores.index');
+
+

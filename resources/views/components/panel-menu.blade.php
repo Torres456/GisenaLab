@@ -197,6 +197,9 @@
                     </svg>
                     <span class="ms-3">{{ __('Dashboard') }}</span>
                 </x-nav-link>
+                @if (Route::is('admin.panel') || Route::is('admin.gestores.*'))
+                    @livewire('componentes.panel')
+                @endif
             </li>
             {{-- <li>
                 <x-nav-link href="{{ route('admin.administrador.ordenes') }}" :active="request()->routeIs('admin.administrador.ordenes')" wire:navigate.hover>

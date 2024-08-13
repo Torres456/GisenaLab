@@ -32,7 +32,7 @@
                             </div>
                         </div>
                     </x-slot>
-                    <x-slot name="footer"><x-button-enter wire:navigate.hover>Entrar</x-button-enter></x-slot>
+                    <x-slot name="footer"><x-button-enter href="{{route('admin.gestores.index')}}" wire:navigate.hover>Entrar</x-button-enter></x-slot>
                 </x-cards>
             </div>
         </x-slot>
