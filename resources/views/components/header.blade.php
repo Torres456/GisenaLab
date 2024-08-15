@@ -96,6 +96,7 @@
                                         {{ __('Administrar cuenta') }}
                                     </div>
 
+<<<<<<< HEAD
                                     @if (Auth::user()->idtipo_usuario == 1)
                                         <x-dropdown-link href="{{ route('admin.panel') }}" wire:navigate.hover>
                                             {{ __('Dashboard') }}
@@ -105,10 +106,15 @@
                                             {{ __('Dashboard') }}
                                         </x-dropdown-link>
                                     @endif
+=======
+                                    {{-- <x-dropdown-link href="{{ route('dashboard') }}" wire:navigate.hover>
+                                        {{ __('Dashboard') }}
+                                    </x-dropdown-link>
+>>>>>>> feature_correcciones
 
                                     <x-dropdown-link href="{{ route('profile.show') }}" wire:navigate.hover>
                                         {{ __('Profile') }}
-                                    </x-dropdown-link>
+                                    </x-dropdown-link> --}}
 
 
                                     <div class="border-t border-gray-200 dark:border-gray-600"></div>
@@ -131,7 +137,7 @@
                                         {{ __('Inicia sesión') }}
                                     </x-dropdown-link>
 
-                                    <x-dropdown-link href="{{ route('tipo-persona') }}" wire:navigate.hover>
+                                    <x-dropdown-link href="{{ route('register') }}" wire:navigate.hover>
                                         {{ __('Crea una cuenta') }}
                                     </x-dropdown-link>
                                 @endif
@@ -198,9 +204,13 @@
                         {{ __('Administrar cuenta') }}
                     </div>
 
+<<<<<<< HEAD
                     <x-dropdown-link href="{{ route('welcome') }}" wire:navigate.hover>
+=======
+                    {{-- <x-dropdown-link href="{{ route('dashboard') }}" wire:navigate.hover>
+>>>>>>> feature_correcciones
                         {{ __('Dashboard') }}
-                    </x-dropdown-link>
+                    </x-dropdown-link> --}}
 
                     <x-dropdown-link href="{{ route('profile.show') }}" wire:navigate.hover>
                         {{ __('Profile') }}
@@ -224,7 +234,7 @@
                         {{ __('Inicia sesión') }}
                     </x-dropdown-link>
 
-                    <x-dropdown-link href="{{ route('tipo-persona') }}" wire:navigate.hover>
+                    <x-dropdown-link href="{{ route('register') }}" wire:navigate.hover>
                         {{ __('Crea una cuenta') }}
                     </x-dropdown-link>
                 @endif

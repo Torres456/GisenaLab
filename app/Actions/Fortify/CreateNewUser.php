@@ -4,6 +4,7 @@ namespace App\Actions\Fortify;
 
 use App\Models\User;
 use App\Models\cliente;
+use App\Models\contacto;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Laravel\Fortify\Contracts\CreatesNewUsers;
@@ -25,42 +26,29 @@ class CreateNewUser implements CreatesNewUsers
     public function create(array $input): User
     {
         $messages = [
-            'rfc.max' => 'El campo RFC no debe ser mayor que 12 caracteres.',
-            'rfc.min' => 'El campo RFC debe contener al menos 12 caracteres.',
-            'rfc.unique' => 'El campo RFC ya ha sido registrado.',
-            'rfc.required' => 'El campo RFC es obligatorio.',
+            'nombre.required' => 'El campo Nombre es obligatorio.',
             'nombre.max' => 'El campo Nombre, no debe ser mayor que 255 caracteres.',
-            'nombre.required' => 'El campo Nombre, debe ser obligatorio.',
-            'paterno.required' => 'El campo Apellido paterno, debe ser obligatorio.',
+            'paterno.required' => 'El campo Apellido paterno es obligatorio.',
             'paterno.max' => 'El campo Apellido paterno, no debe ser mayor que 255 caracteres.',
             'materno.required' => 'El campo Apellido materno, debe ser obligatorio.',
             'materno.max' => 'El campo Apellido materno, no debe ser mayor que 255 caracteres.',
-            'nombre_moral.max' => 'El campo Nombre, denominación o razón social, no debe ser mayor que 255 caracteres.',
-            'nombre_moral.required' => 'El campo Nombre, denominación o razón social es obligatorio.',
+            'rfc.required' => 'El campo RFC es obligatorio.',
+            'rfc.min' => 'El campo RFC debe contener como minimo 12 caracteres.',
+            'rfc.max' => 'El campo RFC debe contener como maximo 13 caracteres.',
+            'rfc.unique' => 'El campo RFC ya ha sido registrado.',
         ];
 
 
+        $validator = Validator::make($input, [
+            'nombre' => ['required', 'string', 'max:255', new Les],
+            'paterno' => ['required', 'string', 'max:255', new Les],
+            'materno' => ['required', 'string', 'max:255', new Les],
+            'rfc' => ['required', 'string', 'min:12', 'max:13', new Fisica, 'unique:cliente'],
+            'correo' => ['required', 'string', 'email', 'max:255', 'unique:usuario_sistema', 'unique:cliente', 'unique:contacto'],
+            'password' => ['required', 'string', Password::default(), 'confirmed'],
+            'terms' => Jetstream::hasTermsAndPrivacyPolicyFeature() ? ['accepted', 'required'] : '',
+        ], $messages)->validate();
 
-        if ($input['tipo'] == "fisica") {
-            Validator::make($input, [
-                'nombre' => ['required', 'string', 'max:255', new Les],
-                'paterno' => ['required', 'string', 'max:255', new Les],
-                'materno' => ['required', 'string', 'max:255', new Les],
-                'rfc' => ['required', 'string', 'min:13', 'max:13', new Fisica, 'unique:cliente'],
-                'correo' => ['required', 'string', 'email', 'max:255', 'unique:usuario_sistema', 'unique:cliente'],
-                'password' => ['required', 'string', Password::default(), 'confirmed'],
-                'terms' => Jetstream::hasTermsAndPrivacyPolicyFeature() ? ['accepted', 'required'] : '',
-            ], $messages)->validate();
-        } else if ($input['tipo'] == "moral") {
-            Validator::make($input, [
-                'nombre_moral' => ['required', 'string', 'max:255'],
-                'rfc' => ['required', 'string', 'min:12', 'max:12', new Moral, 'unique:cliente'],
-                'correo' => ['required', 'string', 'email', 'max:255', 'unique:usuario_sistema', 'unique:cliente'],
-                'password' => ['required', 'string', Password::default(), 'confirmed'],
-                'terms' => Jetstream::hasTermsAndPrivacyPolicyFeature() ? ['accepted', 'required'] : '',
-            ], $messages)->validate();
-        } else {
-        }
         DB::beginTransaction();
         try {
             $usuario_sistema = User::create([
@@ -69,24 +57,35 @@ class CreateNewUser implements CreatesNewUsers
                 'estatus' => 1,
                 'idtipo_usuario' => 2
             ]);
+
             $id = DB::table('usuario_sistema')->where('correo', $input['correo'])->value('idusuario_sistema');
 
-            if ($input['tipo'] == "fisica") {
 
-                $razon = strtoupper($input['nombre']) . ' ' . strtoupper($input['materno']) . ' ' . strtoupper($input['materno']);
+            //Persona fisica
+            if (strlen($input['rfc']) == '13') {
+
+                $contacto = contacto::create([
+                    'nombre' => $input['nombre'],
+                    'ap_paterno' => $input['paterno'],
+                    'ap_materno' => $input['materno'],
+                    'correo' => $input['correo']
+                ]);
+
+                $id2 = DB::table('contacto')->where('correo', $input['correo'])->value('id_contacto');
 
                 $cliente = cliente::create([
-                    'razon_social' => $razon,
-                    'rfc' => $input['rfc'],
+                    'rfc' => strtoupper($input['rfc']),
                     'tipo' => 1,
                     'correo' => $input['correo'],
-                    'idusuario_sistema' => $id
+                    'idusuario_sistema' => $id,
+                    'id_contacto' => $id2
                 ]);
-            } else if ($input['tipo'] == "moral") {
+
+                //Persona moral
+            } else if (strlen($input['rfc']) == '12') {
 
                 $cliente = cliente::create([
-                    'razon_social' => strtoupper($input['nombre_moral']),
-                    'rfc' => $input['rfc'],
+                    'rfc' => strtoupper($input['rfc']),
                     'tipo' => 2,
                     'correo' => $input['correo'],
                     'idusuario_sistema' => $id

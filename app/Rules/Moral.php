@@ -19,18 +19,15 @@ class Moral implements ValidationRule
         $SegundosCaracteres = substr($value, 3, 6);
 
 
-        if ($value != strtoupper($value)) {
-            $fail('El campo RFC debe contener puras mayúsculas.');
-        }
 
         if (preg_match('/^[a-zA-Z]+$/u', $primerosCaracteres)) {
         } else {
-            $fail('Campo RFC incorrecto.');
+            $fail('El campo RFC no pertenece a una persona moral.');
         }
 
         if (is_numeric($SegundosCaracteres)) {
         } else {
-            $fail('Campo RFC incorrecto.');
+            $fail('El campo RFC no pertenece a una persona moral.');
         }
     }
 }

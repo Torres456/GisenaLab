@@ -14,23 +14,45 @@ class Fisica implements ValidationRule
      */
     public function validate(string $attribute, mixed $value, Closure $fail): void
     {
-        $primerosCaracteres = substr($value, 0, 4);
 
-        $SegundosCaracteres = substr($value, 5, 5);
+        if (preg_match('/^[a-zA-ZñÑáéíóúÁÉÍÓÚ0-9\s]+$/u', $value)) {
+
+            if (strlen($value) == '13') {
+
+                $primerosCaracteres = substr($value, 0, 4);
+
+                $SegundosCaracteres = substr($value, 5, 5);
 
 
-        if ($value != strtoupper($value)) {
-            $fail('El campo RFC debe contener puras mayúsculas.');
-        }
+                if (preg_match('/^[a-zA-ZñÑ]+$/u', $primerosCaracteres)) {
+                } else {
+                    $fail('Estructura del RFC incorrecta.');
+                }
 
-        if (preg_match('/^[a-zA-Z]+$/u', $primerosCaracteres)) {
+                if (is_numeric($SegundosCaracteres)) {
+                } else {
+                    $fail('Estructura del RFC incorrecta.');
+                }
+            } else if (strlen($value) == '12') {
+
+                $primerosCaracteres = substr($value, 0, 2);
+
+                $SegundosCaracteres = substr($value, 3, 6);
+
+
+
+                if (preg_match('/^[a-zA-ZñÑ]+$/u', $primerosCaracteres)) {
+                } else {
+                    $fail('Estructura del RFC incorrecta.');
+                }
+
+                if (is_numeric($SegundosCaracteres)) {
+                } else {
+                    $fail('Estructura del RFC incorrecta.');
+                }
+            }
         } else {
-            $fail('Campo RFC incorrecto.');
-        }
-
-        if (is_numeric($SegundosCaracteres)) {
-        } else {
-            $fail('Campo RFC incorrecto.');
+            $fail('Estructura del RFC incorrecta.');
         }
     }
 }
