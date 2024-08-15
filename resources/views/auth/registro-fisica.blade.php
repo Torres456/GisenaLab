@@ -6,7 +6,7 @@
             <x-authentication-card-logo />
         </x-slot>
 
-        <x-validation-errors class="mb-4" />
+        {{-- <x-validation-errors class="mb-4" /> --}}
 
         <div class=" text-center p-4 font-bold">
             <h1>Registro de persona fisica</h1>
@@ -20,24 +20,27 @@
                 <x-label for="nombre" value="{{ __('Nombre') }}" />
                 <x-input id="nombre" class="block mt-1 w-full" type="text" name="nombre" :value="old('nombre')"
                     required autofocus autocomplete="nombre"
-                    onkeypress="return (event.charCode >= 65 && event.charCode <= 122 || event.charCode >= 32 && event.charCode <= 32)"
+                    onkeypress="return (event.charCode >= 65 && event.charCode <= 122 || event.charCode >= 32 && event.charCode <= 32 || event.charCode >= 225 && event.charCode <= 225 || event.charCode >= 233 && event.charCode <= 237 || event.charCode >= 243 && event.charCode <= 250 || event.charCode >= 192 && event.charCode <= 218)"
                     maxlength=255 />
+                <x-input-error for="nombre" class="mt-2" />
             </div>
 
             <div class="mt-4">
                 <x-label for="paterno" value="{{ __('Apellido paterno') }}" />
                 <x-input id="paterno" class="block mt-1 w-full" type="text" name="paterno" :value="old('paterno')"
                     required autofocus autocomplete="apellido paterno" max="255"
-                    onkeypress="return (event.charCode >= 65 && event.charCode <= 122 || event.charCode >= 32 && event.charCode <= 32)"
+                    onkeypress="return (event.charCode >= 65 && event.charCode <= 122 || event.charCode >= 32 && event.charCode <= 32 || event.charCode >= 225 && event.charCode <= 225 || event.charCode >= 233 && event.charCode <= 237 || event.charCode >= 243 && event.charCode <= 250 || event.charCode >= 192 && event.charCode <= 218)"
                     maxlength=255 />
+                <x-input-error for="paterno" class="mt-2" />
             </div>
 
             <div class="mt-4">
                 <x-label for="materno" value="{{ __('Apellido materno') }}" />
                 <x-input id="materno" class="block mt-1 w-full" type="text" name="materno" :value="old('materno')"
                     required autofocus autocomplete="apellido materno" min="255"
-                    onkeypress="return (event.charCode >= 65 && event.charCode <= 122 || event.charCode >= 32 && event.charCode <= 32)"
+                    onkeypress="return (event.charCode >= 65 && event.charCode <= 122 || event.charCode >= 32 && event.charCode <= 32 || event.charCode >= 225 && event.charCode <= 225 || event.charCode >= 233 && event.charCode <= 237 || event.charCode >= 243 && event.charCode <= 250 || event.charCode >= 192 && event.charCode <= 218)"
                     maxlength=255 />
+                <x-input-error for="materno" class="mt-2" />
             </div>
 
             <div class="mt-4">
@@ -45,14 +48,17 @@
                     message-text="El RFC de una persona física debe tener 13 caracteres y estar en mayúsculas." />
                 <x-input id="rfc" class="block mt-1 w-full" type="text" name="rfc" :value="old('rfc')"
                     required autofocus autocomplete="rfc"
-                    onkeypress="return (event.charCode >= 48 && event.charCode <=57 || event.charCode >= 65 && event.charCode <=90)"
+                    onkeypress="return (event.charCode >= 65 && event.charCode <=90 || event.charCode >= 97 && eve
+                    nt.charCode <=122)"
                     maxlength=13 />
+                <x-input-error for="rfc" class="mt-2" />
             </div>
 
             <div class="mt-4">
                 <x-label for="correo" value="{{ __(' Correo') }}" />
                 <x-input id="correo" class="block mt-1 w-full" type="email" name="correo" :value="old('correo')"
                     required autocomplete="username" maxlength=255 />
+                <x-input-error for="correo" class="mt-2" />
             </div>
 
             <div class="mt-4">
@@ -60,6 +66,7 @@
                     message-text="Tu contraseña debe contener, minimo 8 caracteres, conbinación de números y letras, utilizar almenos una mayúscula y un simbolo." />
                 <x-input id="password" class="block mt-1 w-full" type="password" name="password" required
                     autocomplete="new-password" maxlength=255 />
+                <x-input-error for="password" class="mt-2" />
             </div>
 
             <div class="mt-4">
