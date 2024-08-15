@@ -16,7 +16,7 @@ class Les implements ValidationRule
     {
 
 
-        if (preg_match('/^[a-zA-ZñÑáéíóúÁÉÍÓÚ]+$/u', $value)) {
+        if (preg_match('/^[a-zA-ZñÑáéíóúÁÉÍÓÚ\s]+$/u', $value)) {
         } else {
 
             if ($attribute == 'nombre') {
