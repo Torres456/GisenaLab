@@ -18,10 +18,10 @@ return new class extends Migration
             $table->string('ap_materno', 100);
             $table->string('telefono', 15);
             $table->string('correo', 100);
-            $table->integer('sexo');
+            $table->string('sexo',10);
             $table->unsignedBigInteger('id_direccion');
             $table->foreign('id_direccion')->references('id_direccion')->on('direccion');
-            $table->unsignedBigInteger('idusuario_sistema');
+            $table->unsignedBigInteger('idusuario_sistema')->nullable(true);
             $table->foreign('idusuario_sistema')->references('idusuario_sistema')->on('usuario_sistema');
             $table->unsignedBigInteger('idzona_representacion');
             $table->foreign('idzona_representacion')->references('idzona_representacion')->on('zona_representacion');
