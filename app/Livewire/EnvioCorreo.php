@@ -3,6 +3,7 @@
 namespace App\Livewire;
 
 use App\Models\cliente;
+use App\Models\contacto;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -15,6 +16,8 @@ class EnvioCorreo extends Component
 
     public $correo;
 
+    public $correoc;
+
     public $id;
 
     public $state = [];
@@ -24,7 +27,7 @@ class EnvioCorreo extends Component
     {
         return [
 
-            'correo' => ['required', 'string', 'email', 'max:255', 'unique:usuario_sistema'],
+            'correo' => ['required', 'string', 'email', 'max:255', 'unique:usuario_sistema', 'unique:cliente', 'unique:contacto'],
 
         ];
     }
@@ -35,6 +38,7 @@ class EnvioCorreo extends Component
 
         $this->id = $user->idusuario_sistema;
         $this->correo = $user->correo;
+        $this->correoc = $user->correo;
     }
 
     public function getUserProperty()
@@ -50,28 +54,65 @@ class EnvioCorreo extends Component
 
         $cliente = cliente::where('idusuario_sistema', $this->id)->first();
 
-        DB::beginTransaction();
 
-        try {
-            $user->forceFill([
-                'correo' => $this->correo,
-            ])->save();
+        if ($cliente->tipo == '1') {
 
-            $cliente->forceFill([
-                'correo' => $this->correo,
-            ])->save();
+            $contacto = contacto::where('correo', $this->correoc)->first();
 
-            DB::commit();
-        } catch (\Exception $e) {
-            DB::rollback();
-            return $e->getMessage();
+            DB::beginTransaction();
+
+            try {
+                $user->forceFill([
+                    'correo' => $this->correo,
+                ])->save();
+
+                $cliente->forceFill([
+                    'correo' => $this->correo,
+                ])->save();
+
+                $contacto->forceFill([
+                    'correo' => $this->correo,
+                ])->save();
+
+                DB::commit();
+            } catch (\Exception $e) {
+                DB::rollback();
+                return $e->getMessage();
+            }
+
+            $user->sendEmailVerificationNotification();
+
+            session()->flash('success', '¡Te hemos enviado un nuevo enlace de verificación al correo que proporcionaste!');
+
+            return redirect('/email/verify');
+        } else if ($cliente->tipo == '2') {
+
+            DB::beginTransaction();
+
+            try {
+
+                $user->forceFill([
+                    'correo' => $this->correo,
+                ])->save();
+
+                $cliente->forceFill([
+                    'correo' => $this->correo,
+                ])->save();
+
+
+                DB::commit();
+            } catch (\Exception $e) {
+                DB::rollback();
+                return $e->getMessage();
+            }
+
+            $user->sendEmailVerificationNotification();
+
+            session()->flash('success', '¡Te hemos enviado un nuevo enlace de verificación al correo que proporcionaste!');
+
+            return redirect('/email/verify');
+        } else {
         }
-
-        $user->sendEmailVerificationNotification();
-
-        session()->flash('success', '¡Te hemos enviado un nuevo enlace de verificación al correo que proporcionaste!');
-
-        return redirect('/email/verify');
     }
 
     public function placeholder()
