@@ -26,7 +26,7 @@ class DatabaseSeeder extends Seeder
         $TipoUser1->save();
 
         $TipoUser2= new tipo_usuario();
-        $TipoUser2->idtipo_usuario=1;
+        $TipoUser2->idtipo_usuario=2;
         $TipoUser2->descripcion="Usuario";
         $TipoUser2->save();
 

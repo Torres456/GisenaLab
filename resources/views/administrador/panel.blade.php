@@ -21,18 +21,9 @@
                 <x-cards>
                     <x-slot name="title">Gestores</x-slot>
                     <x-slot name="content">
-                        <div class="flex flex-col divide-y divide-slate-700">
-                            <div class="w-full flex justify-between py-2">
-                                <p>Gestores Nuevos</p>
-                                <p class="text-white">6</p>
-                            </div>
-                            <div class="w-full flex justify-between py-2">
-                                <p>Gestores Activos</p>
-                                <p class="text-white">5</p>
-                            </div>
-                        </div>
+                        @livewire('gestores.count')
                     </x-slot>
-                    <x-slot name="footer"><x-button-enter wire:navigate.hover>Entrar</x-button-enter></x-slot>
+                    <x-slot name="footer"><x-button-enter href="{{route('admin.gestores.index')}}" wire:navigate.hover>Entrar</x-button-enter></x-slot>
                 </x-cards>
             </div>
         </x-slot>

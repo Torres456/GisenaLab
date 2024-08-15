@@ -17,15 +17,15 @@
                             {{ __('Inicio') }}
                         </x-nav-link>
 
-                        <x-nav-link href="https://gisenalabs.com.mx/empresa/" :active="request()->routeIs('dashboard')">
+                        <x-nav-link href="https://gisenalabs.com.mx/empresa/">
                             {{ __('Empresa') }}
                         </x-nav-link>
 
-                        <x-nav-link href="https://gisenalabs.com.mx/servicios/" :active="request()->routeIs('dashboard')">
+                        <x-nav-link href="https://gisenalabs.com.mx/servicios/">
                             {{ __('Servicios') }}
                         </x-nav-link>
 
-                        <x-nav-link href="https://gisenalabs.com.mx/reconocimientos/" :active="request()->routeIs('dashboard')">
+                        <x-nav-link href="https://gisenalabs.com.mx/reconocimientos/">
                             {{ __('Reconocimientos') }}
                         </x-nav-link>
 
@@ -96,9 +96,15 @@
                                         {{ __('Administrar cuenta') }}
                                     </div>
 
-                                    <x-dropdown-link href="{{ route('dashboard') }}" wire:navigate.hover>
-                                        {{ __('Dashboard') }}
-                                    </x-dropdown-link>
+                                    @if (Auth::user()->idtipo_usuario == 1)
+                                        <x-dropdown-link href="{{ route('admin.panel') }}" wire:navigate.hover>
+                                            {{ __('Dashboard') }}
+                                        </x-dropdown-link>
+                                    @elseif (Auth::user()->idtipo_usuario == 2)
+                                        <x-dropdown-link href="{{ route('client.panel') }}" wire:navigate.hover>
+                                            {{ __('Dashboard') }}
+                                        </x-dropdown-link>
+                                    @endif
 
                                     <x-dropdown-link href="{{ route('profile.show') }}" wire:navigate.hover>
                                         {{ __('Profile') }}
@@ -174,15 +180,15 @@
                     {{ __('inicio') }}
                 </x-responsive-nav-link>
 
-                <x-responsive-nav-link href="https://gisenalabs.com.mx/empresa/" :active="request()->routeIs('dashboard')">
+                <x-responsive-nav-link href="https://gisenalabs.com.mx/empresa/">
                     {{ __('Empresa') }}
                 </x-responsive-nav-link>
 
-                <x-responsive-nav-link href="https://gisenalabs.com.mx/servicios/" :active="request()->routeIs('dashboard')">
+                <x-responsive-nav-link href="https://gisenalabs.com.mx/servicios/">
                     {{ __('Servicios') }}
                 </x-responsive-nav-link>
 
-                <x-responsive-nav-link href="https://gisenalabs.com.mx/reconocimientos/" :active="request()->routeIs('dashboard')">
+                <x-responsive-nav-link href="https://gisenalabs.com.mx/reconocimientos/">
                     {{ __('Reconocimeintos') }}
                 </x-responsive-nav-link>
                 @if (Auth::check())
@@ -192,7 +198,7 @@
                         {{ __('Administrar cuenta') }}
                     </div>
 
-                    <x-dropdown-link href="{{ route('dashboard') }}" wire:navigate.hover>
+                    <x-dropdown-link href="{{ route('welcome') }}" wire:navigate.hover>
                         {{ __('Dashboard') }}
                     </x-dropdown-link>
 

@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 
@@ -37,9 +38,9 @@ class gestor extends Model
         return $this->hasOne(User::class,'idusuario_sistema');
     }
 
-    public function zona(): HasOne
+    public function zona(): BelongsTo
     {
-        return $this->hasOne(zona_representacion::class,'idzona_representacion');
+        return $this->BelongsTo(zona_representacion::class,'idzona_representacion');
     }
 
     //un gestor puede tener barios interesados
