@@ -96,21 +96,9 @@
                                         {{ __('Administrar cuenta') }}
                                     </div>
 
-<<<<<<< HEAD
-                                    @if (Auth::user()->idtipo_usuario == 1)
-                                        <x-dropdown-link href="{{ route('admin.panel') }}" wire:navigate.hover>
-                                            {{ __('Dashboard') }}
-                                        </x-dropdown-link>
-                                    @elseif (Auth::user()->idtipo_usuario == 2)
-                                        <x-dropdown-link href="{{ route('client.panel') }}" wire:navigate.hover>
-                                            {{ __('Dashboard') }}
-                                        </x-dropdown-link>
-                                    @endif
-=======
                                     {{-- <x-dropdown-link href="{{ route('dashboard') }}" wire:navigate.hover>
                                         {{ __('Dashboard') }}
                                     </x-dropdown-link>
->>>>>>> feature_correcciones
 
                                     <x-dropdown-link href="{{ route('profile.show') }}" wire:navigate.hover>
                                         {{ __('Profile') }}
@@ -204,11 +192,7 @@
                         {{ __('Administrar cuenta') }}
                     </div>
 
-<<<<<<< HEAD
-                    <x-dropdown-link href="{{ route('welcome') }}" wire:navigate.hover>
-=======
                     {{-- <x-dropdown-link href="{{ route('dashboard') }}" wire:navigate.hover>
->>>>>>> feature_correcciones
                         {{ __('Dashboard') }}
                     </x-dropdown-link> --}}
 
