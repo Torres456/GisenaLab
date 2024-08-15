@@ -39,7 +39,7 @@ class FortifyServiceProvider extends ServiceProvider
                         return redirect()->route('admin.panel');
                     } else if ($user->idtipo_usuario == '2') {
 
-                        return redirect()->route('welcome');
+                        return redirect()->route('cliente.panel');
                     } else {
                         abort(500);
                     }
