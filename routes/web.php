@@ -9,18 +9,9 @@ Route::get('/', function () {
     return view('welcome');
 })->name('welcome');
 
-// auth
-Route::get('/tipo-persona', function () {
-    return view('auth.tipo-persona');
-})->middleware(['guest:' . config('fortify.guard')])->name('tipo-persona');
-
-Route::get('/registro-persona-fisica', function () {
-    return view('auth.registro-fisica');
-})->middleware(['guest:' . config('fortify.guard')])->name('persona-fisica');
-
-Route::get('/registro-persona-moral', function () {
-    return view('auth.registro-moral');
-})->middleware(['guest:' . config('fortify.guard')])->name('persona-moral');
+Route::get('/pruevas', function () {
+    return view('pruevas');
+})->name('pruevas');
 
 //email
 Route::middleware([
