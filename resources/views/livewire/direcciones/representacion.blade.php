@@ -86,46 +86,22 @@
         {{ $zonas->links() }}
     </div>
 
-    <x-dialog-modal wire:model="new">
-        <x-slot name='title'>
-            <h2 class="text-center">Nueva Zona de Representación</h2>
-        </x-slot>
-        <x-slot name='content'>
-            <form wire:submit="new_form">
-                <div>
-                    <x-label>Nombre:</x-label>
-                    <x-input wire:model="newRegister.nombre" type="text" class="block mt-1 w-full"
-                        onkeyup="mayuscula(this)" />
-                    <x-input-error for="newRegister.nombre" />
-                </div>
-                <div class="mt-5 flex justify-around">
-                    <x-button>Guardar</x-button>
-                    <x-danger-button wire:click="new_cancel">Cancelar</x-danger-button>
-                </div>
-            </form>
-        </x-slot>
-        <x-slot name='footer'></x-slot>
-    </x-dialog-modal>
-
-
+    {{-- @livewire('componentes.representacion.create',[
+        'new'=>$new
+    ]) --}}
+    <livewire:componentes.representacion.create wire:model="new" />
+    
 
     <x-dialog-modal wire:model="edit">
         <x-slot name='title'>
             <h2 class="text-center">Editar Zona de Representación</h2>
         </x-slot>
         <x-slot name='content'>
-            <form wire:submit="edit_form">
-                <div>
-                    <x-label>Nombre:</x-label>
-                    <x-input wire:model="editRegister.nombre" type="text" class="block mt-1 w-full"
-                        onkeyup="mayuscula(this)" />
-                    <x-input-error for="editRegister.nombre" />
-                </div>
-                <div class="mt-5 flex justify-around">
-                    <x-button>Guardar</x-button>
-                    <x-danger-button wire:click="edit_cancel">Cancelar</x-danger-button>
-                </div>
-            </form>
+            @livewire('componentes.representacion.edit',
+            [
+                'editId'=>$editId,
+                'edit'=>$edit
+            ])
         </x-slot>
         <x-slot name='footer'></x-slot>
     </x-dialog-modal>
