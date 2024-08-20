@@ -97,7 +97,8 @@
                                     </div>
 
                                     @if (Auth::user()->idtipo_usuario == 1)
-                                        <x-dropdown-link href="{{ route('admin.administrador.panel') }}" wire:navigate.hover>
+                                        <x-dropdown-link href="{{ route('admin.administrador.panel') }}"
+                                            wire:navigate.hover>
                                             {{ __('Dashboard') }}
                                         </x-dropdown-link>
                                     @elseif (Auth::user()->idtipo_usuario == 2)
@@ -131,9 +132,9 @@
                                         {{ __('Inicia sesión') }}
                                     </x-dropdown-link>
 
-                                    {{-- <x-dropdown-link href="{{ route('tipo-persona') }}" wire:navigate.hover>
+                                    <x-dropdown-link href="{{ route('register') }}" wire:navigate.hover>
                                         {{ __('Crea una cuenta') }}
-                                    </x-dropdown-link> --}}
+                                    </x-dropdown-link>
                                 @endif
 
                             </x-slot>
