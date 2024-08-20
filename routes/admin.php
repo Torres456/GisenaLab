@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/panel', function () {
     return view('administrador.panel');
-})->name('panel');
+})->name('administrador.panel');
 
 Route::get('/catalogos', function () {
     return view('catalogos.index');
@@ -99,5 +99,7 @@ Route::get('/orden_servicio', function () {
 })->name('administrador.ordenes');
 
 Route::get('/gestores', function () {
-    return view('gestores.index');
-})->name('gestores.index');
+    return view('administrador.gestores');
+})->name('administrador.gestores');
+
+

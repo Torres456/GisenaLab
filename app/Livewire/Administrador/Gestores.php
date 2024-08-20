@@ -1,10 +1,11 @@
 <?php
 
-namespace App\Livewire\Gestores;
+namespace App\Livewire\Administrador;
 
 use App\Models\colonia;
 use App\Models\direccion;
 use App\Models\estado;
+use App\Models\estados_zona;
 use App\Models\gestor;
 use App\Models\municipio;
 use App\Models\User;
@@ -15,8 +16,10 @@ use App\Rules\Les;
 use App\Rules\telefono;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+use Livewire\Attributes\Lazy;
 
-class Index extends Component
+#[Lazy()]
+class Gestores extends Component
 {
     //&================================================================= Paginacion
     use WithPagination;
@@ -41,6 +44,8 @@ class Index extends Component
         'telefono' => '',
         'sexo' => '',
         'correo' => '',
+        'contrasena' => '',
+        'contrasena_confirmation' => '',
         'zona' => '',
         'calle' => '',
         'exterior' => '',
@@ -67,6 +72,8 @@ class Index extends Component
             'newRegister.telefono' => ['required', 'numeric', new telefono],
             'newRegister.sexo' => ['required'],
             'newRegister.correo' => ['required', 'email', 'unique:gestor,correo'],
+            'newRegister.contrasena' => ['required', 'min:8', 'confirmed'],
+            'newRegister.contrasena_confirmation' => ['required'],
             'newRegister.zona' => ['required'],
             'newRegister.calle' => ['required', 'max:100'],
             'newRegister.exterior' => ['max:20'],
@@ -91,6 +98,10 @@ class Index extends Component
             'newRegister.correo.required' => 'El correo es requerido',
             'newRegister.correo.email' => 'El correo no es válido',
             'newRegister.correo.unique' => 'El correo ya existe',
+            'newRegister.contrasena.required' => 'La contraseña es requerida',
+            'newRegister.contrasena.min' => 'La contraseña debe tener al menos 8 caracteres',
+            'newRegister.contrasena.confirmed' => 'Las contraseñas no coinciden',
+            'newRegister.conficontrasena.required' => 'Confirmar contraseña es requerida',
             'newRegister.zona.required' => 'La zona es requerida',
             'newRegister.calle.required' => 'La calle es requerida',
             'newRegister.calle.max' => 'El nombre de la calle es muy larga',
@@ -107,7 +118,7 @@ class Index extends Component
             'newRegister.colonia.required' => 'La colonia es requerida',
         ]);
 
-        $usuario= User::create([
+        $usuario = User::create([
             'correo' => $this->newRegister['correo'],
             'contraseña' => Hash::make($this->newRegister['contrasena']),
             'estatus' => 1,
@@ -136,7 +147,7 @@ class Index extends Component
             'sexo' => $this->newRegister['sexo'],
             'correo' => $this->newRegister['correo'],
             'id_direccion' => $direccion->id_direccion,
-            'idusuario_sistema'=>$usuario->idusuario_sistema,
+            'idusuario_sistema' => $usuario->idusuario_sistema,
             'idzona_representacion' => $this->newRegister['zona'],
         ]);
 
@@ -230,6 +241,10 @@ class Index extends Component
             'editRegister.correo.required' => 'El correo es requerido',
             'editRegister.correo.email' => 'El correo no es válido',
             'editRegister.correo.unique' => 'El correo ya existe',
+            'editRegister.contrasena.required' => 'La contraseña es requerida',
+            'editRegister.contrasena.min' => 'La contraseña debe tener al menos 8 caracteres',
+            'editRegister.contrasena.confirmed' => 'Las contraseñas no coinciden',
+            'editRegister.conficontrasena.required' => 'Confirmar contraseña es requerida',
             'editRegister.zona.required' => 'La zona es requerida',
             'editRegister.calle.required' => 'La calle es requerida',
             'editRegister.calle.max' => 'El nombre de la calle es muy larga',
@@ -283,35 +298,40 @@ class Index extends Component
     }
     //&================================================================= Datos
 
-    public $estados;
+
     public $zonas;
+    public $estados = [];
     public $municipios = [];
     public $colonias = [];
 
+
     public function mount()
     {
-        $this->estados = Estado::all();
         $this->zonas = zona_representacion::all();
     }
 
     public function updated($property, $value)
     {
-        if ($property == 'newRegister.estado') {
-            $this->newRegister['municipio']='';
-            $this->municipios = Municipio::where('id_estado', $value)->get();
-        }
-        if ($property == 'newRegister.municipio') {
-            $this->newRegister['colonia']='';
-            $this->colonias = Colonia::where('id_municipio', $value)->get();
+        if ($property == 'newRegister.zona') {
+            $this->estados = '';
+            $this->estados = estados_zona::where('idzona_representacion', $this->newRegister['zona'])->get();
+        } elseif ($property == 'newRegister.estado') {
+            $this->municipios = '';
+            $this->municipios = municipio::where('id_estado', $this->newRegister['estado'])->get();
+        } elseif ($property == 'newRegister.municipio') {
+            $this->colonias = '';
+            $this->colonias = colonia::where('id_municipio', $this->newRegister['municipio'])->get();
         }
 
-        if ($property == 'editRegister.estado') {
-            $this->editRegister['municipio']='';
-            $this->municipios = Municipio::where('id_estado', $value)->get();
-        }
-        if ($property == 'editRegister.municipio') {
-            $this->editRegister['colonia']='';
-            $this->colonias = Colonia::where('id_municipio', $value)->get();
+        elseif ($property == 'editRegister.zona') {
+            $this->estados = '';
+            $this->estados = estados_zona::where('idzona_representacion', $this->editRegister['zona'])->get();
+        } elseif ($property == 'editRegister.estado') {
+            $this->municipios = '';
+            $this->municipios = municipio::where('id_estado', $this->editRegister['estado'])->get();
+        } elseif ($property == 'editRegister.municipio') {
+            $this->colonias = '';
+            $this->colonias = colonia::where('id_municipio', $this->editRegister['municipio'])->get(); 
         }
     }
 
@@ -372,6 +392,6 @@ class Index extends Component
         $gestores = gestor::where(function ($query) {
             $query->where('nombre', 'LIKE', '%' . $this->search . '%')->orWhere('correo', 'LIKE', '%' . $this->search . '%');
         })->paginate($this->view_dates);
-        return view('livewire.gestores.index', compact('gestores', 'count'));
+        return view('livewire.administrador.gestores', compact('gestores', 'count'));
     }
 }

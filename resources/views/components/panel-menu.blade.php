@@ -44,7 +44,7 @@
                                 @endif
                                 <ul class="space-y-2 font-medium">
                                     <li>
-                                        <x-responsive-nav-link href="{{ route('admin.panel') }}" :active="request()->routeIs('admin.panel')"
+                                        <x-responsive-nav-link href="{{ route('admin.administrador.panel') }}" :active="request()->routeIs('admin.administrador.panel')"
                                             wire:navigate.hover>
                                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                                                 viewBox="0 0 24 24" fill="none" stroke="currentColor"
@@ -179,26 +179,30 @@
 </nav>
 
 {{-- ================================= Menu ==============================  --}}
-<aside id="sidebar"
-    class="fixed top-0 left-0 z-40 w-64 h-screen pt-20 transition-transform -translate-x-full bg-white border-r border-gray-200 sm:translate-x-0 dark:bg-gray-800 dark:border-gray-700"
-    aria-label="Sidebar">
-    <div class="h-full px-3 pb-4 overflow-y-auto bg-white dark:bg-gray-800">
-        <ul class="space-y-2 font-medium">
-            <li>
-                <x-nav-link href="{{ route('admin.panel') }}" :active="request()->routeIs('admin.panel')" wire:navigate.hover>
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                        stroke-linejoin="round"
-                        class="icon icon-tabler icons-tabler-outline icon-tabler-layout-collage">
-                        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                        <path d="M4 4m0 2a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2z" />
-                        <path d="M10 4l4 16" />
-                        <path d="M12 12l-8 2" />
-                    </svg>
-                    <span class="ms-3">{{ __('Dashboard') }}</span>
-                </x-nav-link>
-            </li>
-            {{-- <li>
+@if (Auth::user()->idtipo_usuario == 1)
+    <aside id="sidebar"
+        class="fixed top-0 left-0 z-40 w-64 h-screen pt-20 transition-transform -translate-x-full bg-white border-r border-gray-200 sm:translate-x-0 dark:bg-gray-800 dark:border-gray-700"
+        aria-label="Sidebar">
+        <div class="h-full px-3 pb-4 overflow-y-auto bg-white dark:bg-gray-800">
+            <ul class="space-y-2 font-medium">
+                <li>
+                    <x-nav-link href="{{ route('admin.administrador.panel') }}" :active="request()->routeIs('admin.administrador.*')" wire:navigate.hover>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                            fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                            stroke-linejoin="round"
+                            class="icon icon-tabler icons-tabler-outline icon-tabler-layout-collage">
+                            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                            <path d="M4 4m0 2a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2z" />
+                            <path d="M10 4l4 16" />
+                            <path d="M12 12l-8 2" />
+                        </svg>
+                        <span class="ms-3">{{ __('Dashboard') }}</span>
+                    </x-nav-link>
+                    @if (Route::is('admin.administrador.panel') || Route::is('admin.administrador.*'))
+                        @livewire('componentes.panel')
+                    @endif
+                </li>
+                {{-- <li>
                 <x-nav-link href="{{ route('admin.administrador.ordenes') }}" :active="request()->routeIs('admin.administrador.ordenes')" wire:navigate.hover>
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                         fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
@@ -211,32 +215,129 @@
                     <span class="ms-3">{{ __('Órdenes Servicio') }}</span>
                 </x-nav-link>
             </li> --}}
-            <li>
+                <li>
 
-                <x-nav-link href="{{ route('admin.catalogos.index') }}" :active="request()->routeIs('admin.catalogos.*')" wire:navigate.hover>
+                    <x-nav-link href="{{ route('admin.catalogos.index') }}" :active="request()->routeIs('admin.catalogos.*')" wire:navigate.hover>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                            fill="currentColor" class="icon icon-tabler icons-tabler-filled icon-tabler-category">
+                            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                            <path d="M10 3h-6a1 1 0 0 0 -1 1v6a1 1 0 0 0 1 1h6a1 1 0 0 0 1 -1v-6a1 1 0 0 0 -1 -1z" />
+                            <path d="M20 3h-6a1 1 0 0 0 -1 1v6a1 1 0 0 0 1 1h6a1 1 0 0 0 1 -1v-6a1 1 0 0 0 -1 -1z" />
+                            <path d="M10 13h-6a1 1 0 0 0 -1 1v6a1 1 0 0 0 1 1h6a1 1 0 0 0 1 -1v-6a1 1 0 0 0 -1 -1z" />
+                            <path d="M17 13a4 4 0 1 1 -3.995 4.2l-.005 -.2l.005 -.2a4 4 0 0 1 3.995 -3.8z" />
+                        </svg>
+                        <span class="ms-3">{{ __('Catalogos') }}</span>
+                    </x-nav-link>
+                    @if (Route::is('admin.catalogos.*') || Route::is('admin.direcciones.*'))
+                        @livewire('componentes.catalogos')
+                    @endif
+                </li>
+            </ul>
+        </div>
+    </aside>
+@elseif(Auth::user()->idtipo_usuario == 2)
+    <aside id="sidebar"
+        class="fixed top-0 left-0 z-40 w-64 h-screen pt-20 transition-transform -translate-x-full bg-white border-r border-gray-200 sm:translate-x-0 dark:bg-gray-800 dark:border-gray-700"
+        aria-label="Sidebar">
+        <div class="h-full px-3 pb-4 overflow-y-auto bg-white dark:bg-gray-800">
+            <ul class="space-y-2 font-medium">
+                <li>
+                    <x-nav-link href="{{ route('admin.administrador.panel') }}" :active="request()->routeIs('admin.administrador.panel')" wire:navigate.hover>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                            fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                            stroke-linejoin="round"
+                            class="icon icon-tabler icons-tabler-outline icon-tabler-layout-collage">
+                            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                            <path d="M4 4m0 2a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2z" />
+                            <path d="M10 4l4 16" />
+                            <path d="M12 12l-8 2" />
+                        </svg>
+                        <span class="ms-3">{{ __('Dashboard') }}</span>
+                    </x-nav-link>
+                    @if (Route::is('admin.administrador.panel') || Route::is('admin.gestores.*'))
+                        @livewire('componentes.panel')
+                    @endif
+                </li>
+                {{-- <li>
+                <x-nav-link href="{{ route('admin.administrador.ordenes') }}" :active="request()->routeIs('admin.administrador.ordenes')" wire:navigate.hover>
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                        fill="currentColor" class="icon icon-tabler icons-tabler-filled icon-tabler-category">
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-files">
                         <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                        <path d="M10 3h-6a1 1 0 0 0 -1 1v6a1 1 0 0 0 1 1h6a1 1 0 0 0 1 -1v-6a1 1 0 0 0 -1 -1z" />
-                        <path d="M20 3h-6a1 1 0 0 0 -1 1v6a1 1 0 0 0 1 1h6a1 1 0 0 0 1 -1v-6a1 1 0 0 0 -1 -1z" />
-                        <path d="M10 13h-6a1 1 0 0 0 -1 1v6a1 1 0 0 0 1 1h6a1 1 0 0 0 1 -1v-6a1 1 0 0 0 -1 -1z" />
-                        <path d="M17 13a4 4 0 1 1 -3.995 4.2l-.005 -.2l.005 -.2a4 4 0 0 1 3.995 -3.8z" />
+                        <path d="M15 3v4a1 1 0 0 0 1 1h4" />
+                        <path d="M18 17h-7a2 2 0 0 1 -2 -2v-10a2 2 0 0 1 2 -2h4l5 5v7a2 2 0 0 1 -2 2z" />
+                        <path d="M16 17v2a2 2 0 0 1 -2 2h-7a2 2 0 0 1 -2 -2v-10a2 2 0 0 1 2 -2h2" />
                     </svg>
-                    <span class="ms-3">{{ __('Catalogos') }}</span>
+                    <span class="ms-3">{{ __('Órdenes Servicio') }}</span>
                 </x-nav-link>
-                @if (Route::is('admin.catalogos.*') || Route::is('admin.direcciones.*'))
-                    @livewire('componentes.catalogos')
-                @endif
-            </li>
-        </ul>
-    </div>
-</aside>
-{{-- ================================================================================================= --}}
+            </li> --}}
+                <li>
 
-{{-- =============================================== Contenido =======================================  --}}
-<div class="p-4 pt-8 sm:ml-64">
-    <div class="p-4 border-2 border-gray-200 border-dashed rounded-lg dark:border-gray-700  bg-white dark:bg-gray-800">
-        {{ $content }}
+                    <x-nav-link href="{{ route('admin.catalogos.index') }}" :active="request()->routeIs('admin.catalogos.*')" wire:navigate.hover>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                            fill="currentColor" class="icon icon-tabler icons-tabler-filled icon-tabler-category">
+                            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                            <path d="M10 3h-6a1 1 0 0 0 -1 1v6a1 1 0 0 0 1 1h6a1 1 0 0 0 1 -1v-6a1 1 0 0 0 -1 -1z" />
+                            <path d="M20 3h-6a1 1 0 0 0 -1 1v6a1 1 0 0 0 1 1h6a1 1 0 0 0 1 -1v-6a1 1 0 0 0 -1 -1z" />
+                            <path d="M10 13h-6a1 1 0 0 0 -1 1v6a1 1 0 0 0 1 1h6a1 1 0 0 0 1 -1v-6a1 1 0 0 0 -1 -1z" />
+                            <path d="M17 13a4 4 0 1 1 -3.995 4.2l-.005 -.2l.005 -.2a4 4 0 0 1 3.995 -3.8z" />
+                        </svg>
+                        <span class="ms-3">{{ __('Catalogos') }}</span>
+                    </x-nav-link>
+                    @if (Route::is('admin.catalogos.*') || Route::is('admin.direcciones.*'))
+                        @livewire('componentes.catalogos')
+                    @endif
+                </li>
+            </ul>
+        </div>
+    </aside>
+@elseif(Auth::user()->idtipo_usuario == 3)
+    <aside id="sidebar"
+        class="fixed top-0 left-0 z-40 w-64 h-screen pt-20 transition-transform -translate-x-full bg-white border-r border-gray-200 sm:translate-x-0 dark:bg-gray-800 dark:border-gray-700"
+        aria-label="Sidebar">
+        <div class="h-full px-3 pb-4 overflow-y-auto bg-white dark:bg-gray-800">
+            <ul class="space-y-2 font-medium">
+                <li>
+                    <x-nav-link href="{{ route('gestor.panel') }}" :active="request()->routeIs('gestor.panel')" wire:navigate.hover>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                            fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                            stroke-linejoin="round"
+                            class="icon icon-tabler icons-tabler-outline icon-tabler-layout-collage">
+                            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                            <path d="M4 4m0 2a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2z" />
+                            <path d="M10 4l4 16" />
+                            <path d="M12 12l-8 2" />
+                        </svg>
+                        <span class="ms-3">{{ __('Dashboard') }}</span>
+                    </x-nav-link>
+                    @if (Route::is('gestor.panel') || Route::is('gestor.gestores.*'))
+                    
+                    @endif
+                </li>
+                {{-- <li>
+                <x-nav-link href="{{ route('admin.administrador.ordenes') }}" :active="request()->routeIs('admin.administrador.ordenes')" wire:navigate.hover>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-files">
+                        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                        <path d="M15 3v4a1 1 0 0 0 1 1h4" />
+                        <path d="M18 17h-7a2 2 0 0 1 -2 -2v-10a2 2 0 0 1 2 -2h4l5 5v7a2 2 0 0 1 -2 2z" />
+                        <path d="M16 17v2a2 2 0 0 1 -2 2h-7a2 2 0 0 1 -2 -2v-10a2 2 0 0 1 2 -2h2" />
+                    </svg>
+                    <span class="ms-3">{{ __('Órdenes Servicio') }}</span>
+                </x-nav-link>
+            </li> --}}
+            </ul>
+        </div>
+    </aside>
+@endif
+    {{-- ================================================================================================= --}}
+
+    {{-- =============================================== Contenido =======================================  --}}
+    <div class="p-4 pt-8 sm:ml-64">
+        <div
+            class="p-4 border-2 border-gray-200 border-dashed rounded-lg dark:border-gray-700  bg-white dark:bg-gray-800">
+            {{ $content }}
+        </div>
     </div>
-</div>
-{{-- ================================================================================================= --}}
+    {{-- ================================================================================================= --}}

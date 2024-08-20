@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-panel-menu>
         <x-slot name="content">
-            @livewire('gestores.index')
+            @livewire('administrador.gestores')
         </x-slot>
     </x-panel-menu>
 </x-app-layout>

@@ -96,13 +96,19 @@
                                         {{ __('Administrar cuenta') }}
                                     </div>
 
-                                    {{-- <x-dropdown-link href="{{ route('dashboard') }}" wire:navigate.hover>
-                                        {{ __('Dashboard') }}
-                                    </x-dropdown-link>
+                                    @if (Auth::user()->idtipo_usuario == 1)
+                                        <x-dropdown-link href="{{ route('admin.administrador.panel') }}" wire:navigate.hover>
+                                            {{ __('Dashboard') }}
+                                        </x-dropdown-link>
+                                    @elseif (Auth::user()->idtipo_usuario == 2)
+                                        <x-dropdown-link href="{{ route('client.panel') }}" wire:navigate.hover>
+                                            {{ __('Dashboard') }}
+                                        </x-dropdown-link>
+                                    @endif
 
                                     <x-dropdown-link href="{{ route('profile.show') }}" wire:navigate.hover>
                                         {{ __('Profile') }}
-                                    </x-dropdown-link> --}}
+                                    </x-dropdown-link>
 
 
                                     <div class="border-t border-gray-200 dark:border-gray-600"></div>
@@ -125,9 +131,9 @@
                                         {{ __('Inicia sesión') }}
                                     </x-dropdown-link>
 
-                                    <x-dropdown-link href="{{ route('register') }}" wire:navigate.hover>
+                                    {{-- <x-dropdown-link href="{{ route('tipo-persona') }}" wire:navigate.hover>
                                         {{ __('Crea una cuenta') }}
-                                    </x-dropdown-link>
+                                    </x-dropdown-link> --}}
                                 @endif
 
                             </x-slot>
@@ -192,9 +198,9 @@
                         {{ __('Administrar cuenta') }}
                     </div>
 
-                    {{-- <x-dropdown-link href="{{ route('dashboard') }}" wire:navigate.hover>
+                    <x-dropdown-link href="{{ route('welcome') }}" wire:navigate.hover>
                         {{ __('Dashboard') }}
-                    </x-dropdown-link> --}}
+                    </x-dropdown-link>
 
                     <x-dropdown-link href="{{ route('profile.show') }}" wire:navigate.hover>
                         {{ __('Profile') }}
@@ -218,9 +224,9 @@
                         {{ __('Inicia sesión') }}
                     </x-dropdown-link>
 
-                    <x-dropdown-link href="{{ route('register') }}" wire:navigate.hover>
+                    {{-- <x-dropdown-link href="{{ route('tipo-persona') }}" wire:navigate.hover>
                         {{ __('Crea una cuenta') }}
-                    </x-dropdown-link>
+                    </x-dropdown-link> --}}
                 @endif
             </div>
             @if (Auth::check())

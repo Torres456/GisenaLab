@@ -114,8 +114,8 @@
             </div>
 
             <div class="p-5 text-center">
-                <a class="inline-flex items-center gap-2 rounded border border-blue-800 bg-blue-800 px-8 py-3 text-white hover:bg-transparent hover:text-blue-600 focus:outline-none focus:ring active:text-blue-500"
-                    href="{{ route('tipo-persona') }}">
+                {{-- <a class="inline-flex items-center gap-2 rounded border border-blue-800 bg-blue-800 px-8 py-3 text-white hover:bg-transparent hover:text-blue-600 focus:outline-none focus:ring active:text-blue-500"
+                    href="{{ route('tipo-persona') }}"> --}}
                     <svg class="size-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                         stroke="currentColor" transform="rotate(180)">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
