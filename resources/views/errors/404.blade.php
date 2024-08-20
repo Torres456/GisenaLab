@@ -21,14 +21,14 @@
             <br>
             <br>
             @if (!Auth::check())
-                <a href="{{ route('welcome') }}" wire:navigate.hover>Regresar w</a>
+                <a href="{{ route('welcome') }}" >Regresar w</a>
             @else
                 @if (Auth::user()->idtipo_usuario == 1)
-                    <a href="{{ route('admin.administrador.panel') }}" wire:navigate.hover>Regresar</a>
+                    <a href="{{ route('admin.administrador.panel') }}" >Regresar</a>
                 @elseif(Auth::user()->idtipo_usuario == 2)
-                    <a href="{{ route('client.panel') }}" wire:navigate.hover>Regresar</a>
+                    <a href="{{ route('client.panel') }}" >Regresar</a>
                 @elseif(Auth::user()->idtipo_usuario == 3)
-                    <a href="{{ route('gestor.panel') }}" wire:navigate.hover>Regresar</a>
+                    <a href="{{ route('gestor.panel') }}" >Regresar</a>
                 @endif
             @endif
         </div>

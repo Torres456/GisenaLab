@@ -22,14 +22,14 @@
             <br>
             @if(Auth::check())
                 @if(Auth::user()->idtipo_usuario == 1)
-                    <a href="{{ route('admin.administrador.panel') }}" wire:navigate.hover>Regresar</a>
+                    <a href="{{ route('admin.administrador.panel') }}" >Regresar</a>
                 @elseif(Auth::user()->idtipo_usuario == 2)
-                    <a href="{{ route('client.panel') }}" wire:navigate.hover>Regresar</a>
+                    <a href="{{ route('client.panel') }}" >Regresar</a>
                 @elseif(Auth::user()->idtipo_usuario == 3)
-                    <a href="{{ route('gestor.panel') }}" wire:navigate.hover>Regresar</a>
+                    <a href="{{ route('gestor.panel') }}" >Regresar</a>
                 @endif
             @else
-            <a href="{{ route('welcome') }}" wire:navigate.hover>Regresar</a>
+            <a href="{{ route('welcome') }}" >Regresar</a>
             @endif
         </div>
         <svg xmlns="http://www.w3.org/2000/svg" width="800" height="600" fill="none" viewBox="0 0 800 600">

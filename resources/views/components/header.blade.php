@@ -98,16 +98,16 @@
 
                                     @if (Auth::user()->idtipo_usuario == 1)
                                         <x-dropdown-link href="{{ route('admin.administrador.panel') }}"
-                                            wire:navigate.hover>
+                                            >
                                             {{ __('Dashboard') }}
                                         </x-dropdown-link>
                                     @elseif (Auth::user()->idtipo_usuario == 2)
-                                        <x-dropdown-link href="{{ route('client.panel') }}" wire:navigate.hover>
+                                        <x-dropdown-link href="{{ route('client.panel') }}" >
                                             {{ __('Dashboard') }}
                                         </x-dropdown-link>
                                     @endif
 
-                                    <x-dropdown-link href="{{ route('profile.show') }}" wire:navigate.hover>
+                                    <x-dropdown-link href="{{ route('profile.show') }}" >
                                         {{ __('Profile') }}
                                     </x-dropdown-link>
 
@@ -128,11 +128,11 @@
                                     </div>
 
 
-                                    <x-dropdown-link href="{{ route('login') }}" wire:navigate.hover>
+                                    <x-dropdown-link href="{{ route('login') }}" >
                                         {{ __('Inicia sesión') }}
                                     </x-dropdown-link>
 
-                                    <x-dropdown-link href="{{ route('register') }}" wire:navigate.hover>
+                                    <x-dropdown-link href="{{ route('register') }}" >
                                         {{ __('Crea una cuenta') }}
                                     </x-dropdown-link>
                                 @endif
@@ -199,11 +199,11 @@
                         {{ __('Administrar cuenta') }}
                     </div>
 
-                    <x-dropdown-link href="{{ route('welcome') }}" wire:navigate.hover>
+                    <x-dropdown-link href="{{ route('welcome') }}" >
                         {{ __('Dashboard') }}
                     </x-dropdown-link>
 
-                    <x-dropdown-link href="{{ route('profile.show') }}" wire:navigate.hover>
+                    <x-dropdown-link href="{{ route('profile.show') }}" >
                         {{ __('Profile') }}
                     </x-dropdown-link>
                     <div class="border-t border-gray-200 dark:border-gray-600"></div>
@@ -221,11 +221,11 @@
                     <div class="block px-4 py-2 text-xs text-gray-400">
                         {{ __('GisenaLabs') }}
                     </div>
-                    <x-dropdown-link href="{{ route('login') }}" wire:navigate.hover>
+                    <x-dropdown-link href="{{ route('login') }}" >
                         {{ __('Inicia sesión') }}
                     </x-dropdown-link>
 
-                    {{-- <x-dropdown-link href="{{ route('tipo-persona') }}" wire:navigate.hover>
+                    {{-- <x-dropdown-link href="{{ route('tipo-persona') }}" >
                         {{ __('Crea una cuenta') }}
                     </x-dropdown-link> --}}
                 @endif

@@ -16,7 +16,7 @@
                             </div>
                         </div>
                     </x-slot>
-                    <x-slot name="footer"><x-button-enter wire:navigate.hover>Entrar</x-button-enter></x-slot>
+                    <x-slot name="footer"><x-button-enter >Entrar</x-button-enter></x-slot>
                 </x-cards>
                 <x-cards>
                     <x-slot name="title">Gestores</x-slot>
@@ -32,7 +32,7 @@
                             </div>
                         </div>
                     </x-slot>
-                    <x-slot name="footer"><x-button-enter wire:navigate.hover>Entrar</x-button-enter></x-slot>
+                    <x-slot name="footer"><x-button-enter >Entrar</x-button-enter></x-slot>
                 </x-cards>
             </div>
         </x-slot>

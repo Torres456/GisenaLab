@@ -45,7 +45,7 @@
                                 <ul class="space-y-2 font-medium">
                                     <li>
                                         <x-responsive-nav-link href="{{ route('admin.administrador.panel') }}" :active="request()->routeIs('admin.administrador.panel')"
-                                            wire:navigate.hover>
+                                            >
                                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                                                 viewBox="0 0 24 24" fill="none" stroke="currentColor"
                                                 stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
@@ -62,7 +62,7 @@
                                     <li>
 
                                         <x-responsive-nav-link href="{{ route('admin.administrador.ordenes') }}"
-                                            :active="request()->routeIs('admin.catalogos.*')" wire:navigate.hover>
+                                            :active="request()->routeIs('admin.catalogos.*')" >
                                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                                                 viewBox="0 0 24 24" fill="none" stroke="currentColor"
                                                 stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
@@ -79,7 +79,7 @@
                                     </li>
                                     <li>
                                         <x-responsive-nav-link href="{{ route('admin.catalogos.index') }}"
-                                            :active="request()->routeIs('admin.catalogos.*')" wire:navigate.hover>
+                                            :active="request()->routeIs('admin.catalogos.*')" >
 
                                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                                                 viewBox="0 0 24 24" fill="currentColor"
@@ -155,7 +155,7 @@
                                 {{ __('Administrar cuenta') }}
                             </div>
 
-                            <x-dropdown-link href="{{ route('profile.show') }}" wire:navigate.hover>
+                            <x-dropdown-link href="{{ route('profile.show') }}" >
                                 {{ __('Profile') }}
                             </x-dropdown-link>
 
@@ -186,7 +186,7 @@
         <div class="h-full px-3 pb-4 overflow-y-auto bg-white dark:bg-gray-800">
             <ul class="space-y-2 font-medium">
                 <li>
-                    <x-nav-link href="{{ route('admin.administrador.panel') }}" :active="request()->routeIs('admin.administrador.*')" wire:navigate.hover>
+                    <x-nav-link href="{{ route('admin.administrador.panel') }}" :active="request()->routeIs('admin.administrador.*')" >
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                             fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
                             stroke-linejoin="round"
@@ -203,7 +203,7 @@
                     @endif
                 </li>
                 {{-- <li>
-                <x-nav-link href="{{ route('admin.administrador.ordenes') }}" :active="request()->routeIs('admin.administrador.ordenes')" wire:navigate.hover>
+                <x-nav-link href="{{ route('admin.administrador.ordenes') }}" :active="request()->routeIs('admin.administrador.ordenes')" >
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                         fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
                         stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-files">
@@ -217,7 +217,7 @@
             </li> --}}
                 <li>
 
-                    <x-nav-link href="{{ route('admin.catalogos.index') }}" :active="request()->routeIs('admin.catalogos.*')" wire:navigate.hover>
+                    <x-nav-link href="{{ route('admin.catalogos.index') }}" :active="request()->routeIs('admin.catalogos.*')" >
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                             fill="currentColor" class="icon icon-tabler icons-tabler-filled icon-tabler-category">
                             <path stroke="none" d="M0 0h24v24H0z" fill="none" />
@@ -242,7 +242,7 @@
         <div class="h-full px-3 pb-4 overflow-y-auto bg-white dark:bg-gray-800">
             <ul class="space-y-2 font-medium">
                 <li>
-                    <x-nav-link href="{{ route('admin.administrador.panel') }}" :active="request()->routeIs('admin.administrador.panel')" wire:navigate.hover>
+                    <x-nav-link href="{{ route('admin.administrador.panel') }}" :active="request()->routeIs('admin.administrador.panel')" >
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                             fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
                             stroke-linejoin="round"
@@ -259,7 +259,7 @@
                     @endif
                 </li>
                 {{-- <li>
-                <x-nav-link href="{{ route('admin.administrador.ordenes') }}" :active="request()->routeIs('admin.administrador.ordenes')" wire:navigate.hover>
+                <x-nav-link href="{{ route('admin.administrador.ordenes') }}" :active="request()->routeIs('admin.administrador.ordenes')" >
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                         fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
                         stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-files">
@@ -273,7 +273,7 @@
             </li> --}}
                 <li>
 
-                    <x-nav-link href="{{ route('admin.catalogos.index') }}" :active="request()->routeIs('admin.catalogos.*')" wire:navigate.hover>
+                    <x-nav-link href="{{ route('admin.catalogos.index') }}" :active="request()->routeIs('admin.catalogos.*')" >
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                             fill="currentColor" class="icon icon-tabler icons-tabler-filled icon-tabler-category">
                             <path stroke="none" d="M0 0h24v24H0z" fill="none" />
@@ -298,7 +298,7 @@
         <div class="h-full px-3 pb-4 overflow-y-auto bg-white dark:bg-gray-800">
             <ul class="space-y-2 font-medium">
                 <li>
-                    <x-nav-link href="{{ route('gestor.panel') }}" :active="request()->routeIs('gestor.panel')" wire:navigate.hover>
+                    <x-nav-link href="{{ route('gestor.panel') }}" :active="request()->routeIs('gestor.panel')" >
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                             fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
                             stroke-linejoin="round"
@@ -315,7 +315,7 @@
                     @endif
                 </li>
                 {{-- <li>
-                <x-nav-link href="{{ route('admin.administrador.ordenes') }}" :active="request()->routeIs('admin.administrador.ordenes')" wire:navigate.hover>
+                <x-nav-link href="{{ route('admin.administrador.ordenes') }}" :active="request()->routeIs('admin.administrador.ordenes')" >
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                         fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
                         stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-files">
