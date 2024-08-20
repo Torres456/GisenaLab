@@ -158,7 +158,7 @@
                 </div>
                 <div class="w-full grid grid-cols-2 max-md:grid-cols-1 gap-3">
                     <div>
-                        <x-label>Telefono:</x-label>
+                        <x-label>Teléfono:</x-label>
                         <x-input wire:model="newRegister.telefono" type="text" class="block mt-1 w-full"
                             onkeyup="mayuscula(this)" />
                         <x-input-error for="newRegister.telefono" />
@@ -191,7 +191,7 @@
                     </div>
                 </div>
                 <div>
-                    <x-label>Zona Representacion:</x-label>
+                    <x-label>Zona Representación:</x-label>
                     <x-select wire:model.live="newRegister.zona" type="text" class="block mt-1 w-full">
                         <option value="">Seleccione una zona</option>
                         @foreach ($zonas as $zona)
@@ -232,7 +232,7 @@
                     </div>
                 </div>
                 <div>
-                    <x-label>Entre cales:</x-label>
+                    <x-label>Entre calles:</x-label>
                     <x-input wire:model="newRegister.entre" type="text" class="block mt-1 w-full"
                         onkeyup="mayuscula(this)" />
                     <x-input-error for="newRegister.entre" />
@@ -249,7 +249,7 @@
                         <x-select wire:model.live="newRegister.estado" type="text" class="block mt-1 w-full">
                             <option value="">Seleccione un estado</option>
                             @foreach ($estados as $estado)
-                                <option value="{{ $estado->estado->id_estado }}">{{ $estado->estado->nombre }}</option>
+                                <option value="{{ $estado->id_estado }}">{{ $estado->nombre }}</option>
                             @endforeach
                         </x-select>
                         <x-input-error for="newRegister.estado" />
@@ -265,7 +265,7 @@
                         <x-input-error for="newRegister.municipio" />
                     </div>
                     <div>
-                        <x-label>Colinia:</x-label>
+                        <x-label>Colonia:</x-label>
                         <x-select wire:model="newRegister.colonia" type="text" class="block mt-1 w-full">
                             <option value="">Seleccione una colonia</option>
                             @foreach ($colonias as $colonia)
@@ -312,7 +312,7 @@
                 </div>
                 <div class="w-full grid grid-cols-2 max-md:grid-cols-1 gap-3">
                     <div>
-                        <x-label>Telefono:</x-label>
+                        <x-label>Teléfono:</x-label>
                         <x-input wire:model="editRegister.telefono" type="text" class="block mt-1 w-full"
                             onkeyup="mayuscula(this)" />
                         <x-input-error for="editRegister.telefono" />
@@ -333,7 +333,7 @@
                     <x-input-error for="editRegister.correo" />
                 </div>
                 <div>
-                    <x-label>Zona Representacion:</x-label>
+                    <x-label>Zona Representación:</x-label>
                     <x-select wire:model.live="editRegister.zona" type="text" class="block mt-1 w-full">
                         <option value="">Seleccione una zona</option>
                         @foreach ($zonas as $zona)
@@ -374,7 +374,7 @@
                     </div>
                 </div>
                 <div>
-                    <x-label>Entre cales:</x-label>
+                    <x-label>Entre calles:</x-label>
                     <x-input wire:model="editRegister.entre" type="text" class="block mt-1 w-full"
                         onkeyup="mayuscula(this)" />
                     <x-input-error for="editRegister.entre" />
@@ -391,7 +391,7 @@
                         <x-select wire:model.live="editRegister.estado" type="text" class="block mt-1 w-full">
                             <option value="">Seleccione un estado</option>
                             @foreach ($estados as $estado)
-                                <option value="{{ $estado->estado->id_estado }}">{{ $estado->estado->nombre }}</option>
+                                <option value="{{ $estado->id_estado }}">{{ $estado->nombre }}</option>
                             @endforeach
                         </x-select>
                         <x-input-error for="editRegister.estado" />
@@ -407,7 +407,7 @@
                         <x-input-error for="editRegister.municipio" />
                     </div>
                     <div>
-                        <x-label>Colinia:</x-label>
+                        <x-label>Colonia:</x-label>
                         <x-select wire:model="editRegister.colonia" type="text" class="block mt-1 w-full">
                             <option value="">Seleccione una colonia</option>
                             @foreach ($colonias as $colonia)

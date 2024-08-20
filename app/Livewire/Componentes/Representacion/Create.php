@@ -50,8 +50,8 @@ class Create extends Component
     
     public function new_cancel()
     {
-        $this->new = false;
         $this->reset('newRegister');
+        $this->dispatch('cancelRegister');
     }
     
     public function render()

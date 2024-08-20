@@ -17,6 +17,7 @@ use App\Rules\telefono;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Livewire\Attributes\Lazy;
+use App\Rules\Password;
 
 #[Lazy()]
 class Gestores extends Component
@@ -71,8 +72,8 @@ class Gestores extends Component
             'newRegister.materno' => ['required', 'max:100', new Les],
             'newRegister.telefono' => ['required', 'numeric', new telefono],
             'newRegister.sexo' => ['required'],
-            'newRegister.correo' => ['required', 'email', 'unique:gestor,correo'],
-            'newRegister.contrasena' => ['required', 'min:8', 'confirmed'],
+            'newRegister.correo' => ['required', 'email', 'unique:gestor,correo', 'unique:usuario_sistema,correo', 'unique:contacro,correo'],
+            'newRegister.contrasena' => ['required', 'min:8', 'confirmed', Password::default()],
             'newRegister.contrasena_confirmation' => ['required'],
             'newRegister.zona' => ['required'],
             'newRegister.calle' => ['required', 'max:100'],
@@ -97,11 +98,11 @@ class Gestores extends Component
             'newRegister.sexo.required' => 'El sexo es requerido',
             'newRegister.correo.required' => 'El correo es requerido',
             'newRegister.correo.email' => 'El correo no es válido',
-            'newRegister.correo.unique' => 'El correo ya existe',
+            'newRegister.correo.unique' => 'El correo ya a sido registrado',
             'newRegister.contrasena.required' => 'La contraseña es requerida',
             'newRegister.contrasena.min' => 'La contraseña debe tener al menos 8 caracteres',
             'newRegister.contrasena.confirmed' => 'Las contraseñas no coinciden',
-            'newRegister.conficontrasena.required' => 'Confirmar contraseña es requerida',
+            'newRegister.contrasena_confirmation.required' => 'Confirmar contraseña es requerida',
             'newRegister.zona.required' => 'La zona es requerida',
             'newRegister.calle.required' => 'La calle es requerida',
             'newRegister.calle.max' => 'El nombre de la calle es muy larga',
@@ -308,30 +309,26 @@ class Gestores extends Component
     public function mount()
     {
         $this->zonas = zona_representacion::all();
+        $this->estados = estado::all();
     }
 
     public function updated($property, $value)
     {
-        if ($property == 'newRegister.zona') {
-            $this->estados = '';
-            $this->estados = estados_zona::where('idzona_representacion', $this->newRegister['zona'])->get();
-        } elseif ($property == 'newRegister.estado') {
-            $this->municipios = '';
+        if ($property == 'newRegister.estado') {
+            $this->municipios = [];
+            $this->colonias = [];
             $this->municipios = municipio::where('id_estado', $this->newRegister['estado'])->get();
         } elseif ($property == 'newRegister.municipio') {
             $this->colonias = '';
             $this->colonias = colonia::where('id_municipio', $this->newRegister['municipio'])->get();
         }
 
-        elseif ($property == 'editRegister.zona') {
-            $this->estados = '';
-            $this->estados = estados_zona::where('idzona_representacion', $this->editRegister['zona'])->get();
-        } elseif ($property == 'editRegister.estado') {
+        if ($property == 'editRegister.estado') {
             $this->municipios = '';
             $this->municipios = municipio::where('id_estado', $this->editRegister['estado'])->get();
         } elseif ($property == 'editRegister.municipio') {
             $this->colonias = '';
-            $this->colonias = colonia::where('id_municipio', $this->editRegister['municipio'])->get(); 
+            $this->colonias = colonia::where('id_municipio', $this->editRegister['municipio'])->get();
         }
     }
 
