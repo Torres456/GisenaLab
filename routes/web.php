@@ -49,3 +49,10 @@ Route::post('/forgot-password', function (Request $request) {
         ? back()->with(['status' => __($status)])
         : back()->withErrors(['correo' => __($status)]);
 })->middleware('guest')->name('password.email');
+
+
+Route::group(['middleware' => 'web'], function () {
+    Route::fallback(function () {
+        return view('errors.404');
+    }); 
+});

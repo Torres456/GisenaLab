@@ -38,7 +38,10 @@ class AppServiceProvider extends ServiceProvider
                         return redirect('/administrador');
                     } else if ($user->idtipo_usuario == 2) {
 
-                        return redirect('/dashboard');
+                        return redirect()->route('client.panel');
+                    } else if ($user->idtipo_usuario == '3') {
+
+                        return redirect()->route('gestor.panel');
                     }
                 } else {
                     return redirect('/login');

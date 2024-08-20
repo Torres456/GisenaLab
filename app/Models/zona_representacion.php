@@ -20,9 +20,9 @@ class zona_representacion extends Model
     ];
     
    
-    public function estado(): BelongsToMany
+    public function estados(): BelongsToMany
     {
-        return $this->belongsToMany(estado::class);
+        return $this->belongsToMany(estado::class,'estados_zona',  'idzona_representacion','id_estado');
     }
 
     public function gestor(): HasOne

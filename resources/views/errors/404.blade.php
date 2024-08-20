@@ -20,7 +20,17 @@
             </p>
             <br>
             <br>
-            <a href="{{ route('welcome') }}" wire:navigate.hover>Regresar</a>
+            @if (!Auth::check())
+                <a href="{{ route('welcome') }}" wire:navigate.hover>Regresar w</a>
+            @else
+                @if (Auth::user()->idtipo_usuario == 1)
+                    <a href="{{ route('admin.administrador.panel') }}" wire:navigate.hover>Regresar</a>
+                @elseif(Auth::user()->idtipo_usuario == 2)
+                    <a href="{{ route('client.panel') }}" wire:navigate.hover>Regresar</a>
+                @elseif(Auth::user()->idtipo_usuario == 3)
+                    <a href="{{ route('gestor.panel') }}" wire:navigate.hover>Regresar</a>
+                @endif
+            @endif
         </div>
         <svg xmlns="http://www.w3.org/2000/svg" width="450" height="450" fill="none" viewBox="0 0 800 600">
             <path

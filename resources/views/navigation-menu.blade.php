@@ -12,7 +12,7 @@
 
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link href="{{ route('admin.panel') }}" :active="request()->routeIs('welcome')" wire:navigate.hover>
+                    <x-nav-link href="{{ route('admin.administrador.panel') }}" :active="request()->routeIs('welcome')" wire:navigate.hover>
                         {{ __('Dashboard') }}
                     </x-nav-link>
                 </div>

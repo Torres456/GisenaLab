@@ -35,10 +35,10 @@ class estado extends Model
     }
     
     // //Zona representacion
-    // public function zona(): BelongsToMany
-    // {
-    //     return $this->belongsToMany(zona_representacion::class);
-    // }
+    public function zonas(): BelongsToMany
+    {
+         return $this->belongsToMany(zona_representacion::class,'estados_zona', 'idzona_representacion','id_estado');
+     }
 
     // //direccion estado
     // public function direccion_estado(): HasMany

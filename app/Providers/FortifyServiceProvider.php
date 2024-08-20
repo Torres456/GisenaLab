@@ -36,10 +36,13 @@ class FortifyServiceProvider extends ServiceProvider
 
                     if ($user->idtipo_usuario == '1') {
 
-                        return redirect()->route('admin.panel');
+                        return redirect()->route('admin.administrador.panel');
                     } else if ($user->idtipo_usuario == '2') {
 
-                        return redirect()->route('welcome');
+                        return redirect()->route('client.panel');
+                    } else if ($user->idtipo_usuario == '3') {
+
+                        return redirect()->route('gestor.panel');
                     } else {
                         abort(500);
                     }
@@ -60,11 +63,12 @@ class FortifyServiceProvider extends ServiceProvider
 
                     if ($user->idtipo_usuario == '1') {
 
-                        return redirect()->route('admin.panel');
+                        return redirect()->route('admin.administrador.panel');
                     } else if ($user->idtipo_usuario == '2') {
 
                         return redirect()->route('cliente.panel');
                     } else {
+
                         abort(500);
                     }
                 } else {

@@ -18,13 +18,6 @@
                     </x-slot>
                     <x-slot name="footer"><x-button-enter wire:navigate.hover>Entrar</x-button-enter></x-slot>
                 </x-cards>
-                <x-cards>
-                    <x-slot name="title">Gestores</x-slot>
-                    <x-slot name="content">
-                        @livewire('componentes.gestorescount')
-                    </x-slot>
-                    <x-slot name="footer"><x-button-enter href="{{route('admin.administrador.gestores')}}" wire:navigate.hover>Entrar</x-button-enter></x-slot>
-                </x-cards>
             </div>
         </x-slot>
     </x-panel-menu>

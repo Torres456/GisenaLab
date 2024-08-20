@@ -173,21 +173,26 @@
                         <x-input-error for="newRegister.sexo" />
                     </div>
                 </div>
+                <div>
+                    <x-label>Correo:</x-label>
+                    <x-input wire:model="newRegister.correo" type="text" class="block mt-1 w-full" />
+                    <x-input-error for="newRegister.correo" />
+                </div>
                 <div class="w-full grid grid-cols-2 max-md:grid-cols-1 gap-3">
                     <div>
-                        <x-label>Correo:</x-label>
-                        <x-input wire:model="newRegister.correo" type="text" class="block mt-1 w-full" />
-                        <x-input-error for="newRegister.correo" />
-                    </div>
-                    <div>
-                        <x-label>Contraseña <span class="text-slate-500">(Temporal)</span>:</x-label>
+                        <x-label>Contraseña: <span class="text-slate-500">(Temporal)</span>:</x-label>
                         <x-input wire:model="newRegister.contrasena" type="password" class="block mt-1 w-full" />
                         <x-input-error for="newRegister.contrasena" />
+                    </div>
+                    <div>
+                        <x-label>Confirmar Contraseña: <span class="text-slate-500">(Temporal)</span>:</x-label>
+                        <x-input wire:model="newRegister.contrasena_confirmation" type="password" class="block mt-1 w-full" />
+                        <x-input-error for="newRegister.contrasena_confirmation" />
                     </div>
                 </div>
                 <div>
                     <x-label>Zona Representacion:</x-label>
-                    <x-select wire:model="newRegister.zona" type="text" class="block mt-1 w-full">
+                    <x-select wire:model.live="newRegister.zona" type="text" class="block mt-1 w-full">
                         <option value="">Seleccione una zona</option>
                         @foreach ($zonas as $zona)
                             <option value="{{ $zona->idzona_representacion }}">{{ $zona->nombre_zona }}</option>
@@ -244,7 +249,7 @@
                         <x-select wire:model.live="newRegister.estado" type="text" class="block mt-1 w-full">
                             <option value="">Seleccione un estado</option>
                             @foreach ($estados as $estado)
-                                <option value="{{ $estado->id_estado }}">{{ $estado->nombre }}</option>
+                                <option value="{{ $estado->estado->id_estado }}">{{ $estado->estado->nombre }}</option>
                             @endforeach
                         </x-select>
                         <x-input-error for="newRegister.estado" />
@@ -329,7 +334,7 @@
                 </div>
                 <div>
                     <x-label>Zona Representacion:</x-label>
-                    <x-select wire:model="editRegister.zona" type="text" class="block mt-1 w-full">
+                    <x-select wire:model.live="editRegister.zona" type="text" class="block mt-1 w-full">
                         <option value="">Seleccione una zona</option>
                         @foreach ($zonas as $zona)
                             <option value="{{ $zona->idzona_representacion }}">{{ $zona->nombre_zona }}</option>
@@ -386,7 +391,7 @@
                         <x-select wire:model.live="editRegister.estado" type="text" class="block mt-1 w-full">
                             <option value="">Seleccione un estado</option>
                             @foreach ($estados as $estado)
-                                <option value="{{ $estado->id_estado }}">{{ $estado->nombre }}</option>
+                                <option value="{{ $estado->estado->id_estado }}">{{ $estado->estado->nombre }}</option>
                             @endforeach
                         </x-select>
                         <x-input-error for="editRegister.estado" />
