@@ -3,7 +3,7 @@
         @foreach ($cards as $card)
             <li class="dark:text-white flex items-center">
                 <x-nav-panel href="{{ route($card->route) }}" :active="request()->routeIs('{{$card->route}}')"
-                    wire:navigate.hover>{{$card->title}}</x-nav-panel>
+                    >{{$card->title}}</x-nav-panel>
             </li>
         @endforeach
     </ul>
