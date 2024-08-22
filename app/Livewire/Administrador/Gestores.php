@@ -5,7 +5,6 @@ namespace App\Livewire\Administrador;
 use App\Models\colonia;
 use App\Models\direccion;
 use App\Models\estado;
-use App\Models\estados_zona;
 use App\Models\gestor;
 use App\Models\municipio;
 use App\Models\User;
@@ -72,7 +71,7 @@ class Gestores extends Component
             'newRegister.materno' => ['required', 'max:100', new Les],
             'newRegister.telefono' => ['required', 'numeric', new telefono],
             'newRegister.sexo' => ['required'],
-            'newRegister.correo' => ['required', 'email', 'unique:gestor,correo', 'unique:usuario_sistema,correo', 'unique:contacro,correo'],
+            'newRegister.correo' => ['required', 'email', 'unique:gestor,correo', 'unique:usuario_sistema,correo', 'unique:contacto,correo'],
             'newRegister.contrasena' => ['required', 'min:8', 'confirmed', Password::default()],
             'newRegister.contrasena_confirmation' => ['required'],
             'newRegister.zona' => ['required'],

@@ -49,9 +49,9 @@ class direccion extends Model
         return $this->hasOne(gestor::class);
     }
 
-    public function cliente_direccion(): HasMany
+    public function cliente_direccion(): BelongsToMany
     {
-        return $this->hasMany(cliente_direccion::class,'id_direccion');
+        return $this->belongsToMany(cliente::class, 'cliente_direccion','id_cliente','id_direccion');
     }
 
     public function mustra_internacional(): HasMany

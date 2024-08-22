@@ -35,6 +35,11 @@ class DatabaseSeeder extends Seeder
         $TipoUser3->descripcion="Gestores";
         $TipoUser3->save();
 
+        $TipoUser4= new tipo_usuario();
+        $TipoUser4->idtipo_usuario=4;
+        $TipoUser4->descripcion="Interesados";
+        $TipoUser4->save();
+
         $user= new User();
         $user->correo="lued1006@gmail.com";
         $user->contraseña="Hmcnjsa1*";

@@ -33,9 +33,9 @@ class gestor extends Model
         return $this->hasOne(direccion::class,'id_direccion');
     }
 
-    public function sistema(): HasOne
+    public function sistema(): belongsTo
     {
-        return $this->hasOne(User::class,'idusuario_sistema');
+        return $this->belongsTo(User::class,'idusuario_sistema');
     }
 
     public function zona(): BelongsTo
@@ -44,13 +44,19 @@ class gestor extends Model
     }
 
     //un gestor puede tener barios interesados
-    public function barrios_interesados(): HasMany
+    public function interesados(): HasMany
     {
-        return $this->hasMany(interesado::class,'id_gestor');
+        return $this->hasMany(interesado::class ,'id_gestor','gestor_id_gestor');
     }
   
     public function comments(): HasMany
     {
         return $this->hasMany(cliente::class);
+    }
+
+    //un gestor puede tener varios clientes
+    public function clientes(): HasMany
+    {
+        return $this->hasMany(cliente::class,'id_gestor');
     }
 }
