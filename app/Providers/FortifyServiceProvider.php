@@ -34,16 +34,16 @@ class FortifyServiceProvider extends ServiceProvider
 
                     $user = User::where('correo', $request->correo)->first();
 
-                    if ($user->idtipo_usuario == '1' && $user->estatus == '1') {
+                    if ($user->idtipo_usuario == '1') {
 
                         return redirect()->route('admin.administrador.panel');
-                    } else if ($user->idtipo_usuario == '2' && $user->estatus === '1') {
+                    } else if ($user->idtipo_usuario == '2') {
 
                         return redirect()->route('client.panel');
-                    } else if ($user->idtipo_usuario == '3' && $user->estatus === '1') {
+                    } else if ($user->idtipo_usuario == '3') {
 
                         return redirect()->route('gestor.panel');
-                    } else if ($user->idtipo_usuario == '4' && $user->estatus === '1') {
+                    } else if ($user->idtipo_usuario == '4') {
 
                         return redirect()->route('interesado.panel');
                     } else {
