@@ -6,24 +6,23 @@
                     <x-slot name="title">Clientes</x-slot>
                     <x-slot name="content">
                         <div class="flex flex-col divide-y divide-slate-700">
-                            <div class="w-full flex justify-between py-2">
-                                <p>Clientes Nuevos</p>
-                                <p class="text-white">6</p>
-                            </div>
-                            <div class="w-full flex justify-between py-2">
-                                <p>Clientes sin gestor</p>
-                                <p class="text-white">5</p>
-                            </div>
+                            @livewire('componentes.cliente.gestorsclient')
                         </div>
                     </x-slot>
-                    <x-slot name="footer"><x-button-enter wire:navigate.hover>Entrar</x-button-enter></x-slot>
+                    <x-slot name="footer"><x-button-enter href="{{route('admin.administrador.clientes')}}" >Entrar</x-button-enter></x-slot>
                 </x-cards>
                 <x-cards>
                     <x-slot name="title">Gestores</x-slot>
                     <x-slot name="content">
                         @livewire('componentes.gestorescount')
                     </x-slot>
-                    <x-slot name="footer"><x-button-enter href="{{route('admin.administrador.gestores')}}" wire:navigate.hover>Entrar</x-button-enter></x-slot>
+                    <x-slot name="footer"><x-button-enter href="{{route('admin.administrador.gestores')}}" >Entrar</x-button-enter></x-slot>
+                </x-cards>
+                <x-cards>
+                    <x-slot name="title">Interesados</x-slot>
+                    <x-slot name="content">
+                    </x-slot>
+                    <x-slot name="footer"><x-button-enter href="{{route('admin.administrador.interesados')}}" >Entrar</x-button-enter></x-slot>
                 </x-cards>
             </div>
         </x-slot>
