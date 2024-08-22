@@ -102,4 +102,11 @@ Route::get('/gestores', function () {
     return view('administrador.gestores');
 })->name('administrador.gestores');
 
+Route::get('/interesados', function () {
+    return view('administrador.interesados');
+})->name('administrador.interesados');
+
+Route::get('/clientes', function () {
+    return view('administrador.clientes');
+})->name('administrador.clientes');
 
