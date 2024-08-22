@@ -49,3 +49,5 @@ Route::post('/forgot-password', function (Request $request) {
         ? back()->with(['status' => __($status)])
         : back()->withErrors(['correo' => __($status)]);
 })->middleware('guest')->name('password.email');
+
+
