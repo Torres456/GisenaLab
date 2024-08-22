@@ -4,6 +4,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 
@@ -34,22 +36,21 @@ class cliente extends Model
         return $this->hasOne(contacto::class, 'id_contacto');
     }
 
-    public function gestor(): HasOne
+    //un cliente solo puede tener un gestor
+    public function gestor(): BelongsTo
     {
-        return $this->hasOne(gestor::class, 'id_gestor');
+        return $this->belongsTo(gestor::class, 'id_gestor');
     }
 
-    public function sistema(): HasOne
+    public function sistema(): BelongsTo
     {
-        return $this->hasOne(gestor::class, 'idusuario_sistema');
+        return $this->belongsTo(User::class, 'idusuario_sistema');
     }
 
-
-    public function direccion(): HasMany
+    public function direcciones(): BelongsToMany
     {
-        return $this->hasMany(cliente_direccion::class, 'id_cliente');
+        return $this->belongsToMany(direccion::class, 'cliente_direccion','id_cliente','id_direccion');
     }
     
-
 
 }

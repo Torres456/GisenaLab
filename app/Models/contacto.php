@@ -33,4 +33,9 @@ class contacto extends Model
     {
         return $this->belongsTo(interesado::class,'id_contacto');
     }
+
+    public function cliente(): BelongsTo
+    {
+        return $this->belongsTo(cliente::class);
+    }
 }
