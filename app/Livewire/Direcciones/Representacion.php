@@ -38,6 +38,12 @@ class Representacion extends Component
         session()->flash('green', 'Agregada correctamente');
     }
 
+    #[On('cancelRegister')]
+    public function new_cancel()
+    {
+        $this->new = false;
+    }
+
 
     //&=================================================================Editar Registro
     public $edit = false;

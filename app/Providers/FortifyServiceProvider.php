@@ -43,6 +43,9 @@ class FortifyServiceProvider extends ServiceProvider
                     } else if ($user->idtipo_usuario == '3') {
 
                         return redirect()->route('gestor.panel');
+                    } else if ($user->idtipo_usuario == '4') {
+
+                        return redirect()->route('interesado.panel');
                     } else {
                         abort(500);
                     }

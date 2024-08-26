@@ -26,6 +26,8 @@ return new class extends Migration
             $table->foreign('gestor_id_gestor')->references('id_gestor')->on('gestor');
             $table->unsignedBigInteger('direccion_id_direccion');
             $table->foreign('direccion_id_direccion')->references('id_direccion')->on('direccion');
+            $table->unsignedBigInteger('idusuario_sistema')->nullable(true);
+            $table->foreign('idusuario_sistema')->references('idusuario_sistema')->on('usuario_sistema');
             $table->timestamps();
         });
     }

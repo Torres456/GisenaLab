@@ -16,8 +16,8 @@ return new class extends Migration
             $table->string('calle', 100);
             $table->string('no_exterior', 20);
             $table->string('no_interior', 20);
-            $table->string('entre_calles');
-            $table->string('referencia');
+            $table->string('entre_calles')->nullable(true);
+            $table->string('referencia')->nullable(true);
             $table->integer('cp');
             $table->unsignedBigInteger('id_estado');
             $table->foreign('id_estado')->references('id_estado')->on('estado');

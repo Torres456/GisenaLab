@@ -44,8 +44,8 @@
                                 @endif
                                 <ul class="space-y-2 font-medium">
                                     <li>
-                                        <x-responsive-nav-link href="{{ route('admin.administrador.panel') }}" :active="request()->routeIs('admin.administrador.panel')"
-                                            wire:navigate.hover>
+                                        <x-responsive-nav-link href="{{ route('admin.administrador.panel') }}"
+                                            :active="request()->routeIs('admin.administrador.panel')" wire:navigate.hover>
                                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                                                 viewBox="0 0 24 24" fill="none" stroke="currentColor"
                                                 stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
@@ -311,7 +311,6 @@
                         <span class="ms-3">{{ __('Dashboard') }}</span>
                     </x-nav-link>
                     @if (Route::is('gestor.panel') || Route::is('gestor.gestores.*'))
-                    
                     @endif
                 </li>
                 {{-- <li>
@@ -330,14 +329,49 @@
             </ul>
         </div>
     </aside>
-@endif
-    {{-- ================================================================================================= --}}
-
-    {{-- =============================================== Contenido =======================================  --}}
-    <div class="p-4 pt-8 sm:ml-64">
-        <div
-            class="p-4 border-2 border-gray-200 border-dashed rounded-lg dark:border-gray-700  bg-white dark:bg-gray-800">
-            {{ $content }}
+@elseif(Auth::user()->idtipo_usuario == 4)
+    <aside id="sidebar"
+        class="fixed top-0 left-0 z-40 w-64 h-screen pt-20 transition-transform -translate-x-full bg-white border-r border-gray-200 sm:translate-x-0 dark:bg-gray-800 dark:border-gray-700"
+        aria-label="Sidebar">
+        <div class="h-full px-3 pb-4 overflow-y-auto bg-white dark:bg-gray-800">
+            <ul class="space-y-2 font-medium">
+                <li>
+                    <x-nav-link href="{{ route('interesado.panel') }}" :active="request()->routeIs('interesado.panel')" wire:navigate.hover>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                            fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                            stroke-linejoin="round"
+                            class="icon icon-tabler icons-tabler-outline icon-tabler-layout-collage">
+                            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                            <path d="M4 4m0 2a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2z" />
+                            <path d="M10 4l4 16" />
+                            <path d="M12 12l-8 2" />
+                        </svg>
+                        <span class="ms-3">{{ __('Dashboard') }}</span>
+                    </x-nav-link>
+                </li>
+                {{-- <li>
+                <x-nav-link href="{{ route('admin.administrador.ordenes') }}" :active="request()->routeIs('admin.administrador.ordenes')" wire:navigate.hover>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-files">
+                        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                        <path d="M15 3v4a1 1 0 0 0 1 1h4" />
+                        <path d="M18 17h-7a2 2 0 0 1 -2 -2v-10a2 2 0 0 1 2 -2h4l5 5v7a2 2 0 0 1 -2 2z" />
+                        <path d="M16 17v2a2 2 0 0 1 -2 2h-7a2 2 0 0 1 -2 -2v-10a2 2 0 0 1 2 -2h2" />
+                    </svg>
+                    <span class="ms-3">{{ __('Órdenes Servicio') }}</span>
+                </x-nav-link>
+            </li> --}}
+            </ul>
         </div>
+    </aside>
+@endif
+{{-- ================================================================================================= --}}
+
+{{-- =============================================== Contenido =======================================  --}}
+<div class="p-4 pt-8 sm:ml-64">
+    <div class="p-4 border-2 border-gray-200 border-dashed rounded-lg dark:border-gray-700  bg-white dark:bg-gray-800">
+        {{ $content }}
     </div>
-    {{-- ================================================================================================= --}}
+</div>
+{{-- ================================================================================================= --}}

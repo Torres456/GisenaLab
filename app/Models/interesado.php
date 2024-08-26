@@ -13,7 +13,6 @@ class interesado extends Model
     protected $primaryKey = 'id_interesado';
     protected $fillable = [
         'nombre',
-        'nombre_interesado',
         'a_paterno',
         'a_materno',
         'telefono',
@@ -27,18 +26,23 @@ class interesado extends Model
 
     public function contacto(): HasOne
     {
-        return $this->hasOne(contacto::class, 'idcontacto');
+        return $this->hasOne(contacto::class, 'id_contacto');
     }
     
-    //un interesado puede tener uno a muchos
-    public function gestor(): BelongsTo
+    //un interesado solo puede tener un gestor
+    public function gestor() : BelongsTo
     {
-        return $this->belongsTo(gestor::class, 'id_gestor');
+        return $this->belongsTo(gestor::class, 'gestor_id_gestor','id_gestor');
     }
 
     public function direccion(): HasOne
     {
         return $this->hasOne(direccion::class, 'id_direccion');
+    }
+
+    public function sistema(): belongsTo
+    {
+        return $this->belongsTo(User::class,'idusuario_sistema');
     }
 
     use HasFactory;

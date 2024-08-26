@@ -47,7 +47,7 @@
                 </div>
                 <div class="mt-5 flex justify-around">
                     <x-button>Guardar</x-button>
-                    <x-danger-button wire:click="$parent.new_cancel">Cancelar</x-danger-button>
+                    <x-danger-button wire:click="new_cancel">Cancelar</x-danger-button>
                 </div>
             </form>
         </x-slot>

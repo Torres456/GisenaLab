@@ -3,23 +3,22 @@
 namespace App\Livewire\Administrador;
 
 use App\Models\colonia;
+use App\Models\contacto;
 use App\Models\direccion;
 use App\Models\estado;
 use App\Models\gestor;
+use App\Models\interesado;
 use App\Models\municipio;
 use App\Models\User;
-use App\Models\zona_representacion;
-use Livewire\Component;
-use Livewire\WithPagination;
 use App\Rules\Les;
+use App\Rules\Password;
 use App\Rules\telefono;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
-use Livewire\Attributes\Lazy;
-use App\Rules\Password;
+use Livewire\Component;
+use Livewire\WithPagination;
 
-#[Lazy()]
-class Gestores extends Component
+class Interesados extends Component
 {
     //&================================================================= Paginacion
     use WithPagination;
@@ -32,9 +31,6 @@ class Gestores extends Component
         $this->resetPage();
     }
 
-
-
-
     //&================================================================= Nuevo Registro
     public $new = false;
     public $newRegister = [
@@ -42,11 +38,23 @@ class Gestores extends Component
         'paterno' => '',
         'materno' => '',
         'telefono' => '',
-        'sexo' => '',
+        'telefono_alter' => '',
         'correo' => '',
+        'correo_alter' => '',
         'contrasena' => '',
         'contrasena_confirmation' => '',
-        'zona' => '',
+        'gestor' => '',
+
+        //Contacto
+        'nombre_contac' => '',
+        'materno_contac' => '',
+        'paterno_contac' => '',
+        'correo_contact' => '',
+        'correo_alter_contact' => '',
+        'telefono_contact' => '',
+        'telefono_alter_contact' => '',
+
+        //Direccion
         'calle' => '',
         'exterior' => '',
         'interior' => '',
@@ -70,18 +78,19 @@ class Gestores extends Component
             'newRegister.paterno' => ['required', 'max:100', new Les],
             'newRegister.materno' => ['required', 'max:100', new Les],
             'newRegister.telefono' => ['required', 'numeric', new telefono],
-            'newRegister.sexo' => ['required'],
+            'newRegister.telefono_alter' => ['required'],
             'newRegister.correo' => ['required', 'email', 'unique:gestor,correo', 'unique:usuario_sistema,correo', 'unique:contacto,correo'],
+            'newRegister.correo_alter' => ['required', 'email'],
             'newRegister.contrasena' => ['required', 'min:8', 'confirmed', Password::default()],
             'newRegister.contrasena_confirmation' => ['required'],
-            'newRegister.zona' => ['required'],
+            'newRegister.gestor' => ['required'],
             'newRegister.calle' => ['required', 'max:100'],
             'newRegister.exterior' => ['max:20'],
             'newRegister.interior' => ['max:20'],
             'newRegister.cp' => ['required', 'numeric'],
-            'newRegister.entre' => ['max:250'],
-            'newRegister.referencia' => ['max:250'],
-            'newRegister.estado' => ['required'], 
+            'newRegister.entre' => ['required', 'max:250'],
+            'newRegister.referencia' => ['required', 'max:250'],
+            'newRegister.estado' => ['required'],
             'newRegister.municipio' => ['required'],
             'newRegister.colonia' => [' required'],
         ], [
@@ -94,36 +103,50 @@ class Gestores extends Component
             'newRegister.materno.max' => 'El apellido materno es muy largo',
             'newRegister.telefono.required' => 'El teléfono es requerido',
             'newRegister.telefono.numeric' => 'El teléfono debe ser numérico',
-            'newRegister.sexo.required' => 'El sexo es requerido',
-            'newRegister.correo.required' => 'El correo es requerido',
-            'newRegister.correo.email' => 'El correo no es válido',
-            'newRegister.correo.unique' => 'El correo ya a sido registrado',
+            'newRegister.telefono.max' => 'El teléfono debe ser numérico',
+            'newRegister.telefono_alter.required' => 'El teléfono alternativo es requerido',
+            'newRegister.correo.required' => 'El correo electrónico es requerido',
+            'newRegister.correo.email' => 'El correo electrónico no es válido',
+            'newRegister.correo.unique' => 'El correo electrónico ya está registrado',
+            'newRegister.correo_alter.required' => 'El correo alternativo es requerido',
+            'newRegister.correo_alter.email' => 'El correo electrónico no es válido',
             'newRegister.contrasena.required' => 'La contraseña es requerida',
             'newRegister.contrasena.min' => 'La contraseña debe tener al menos 8 caracteres',
             'newRegister.contrasena.confirmed' => 'Las contraseñas no coinciden',
             'newRegister.contrasena_confirmation.required' => 'Confirmar contraseña es requerida',
-            'newRegister.zona.required' => 'La zona es requerida',
+            'newRegister.gestor.required' => 'Seleccione un gestor',
             'newRegister.calle.required' => 'La calle es requerida',
-            'newRegister.calle.max' => 'El nombre de la calle es muy larga',
+            'newRegister.calle.max' => 'La calle es muy larga',
             'newRegister.exterior.max' => 'El número exterior es muy largo',
             'newRegister.interior.max' => 'El número interior es muy largo',
             'newRegister.cp.required' => 'El código postal es requerido',
             'newRegister.cp.numeric' => 'El código postal debe ser numérico',
+            'newRegister.entre.required' => 'La dirección entre calles es requerida',
             'newRegister.entre.max' => 'La dirección entre calles es muy larga',
+            'newRegister.referencia.required' => 'La referencia es requerida',
             'newRegister.referencia.max' => 'La referencia es muy larga',
-            'newRegister.estado.required' => 'El estado es requerido',
-            'newRegister.municipio.required' => 'El municipio es requerido',
-            'newRegister.colonia.required' => 'La colonia es requerida',
+            'newRegister.estado.required' => 'Seleccione un estado',
+            'newRegister.municipio.required' => 'Seleccione un municipio',
+            'newRegister.colonia.required' => 'Seleccione una colonia',
         ]);
 
         $usuario = User::create([
             'correo' => $this->newRegister['correo'],
             'contraseña' => Hash::make($this->newRegister['contrasena']),
             'estatus' => 1,
-            'idtipo_usuario' => 3
+            'idtipo_usuario' => 4
         ]);
         $id = DB::table('usuario_sistema')->where('correo', $this->newRegister['correo'])->value('idusuario_sistema');
-
+        
+        $contacto = contacto::create([
+            'nombre' => $this->newRegister['nombre_contac'],
+            'ap_paterno' => $this->newRegister['materno_contac'],
+            'ap_materno' => $this->newRegister['paterno_contac'],
+            'correo' => $this->newRegister['correo_contact'],
+            'correo_alternativo' => $this->newRegister['correo_alter_contact'],
+            'telefono' => $this->newRegister['telefono_contact'],
+            'telefono_alternativo' => $this->newRegister['telefono_alter_contact'],
+        ]);
 
         $direccion = direccion::create([
             'calle' => $this->newRegister['calle'],
@@ -137,16 +160,18 @@ class Gestores extends Component
             'id_colonia' => $this->newRegister['colonia'],
         ]);
 
-        gestor::create([
+        interesado::create([
             'nombre' => $this->newRegister['nombre'],
-            'ap_paterno' => $this->newRegister['paterno'],
-            'ap_materno' => $this->newRegister['materno'],
+            'a_paterno' => $this->newRegister['paterno'],
+            'a_materno' => $this->newRegister['materno'],
             'telefono' => $this->newRegister['telefono'],
-            'sexo' => $this->newRegister['sexo'],
+            'telefono_alternativo' => $this->newRegister['telefono_alter'],
             'correo' => $this->newRegister['correo'],
-            'id_direccion' => $direccion->id_direccion,
-            'idusuario_sistema' => $usuario->idusuario_sistema,
-            'idzona_representacion' => $this->newRegister['zona'],
+            'correo_alternativo' => $this->newRegister['correo_alter'],
+            'direccion_id_direccion' => $direccion->id_direccion,
+            //'idusuario_sistema' => $usuario->idusuario_sistema,
+            'gestor_id_gestor' => $this->newRegister['gestor'],
+            'contacto_idcontacto' => $contacto->id_contacto,
         ]);
 
         $this->new = false;
@@ -169,9 +194,23 @@ class Gestores extends Component
         'paterno' => '',
         'materno' => '',
         'telefono' => '',
-        'sexo' => '',
+        'telefono_alter' => '',
         'correo' => '',
-        'zona' => '',
+        'correo_alter' => '',
+        'contrasena' => '',
+        'contrasena_confirmation' => '',
+        'gestor' => '',
+
+        //Contacto
+        'nombre_contac' => '',
+        'materno_contac' => '',
+        'paterno_contac' => '',
+        'correo_contact' => '',
+        'correo_alter_contact' => '',
+        'telefono_contact' => '',
+        'telefono_alter_contact' => '',
+
+        //Direccion
         'calle' => '',
         'exterior' => '',
         'interior' => '',
@@ -186,15 +225,25 @@ class Gestores extends Component
     {
         $this->edit = true;
         $this->editId = $id;
-        $register = gestor::find($id);
+        $register = interesado::find($id);
         $this->editRegister = [
             'nombre' => $register->nombre,
-            'paterno' => $register->ap_paterno,
-            'materno' => $register->ap_materno,
+            'paterno' => $register->a_paterno,
+            'materno' => $register->a_materno,
             'telefono' => $register->telefono,
-            'sexo' => $register->sexo,
+            'telefono_alter' => $register->telefono_alternativo,
             'correo' => $register->correo,
-            'zona' => $register->idzona_representacion,
+            'correo_alter' => $register->correo_alternativo,
+            'gestor' => $register->gestor_id_gestor,
+            'contacto_idcontacto' => $register->contacto_idcontacto,
+            'direccion_id_direccion' => $register->direccion_id_direccion,
+            'nombre_contac' => $register->contacto->nombre,
+            'materno_contac' => $register->contacto->ap_materno,
+            'paterno_contac' => $register->contacto->ap_paterno,
+            'correo_contact' => $register->contacto->correo,
+            'correo_alter_contact' => $register->contacto->correo_alternativo,
+            'telefono_contact' => $register->contacto->telefono,
+            'telefono_alter_contact' => $register->contacto->telefono_alternativo,
             'calle' => $register->direccion->calle,
             'exterior' => $register->direccion->no_exterior,
             'interior' => $register->direccion->no_interior,
@@ -210,67 +259,87 @@ class Gestores extends Component
     {
         //validations
         $this->validate([
-            'editRegister.nombre' => ['required', 'max:100'],
-            'editRegister.paterno' => ['required', 'max:100'],
-            'editRegister.materno' => ['required', 'max:100'],
+
+            'editRegister.nombre' => ['required', 'max:100', new Les],
+            'editRegister.paterno' => ['required', 'max:100', new Les],
+            'editRegister.materno' => ['required', 'max:100', new Les],
             'editRegister.telefono' => ['required', 'numeric', new telefono],
-            'editRegister.sexo' => ['required'],
-            'editRegister.correo' => ['required', 'email', 'unique:gestor,correo,' . $this->editId . ',id_gestor'],
-            'editRegister.zona' => ['required'],
+            'editRegister.telefono_alter' => ['required'],
+            'editRegister.correo' => ['required', 'email', 'unique:interesado,correo,' . $this->editId . ',id_interesado'],
+            'editRegister.correo_alter' => ['required', 'email'],
+            'editRegister.gestor' => ['required'],
             'editRegister.calle' => ['required', 'max:100'],
             'editRegister.exterior' => ['max:20'],
             'editRegister.interior' => ['max:20'],
             'editRegister.cp' => ['required', 'numeric'],
-            'editRegister.entre' => ['max:250'],
-            'editRegister.referencia' => ['max:250'],
+            'editRegister.entre' => ['required', 'max:250'],
+            'editRegister.referencia' => ['required', 'max:250'],
             'editRegister.estado' => ['required'],
             'editRegister.municipio' => ['required'],
             'editRegister.colonia' => [' required'],
         ], [
             'editRegister.nombre.required' => 'El nombre es requerido',
             'editRegister.nombre.max' => 'El nombre es muy largo',
+            'editRegister.nombre.new Les' => 'El nombre es muy largo',
             'editRegister.paterno.required' => 'El apellido paterno es requerido',
             'editRegister.paterno.max' => 'El apellido paterno es muy largo',
             'editRegister.materno.required' => 'El apellido materno es requerido',
             'editRegister.materno.max' => 'El apellido materno es muy largo',
             'editRegister.telefono.required' => 'El teléfono es requerido',
             'editRegister.telefono.numeric' => 'El teléfono debe ser numérico',
-            'editRegister.sexo.required' => 'El sexo es requerido',
-            'editRegister.correo.required' => 'El correo es requerido',
-            'editRegister.correo.email' => 'El correo no es válido',
-            'editRegister.correo.unique' => 'El correo ya existe',
-            'editRegister.contrasena.required' => 'La contraseña es requerida',
-            'editRegister.contrasena.min' => 'La contraseña debe tener al menos 8 caracteres',
-            'editRegister.contrasena.confirmed' => 'Las contraseñas no coinciden',
-            'editRegister.conficontrasena.required' => 'Confirmar contraseña es requerida',
-            'editRegister.zona.required' => 'La zona es requerida',
+            'editRegister.telefono.max' => 'El teléfono debe ser numérico',
+            'editRegister.telefono_alter.required' => 'El teléfono alternativo es requerido',
+            'editRegister.correo.required' => 'El correo electrónico es requerido',
+            'editRegister.correo.email' => 'El correo electrónico no es válido',
+            'editRegister.correo.unique' => 'El correo electrónico ya está registrado',
+            'editRegister.correo_alter.required' => 'El correo alternativo es requerido',
+            'editRegister.correo_alter.email' => 'El correo electrónico no es válido',
+            'editRegister.gestor.required' => 'Seleccione un gestor',
             'editRegister.calle.required' => 'La calle es requerida',
-            'editRegister.calle.max' => 'El nombre de la calle es muy larga',
+            'editRegister.calle.max' => 'La calle es muy larga',
             'editRegister.exterior.max' => 'El número exterior es muy largo',
             'editRegister.interior.max' => 'El número interior es muy largo',
             'editRegister.cp.required' => 'El código postal es requerido',
             'editRegister.cp.numeric' => 'El código postal debe ser numérico',
+            'editRegister.entre.required' => 'La dirección entre calles es requerida',
             'editRegister.entre.max' => 'La dirección entre calles es muy larga',
+            'editRegister.referencia.required' => 'La referencia es requerida',
             'editRegister.referencia.max' => 'La referencia es muy larga',
-            'editRegister.estado.required' => 'El estado es requerido',
-            'editRegister.municipio.required' => 'El municipio es requerido',
-            'editRegister.colonia.required' => 'La colonia es requerida',
-        ]);
-        //store
-        $gestor = gestor::updateOrCreate([
-            'id_gestor' => $this->editId,
-        ], [
-            'nombre' => $this->editRegister['nombre'],
-            'ap_paterno' => $this->editRegister['paterno'],
-            'ap_materno' => $this->editRegister['materno'],
-            'telefono' => $this->editRegister['telefono'],
-            'sexo' => $this->editRegister['sexo'],
-            'correo' => $this->editRegister['correo'],
-            'idzona_representacion' => $this->editRegister['zona'],
+            'editRegister.estado.required' => 'Seleccione un estado',
+            'editRegister.municipio.required' => 'Seleccione un municipio',
+            'editRegister.colonia.required' => 'Seleccione una colonia',
         ]);
 
+
+        //store
+        $interesado = interesado::updateOrCreate([
+            'id_interesado' => $this->editId,
+        ], [
+            'nombre' => $this->editRegister['nombre'],
+            'a_paterno' => $this->editRegister['paterno'],
+            'a_materno' => $this->editRegister['materno'],
+            'telefono' => $this->editRegister['telefono'],
+            'telefono_alternativo' => $this->editRegister['telefono_alter'],
+            'correo' => $this->editRegister['correo'],
+            'correo_alternativo' => $this->editRegister['correo_alter'],
+        ]);
+
+        //solo actualizar contacto
+        $contacto = contacto::updateOrCreate([
+            'id_contacto' => $interesado->contacto->id_contacto,
+        ], [
+            'nombre' => $this->editRegister['nombre_contac'],
+            'ap_paterno' => $this->editRegister['paterno_contac'],
+            'ap_materno' => $this->editRegister['materno_contac'],
+            'telefono' => $this->editRegister['telefono_contact'],
+            'telefono_alternativo' => $this->editRegister['telefono_alter_contact'],
+            'correo' => $this->editRegister['correo_contact'],
+            'correo_alternativo' => $this->editRegister['correo_alter_contact'],
+        ]);
+        
+
         $direccion = direccion::updateOrCreate([
-            'id_direccion' => $gestor->direccion->id_direccion,
+            'id_direccion' => $interesado->direccion->id_direccion,
         ], [
             'calle' => $this->editRegister['calle'],
             'no_exterior' => $this->editRegister['exterior'],
@@ -295,7 +364,7 @@ class Gestores extends Component
     //&================================================================= Datos
 
 
-    public $zonas;
+    public $gestores;
     public $estados = [];
     public $municipios = [];
     public $colonias = [];
@@ -303,8 +372,8 @@ class Gestores extends Component
 
     public function mount()
     {
-        $this->zonas = zona_representacion::all();
         $this->estados = estado::all();
+        $this->gestores = gestor::all();
     }
 
     public function updated($property, $value)
@@ -349,7 +418,7 @@ class Gestores extends Component
     {
         $this->direct = true;
         $this->direcId = $id;
-        $gestor = gestor::find($this->direcId);
+        $gestor = interesado::find($this->direcId);
         $this->direcRegister = [
             'calle' => $gestor->direccion->calle,
             'exterior' => $gestor->direccion->no_exterior,
@@ -369,6 +438,41 @@ class Gestores extends Component
         $this->reset('direcRegister');
     }
 
+    //&================================================================= Contacto
+
+    public $contac = false;
+    public $contactId;
+
+    public $contactRegister = [
+        'nombre_contac' => '',
+        'materno_contac' => '',
+        'paterno_contac' => '',
+        'correo_contact' => '',
+        'correo_alter_contact' => '',
+        'telefono_contact' => '',
+        'telefono_alter_contact' => '',
+    ];
+
+    public function contac_register($id){
+        $this->contac = true;
+        $this->contactId = $id;
+        $gestor = interesado::find($this->contactId);
+        $this->contactRegister = [
+            'nombre_contac' => $gestor->contacto->nombre,
+            'materno_contac' => $gestor->contacto->ap_materno,
+            'paterno_contac' => $gestor->contacto->ap_paterno,
+            'correo_contact' => $gestor->contacto->correo,
+            'correo_alter_contact' => $gestor->contacto->correo_alternativo,
+            'telefono_contact' => $gestor->contacto->telefono,
+            'telefono_alter_contact' => $gestor->contacto->telefono_alternativo,
+        ];
+    }
+
+    public function contac_cancel(){
+        $this->contac = false;
+        $this->reset('contactRegister');
+    }
+
     //&================================================================= Lazy Load
     public function placeholder()
     {
@@ -378,12 +482,12 @@ class Gestores extends Component
     //&================================================================= Render
     public function render()
     {
-        $count = gestor::where(function ($query) {
+        $count = interesado::where(function ($query) {
             $query->where('nombre', 'LIKE', '%' . $this->search . '%')->orWhere('correo', 'LIKE', '%' . $this->search . '%');
         })->count();
-        $gestores = gestor::where(function ($query) {
+        $interesados = interesado::where(function ($query) {
             $query->where('nombre', 'LIKE', '%' . $this->search . '%')->orWhere('correo', 'LIKE', '%' . $this->search . '%');
         })->paginate($this->view_dates);
-        return view('livewire.administrador.gestores', compact('gestores', 'count'));
+        return view('livewire.administrador.interesados', compact('count', 'interesados'));
     }
 }
