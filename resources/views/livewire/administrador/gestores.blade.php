@@ -167,8 +167,8 @@
                         <x-label>Sexo:</x-label>
                         <x-select wire:model="newRegister.sexo" type="text" class="block mt-1 w-full">
                             <option value="">Seleccione un sexo</option>
-                            <option value="M">Masculino</option>
-                            <option value="F">Femenino</option>
+                            <option value="0">Masculino</option>
+                            <option value="1">Femenino</option>
                         </x-select>
                         <x-input-error for="newRegister.sexo" />
                     </div>
@@ -321,8 +321,8 @@
                         <x-label>Sexo:</x-label>
                         <x-select wire:model="editRegister.sexo" type="text" class="block mt-1 w-full">
                             <option value="">Seleccione un sexo</option>
-                            <option value="M">Masculino</option>
-                            <option value="F">Femenino</option>
+                            <option value="0">Masculino</option>
+                            <option value="1">Femenino</option>
                         </x-select>
                         <x-input-error for="editRegister.sexo" />
                     </div>

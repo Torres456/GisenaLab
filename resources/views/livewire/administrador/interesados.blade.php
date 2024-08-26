@@ -359,7 +359,7 @@
 
     <x-dialog-modal wire:model="edit">
         <x-slot name='title'>
-            <h2 class="text-center">Editar Gestor</h2>
+            <h2 class="text-center">Editar Interesado</h2>
         </x-slot>
         <x-slot name='content'>
             <form wire:submit="edit_form">
@@ -666,7 +666,7 @@
         </x-slot>
         <x-slot name='footer'>
             <div class="">
-                <x-danger-button wire:click="direct_cancel">Cerrar</x-danger-button>
+                <x-danger-button wire:click="contac_cancel">Cerrar</x-danger-button>
             </div>
         </x-slot>
     </x-dialog-modal>

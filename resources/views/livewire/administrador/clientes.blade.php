@@ -241,14 +241,14 @@
         </x-slot>
         <x-slot name='footer'>
             <div class="">
-                <x-danger-button wire:click="direct_cancel">Cerrar</x-danger-button>
+                <x-danger-button wire:click="contact_cancel">Cerrar</x-danger-button>
             </div>
         </x-slot>
     </x-dialog-modal>
 
     <x-dialog-modal wire:model="gestor">
         <x-slot name='title'>
-            <h2 class="text-center">Contacto</h2>
+            <h2 class="text-center">Gestor</h2>
         </x-slot>
         <x-slot name='content'>
             <form wire:submit='edit_Gestor'>
@@ -264,7 +264,7 @@
                 </div>
                 <div class="w-full flex justify-between mt-5">
                     <x-button>Guardar</x-button>
-                    <x-danger-button wire:click="direct_cancel">Cerrar</x-danger-button>
+                    <x-danger-button wire:click="gestor_cancel">Cerrar</x-danger-button>
                 </div>
             </form>
         </x-slot>
