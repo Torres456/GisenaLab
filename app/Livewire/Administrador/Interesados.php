@@ -468,6 +468,11 @@ class Interesados extends Component
         ];
     }
 
+    public function contac_cancel(){
+        $this->contac = false;
+        $this->reset('contactRegister');
+    }
+
     //&================================================================= Lazy Load
     public function placeholder()
     {

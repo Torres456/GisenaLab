@@ -128,6 +128,12 @@ class Clientes extends Component
             ];
         }
     }
+    public function contact_cancel()
+    {
+        $this->contac = false;
+        $this->reset('contactRegister');
+    }
+
     //&================================================================= Gestor view or edit
     public $gestor=false;
     public $gestorId;
@@ -157,6 +163,11 @@ class Clientes extends Component
             'id_gestor' => $this->gestorRegister['gestor'],
         ]);
 
+        $this->gestor=false;
+        $this->reset('gestorRegister');
+    }
+
+    public function gestor_cancel(){
         $this->gestor=false;
         $this->reset('gestorRegister');
     }

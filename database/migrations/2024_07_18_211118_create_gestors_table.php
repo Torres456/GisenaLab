@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('ap_materno', 100);
             $table->string('telefono', 15);
             $table->string('correo', 100);
-            $table->string('sexo',10);
+            $table->integer('sexo');
             $table->unsignedBigInteger('id_direccion');
             $table->foreign('id_direccion')->references('id_direccion')->on('direccion');
             $table->unsignedBigInteger('idusuario_sistema')->nullable(true);
