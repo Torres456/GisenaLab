@@ -40,10 +40,10 @@ class DatabaseSeeder extends Seeder
         $TipoUser4->descripcion = "Interesados";
         $TipoUser4->save();
 
-        $TipoUser4 = new tipo_usuario();
-        $TipoUser4->id_tipo_usuario = 5;
-        $TipoUser4->descripcion = "Empleado";
-        $TipoUser4->save();
+        $TipoUser5 = new tipo_usuario();
+        $TipoUser5->id_tipo_usuario = 5;
+        $TipoUser5->descripcion = "Empleado";
+        $TipoUser5->save();
 
         $user = new User();
         $user->nombre = "Luis";
