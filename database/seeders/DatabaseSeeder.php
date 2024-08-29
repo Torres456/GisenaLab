@@ -115,8 +115,8 @@ class DatabaseSeeder extends Seeder
         $user6->nombre = "Diego";
         $user6->ap_paterno = "Peres";
         $user6->ap_materno = "Martines";
-        $user6->correo = "cliente@gmail.com";
-        $user6->contraseña = "Cliente123#";
+        $user6->correo = "empleado@gmail.com";
+        $user6->contraseña = "empleado123#";
         $user6->estatus = "1";
         $user6->id_tipo_usuario = 5;
         $user6->email_verified_at = '05/08/2024';
