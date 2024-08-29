@@ -23,19 +23,22 @@ class User extends Authenticatable implements MustVerifyEmail
     use TwoFactorAuthenticatable;
 
     protected $table = 'usuario_sistema';
-    protected $primaryKey = 'idusuario_sistema';
+    protected $primaryKey = 'id_usuario_sistema';
 
     protected $fillable = [
+        'nombre',
+        'ap_paterno',
+        'ap_materno',
         'correo',
         'contraseña',
         'estatus',
-        'idtipo_usuario'
+        'id_tipo_usuario'
     ];
 
     protected $hidden = [
         'contraseña',
         'remember_token',
-        'idtipo_usuario'
+        'id_tipo_usuario'
     ];
 
     protected function casts(): array
@@ -48,7 +51,7 @@ class User extends Authenticatable implements MustVerifyEmail
 
     public function tipo(): BelongsTo
     {
-        return $this->belongsTo(tipo_usuario::class, 'idtipo_usuario');
+        return $this->belongsTo(tipo_usuario::class, 'id_tipo_usuario');
     }
 
     public function gestor(): HasOne
@@ -81,6 +84,6 @@ class User extends Authenticatable implements MustVerifyEmail
     //Check user type
     public function hasRole($role)
     {
-        return $this->where('correo', $this->correo)->where('idtipo_usuario', $role)->exists();
+        return $this->where('correo', $this->correo)->where('id_tipo_usuario', $role)->exists();
     }
 }
