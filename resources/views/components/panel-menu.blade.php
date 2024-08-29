@@ -99,7 +99,7 @@
                                     </li>
                                 </ul>
                                 @if (Auth::check())
-                                    @if (Auth::user()->idtipo_usuario == 1)
+                                    @if (Auth::user()->id_tipo_usuario == 1)
                                         <div class="block px-4 py-2 text-xs text-gray-400">
                                             {{ __('Administrador') }}
                                         </div>
@@ -179,7 +179,7 @@
 </nav>
 
 {{-- ================================= Menu ==============================  --}}
-@if (Auth::user()->idtipo_usuario == 1)
+@if (Auth::user()->id_tipo_usuario == 1)
     <aside id="sidebar"
         class="fixed top-0 left-0 z-40 w-64 h-screen pt-20 transition-transform -translate-x-full bg-white border-r border-gray-200 sm:translate-x-0 dark:bg-gray-800 dark:border-gray-700"
         aria-label="Sidebar">
@@ -235,7 +235,7 @@
             </ul>
         </div>
     </aside>
-@elseif(Auth::user()->idtipo_usuario == 2)
+@elseif(Auth::user()->id_tipo_usuario == 2)
     <aside id="sidebar"
         class="fixed top-0 left-0 z-40 w-64 h-screen pt-20 transition-transform -translate-x-full bg-white border-r border-gray-200 sm:translate-x-0 dark:bg-gray-800 dark:border-gray-700"
         aria-label="Sidebar">
@@ -291,7 +291,7 @@
             </ul>
         </div>
     </aside>
-@elseif(Auth::user()->idtipo_usuario == 3)
+@elseif(Auth::user()->id_tipo_usuario == 3)
     <aside id="sidebar"
         class="fixed top-0 left-0 z-40 w-64 h-screen pt-20 transition-transform -translate-x-full bg-white border-r border-gray-200 sm:translate-x-0 dark:bg-gray-800 dark:border-gray-700"
         aria-label="Sidebar">
@@ -329,7 +329,7 @@
             </ul>
         </div>
     </aside>
-@elseif(Auth::user()->idtipo_usuario == 4)
+@elseif(Auth::user()->id_tipo_usuario == 4)
     <aside id="sidebar"
         class="fixed top-0 left-0 z-40 w-64 h-screen pt-20 transition-transform -translate-x-full bg-white border-r border-gray-200 sm:translate-x-0 dark:bg-gray-800 dark:border-gray-700"
         aria-label="Sidebar">
