@@ -40,6 +40,11 @@ class DatabaseSeeder extends Seeder
         $TipoUser4->descripcion = "Interesados";
         $TipoUser4->save();
 
+        $TipoUser4 = new tipo_usuario();
+        $TipoUser4->id_tipo_usuario = 5;
+        $TipoUser4->descripcion = "Empleado";
+        $TipoUser4->save();
+
         $user = new User();
         $user->nombre = "Luis";
         $user->ap_paterno = "Luna";
@@ -72,6 +77,50 @@ class DatabaseSeeder extends Seeder
         $user3->id_tipo_usuario = 1;
         $user3->email_verified_at = '05/08/2024';
         $user3->save();
+
+        $user4 = new User();
+        $user4->nombre = "Fabian";
+        $user4->ap_paterno = "peres";
+        $user4->ap_materno = "dominguez";
+        $user4->correo = "cliente@gmail.com";
+        $user4->contraseña = "Cliente123#";
+        $user4->estatus = "1";
+        $user4->id_tipo_usuario = 2;
+        $user4->email_verified_at = '05/08/2024';
+        $user4->save();
+
+        $user5 = new User();
+        $user5->nombre = "Carlos";
+        $user5->ap_paterno = "Enrique";
+        $user5->ap_materno = "Santos";
+        $user5->correo = "gestor@gmail.com";
+        $user5->contraseña = "Gestor123#";
+        $user5->estatus = "1";
+        $user5->id_tipo_usuario = 3;
+        $user5->email_verified_at = '05/08/2024';
+        $user5->save();
+
+        $user6 = new User();
+        $user6->nombre = "Juan";
+        $user6->ap_paterno = "Peres";
+        $user6->ap_materno = "Martines";
+        $user6->correo = "interesado@gmail.com";
+        $user6->contraseña = "Interesado123#";
+        $user6->estatus = "1";
+        $user6->id_tipo_usuario = 4;
+        $user6->email_verified_at = '05/08/2024';
+        $user6->save();
+
+        $user6 = new User();
+        $user6->nombre = "Diego";
+        $user6->ap_paterno = "Peres";
+        $user6->ap_materno = "Martines";
+        $user6->correo = "cliente@gmail.com";
+        $user6->contraseña = "Cliente123#";
+        $user6->estatus = "1";
+        $user6->id_tipo_usuario = 5;
+        $user6->email_verified_at = '05/08/2024';
+        $user6->save();
 
         $rutas = new rutas();
         $rutas->title = "Unidades de Medida";
