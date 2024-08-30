@@ -2,6 +2,6 @@
 
 use Illuminate\Support\Facades\Route;
 
-Route::get('/panel', function () {
+Route::get('/perfil', function () {
     return view('cliente.panel');
-})->name('panel'); 
+})->name('cliente.perfil');
