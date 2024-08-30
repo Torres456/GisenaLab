@@ -54,6 +54,17 @@ return Application::configure(basePath: dirname(__DIR__))
                 ->prefix('interesado')
                 ->name('interesado.')
                 ->group(base_path('routes/interesado.php'));
+
+            Route::middleware([
+                'web',
+                'auth:sanctum',
+                'role:5',
+                'verified',
+                config('jetstream.auth_session'),
+            ])
+                ->prefix('empleado')
+                ->name('empleado.')
+                ->group(base_path('routes/empleado.php'));
         },
     )
     ->withMiddleware(function (Middleware $middleware) {
