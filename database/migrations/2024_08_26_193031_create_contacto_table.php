@@ -16,10 +16,10 @@ return new class extends Migration
             $table->string('nombre', 50);
             $table->string('ap_paterno', 50);
             $table->string('ap_materno', 50);
-            $table->string('telefono', 20);
+            $table->string('telefono', 20)->nullable();
             $table->string('correo', 150)->unique();
-            $table->string('telefono_alternativo', 20);
-            $table->string('correo_alternativo', 150);
+            $table->string('telefono_alternativo', 20)->nullable();
+            $table->string('correo_alternativo', 150)->nullable();
             $table->timestamps();
         });
     }
