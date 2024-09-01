@@ -26,7 +26,7 @@ class cliente extends Model
         'telefono_alternativo',
         'id_contacto',
         'id_gestor',
-        'idusuario_sistema'
+        'id_usuario_sistema'
     ];
 
 
@@ -43,13 +43,11 @@ class cliente extends Model
 
     public function sistema(): BelongsTo
     {
-        return $this->belongsTo(User::class, 'idusuario_sistema');
+        return $this->belongsTo(User::class, 'id_usuario_sistema');
     }
 
     public function direcciones(): BelongsToMany
     {
-        return $this->belongsToMany(direccion::class, 'cliente_direccion','id_cliente','id_direccion');
+        return $this->belongsToMany(direccion::class, 'cliente_direccion', 'id_cliente', 'id_direccion');
     }
-    
-
 }
