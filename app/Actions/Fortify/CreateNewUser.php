@@ -38,7 +38,6 @@ class CreateNewUser implements CreatesNewUsers
             'rfc.unique' => 'El campo RFC ya ha sido registrado.',
         ];
 
-
         $validator = Validator::make($input, [
             'nombre' => ['required', 'string', 'max:255', new Les],
             'paterno' => ['required', 'string', 'max:255', new Les],
@@ -52,14 +51,16 @@ class CreateNewUser implements CreatesNewUsers
         DB::beginTransaction();
         try {
             $usuario_sistema = User::create([
+                'nombre' => $input['nombre'],
+                'ap_paterno' => $input['paterno'],
+                'ap_materno' => $input['materno'],
                 'correo' => $input['correo'],
                 'contraseña' => Hash::make($input['password']),
                 'estatus' => 1,
-                'idtipo_usuario' => 2
+                'id_tipo_usuario' => 2
             ]);
 
-            $id = DB::table('usuario_sistema')->where('correo', $input['correo'])->value('idusuario_sistema');
-
+            $id = DB::table('usuario_sistema')->where('correo', $input['correo'])->value('id_usuario_sistema');
 
             //Persona fisica
             if (strlen($input['rfc']) == '13') {
@@ -77,7 +78,7 @@ class CreateNewUser implements CreatesNewUsers
                     'rfc' => strtoupper($input['rfc']),
                     'tipo' => 1,
                     'correo' => $input['correo'],
-                    'idusuario_sistema' => $id,
+                    'id_usuario_sistema' => $id,
                     'id_contacto' => $id2
                 ]);
 
@@ -97,7 +98,7 @@ class CreateNewUser implements CreatesNewUsers
             DB::commit();
         } catch (\Exception $e) {
             DB::rollback();
-            return $e->getMessage();
+            abort(500);
         }
 
         return $usuario_sistema;
