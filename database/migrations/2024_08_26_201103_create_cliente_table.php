@@ -27,9 +27,9 @@ return new class extends Migration
             $table->unsignedBigInteger('id_usuario_sistema');
             $table->foreign('id_usuario_sistema')->references('id_usuario_sistema')->on('usuario_sistema');
             $table->timestamps();
-            $table->unsignedBigInteger('id_regimen_fiscal');
+            $table->unsignedBigInteger('id_regimen_fiscal')->nullable();;
             $table->foreign('id_regimen_fiscal')->references('id_regimen_fiscal')->on('regimen_fiscal');
-            $table->unsignedBigInteger('id_uso_cfdi');
+            $table->unsignedBigInteger('id_uso_cfdi')->nullable();;
             $table->foreign('id_uso_cfdi')->references('id_uso_cfdi')->on('uso_cfdi');
         });
     }
