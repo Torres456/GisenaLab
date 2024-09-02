@@ -71,7 +71,7 @@ class Gestores extends Component
             'newRegister.materno' => ['required', 'max:100', new Les],
             'newRegister.telefono' => ['required', 'numeric', new telefono],
             'newRegister.sexo' => ['required'],
-            'newRegister.correo' => ['required', 'email', 'unique:gestor,correo', 'unique:usuario_sistema,correo', 'unique:contacto,correo','unique:cliente,correo'],
+            'newRegister.correo' => ['required', 'email', 'unique:gestor,correo', 'unique:usuario_sistema,correo', 'unique:contacto,correo', 'unique:cliente,correo'],
             'newRegister.contrasena' => ['required', 'min:8', 'confirmed', Password::default()],
             'newRegister.contrasena_confirmation' => ['required'],
             'newRegister.zona' => ['required'],
@@ -81,7 +81,7 @@ class Gestores extends Component
             'newRegister.cp' => ['required', 'numeric'],
             'newRegister.entre' => ['max:250'],
             'newRegister.referencia' => ['max:250'],
-            'newRegister.estado' => ['required'], 
+            'newRegister.estado' => ['required'],
             'newRegister.municipio' => ['required'],
             'newRegister.colonia' => [' required'],
         ], [
@@ -116,45 +116,52 @@ class Gestores extends Component
             'newRegister.colonia.required' => 'La colonia es requerida',
         ]);
 
-        $usuario = User::create([
-            'nombre' => $this->newRegister['nombre'],
-            'ap_paterno' => $this->newRegister['a_paterno'],
-            'ap_materno' => $this->newRegister['a_materno'],
-            'correo' => $this->newRegister['correo'],
-            'contraseña' => Hash::make($this->newRegister['contrasena']),
-            'estatus' => 1,
-            'id_tipo_usuario' => 3
-        ]);
-        $id = DB::table('usuario_sistema')->where('correo', $this->newRegister['correo'])->value('id_usuario_sistema');
+        DB::beginTransaction();
+        try {
+            $usuario = User::create([
+                'nombre' => $this->newRegister['nombre'],
+                'ap_paterno' => $this->newRegister['paterno'],
+                'ap_materno' => $this->newRegister['materno'],
+                'correo' => $this->newRegister['correo'],
+                'contraseña' => Hash::make($this->newRegister['contrasena']),
+                'estatus' => 1,
+                'id_tipo_usuario' => 3
+            ]);
+            $id = DB::table('usuario_sistema')->where('correo', $this->newRegister['correo'])->value('id_usuario_sistema');
 
 
-        $direccion = direccion::create([
-            'calle' => $this->newRegister['calle'],
-            'no_exterior' => $this->newRegister['exterior'],
-            'no_interior' => $this->newRegister['interior'],
-            'entre_calles' => $this->newRegister['entre'],
-            'referencia' => $this->newRegister['referencia'],
-            'cp' => $this->newRegister['cp'],
-            'id_estado' => $this->newRegister['estado'],
-            'id_municipio' => $this->newRegister['municipio'],
-            'id_colonia' => $this->newRegister['colonia'],
-        ]);
+            $direccion = direccion::create([
+                'calle' => $this->newRegister['calle'],
+                'no_exterior' => $this->newRegister['exterior'],
+                'no_interior' => $this->newRegister['interior'],
+                'entre_calles' => $this->newRegister['entre'],
+                'referencia' => $this->newRegister['referencia'],
+                'cp' => $this->newRegister['cp'],
+                'id_estado' => $this->newRegister['estado'],
+                'id_municipio' => $this->newRegister['municipio'],
+                'id_colonia' => $this->newRegister['colonia'],
+            ]);
 
-        gestor::create([
-            'nombre' => $this->newRegister['nombre'],
-            'ap_paterno' => $this->newRegister['paterno'],
-            'ap_materno' => $this->newRegister['materno'],
-            'telefono' => $this->newRegister['telefono'],
-            'sexo' => $this->newRegister['sexo'],
-            'correo' => $this->newRegister['correo'],
-            'id_direccion' => $direccion->id_direccion,
-            'id_usuario_sistema' => $usuario->id_usuario_sistema,
-            'id_zona_representacion' => $this->newRegister['zona'],
-        ]);
+            gestor::create([
+                'nombre' => $this->newRegister['nombre'],
+                'ap_paterno' => $this->newRegister['paterno'],
+                'ap_materno' => $this->newRegister['materno'],
+                'telefono' => $this->newRegister['telefono'],
+                'sexo' => $this->newRegister['sexo'],
+                'correo' => $this->newRegister['correo'],
+                'id_direccion' => $direccion->id_direccion,
+                'id_usuario_sistema' => $usuario->id_usuario_sistema,
+                'id_zona_representacion' => $this->newRegister['zona'],
+            ]);
 
-        $this->new = false;
-        $this->reset('newRegister');
-        session()->flash('green', 'Agregada correctamente');
+            $this->new = false;
+            $this->reset('newRegister');
+            session()->flash('green', 'Agregada correctamente');
+            DB::commit();
+        } catch (\Exception $e) {
+            DB::rollback();
+            abort(500);
+        }
     }
 
     public function new_cancel()

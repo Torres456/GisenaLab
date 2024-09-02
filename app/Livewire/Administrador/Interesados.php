@@ -128,56 +128,63 @@ class Interesados extends Component
             'newRegister.colonia.required' => 'Seleccione una colonia',
         ]);
 
-        $usuario = User::create([
-            'nombre' => $this->newRegister['nombre'],
-            'ap_paterno' => $this->newRegister['paterno'],
-            'ap_materno' => $this->newRegister['materno'],
-            'correo' => $this->newRegister['correo'],
-            'contraseña' => Hash::make($this->newRegister['contrasena']),
-            'estatus' => 1,
-            'id_tipo_usuario' => 4
-        ]);
-        $id = DB::table('usuario_sistema')->where('correo', $this->newRegister['correo'])->value('id_usuario_sistema');
-        
-        $contacto = contacto::create([
-            'nombre' => $this->newRegister['nombre_contac'],
-            'ap_paterno' => $this->newRegister['materno_contac'],
-            'ap_materno' => $this->newRegister['paterno_contac'],
-            'correo' => $this->newRegister['correo_contact'],
-            'correo_alternativo' => $this->newRegister['correo_alter_contact'],
-            'telefono' => $this->newRegister['telefono_contact'],
-            'telefono_alternativo' => $this->newRegister['telefono_alter_contact'],
-        ]);
+        DB::beginTransaction();
+        try {
+            $usuario = User::create([
+                'nombre' => $this->newRegister['nombre'],
+                'ap_paterno' => $this->newRegister['paterno'],
+                'ap_materno' => $this->newRegister['materno'],
+                'correo' => $this->newRegister['correo'],
+                'contraseña' => Hash::make($this->newRegister['contrasena']),
+                'estatus' => 1,
+                'id_tipo_usuario' => 4
+            ]);
+            $id = DB::table('usuario_sistema')->where('correo', $this->newRegister['correo'])->value('id_usuario_sistema');
 
-        $direccion = direccion::create([
-            'calle' => $this->newRegister['calle'],
-            'no_exterior' => $this->newRegister['exterior'],
-            'no_interior' => $this->newRegister['interior'],
-            'entre_calles' => $this->newRegister['entre'],
-            'referencia' => $this->newRegister['referencia'],
-            'cp' => $this->newRegister['cp'],
-            'id_estado' => $this->newRegister['estado'],
-            'id_municipio' => $this->newRegister['municipio'],
-            'id_colonia' => $this->newRegister['colonia'],
-        ]);
+            $contacto = contacto::create([
+                'nombre' => $this->newRegister['nombre_contac'],
+                'ap_paterno' => $this->newRegister['materno_contac'],
+                'ap_materno' => $this->newRegister['paterno_contac'],
+                'correo' => $this->newRegister['correo_contact'],
+                'correo_alternativo' => $this->newRegister['correo_alter_contact'],
+                'telefono' => $this->newRegister['telefono_contact'],
+                'telefono_alternativo' => $this->newRegister['telefono_alter_contact'],
+            ]);
 
-        interesado::create([
-            'nombre' => $this->newRegister['nombre'],
-            'ap_paterno' => $this->newRegister['paterno'],
-            'ap_materno' => $this->newRegister['materno'],
-            'telefono' => $this->newRegister['telefono'],
-            'telefono_alternativo' => $this->newRegister['telefono_alter'],
-            'correo' => $this->newRegister['correo'],
-            'correo_alternativo' => $this->newRegister['correo_alter'],
-            'id_direccion' => $direccion->id_direccion,
-            'id_usuario_sistema' => $usuario->id_usuario_sistema,
-            'id_gestor' => $this->newRegister['gestor'],
-            'id_contacto' => $contacto->id_contacto,
-        ]);
+            $direccion = direccion::create([
+                'calle' => $this->newRegister['calle'],
+                'no_exterior' => $this->newRegister['exterior'],
+                'no_interior' => $this->newRegister['interior'],
+                'entre_calles' => $this->newRegister['entre'],
+                'referencia' => $this->newRegister['referencia'],
+                'cp' => $this->newRegister['cp'],
+                'id_estado' => $this->newRegister['estado'],
+                'id_municipio' => $this->newRegister['municipio'],
+                'id_colonia' => $this->newRegister['colonia'],
+            ]);
 
-        $this->new = false;
-        $this->reset('newRegister');
-        session()->flash('green', 'Agregada correctamente');
+            interesado::create([
+                'nombre' => $this->newRegister['nombre'],
+                'ap_paterno' => $this->newRegister['paterno'],
+                'ap_materno' => $this->newRegister['materno'],
+                'telefono' => $this->newRegister['telefono'],
+                'telefono_alternativo' => $this->newRegister['telefono_alter'],
+                'correo' => $this->newRegister['correo'],
+                'correo_alternativo' => $this->newRegister['correo_alter'],
+                'id_direccion' => $direccion->id_direccion,
+                'id_usuario_sistema' => $usuario->id_usuario_sistema,
+                'id_gestor' => $this->newRegister['gestor'],
+                'id_contacto' => $contacto->id_contacto,
+            ]);
+
+            $this->new = false;
+            $this->reset('newRegister');
+            session()->flash('green', 'Agregada correctamente');
+            DB::commit();
+        } catch (\Exception $e) {
+            DB::rollback();
+            abort(500);
+        }
     }
 
     public function new_cancel()
@@ -335,7 +342,7 @@ class Interesados extends Component
             'correo' => $this->editRegister['correo_contact'],
             'correo_alternativo' => $this->editRegister['correo_alter_contact'],
         ]);
-        
+
 
         $direccion = direccion::updateOrCreate([
             'id_direccion' => $interesado->direccion->id_direccion,
@@ -452,7 +459,8 @@ class Interesados extends Component
         'telefono_alter_contact' => '',
     ];
 
-    public function contac_register($id){
+    public function contac_register($id)
+    {
         $this->contac = true;
         $this->contactId = $id;
         $gestor = interesado::find($this->contactId);
@@ -467,7 +475,8 @@ class Interesados extends Component
         ];
     }
 
-    public function contac_cancel(){
+    public function contac_cancel()
+    {
         $this->contac = false;
         $this->reset('contactRegister');
     }
