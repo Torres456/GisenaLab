@@ -24,6 +24,12 @@
                     </x-slot>
                     <x-slot name="footer"><x-button-enter href="{{route('admin.administrador.interesados')}}" >Entrar</x-button-enter></x-slot>
                 </x-cards>
+                <x-cards>
+                    <x-slot name="title">Empleados</x-slot>
+                    <x-slot name="content">
+                    </x-slot>
+                    <x-slot name="footer"><x-button-enter href="{{route('admin.administrador.empleados')}}" >Entrar</x-button-enter></x-slot>
+                </x-cards>
             </div>
         </x-slot>
     </x-panel-menu>

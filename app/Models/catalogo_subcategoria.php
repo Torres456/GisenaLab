@@ -19,7 +19,7 @@ class catalogo_subcategoria extends Model
         return $this->belongsTo(catalogo_categoria::class, 'id_categoria', 'id_categoria');
     }
     public function tipo_muestras(){
-        return $this->hasMany(catalogo_tipo_muestra::class, 'id_subcategoria', 'subcategoria_id_subcategoria');
+        return $this->hasMany(catalogo_tipo_muestra::class, 'id_subcategoria', '');
     }
 
     public function muestras(){

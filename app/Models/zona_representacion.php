@@ -13,7 +13,7 @@ class zona_representacion extends Model
     use HasFactory;
 
     protected $table = 'zona_representacion';
-    protected $primaryKey = 'idzona_representacion';
+    protected $primaryKey = 'id_zona_representacion';
 
     protected $fillable = [
         'nombre_zona'
@@ -22,7 +22,7 @@ class zona_representacion extends Model
    
     public function estados(): BelongsToMany
     {
-        return $this->belongsToMany(estado::class,'estados_zona',  'idzona_representacion','id_estado');
+        return $this->belongsToMany(estado::class,'estados_zona',  'id_zona_representacion','id_estado');
     }
 
     public function gestor(): HasOne

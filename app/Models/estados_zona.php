@@ -9,11 +9,11 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 class estados_zona extends Model
 {
     protected $table = 'estados_zona';
-    protected $primaryKey = 'idestados_zona';
+    protected $primaryKey = 'id_estados_zona';
     protected $fillable = [
-        'idestados_zona',
+        'id_estados_zona',
         'id_estado',
-        'idzona_representacion',
+        'id_zona_representacion',
     ];
 
     public function estado(){

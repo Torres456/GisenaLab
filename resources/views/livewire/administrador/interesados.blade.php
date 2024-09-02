@@ -14,7 +14,7 @@
             </div>
             <div class="flex flex-col w-full">
                 <label for="">Buscar:</label>
-                <x-input wire:model.live="search" placeholder="(Nombre o correo del gestor)" class="w-full" />
+                <x-input wire:model.live="search" placeholder="(Nombre o correo del interesado)" class="w-full" />
             </div>
         </div>
         <x-button wire:click="new_register"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"

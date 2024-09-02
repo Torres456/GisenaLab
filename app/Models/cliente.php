@@ -48,6 +48,8 @@ class cliente extends Model
 
     public function direcciones(): BelongsToMany
     {
-        return $this->belongsToMany(direccion::class, 'cliente_direccion', 'id_cliente', 'id_direccion');
+        return $this->belongsToMany(direccion::class, 'cliente_direccion','id_cliente','id_direccion');
     }
+    
+
 }

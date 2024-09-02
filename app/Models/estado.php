@@ -15,7 +15,8 @@ class estado extends Model
 
     protected $fillable = [
         'nombre',
-        'clave_estado'
+        'clave_estado',
+        'id_pais'
     ];
 
     //One to Many
@@ -37,7 +38,7 @@ class estado extends Model
     // //Zona representacion
     public function zonas(): BelongsToMany
     {
-         return $this->belongsToMany(zona_representacion::class,'estados_zona', 'idzona_representacion','id_estado');
+         return $this->belongsToMany(zona_representacion::class,'estados_zona', 'id_zona_representacion','id_estado');
      }
 
     // //direccion estado

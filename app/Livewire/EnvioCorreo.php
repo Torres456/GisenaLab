@@ -36,7 +36,7 @@ class EnvioCorreo extends Component
     {
         $user = Auth::user();
 
-        $this->id = $user->idusuario_sistema;
+        $this->id = $user->id_usuario_sistema;
         $this->correo = $user->correo;
         $this->correoc = $user->correo;
     }
@@ -52,7 +52,7 @@ class EnvioCorreo extends Component
 
         $user = User::find($this->id);
 
-        $cliente = cliente::where('idusuario_sistema', $this->id)->first();
+        $cliente = cliente::where('id_usuario_sistema', $this->id)->first();
 
 
         if ($cliente->tipo == '1') {

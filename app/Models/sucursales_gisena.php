@@ -9,17 +9,17 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 class sucursales_gisena extends Model
 {
     protected $table ='sucursales_gisena';
-    protected $primaryKey = 'idsucursal_gisena';
+    protected $primaryKey = 'id_sucursal_gisena';
     protected $fillable = [
-        'idsucursal_gisena',
+        'id_sucursal_gisena',
         'numero_sucursal',
         'nombre',
         'id_estado',
         'id_municipio',
         'id_colonia',
         'calle',
-        'num_exterior',
-        'num_interior',
+        'no_exterior',
+        'no_interior',
         'cp',
     ];
 

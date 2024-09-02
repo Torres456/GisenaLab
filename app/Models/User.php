@@ -16,7 +16,7 @@ use Illuminate\Notifications\Notification;
 
 class User extends Authenticatable implements MustVerifyEmail
 {
-    use HasApiTokens;
+    use HasApiTokenS;
     use HasFactory;
     use HasProfilePhoto;
     use Notifiable;

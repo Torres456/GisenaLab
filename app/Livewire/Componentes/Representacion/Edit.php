@@ -46,7 +46,7 @@ class Edit extends Component
     {
         //validations
         $this->validate([
-            'editRegister.nombre' => 'required|max:45|unique:zona_representacion,nombre_zona,' . $this->editId . ',idzona_representacion',
+            'editRegister.nombre' => 'required|max:45|unique:zona_representacion,nombre_zona,' . $this->editId . ',id_zona_representacion',
             'editRegister.selectedTagsEstado' => 'array'
         ], [
             'editRegister.nombre.required' => __('El nombrede es requerido'),

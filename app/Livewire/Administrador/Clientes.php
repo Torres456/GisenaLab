@@ -7,6 +7,7 @@ use App\Models\colonia;
 use App\Models\estado;
 use App\Models\gestor;
 use App\Models\municipio;
+use App\Rules\Password;
 use Livewire\Component;
 use Livewire\WithPagination;
 
@@ -22,6 +23,125 @@ class Clientes extends Component
     {
         $this->resetPage();
     }
+
+    //&================================================================= Nuevo Registro
+
+    public $new=false;
+    public $newRegister = [
+        //datos cliente
+        'razon'=>'',
+        'rfc'=>'',
+        'regimento'=>'',
+        'correo'=>'',
+        'contrasena'=>'',
+        'contrasena_confirmation'=>'',
+        'telefono'=>'',
+        'correo_alter'=>'',
+        'telefono_alter'=>'',
+        'gestor'=>'',
+
+
+        //datos contacto
+        'nombre_contacto'=>'',
+        'a_paterno'=>'',
+        'a_amaterno'=>'', 
+        'correo_contact'=>'',
+        'correo_contact_alter'=>'',
+        'telefono_contact'=>'',
+        'telefono_contact_alter'=>'', 
+    ];
+    
+    public function new_register(){
+        $this->new = true;
+    }
+
+    public function new_form(){
+        $this->validate([
+            'newRegister.razon' => ['required','string','max:255'],
+            'newRegister.rfc' => ['required','string','max:13','unique:cliente,correo','unique:gestor,correo', 'unique:usuario_sistema,correo'],
+            'newRegister.regimento' => ['required','string','max:255'],
+            'newRegister.correo' => ['required','email','max:255','unique:usuario_sistema'],
+            'newRegister.contrasena' => ['required','string','min:8','confirmed',Password::default()],
+            'newRegister.telefono' => ['required','string','max:15'],
+            'newRegister.correo_alter' => ['nullable','email','max:255'],
+            'newRegister.telefono_alter' => ['nullable','string','max:15'],
+            'newRegister.gestor' => ['required','integer'],
+
+            'newRegister.nombre_contacto' => ['required','string','max:255'],
+            'newRegister.a_paterno' => ['required','string','max:255'],
+            'newRegister.a_materno' => ['required','string','max:255'],
+            'newRegister.correo' => ['required','email','max:255'],
+            'newRegister.correo_alter' => ['nullable','email','max:255'],
+            'newRegister.telefono' => ['required','numeric'],
+            'newRegister.telefono_alter' => ['nullable','numeric'],
+        ],[
+            'newRegister.razon.required' => 'La razón social es requerida ',
+            'newRegister.razon.string' => 'La razón social debe ser una cadena',
+            'newRegister.razon.max' => 'La razón social es muy larga',
+
+            'newRegister.rfc.required' => 'El RFC es requerido',
+            'newRegister.rfc.string' => 'El RFC debe ser una cadena',
+            'newRegister.rfc.max' => 'El RFC es muy largo',
+            'newRegister.rfc.unique' => 'El RFC ya está registrado',
+
+            'newRegister.regimento.required' => 'El regimento es requerido',
+            'newRegister.regimento.string' => 'El regimento debe ser una cadena',
+            'newRegister.regimento.max' => 'El regimento es muy largo',
+
+            'newRegister.correo.required' => 'El correo electrónico es requerido',
+            'newRegister.correo.email' => 'El correo electrónico no es válido',
+            'newRegister.correo.max' => 'El correo electrónico es muy largo',
+            'newRegister.correo.unique' => 'El correo electrónico ya está registrado',
+
+            'newRegister.contrasena.required' => 'La contraseña es requerida',
+            'newRegister.contrasena.min' => 'La contraseña debe tener al menos 8 caracteres',
+            'newRegister.contrasena.confirmed' => 'Las contraseñas no coinciden',
+            'newRegister.contrasena_confirmation.required' => 'Confirmar contraseña es requerida',
+            
+            'newRegister.telefono.required' => 'El teléfono es requerido',
+            'newRegister.telefono.string' => 'El teléfono debe ser una cadena',
+            'newRegister.telefono.max' => 'El teléfono es muy largo',
+
+            'newRegister.correo_alter.email' => 'El correo electrónico alternativo no es válido',
+            'newRegister.telefono_alter.string' => 'El teléfono alternativo debe ser una cadena',
+            'newRegister.telefono_alter.max' => 'El teléfono alternativo es muy largo',
+
+            'newRegister.gestor.required' => 'El gestor es requerido',
+            'newRegister.gestor.integer' => 'El gestor debe ser un número entero',
+
+            'newRegister.nombre_contacto.required' => 'El nombre del contacto es requerido',
+            'newRegister.nombre_contacto.string' => 'El nombre del contacto debe ser una cadena',
+            'newRegister.nombre_contacto.max' => 'El nombre del contacto es muy largo',
+
+            'newRegister.a_paterno.required' => 'El apellido paterno es requerido',
+            'newRegister.a_paterno.string' => 'El apellido paterno debe ser una cadena',
+            'newRegister.a_paterno.max' => 'El apellido paterno es muy largo',
+
+            'newRegister.a_materno.required' => 'El apellido materno es requerido',
+            'newRegister.a_materno.string' => 'El apellido materno debe ser una cadena',
+            'newRegister.a_materno.max' => 'El apellido materno es muy largo',
+
+            'newRegister.correo_contact.required' => 'El correo electrónico del contacto es requerido',
+            'newRegister.correo_contact.email' => 'El correo electrónico del contacto no es válido',
+            'newRegister.correo_contact.max' => 'El correo electrónico del contacto es muy largo',
+
+            'newRegister.telefono_contact.required' => 'El telefono es requerido',
+            'newRegister.telefono_contact.string' => 'El teléfono del contacto debe ser una cadena',
+            'newRegister.telefono_contact.max' => 'El teléfono del contacto es muy largo',
+
+            'newRegister.correo_contact_alter.email' => 'El correo electrónico alternativo del contacto no es válido',
+            'newRegister.correo_contact_alter.require' => 'El corre alternativo es requerido',
+            'newRegister.correo_contact_alter.max' => 'El correo electrónico alternativo del contacto es muy largo',
+
+            'newRegister.telefono_contact_alter.string' => 'El teléfono alternativo del contacto debe ser una cadena',
+            'newRegister.telefono_contact_alter.max' => 'El teléfono alternativo del contacto es muy largo',
+
+        ]);
+        
+        $this->reset('newRegister');
+        $this->new = false;
+    }
+
     //&================================================================= Datos
 
 
@@ -29,6 +149,7 @@ class Clientes extends Component
     public $estados = [];
     public $municipios = [];
     public $colonias = [];
+
 
 
     public function mount()

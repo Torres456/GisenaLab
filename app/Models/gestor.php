@@ -23,8 +23,8 @@ class gestor extends Model
         'correo',
         'sexo',
         'id_direccion',
-        'idusuario_sistema',
-        'idzona_representacion'
+        'id_usuario_sistema',
+        'id_zona_representacion'
     ];
 
 
@@ -35,18 +35,18 @@ class gestor extends Model
 
     public function sistema(): belongsTo
     {
-        return $this->belongsTo(User::class,'idusuario_sistema');
+        return $this->belongsTo(User::class,'id_usuario_sistema');
     }
 
     public function zona(): BelongsTo
     {
-        return $this->BelongsTo(zona_representacion::class,'idzona_representacion');
+        return $this->BelongsTo(zona_representacion::class,'id_zona_representacion');
     }
 
     //un gestor puede tener barios interesados
     public function interesados(): HasMany
     {
-        return $this->hasMany(interesado::class ,'id_gestor','gestor_id_gestor');
+        return $this->hasMany(interesado::class ,'id_gestor','id_gestor');
     }
   
     public function comments(): HasMany

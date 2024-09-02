@@ -14,21 +14,21 @@ class catalogo_tipo_muestra extends Model
         'nom_tipo_muestra',
         'caracteristicas',
         'cantidad_requerida',
-        'subcategoria_id_subcategoria',
-        'unidad_medida_id_unidad_medida',
-        'unidad_metodo_id_unidad_metodo'
+        'id_subcategoria',
+        'id_unidad_medida',
+        'id_unidad_metodo'
     ];
     
     public function subcategoria(){
-        return $this->belongsTo(catalogo_subcategoria::class, 'subcategoria_id_subcategoria' , 'id_subcategoria');
+        return $this->belongsTo(catalogo_subcategoria::class, 'id_subcategoria' , 'id_subcategoria');
     }
 
     public function unidad_medidas(){
-        return $this->belongsTo(unidad_medida::class, 'unidad_medida_id_unidad_medida' , 'id_unidad_medida');
+        return $this->belongsTo(unidad_medida::class, 'id_unidad_medida' , 'id_unidad_medida');
     }
 
     public function unidad_metodo(){
-        return $this->belongsTo(unidad_metodo::class, 'unidad_medida_id_unidad_medida' , 'id_unidad_medida');
+        return $this->belongsTo(unidad_metodo::class, 'id_unidad_medida' , 'id_unidad_medida');
     }
 
     public function tipo_analisis(){

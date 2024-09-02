@@ -8,9 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class representacion extends Model
 {
     protected $table ='zona_representacion';
-    protected $primaryKey = 'idzona_representacion';
+    protected $primaryKey = 'id_zona_representacion';
     protected $fillable = [
-        'idzona_representacion',
+        'id_zona_representacion',
         'nombre_zona',
     ];
 

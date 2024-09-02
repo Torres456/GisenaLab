@@ -16,15 +16,15 @@
                     <x-input wire:model.live="search" placeholder="(Nombre o correo del cliente)" class="w-full" />
                 </div>
             </div>
-            {{-- <x-button wire:click="new_register"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-file-plus">
-                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                <path d="M14 3v4a1 1 0 0 0 1 1h4" />
-                <path d="M17 21h-10a2 2 0 0 1 -2 -2v-14a2 2 0 0 1 2 -2h7l5 5v11a2 2 0 0 1 -2 2z" />
-                <path d="M12 11l0 6" />
-                <path d="M9 14l6 0" />
-            </svg> Nuevo</x-button>  --}}
+            <x-button wire:click="new_register"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                    viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                    stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-file-plus">
+                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                    <path d="M14 3v4a1 1 0 0 0 1 1h4" />
+                    <path d="M17 21h-10a2 2 0 0 1 -2 -2v-14a2 2 0 0 1 2 -2h7l5 5v11a2 2 0 0 1 -2 2z" />
+                    <path d="M12 11l0 6" />
+                    <path d="M9 14l6 0" />
+                </svg> Nuevo</x-button>
         </div>
     </div>
     <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
@@ -67,7 +67,8 @@
                         <tr
                             class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
                             <th scope="row"
-                                class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white text-center" wire:key='{{$cliente->id_cliente}}'>
+                                class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white text-center"
+                                wire:key='{{ $cliente->id_cliente }}'>
                                 {{ $cliente->id_cliente }}
                             </th>
                             <td class="px-6 py-4 text-center">
@@ -97,7 +98,10 @@
                                             <path d="M6 21v-2a4 4 0 0 1 4 -4h3.5" />
                                             <path
                                                 d="M18.42 15.61a2.1 2.1 0 0 1 2.97 2.97l-3.39 3.42h-3v-3l3.42 -3.39z" />
-                                        </svg><p class="ml-2">{{$cliente->gestor->nombre . ' ' . $cliente->gestor->ap_paterno . ' ' . $cliente->gestor->ap_materno}}</p>
+                                        </svg>
+                                        <p class="ml-2">
+                                            {{ $cliente->gestor->nombre . ' ' . $cliente->gestor->ap_paterno . ' ' . $cliente->gestor->ap_materno }}
+                                        </p>
                                     </x-button>
                                 @else
                                     <x-button wire:click="gestor_register({{ $cliente->id_cliente }})">
@@ -110,7 +114,8 @@
                                             <path d="M16 19h6" />
                                             <path d="M19 16v6" />
                                             <path d="M6 21v-2a4 4 0 0 1 4 -4h4" />
-                                        </svg><p class="ml-2">Asignar</p>
+                                        </svg>
+                                        <p class="ml-2">Asignar</p>
                                     </x-button>
                                 @endif
                             </td>
@@ -173,13 +178,29 @@
         {{ $clientes->links() }}
     </div>
 
+    <x-dialog-modal wire:model="new">
+        <x-slot name='title'>
+            <h2 class="text-center">Nuevo Cliente</h2>
+        </x-slot>
+        <x-slot name='content'>
+            <form wire:submit="new_form">
+                
+                <div class="mt-5 flex justify-around">
+                    <x-button>Guardar</x-button>
+                    <x-danger-button wire:click="new_cancel">Cancelar</x-danger-button>
+                </div>
+            </form>
+        </x-slot>
+        <x-slot name='footer'></x-slot>
+    </x-dialog-modal>
+
     <x-dialog-modal wire:model="direct">
         <x-slot name='title'>
             <h2 class="text-center">Dirección</h2>
         </x-slot>
         <x-slot name='content'>
-            @livewire('componentes.cliente.direcciones',[
-                'direcId'=> $direcId,
+            @livewire('componentes.cliente.direcciones', [
+                'direcId' => $direcId,
             ])
         </x-slot>
         <x-slot name='footer'>
@@ -254,10 +275,11 @@
             <form wire:submit='edit_Gestor'>
                 <div>
                     <x-label>Gestor:</x-label>
-                    <x-select wire:model="gestorRegister.gestor" class="block mt-1 w-full" >
+                    <x-select wire:model="gestorRegister.gestor" class="block mt-1 w-full">
                         <option value="">Seleccione un gestor</option>
-                        @foreach($gestores as $gestor)
-                            <option value="{{ $gestor->id_gestor }}">{{ $gestor->nombre . ' ' . $gestor->ap_paterno . ' ' . $gestor->ap_materno }}</option>
+                        @foreach ($gestores as $gestor)
+                            <option value="{{ $gestor->id_gestor }}">
+                                {{ $gestor->nombre . ' ' . $gestor->ap_paterno . ' ' . $gestor->ap_materno }}</option>
                         @endforeach
                     </x-select>
                     <x-input-error for="gestorRegister.gestor" />

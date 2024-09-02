@@ -7,11 +7,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class catalogo_analisis_especifico extends Model
 {
-    protected $table = 'catalogo_analisis_especificos';
+    protected $table = 'catalogo_analisis_especifico';
     protected $primaryKey = 'id_analisis_especifico';
     protected $fillable = [
         'id_analisis_especifico',
-        'nombre_comercial_analisis_especifico',
+        'nombre_comercial',
         'descripcion',
         'id_tipo_analisis',
         'clave_analisis',
@@ -32,7 +32,7 @@ class catalogo_analisis_especifico extends Model
     }
 
     public function muestras(){
-        return $this->hasMany(mustra_orden_servicio::class, 'id_analisis_especifico', 'id_analisis_especifico');
+        return $this->hasMany(muestra_orden_servicio::class, 'id_categoria', 'id_categoria');
     }
 
 

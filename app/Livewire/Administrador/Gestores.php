@@ -71,7 +71,7 @@ class Gestores extends Component
             'newRegister.materno' => ['required', 'max:100', new Les],
             'newRegister.telefono' => ['required', 'numeric', new telefono],
             'newRegister.sexo' => ['required'],
-            'newRegister.correo' => ['required', 'email', 'unique:gestor,correo', 'unique:usuario_sistema,correo', 'unique:contacto,correo'],
+            'newRegister.correo' => ['required', 'email', 'unique:gestor,correo', 'unique:usuario_sistema,correo', 'unique:contacto,correo','unique:cliente,correo'],
             'newRegister.contrasena' => ['required', 'min:8', 'confirmed', Password::default()],
             'newRegister.contrasena_confirmation' => ['required'],
             'newRegister.zona' => ['required'],
@@ -117,12 +117,15 @@ class Gestores extends Component
         ]);
 
         $usuario = User::create([
+            'nombre' => $this->newRegister['nombre'],
+            'ap_paterno' => $this->newRegister['a_paterno'],
+            'ap_materno' => $this->newRegister['a_materno'],
             'correo' => $this->newRegister['correo'],
             'contraseña' => Hash::make($this->newRegister['contrasena']),
             'estatus' => 1,
-            'idtipo_usuario' => 3
+            'id_tipo_usuario' => 3
         ]);
-        $id = DB::table('usuario_sistema')->where('correo', $this->newRegister['correo'])->value('idusuario_sistema');
+        $id = DB::table('usuario_sistema')->where('correo', $this->newRegister['correo'])->value('id_usuario_sistema');
 
 
         $direccion = direccion::create([
@@ -145,8 +148,8 @@ class Gestores extends Component
             'sexo' => $this->newRegister['sexo'],
             'correo' => $this->newRegister['correo'],
             'id_direccion' => $direccion->id_direccion,
-            'idusuario_sistema' => $usuario->idusuario_sistema,
-            'idzona_representacion' => $this->newRegister['zona'],
+            'id_usuario_sistema' => $usuario->id_usuario_sistema,
+            'id_zona_representacion' => $this->newRegister['zona'],
         ]);
 
         $this->new = false;
@@ -194,7 +197,7 @@ class Gestores extends Component
             'telefono' => $register->telefono,
             'sexo' => $register->sexo,
             'correo' => $register->correo,
-            'zona' => $register->idzona_representacion,
+            'zona' => $register->id_zona_representacion,
             'calle' => $register->direccion->calle,
             'exterior' => $register->direccion->no_exterior,
             'interior' => $register->direccion->no_interior,
@@ -227,14 +230,14 @@ class Gestores extends Component
             'editRegister.municipio' => ['required'],
             'editRegister.colonia' => [' required'],
         ], [
-            'editRegister.nombre.required' => 'El nombre es requerido',
+            'editRegister.nombre.required' => 'El nombre es requerido ',
             'editRegister.nombre.max' => 'El nombre es muy largo',
             'editRegister.paterno.required' => 'El apellido paterno es requerido',
             'editRegister.paterno.max' => 'El apellido paterno es muy largo',
             'editRegister.materno.required' => 'El apellido materno es requerido',
-            'editRegister.materno.max' => 'El apellido materno es muy largo',
-            'editRegister.telefono.required' => 'El teléfono es requerido',
-            'editRegister.telefono.numeric' => 'El teléfono debe ser numérico',
+            'editRegister.materno.max' => 'El apellido materno es muy largo ',
+            'editRegister.telefono.required' => 'El teléfono es requerido ',
+            'editRegister.telefono.numeric' => 'El teléfono debe ser numérico ',
             'editRegister.sexo.required' => 'El sexo es requerido',
             'editRegister.correo.required' => 'El correo es requerido',
             'editRegister.correo.email' => 'El correo no es válido',
@@ -266,7 +269,7 @@ class Gestores extends Component
             'telefono' => $this->editRegister['telefono'],
             'sexo' => $this->editRegister['sexo'],
             'correo' => $this->editRegister['correo'],
-            'idzona_representacion' => $this->editRegister['zona'],
+            'id_zona_representacion' => $this->editRegister['zona'],
         ]);
 
         $direccion = direccion::updateOrCreate([

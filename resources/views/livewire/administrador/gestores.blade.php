@@ -195,7 +195,7 @@
                     <x-select wire:model.live="newRegister.zona" type="text" class="block mt-1 w-full">
                         <option value="">Seleccione una zona</option>
                         @foreach ($zonas as $zona)
-                            <option value="{{ $zona->idzona_representacion }}">{{ $zona->nombre_zona }}</option>
+                            <option value="{{ $zona->id_zona_representacion }}">{{ $zona->nombre_zona }}</option>
                         @endforeach
                     </x-select>
                     <x-input-error for="newRegister.zona" />
@@ -337,7 +337,7 @@
                     <x-select wire:model.live="editRegister.zona" type="text" class="block mt-1 w-full">
                         <option value="">Seleccione una zona</option>
                         @foreach ($zonas as $zona)
-                            <option value="{{ $zona->idzona_representacion }}">{{ $zona->nombre_zona }}</option>
+                            <option value="{{ $zona->id_zona_representacion }}">{{ $zona->nombre_zona }}</option>
                         @endforeach
                     </x-select>
                     <x-input-error for="editRegister.zona" />

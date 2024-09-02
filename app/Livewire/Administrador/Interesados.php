@@ -88,8 +88,8 @@ class Interesados extends Component
             'newRegister.exterior' => ['max:20'],
             'newRegister.interior' => ['max:20'],
             'newRegister.cp' => ['required', 'numeric'],
-            'newRegister.entre' => ['required', 'max:250'],
-            'newRegister.referencia' => ['required', 'max:250'],
+            'newRegister.entre' => ['max:250'],
+            'newRegister.referencia' => ['max:250'],
             'newRegister.estado' => ['required'],
             'newRegister.municipio' => ['required'],
             'newRegister.colonia' => [' required'],
@@ -121,9 +121,7 @@ class Interesados extends Component
             'newRegister.interior.max' => 'El número interior es muy largo',
             'newRegister.cp.required' => 'El código postal es requerido',
             'newRegister.cp.numeric' => 'El código postal debe ser numérico',
-            'newRegister.entre.required' => 'La dirección entre calles es requerida',
             'newRegister.entre.max' => 'La dirección entre calles es muy larga',
-            'newRegister.referencia.required' => 'La referencia es requerida',
             'newRegister.referencia.max' => 'La referencia es muy larga',
             'newRegister.estado.required' => 'Seleccione un estado',
             'newRegister.municipio.required' => 'Seleccione un municipio',
@@ -131,12 +129,15 @@ class Interesados extends Component
         ]);
 
         $usuario = User::create([
+            'nombre' => $this->newRegister['nombre'],
+            'ap_paterno' => $this->newRegister['paterno'],
+            'ap_materno' => $this->newRegister['materno'],
             'correo' => $this->newRegister['correo'],
             'contraseña' => Hash::make($this->newRegister['contrasena']),
             'estatus' => 1,
-            'idtipo_usuario' => 4
+            'id_tipo_usuario' => 4
         ]);
-        $id = DB::table('usuario_sistema')->where('correo', $this->newRegister['correo'])->value('idusuario_sistema');
+        $id = DB::table('usuario_sistema')->where('correo', $this->newRegister['correo'])->value('id_usuario_sistema');
         
         $contacto = contacto::create([
             'nombre' => $this->newRegister['nombre_contac'],
@@ -162,16 +163,16 @@ class Interesados extends Component
 
         interesado::create([
             'nombre' => $this->newRegister['nombre'],
-            'a_paterno' => $this->newRegister['paterno'],
-            'a_materno' => $this->newRegister['materno'],
+            'ap_paterno' => $this->newRegister['paterno'],
+            'ap_materno' => $this->newRegister['materno'],
             'telefono' => $this->newRegister['telefono'],
             'telefono_alternativo' => $this->newRegister['telefono_alter'],
             'correo' => $this->newRegister['correo'],
             'correo_alternativo' => $this->newRegister['correo_alter'],
-            'direccion_id_direccion' => $direccion->id_direccion,
-            //'idusuario_sistema' => $usuario->idusuario_sistema,
-            'gestor_id_gestor' => $this->newRegister['gestor'],
-            'contacto_idcontacto' => $contacto->id_contacto,
+            'id_direccion' => $direccion->id_direccion,
+            'id_usuario_sistema' => $usuario->id_usuario_sistema,
+            'id_gestor' => $this->newRegister['gestor'],
+            'id_contacto' => $contacto->id_contacto,
         ]);
 
         $this->new = false;
@@ -228,15 +229,15 @@ class Interesados extends Component
         $register = interesado::find($id);
         $this->editRegister = [
             'nombre' => $register->nombre,
-            'paterno' => $register->a_paterno,
-            'materno' => $register->a_materno,
+            'paterno' => $register->ap_paterno,
+            'materno' => $register->ap_materno,
             'telefono' => $register->telefono,
             'telefono_alter' => $register->telefono_alternativo,
             'correo' => $register->correo,
             'correo_alter' => $register->correo_alternativo,
-            'gestor' => $register->gestor_id_gestor,
-            'contacto_idcontacto' => $register->contacto_idcontacto,
-            'direccion_id_direccion' => $register->direccion_id_direccion,
+            'gestor' => $register->id_gestor,
+            'id_contacto' => $register->id_contacto,
+            'id_direccion' => $register->id_direccion,
             'nombre_contac' => $register->contacto->nombre,
             'materno_contac' => $register->contacto->ap_materno,
             'paterno_contac' => $register->contacto->ap_paterno,
@@ -272,8 +273,8 @@ class Interesados extends Component
             'editRegister.exterior' => ['max:20'],
             'editRegister.interior' => ['max:20'],
             'editRegister.cp' => ['required', 'numeric'],
-            'editRegister.entre' => ['required', 'max:250'],
-            'editRegister.referencia' => ['required', 'max:250'],
+            'editRegister.entre' => ['max:250'],
+            'editRegister.referencia' => ['max:250'],
             'editRegister.estado' => ['required'],
             'editRegister.municipio' => ['required'],
             'editRegister.colonia' => [' required'],
@@ -301,9 +302,7 @@ class Interesados extends Component
             'editRegister.interior.max' => 'El número interior es muy largo',
             'editRegister.cp.required' => 'El código postal es requerido',
             'editRegister.cp.numeric' => 'El código postal debe ser numérico',
-            'editRegister.entre.required' => 'La dirección entre calles es requerida',
             'editRegister.entre.max' => 'La dirección entre calles es muy larga',
-            'editRegister.referencia.required' => 'La referencia es requerida',
             'editRegister.referencia.max' => 'La referencia es muy larga',
             'editRegister.estado.required' => 'Seleccione un estado',
             'editRegister.municipio.required' => 'Seleccione un municipio',
@@ -316,8 +315,8 @@ class Interesados extends Component
             'id_interesado' => $this->editId,
         ], [
             'nombre' => $this->editRegister['nombre'],
-            'a_paterno' => $this->editRegister['paterno'],
-            'a_materno' => $this->editRegister['materno'],
+            'ap_paterno' => $this->editRegister['paterno'],
+            'ap_materno' => $this->editRegister['materno'],
             'telefono' => $this->editRegister['telefono'],
             'telefono_alternativo' => $this->editRegister['telefono_alter'],
             'correo' => $this->editRegister['correo'],
