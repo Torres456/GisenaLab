@@ -89,18 +89,18 @@ class CreateNewUser implements CreatesNewUsers
                     'rfc' => strtoupper($input['rfc']),
                     'tipo' => 2,
                     'correo' => $input['correo'],
-                    'idusuario_sistema' => $id
+                    'id_usuario_sistema' => $id
                 ]);
             } else {
                 abort(500);
             }
 
             DB::commit();
+
+            return $usuario_sistema;
         } catch (\Exception $e) {
             DB::rollback();
             abort(500);
         }
-
-        return $usuario_sistema;
     }
 }
