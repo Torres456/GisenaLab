@@ -97,7 +97,7 @@
                             </svg>
                         </x-button></x-td>
                     @if ($empleado->usuario_sistema->estatus == 1)
-                        <x-td><x-danger-button wire:click="edit_register({{ $empleado->id_empleado }})">
+                        <x-td><x-danger-button wire:click="down_register({{ $empleado->id_empleado }})">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                                     viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                                     stroke-linecap="round" stroke-linejoin="round"
@@ -110,7 +110,7 @@
                                 </svg>
                             </x-danger-button></x-td>
                     @else
-                        <x-td><x-button wire:click="edit_register({{ $empleado->id_empleado }})">
+                        <x-td><x-button wire:click="down_register({{ $empleado->id_empleado }})">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                                     viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                                     stroke-linecap="round" stroke-linejoin="round"
@@ -494,7 +494,7 @@
         <x-slot name='footer'></x-slot>
     </x-dialog-modal>
 
-    <x-dialog-modal wire:model="password">
+    <x-dialog-modal wire:model="passwordnew">
         <x-slot name='title'>
             <h2 class="text-center">Recuperar Contraseña</h2>
         </x-slot>
@@ -513,9 +513,9 @@
                         <x-input-error for="passwordRegister.contrasena_confirmation" />
                     </div>
                 </div>
-                <div class="">
+                <div class="mt-5 flex justify-around">
                     <x-button>Guardar</x-button>
-                    <x-danger-button wire:click="password_cancel">Cerrar</x-danger-button>
+                    <x-danger-button wire:click="password_cancel">Cerrarr</x-danger-button>
                 </div>
             </form>
         </x-slot>
@@ -524,31 +524,20 @@
         </x-slot>
     </x-dialog-modal>
 
-    <x-dialog-modal wire:model="password">
+    <x-dialog-modal wire:model="acces">
         <x-slot name='title'>
             <h2 class="text-center">Acceso</h2>
-            <p>¿Desea quitar el acceso a este usuario?</p>
         </x-slot>
         <x-slot name='content'>
-            <form wire:submit="passwor_form">
-                <div class="grid grid-cols-2 max-md:grid-cols-1 w-full gap-2">
-                    <div>
-                        <x-label>Contraseña:</x-label>
-                        <x-input wire:model="passRegister.contrasena" type="password" class="block mt-1 w-full" />
-                        <x-input-error for="passwordRegister.contrasena" />
-                    </div>
-                    <div>
-                        <x-label>Confirmar Contraseña:</x-label>
-                        <x-input wire:model="passRegister.contrasena_confirmation" type="password"
-                            class="block mt-1 w-full" />
-                        <x-input-error for="passwordRegister.contrasena_confirmation" />
-                    </div>
-                </div>
-                <div class="">
-                    <x-button>Guardar</x-button>
-                    <x-danger-button wire:click="password_cancel">Cerrar</x-danger-button>
-                </div>
-            </form>
+            @if ($viewacces == 1)
+                <p class="text-center">¿Desea quitar el acceso a este usuario?</p>
+            @else
+                <p class="text-center">¿Desea darle acceso a este usuario?</p>
+            @endif
+            <div class="mt-5 flex justify-around">
+                <x-button wire:click="down_acces">Guardar</x-button>
+                <x-danger-button wire:click="password_cancel">Cerrarr</x-danger-button>
+            </div>
         </x-slot>
         <x-slot name='footer'>
 

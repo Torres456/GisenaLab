@@ -45,6 +45,8 @@ class Colonias extends Component
 
     public function new_form()
     {
+
+
         //validations
         $this->validate([
             'newRegister.nombre' => 'required|max:100|unique:colonia,nombre',
@@ -57,14 +59,15 @@ class Colonias extends Component
             'newRegister.descripcion.required' => __('La descripcion es requerida'),
             'newRegister.descripcion.numeric' => __('Esta clave es invalida'),
             'newRegister.municipio.required' => __('El municipio es requerido'),
-
-
         ]);
+
+        $municipio_es=municipio::find($this->newRegister['municipio']);
         //store
         colonia::create([
             'nombre' => $this->newRegister['nombre'],
             'clave_colonia' => $this->newRegister['descripcion'],
             'id_municipio' => $this->newRegister['municipio'],
+            'id_estado' => $municipio_es->id_estado,
         ]);
         $this->new = false;
         $this->reset('newRegister');

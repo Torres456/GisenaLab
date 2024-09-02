@@ -17,7 +17,8 @@ class colonia extends Model
     protected $fillable = [
         'nombre',
         'clave_colonia',
-        'id_municipio'
+        'id_municipio',
+        'id_estado'
     ];
 
 
