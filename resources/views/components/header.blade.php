@@ -2,7 +2,7 @@
     <div class="bg-blue-900 text-white text-center py-1">Atencion a clientes: <strong class="text-green-600">800 633
             5757</strong></div>
 
-    <header class="bg-white" x-data="{ open: false }">
+    <header class="bg-white dark:bg-gray-800" x-data="{ open: false }">
         <div class="mx-auto max-w-screen-xl px-4 sm:px-6 lg:px-8">
             <div class="flex h-20 items-center justify-between">
                 <div class="md:flex md:items-center md:gap-12">
@@ -108,7 +108,7 @@
 
                                 <div class="px-4 py-3" role="none">
 
-                                    <p class="text-sm text-gray-900 dark:text-white" role="none">
+                                    <p class="text-sm text-gray-900 dark:text-white truncate" role="none">
                                         {{ Auth::user()->nombre }} {{ Auth::user()->ap_paterno }}
                                         {{ Auth::user()->ap_materno }}
                                     </p>
