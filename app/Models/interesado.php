@@ -25,9 +25,9 @@ class interesado extends Model
         'id_usuario_sistema',
     ];
 
-    public function contacto(): HasOne
+    public function contacto(): BelongsTo
     {
-        return $this->hasOne(contacto::class, 'id_contacto');
+        return $this->BelongsTo(contacto::class, 'id_contacto');
     }
     
     //un interesado solo puede tener un gestor

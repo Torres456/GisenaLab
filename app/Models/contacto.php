@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class contacto extends Model
 {
@@ -22,19 +23,19 @@ class contacto extends Model
         'correo_alternativo'
     ];
 
-    public function tipo(): BelongsTo
+    public function tipo(): HasOne
     {
-        return $this->belongsTo(cliente::class);
+        return $this->HasOne(cliente::class);
     }
     
     //relacion con interesado uno a uno
-    public function interesado(): BelongsTo
+    public function interesado(): HasOne
     {
-        return $this->belongsTo(interesado::class,'id_contacto');
+        return $this->HasOne(interesado::class,'id_contacto');
     }
 
-    public function cliente(): BelongsTo
+    public function cliente(): HasOne
     {
-        return $this->belongsTo(cliente::class);
+        return $this->HasOne(cliente::class);
     }
 }
