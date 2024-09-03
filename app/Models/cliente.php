@@ -30,9 +30,9 @@ class cliente extends Model
     ];
 
 
-    public function contacto(): HasOne
+    public function contacto(): BelongsTo
     {
-        return $this->hasOne(contacto::class, 'id_contacto');
+        return $this->belongsTo(contacto::class, 'id_contacto');
     }
 
     //un cliente solo puede tener un gestor

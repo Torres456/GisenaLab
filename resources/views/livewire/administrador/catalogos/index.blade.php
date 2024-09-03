@@ -10,7 +10,7 @@
                 @foreach ($cards as $card)
                     <x-cards>
                         <x-slot name="title">{{ $card['title'] }}</x-slot>
-                        <x-slot name="content">{{ $card['content'] }}</x-slot>
+                        <x-slot name="content">{{ $card['description'] }}</x-slot>
                         <x-slot name="footer"><x-button-enter href="{{ route(strtolower($card['route'])) }}"
                                 wire:navigate.hover>Entrar</x-button-enter></x-slot>
                     </x-cards>

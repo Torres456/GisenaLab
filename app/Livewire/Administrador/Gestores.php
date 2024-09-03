@@ -322,19 +322,26 @@ class Gestores extends Component
         if ($property == 'newRegister.estado') {
             $this->municipios = [];
             $this->colonias = [];
-            $this->municipios = municipio::where('id_estado', $this->newRegister['estado'])->get();
+            $estado= estado::find($value);
+            $this->municipios = municipio::where('id_estado', $estado['clave_estado'])->orderBy('nombre', 'asc')->get();
         } elseif ($property == 'newRegister.municipio') {
-            $this->colonias = '';
-            $this->colonias = colonia::where('id_municipio', $this->newRegister['municipio'])->get();
+            $this->colonias = [];
+            $municipio= municipio::find($value);
+            $this->colonias = colonia::where('id_municipio', $municipio['clave_municipio'])->orderBy('nombre', 'asc')->get();
+            
         }
 
         if ($property == 'editRegister.estado') {
-            $this->municipios = '';
-            $this->municipios = municipio::where('id_estado', $this->editRegister['estado'])->get();
+            $this->municipios = [];
+            $this->colonias = [];
+            $estado= estado::find($value);
+            $this->municipios = municipio::where('id_estado', $estado['clave_estado'])->orderBy('nombre', 'asc')->get();
         } elseif ($property == 'editRegister.municipio') {
-            $this->colonias = '';
-            $this->colonias = colonia::where('id_municipio', $this->editRegister['municipio'])->get();
+            $this->colonias = [];
+            $municipio= municipio::find($value);
+            $this->colonias = colonia::where('id_municipio', $municipio['clave_municipio'])->orderBy('nombre', 'asc')->get();
         }
+
     }
 
     //&================================================================= Direccion

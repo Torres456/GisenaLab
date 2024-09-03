@@ -206,7 +206,7 @@
                         <x-input-error for="newRegister.sexo" />
                     </div>
                     <div>
-                        <x-label>Tipo Empleado:</x-label>
+                        <x-label>Rol:</x-label>
                         <x-select wire:model="newRegister.tipo" class="block mt-1 w-full">
                             <option value="">Seleccione una opción</option>
                             @foreach ($tipo_empleados as $tipo_empleado)
@@ -264,7 +264,7 @@
                         <x-select wire:model.live="newRegister.municipio" type="text" class="block mt-1 w-full">
                             <option value="">Seleccione un municipio</option>
                             @foreach ($municipios as $municipio)
-                                <option value="{{ $municipio->id_municipio }}">{{ $municipio->nombre }}</option>
+                                <option value="{{ $municipio->id_municipio}}">{{ $municipio->nombre }}</option>
                             @endforeach
                         </x-select>
                         <x-input-error for="newRegister.municipio" />
@@ -411,7 +411,7 @@
                         <x-input-error for="editRegister.sexo" />
                     </div>
                     <div>
-                        <x-label>Tipo Empleado:</x-label>
+                        <x-label>Rol:</x-label>
                         <x-select wire:model="editRegister.tipo" class="block mt-1 w-full">
                             <option value="">Seleccione una opción</option>
                             @foreach ($tipo_empleados as $tipo_empleado)

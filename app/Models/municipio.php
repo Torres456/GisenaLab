@@ -16,9 +16,9 @@ class municipio extends Model
     protected $primaryKey = 'id_municipio';
 
     protected $fillable = [
+        'id_municipio',
         'nombre',
         'clave_municipio',
-        'clave_estado',
         'id_estado',
     ];
 

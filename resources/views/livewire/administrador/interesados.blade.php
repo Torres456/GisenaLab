@@ -63,7 +63,7 @@
                         <tr
                             class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
                             <th scope="row"
-                                class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white text-center">
+                                class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white text-center" wire:key="{{$interesado->id_interesado }}">
                                 {{ $interesado->id_interesado }}
                             </th>
                             <td class="px-6 py-4 text-center">
@@ -220,7 +220,7 @@
                     <x-select wire:model.live="newRegister.gestor" type="text" class="block mt-1 w-full">
                         <option value="">Seleccione un gestor</option>
                         @foreach ($gestores as $gestor)
-                            <option value="{{ $gestor->id_gestor }}">{{ $gestor->nombre . ' ' . $gestor->a_paterno . ' ' . $gestor->a_materno }}
+                            <option value="{{ $gestor->id_gestor }}">{{ $gestor->nombre . ' ' . $gestor->ap_paterno . ' ' . $gestor->ap_materno }}
                             </option>
                         @endforeach
                     </x-select>
@@ -414,7 +414,7 @@
                     <x-select wire:model.live="editRegister.gestor" type="text" class="block mt-1 w-full">
                         <option value="">Seleccione un gestor</option>
                         @foreach ($gestores as $gestor)
-                            <option value="{{ $gestor->id_gestor }}">{{ $gestor->nombre . ' ' . $gestor->a_paterno . ' ' . $gestor->a_materno }}
+                            <option value="{{ $gestor->id_gestor }}">{{ $gestor->nombre . ' ' . $gestor->ap_paterno . ' ' . $gestor->ap_materno }}
                             </option>
                         @endforeach
                     </x-select>

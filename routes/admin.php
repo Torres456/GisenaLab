@@ -70,6 +70,10 @@ Route::get('/catalogo/datos_muestra', function () {
     return view('administrador.catalogos.datos_muestra');
 })->name('catalogos.datos_muestra');
 
+Route::get('/catalogo/tipo_empleado', function () {
+    return view('administrador.catalogos.tipo_empleado');
+})->name('catalogos.tipo_empleado');
+
 Route::get('/catalogo/estados', function () {
     return view('administrador.direcciones.estados');
 })->name('direcciones.estados');
