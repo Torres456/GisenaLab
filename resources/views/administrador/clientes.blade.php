@@ -7,7 +7,7 @@
 </x-app-layout>
 
 
-<script src="{{ asset('js/mayusculas.js') }}"></script>
+w<script src="{{ asset('js/mayusculas.js') }}"></script>
 <style>
      .custom-scroll {
      overflow-y: scroll;

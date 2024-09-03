@@ -34,7 +34,7 @@
                             Id Cliente
                         </th>
                         <th scope="col" class="px-6 py-3 text-center ">
-                           Razon social
+                            Razon social
                         </th>
                         <th scope="col" class="px-6 py-3 text-center">
                             RFC Cliente
@@ -110,25 +110,130 @@
         <div class="p-5">
             {{ $clientes->links() }}
         </div>
-    
+
         <x-dialog-modal wire:model="new">
             <x-slot name='title'>
-                <h2 class="text-center">Nueva Categoría</h2>
+                <h2 class="text-center">Nuevo cliente</h2>
             </x-slot>
             <x-slot name='content'>
                 <form wire:submit="new_form">
-                    <div>
-                        <x-label>Nombre Categoría:</x-label>
-                        <x-input wire:model="newRegister.nombre" type="text" class="block mt-1 w-full"
-                            onkeyup="mayuscula(this)" />
-                        <x-input-error for="newRegister.nombre" />
+                    <div class="w-full grid grid-cols-1 max-md:grid-cols-1 gap-3">
+                        <div>
+                            <x-label>Razon social:</x-label>
+                            <x-input wire:model="newRegister.razon_social" type="text" class="block mt-1 w-full" />
+                            <x-input-error for="newRegister.razon_social" />
+                        </div>
                     </div>
-                    <div>
-                        <x-label>Descripcion Categoría:</x-label>
-                        <x-input wire:model="newRegister.descripcion" type="text" class="block mt-1 w-full"
-                            onkeyup="mayuscula(this)" />
-                        <x-input-error for="newRegister.descripcion" />
+                    <div class="w-full grid grid-cols-2 max-md:grid-cols-1 gap-3">
+                        <div>
+                            <x-label>RFC Cliente:</x-label>
+                            <x-input wire:model="newRegister.rfc_cliente" type="text" class="block mt-1 w-full" />
+                            <x-input-error for="newRegister.rfc_cliente" />
+                        </div>
+                        <div>
+                            <x-label>Regimen Fiscal:</x-label>
+                            <x-input wire:model="newRegister.regimen_fiscal" type="text" class="block mt-1 w-full" />
+                            <x-input-error for="newRegister.regimen_fiscal" />
+                        </div>
                     </div>
+                    <div class="w-full grid grid-cols-2 max-md:grid-cols-1 gap-3">
+                        <div>
+                            <x-label>Uso CFDI:</x-label>
+                            <x-input wire:model="newRegister.uso_cfdi" type="text" class="block mt-1 w-full" />
+                            <x-input-error for="newRegister.uso_cfdi" />
+                        </div>
+                        <div>
+                            <x-label>Tipo:</x-label>
+                            <x-input wire:model="newRegister.tipo" type="text" class="block mt-1 w-full" />
+                            <x-input-error for="newRegister.tipo" />
+                        </div>
+                    </div>
+                    <div class="w-full grid grid-cols-2 max-md:grid-cols-1 gap-3">
+                        <div>
+                            <x-label>Correo:</x-label>
+                            <x-input wire:model="newRegister.correo_contacto" type="text"
+                                class="block mt-1 w-full" />
+                            <x-input-error for="newRegister.correo_contacto" />
+                        </div>
+                        <div>
+                            <x-label>Telefono:</x-label>
+                            <x-input wire:model="newRegister.telefono_contacto" type="text"
+                                class="block mt-1 w-full" />
+                            <x-input-error for="newRegister.telefono_contacto" />
+                        </div>
+                    </div>
+                    <div class="w-full grid grid-cols-2 max-md:grid-cols-1 gap-3">
+                        <div>
+                            <x-label>Correo Alternativo:</x-label>
+                            <x-input wire:model="newRegister.correo_alternativo" type="text"
+                                class="block mt-1 w-full" />
+                            <x-input-error for="newRegister.correo_alternativo" />
+                        </div>
+                        <div>
+                            <x-label>Telefono Alternativo:</x-label>
+                            <x-input wire:model="newRegister.telefono_alternativo" type="text"
+                                class="block mt-1 w-full" />
+                            <x-input-error for="newRegister.telefono_alternativo" />
+                        </div>
+                    </div>
+                    <div class="w-full grid grid-cols-1 max-md:grid-cols-1 gap-3">
+                        <div class="flex flex-col text-black dark:text-white">
+                            <label for="">Gestor:</label>
+                            <x-select class="w-full">
+                                <option value="">selecciona </option>
+                                <option value="">1</option>
+                                <option value="">2</option>
+                                <option value="">3</option>
+                                <option value="">4</option>
+                            </x-select>
+                        </div>
+
+                    <div class="border-b-2 border-slate-700 my-3">
+                        <p class="text-black dark:text-slate-500">Contacto</p>
+                    </div>
+                    <div class="w-full grid grid-cols-2 max-md:grid-cols-1 gap-3">
+                        <div>
+                            <x-label>Nombre:</x-label>
+                            <x-input wire:model="newRegister.correo_contacto" type="text"
+                                class="block mt-1 w-full" />
+                            <x-input-error for="newRegister.correo_contacto" />
+                        </div>
+                        <div>
+                            <x-label>Apellido paterno:</x-label>
+                            <x-input wire:model="newRegister.telefono_contacto" type="text"
+                                class="block mt-1 w-full" />
+                            <x-input-error for="newRegister.telefono_contacto" />
+                        </div>
+                    </div>
+                    <div class="w-full grid grid-cols-2 max-md:grid-cols-1 gap-3">
+                        <div>
+                            <x-label>Telefono de Contacto:</x-label>
+                            <x-input wire:model="newRegister.telefono_contacto" type="text"
+                                class="block mt-1 w-full" />
+                            <x-input-error for="newRegister.telefono_contacto" />
+                        </div>
+                        <div>
+                            <x-label>Correo del Contacto:</x-label>
+                            <x-input wire:model="newRegister.correo_contacto" type="text"
+                                class="block mt-1 w-full" />
+                            <x-input-error for="newRegister.correo_contacto" />
+                        </div>
+                    </div>
+                    <div class="w-full grid grid-cols-2 max-md:grid-cols-1 gap-3">
+                        <div>
+                            <x-label>Telefono Alternativo:</x-label>
+                            <x-input wire:model="newRegister.telefono_contacto" type="text"
+                                class="block mt-1 w-full" />
+                            <x-input-error for="newRegister.telefono_contacto" />
+                        </div>
+                        <div>
+                            <x-label>Correo Alternativo:</x-label>
+                            <x-input wire:model="newRegister.correo_contacto" type="text"
+                                class="block mt-1 w-full" />
+                            <x-input-error for="newRegister.correo_contacto" />
+                        </div>
+                    </div>
+
                     <div class="mt-5 flex justify-around">
                         <x-button>Guardar</x-button>
                         <x-danger-button wire:click="new_cancel">Cancelar</x-danger-button>
@@ -137,9 +242,9 @@
             </x-slot>
             <x-slot name='footer'></x-slot>
         </x-dialog-modal>
-    
-    
-    
+
+
+
         <x-dialog-modal wire:model="edit">
             <x-slot name='title'>
                 <h2 class="text-center">Editar Categoría</h2>
