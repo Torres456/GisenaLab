@@ -4,10 +4,16 @@ namespace App\Livewire\Administrador;
 
 use App\Models\cliente;
 use App\Models\colonia;
+use App\Models\contacto;
 use App\Models\estado;
 use App\Models\gestor;
 use App\Models\municipio;
+use App\Models\User;
+use App\Rules\Fisica;
+use App\Rules\Les;
 use App\Rules\Password;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 use Livewire\Component;
 use Livewire\WithPagination;
 
@@ -25,121 +31,224 @@ class Clientes extends Component
     }
 
     //&================================================================= Nuevo Registro
+    public $select = false;
 
-    public $new=false;
-    public $newRegister = [
-        //datos cliente
-        'razon'=>'',
-        'rfc'=>'',
-        'regimento'=>'',
-        'correo'=>'',
-        'contrasena'=>'',
-        'contrasena_confirmation'=>'',
-        'telefono'=>'',
-        'correo_alter'=>'',
-        'telefono_alter'=>'',
-        'gestor'=>'',
-
-
-        //datos contacto
-        'nombre_contacto'=>'',
-        'a_paterno'=>'',
-        'a_amaterno'=>'', 
-        'correo_contact'=>'',
-        'correo_contact_alter'=>'',
-        'telefono_contact'=>'',
-        'telefono_contact_alter'=>'', 
-    ];
-    
-    public function new_register(){
-        $this->new = true;
+    public function fisica_moral()
+    {
+        $this->select = true;
     }
 
-    public function new_form(){
+    public function select_cancel()
+    {
+        $this->select = false;
+    }
+
+
+
+    public $new = false;
+    public $new_moral = false;
+    public $newRegister = [
+        //datos cliente
+        'nombre' => '',
+        'paterno' => '',
+        'materno' => '',
+        'rfc' => '',
+        'correo' => '',
+        'contrasena' => '',
+        'contrasena_confirmation' => '',
+    ];
+
+    public function select_fisica()
+    {
+        $this->new = true;
+        $this->select = false;
+    }
+
+    public function select_moral()
+    {
+        $this->new_moral = true;
+        $this->select = false;
+    }
+
+    public function new_form()
+    {
         $this->validate([
-            'newRegister.razon' => ['required','string','max:255'],
-            'newRegister.rfc' => ['required','string','max:13','unique:cliente,correo','unique:gestor,correo', 'unique:usuario_sistema,correo'],
-            'newRegister.regimento' => ['required','string','max:255'],
-            'newRegister.correo' => ['required','email','max:255','unique:usuario_sistema'],
-            'newRegister.contrasena' => ['required','string','min:8','confirmed',Password::default()],
-            'newRegister.telefono' => ['required','string','max:15'],
-            'newRegister.correo_alter' => ['nullable','email','max:255'],
-            'newRegister.telefono_alter' => ['nullable','string','max:15'],
-            'newRegister.gestor' => ['required','integer'],
+            'newRegister.nombre' => ['required', 'string', 'max:50', new Les],
+            'newRegister.paterno' => ['required', 'string', 'max:50', new Les],
+            'newRegister.materno' => ['required', 'string', 'max:50', new Les],
+            'newRegister.rfc' => ['required', 'string', 'min:13', 'max:13', new Fisica, 'unique:cliente,rfc'],
+            'newRegister.correo' => ['required', 'email', 'max:255', 'unique:usuario_sistema,correo'],
+            'newRegister.contrasena' => ['required', 'string', 'min:8', 'confirmed', Password::default()],
+            'newRegister.contrasena_confirmation' => ['required'],
+        ], [
+            'newRegister.nombre.required' => 'El nombre es obligatorio',
+            'newRegister.nombre.string' => 'El nombre debe ser un texto',
+            'newRegister.nombre.max' => 'El nombre no puede tener más de 50 caracteres',
+            'newRegister.nombre.les' => 'El nombre no puede contener caracteres especiales o números',
 
-            'newRegister.nombre_contacto' => ['required','string','max:255'],
-            'newRegister.a_paterno' => ['required','string','max:255'],
-            'newRegister.a_materno' => ['required','string','max:255'],
-            'newRegister.correo' => ['required','email','max:255'],
-            'newRegister.correo_alter' => ['nullable','email','max:255'],
-            'newRegister.telefono' => ['required','numeric'],
-            'newRegister.telefono_alter' => ['nullable','numeric'],
-        ],[
-            'newRegister.razon.required' => 'La razón social es requerida ',
-            'newRegister.razon.string' => 'La razón social debe ser una cadena',
-            'newRegister.razon.max' => 'La razón social es muy larga',
+            'newRegister.paterno.required' => 'El apellido paterno es obligatorio',
+            'newRegister.paterno.string' => 'El apellido paterno debe ser un texto',
+            'newRegister.paterno.max' => 'El apellido paterno no puede tener más de 50 caracteres',
+            'newRegister.paterno.les' => 'El apellido paterno no puede contener caracteres especiales o números',
 
-            'newRegister.rfc.required' => 'El RFC es requerido',
-            'newRegister.rfc.string' => 'El RFC debe ser una cadena',
-            'newRegister.rfc.max' => 'El RFC es muy largo',
-            'newRegister.rfc.unique' => 'El RFC ya está registrado',
+            'newRegister.materno.required' => 'El apellido materno es obligatorio',
+            'newRegister.materno.string' => 'El apellido materno debe ser un texto',
+            'newRegister.materno.max' => 'El apellido materno no puede tener más de 50 caracteres',
+            'newRegister.materno.les' => 'El apellido materno no puede contener caracteres especiales o números',
 
-            'newRegister.regimento.required' => 'El regimento es requerido',
-            'newRegister.regimento.string' => 'El regimento debe ser una cadena',
-            'newRegister.regimento.max' => 'El regimento es muy largo',
+            'newRegister.rfc.required' => 'El RFC es obligatorio',
+            'newRegister.rfc.string' => 'El RFC debe ser un texto',
+            'newRegister.rfc.min' => 'El RFC debe tener al menos 13 caracteres',
+            'newRegister.rfc.max' => 'El RFC no puede tener más de 13 caracteres',
+            'newRegister.rfc.fisica' => 'El RFC no es válido',
+            'newRegister.rfc.unique' => 'El RFC ya ha sido registrado',
 
-            'newRegister.correo.required' => 'El correo electrónico es requerido',
-            'newRegister.correo.email' => 'El correo electrónico no es válido',
-            'newRegister.correo.max' => 'El correo electrónico es muy largo',
-            'newRegister.correo.unique' => 'El correo electrónico ya está registrado',
-
-            'newRegister.contrasena.required' => 'La contraseña es requerida',
+            'newRegister.correo.required' => 'El correo electrónico es obligatorio',
+            'newRegister.correo.email' => 'El correo electrónico debe ser válido',
+            'newRegister.correo.max' => 'El correo electrónico no puede tener más de 255 caracteres',
+            'newRegister.correo.unique' => 'El correo electrónico ya ha sido registrado',
+            'newRegister.contrasena.required' => 'La contraseña es obligatoria',
+            'newRegister.contrasena.string' => 'La contraseña debe ser un texto',
             'newRegister.contrasena.min' => 'La contraseña debe tener al menos 8 caracteres',
             'newRegister.contrasena.confirmed' => 'Las contraseñas no coinciden',
-            'newRegister.contrasena_confirmation.required' => 'Confirmar contraseña es requerida',
-            
-            'newRegister.telefono.required' => 'El teléfono es requerido',
-            'newRegister.telefono.string' => 'El teléfono debe ser una cadena',
-            'newRegister.telefono.max' => 'El teléfono es muy largo',
-
-            'newRegister.correo_alter.email' => 'El correo electrónico alternativo no es válido',
-            'newRegister.telefono_alter.string' => 'El teléfono alternativo debe ser una cadena',
-            'newRegister.telefono_alter.max' => 'El teléfono alternativo es muy largo',
-
-            'newRegister.gestor.required' => 'El gestor es requerido',
-            'newRegister.gestor.integer' => 'El gestor debe ser un número entero',
-
-            'newRegister.nombre_contacto.required' => 'El nombre del contacto es requerido',
-            'newRegister.nombre_contacto.string' => 'El nombre del contacto debe ser una cadena',
-            'newRegister.nombre_contacto.max' => 'El nombre del contacto es muy largo',
-
-            'newRegister.a_paterno.required' => 'El apellido paterno es requerido',
-            'newRegister.a_paterno.string' => 'El apellido paterno debe ser una cadena',
-            'newRegister.a_paterno.max' => 'El apellido paterno es muy largo',
-
-            'newRegister.a_materno.required' => 'El apellido materno es requerido',
-            'newRegister.a_materno.string' => 'El apellido materno debe ser una cadena',
-            'newRegister.a_materno.max' => 'El apellido materno es muy largo',
-
-            'newRegister.correo_contact.required' => 'El correo electrónico del contacto es requerido',
-            'newRegister.correo_contact.email' => 'El correo electrónico del contacto no es válido',
-            'newRegister.correo_contact.max' => 'El correo electrónico del contacto es muy largo',
-
-            'newRegister.telefono_contact.required' => 'El telefono es requerido',
-            'newRegister.telefono_contact.string' => 'El teléfono del contacto debe ser una cadena',
-            'newRegister.telefono_contact.max' => 'El teléfono del contacto es muy largo',
-
-            'newRegister.correo_contact_alter.email' => 'El correo electrónico alternativo del contacto no es válido',
-            'newRegister.correo_contact_alter.require' => 'El corre alternativo es requerido',
-            'newRegister.correo_contact_alter.max' => 'El correo electrónico alternativo del contacto es muy largo',
-
-            'newRegister.telefono_contact_alter.string' => 'El teléfono alternativo del contacto debe ser una cadena',
-            'newRegister.telefono_contact_alter.max' => 'El teléfono alternativo del contacto es muy largo',
-
+            'newRegister.contrasena_confirmation.required' => 'Confirmar el correo es requerido'
         ]);
-        
-        $this->reset('newRegister');
+
+        DB::beginTransaction();
+        try {
+
+            $usuario_sistema = User::create([
+                'nombre' => $this->newRegister['nombre'],
+                'ap_paterno' => $this->newRegister['paterno'],
+                'ap_materno' => $this->newRegister['materno'],
+                'correo' => $this->newRegister['correo'],
+                'contraseña' => Hash::make($this->newRegister['contrasena']),
+                'estatus' => 1,
+                'id_tipo_usuario' => 2
+            ]);
+
+            $id = DB::table('usuario_sistema')->where('correo', $this->newRegister['correo'])->value('id_usuario_sistema');
+
+            $contacto = contacto::create([
+                'nombre' => $this->newRegister['nombre'],
+                'ap_paterno' => $this->newRegister['paterno'],
+                'ap_materno' => $this->newRegister['materno'],
+                'correo' => $this->newRegister['correo']
+            ]);
+
+            $id2 = DB::table('contacto')->where('correo', $this->newRegister['correo'])->value('id_contacto');
+
+            $cliente = cliente::create([
+                'rfc' => strtoupper($this->newRegister['rfc']),
+                'tipo' => 1,
+                'correo' => $this->newRegister['correo'],
+                'id_usuario_sistema' => $id,
+                'id_contacto' => $id2
+            ]);
+
+            $this->reset('newRegister');
+            $this->new = false;
+            session()->flash('green', 'Agregada correctamente');
+            DB::commit();
+        } catch (\Exception $e) {
+            DB::rollback();
+            abort(500);
+        }
+    }
+
+    public $newRegisterM = [
+        //datos cliente
+        'nombre' => '',
+        'rfc' => '',
+        'correo' => '',
+        'contrasena' => '',
+        'contrasena_confirmation' => '',
+    ];
+
+    public function new_form_moral()
+    {
+        $this->validate([
+            'newRegisterM.nombre' => ['required', 'string', 'max:50'],
+            'newRegisterM.rfc' => ['required', 'string', 'min:12', 'max:12', new Fisica, 'unique:cliente,rfc'],
+            'newRegisterM.correo' => ['required', 'email', 'max:255', 'unique:usuario_sistema,correo'],
+            'newRegisterM.contrasena' => ['required', 'string', 'min:8', 'confirmed', Password::default()],
+            'newRegisterM.contrasena_confirmation' => ['required'],
+        ], [
+            'newRegisterM.nombre.required' => 'El nombre es obligatorio',
+            'newRegisterM.nombre.string' => 'El nombre debe ser un texto',
+            'newRegisterM.nombre.max' => 'El nombre no puede tener más de 50 caracteres',
+            'newRegisterM.nombre.les' => 'El nombre no puede contener caracteres especiales o números',
+
+            'newRegisterM.paterno.required' => 'El apellido paterno es obligatorio',
+            'newRegisterM.paterno.string' => 'El apellido paterno debe ser un texto',
+            'newRegisterM.paterno.max' => 'El apellido paterno no puede tener más de 50 caracteres',
+            'newRegisterM.paterno.les' => 'El apellido paterno no puede contener caracteres especiales o números',
+
+            'newRegisterM.materno.required' => 'El apellido materno es obligatorio',
+            'newRegisterM.materno.string' => 'El apellido materno debe ser un texto',
+            'newRegisterM.materno.max' => 'El apellido materno no puede tener más de 50 caracteres',
+            'newRegisterM.materno.les' => 'El apellido materno no puede contener caracteres especiales o números',
+
+            'newRegisterM.rfc.required' => 'El RFC es obligatorio',
+            'newRegisterM.rfc.string' => 'El RFC debe ser un texto',
+            'newRegisterM.rfc.min' => 'El RFC debe tener al menos 12 caracteres',
+            'newRegisterM.rfc.max' => 'El RFC no puede tener más de 12 caracteres',
+            'newRegisterM.rfc.fisica' => 'El RFC no es válido',
+            'newRegisterM.rfc.unique' => 'El RFC ya ha sido registrado',
+
+            'newRegisterM.correo.required' => 'El correo electrónico es obligatorio',
+            'newRegisterM.correo.email' => 'El correo electrónico debe ser válido',
+            'newRegisterM.correo.max' => 'El correo electrónico no puede tener más de 255 caracteres',
+            'newRegisterM.correo.unique' => 'El correo electrónico ya ha sido registrado',
+            'newRegisterM.contrasena.required' => 'La contraseña es obligatoria',
+            'newRegisterM.contrasena.string' => 'La contraseña debe ser un texto',
+            'newRegisterM.contrasena.min' => 'La contraseña debe tener al menos 8 caracteres',
+            'newRegisterM.contrasena.confirmed' => 'Las contraseñas no coinciden',
+            'newRegisterM.contrasena_confirmation.required' => 'Confirmar el correo es requerido'
+        ]);
+
+        DB::beginTransaction();
+        try {
+
+            $usuario_sistema = User::create([
+                'nombre' => $this->newRegisterM['nombre'],
+                'ap_paterno' => '',
+                'ap_materno' => '',
+                'correo' => $this->newRegisterM['correo'],
+                'contraseña' => Hash::make($this->newRegisterM['contrasena']),
+                'estatus' => 1,
+                'id_tipo_usuario' => 2
+            ]);
+
+            $id = DB::table('usuario_sistema')->where('correo', $this->newRegisterM['correo'])->value('id_usuario_sistema');
+
+            $cliente = cliente::create([
+                'rfc' => strtoupper($this->newRegisterM['rfc']),
+                'razon_social' => $this->newRegisterM['nombre'],
+                'tipo' => 2,
+                'correo' => $this->newRegisterM['correo'],
+                'id_usuario_sistema' => $id,
+            ]);
+
+            $this->reset('newRegisterM');
+            $this->new_moral = false;
+            session()->flash('green', 'Agregada correctamente');
+
+
+            DB::commit();
+        } catch (\Exception $e) {
+            DB::rollback();
+            abort(500);
+        }
+    }
+
+    public function new_moral_cancel(){
+        $this->new_moral = false;
+        $this->reset('newRegisterM');
+    }
+    public function new_cancel(){
         $this->new = false;
+        $this->reset('newRegister');
     }
 
     //&================================================================= Datos
@@ -223,11 +332,12 @@ class Clientes extends Component
         'telefono_alter_contact' => '',
     ];
 
-    public function contac_register($id){
+    public function contac_register($id)
+    {
         $this->contac = true;
         $this->contactId = $id;
         $cliente = cliente::find($this->contactId);
-        if($cliente->id_contacto){
+        if ($cliente->id_contacto) {
             $this->contactRegister = [
                 'nombre_contac' => $cliente->contacto->nombre,
                 'materno_contac' => $cliente->contacto->ap_materno,
@@ -237,7 +347,7 @@ class Clientes extends Component
                 'telefono_contact' => $cliente->contacto->telefono,
                 'telefono_alter_contact' => $cliente->contacto->telefono_alternativo,
             ];
-        }else{
+        } else {
             $this->contactRegister = [
                 'nombre_contac' => 'Sin Contacto',
                 'materno_contac' => '',
@@ -256,26 +366,28 @@ class Clientes extends Component
     }
 
     //&================================================================= Gestor view or edit
-    public $gestor=false;
+    public $gestor = false;
     public $gestorId;
-    public $gestorRegister=[
-        'gestor'=>'',
+    public $gestorRegister = [
+        'gestor' => '',
     ];
 
-    public function gestor_register($id){
-        $this->gestor=true;
+    public function gestor_register($id)
+    {
+        $this->gestor = true;
         $this->gestorId = $id;
-        $gestorEdit=cliente::find($this->gestorId);
-        $this->gestorRegister=[
-            'gestor'=>$gestorEdit->id_gestor,
+        $gestorEdit = cliente::find($this->gestorId);
+        $this->gestorRegister = [
+            'gestor' => $gestorEdit->id_gestor,
         ];
     }
 
-    public function edit_Gestor(){
+    public function edit_Gestor()
+    {
 
         $this->validate([
             'gestorRegister.gestor' => 'required',
-        ],[
+        ], [
             'gestorRegister.gestor.required' => 'Seleccione un gestor',
         ]);
         $clientes = cliente::updateOrCreate([
@@ -284,12 +396,13 @@ class Clientes extends Component
             'id_gestor' => $this->gestorRegister['gestor'],
         ]);
 
-        $this->gestor=false;
+        $this->gestor = false;
         $this->reset('gestorRegister');
     }
 
-    public function gestor_cancel(){
-        $this->gestor=false;
+    public function gestor_cancel()
+    {
+        $this->gestor = false;
         $this->reset('gestorRegister');
     }
 
@@ -302,12 +415,14 @@ class Clientes extends Component
     //&================================================================= Render
     public function render()
     {
-        $count = cliente::where(function ($query) {
-            $query->where('razon_social', 'LIKE', '%' . $this->search . '%')->orWhere('correo', 'LIKE', '%' . $this->search . '%')->orWhere('telefono', 'LIKE', '%' . $this->search . '%');
-        })->count();
-        $clientes = cliente::where(function ($query) {
-            $query->where('razon_social', 'LIKE', '%' . $this->search . '%')->orWhere('correo', 'LIKE', '%' . $this->search . '%')->orWhere('telefono', 'LIKE', '%' . $this->search . '%');
-        })->paginate($this->view_dates);
+        $search = $this->search;
+        $count =  cliente::with('sistema')->whereHas('sistema', function ($query) use ($search) {
+            $query->where('nombre', 'LIKE', "%{$search}%")->orWhere('correo', 'LIKE', "%{$search}%");
+        })->orWhere('razon_social', 'LIKE', "%{$search}%")->count();
+
+        $clientes = cliente::with('sistema')->whereHas('sistema', function ($query) use ($search) {
+            $query->where('nombre', 'LIKE', "%{$search}%")->orWhere('correo', 'LIKE', "%{$search}%");
+        })->orWhere('razon_social', 'LIKE', "%{$search}%")->paginate($this->view_dates);
         return view('livewire.administrador.clientes', compact('count', 'clientes'));
     }
 }

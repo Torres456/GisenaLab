@@ -16,7 +16,7 @@
                     <x-input wire:model.live="search" placeholder="(Nombre o correo del cliente)" class="w-full" />
                 </div>
             </div>
-            <x-button wire:click="new_register"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+            <x-button wire:click="fisica_moral"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                     viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
                     stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-file-plus">
                     <path stroke="none" d="M0 0h24v24H0z" fill="none" />
@@ -35,7 +35,7 @@
                         Id Cliente
                     </th>
                     <th scope="col" class="px-6 py-3 text-center ">
-                        Razón social
+                        Razón social / Nombre
                     </th>
                     <th scope="col" class="px-6 py-3 text-center">
                         RFC Cliente
@@ -72,13 +72,21 @@
                                 {{ $cliente->id_cliente }}
                             </th>
                             <td class="px-6 py-4 text-center">
-                                {{ $cliente->razon_social }}
+                                @if ($cliente->razon_zocial)
+                                    {{$cliente->razon_zocial}}
+                                @else
+                                    {{$cliente->sistema->nombre . ' ' . $cliente->sistema->ap_paterno . ' ' . $cliente->sistema->ap_materno}}
+                                @endif
                             </td>
                             <td class="px-6 py-4 text-center">
                                 {{ $cliente->rfc }}
                             </td>
                             <td class="px-6 py-4 text-center">
-                                {{ $cliente->regimen_fiscal }}
+                                @if ($cliente->tipo==1)
+                                    Fisica
+                                @else
+                                    Moral
+                                @endif
                             </td>
                             <td class="px-6 py-4 text-center">
                                 {{ $cliente->correo }}
@@ -178,16 +186,122 @@
         {{ $clientes->links() }}
     </div>
 
+
+    <x-dialog-modal wire:model="select">
+        <x-slot name='title'>
+            <h2 class="text-center">¿Que razon social es el cliente?</h2>
+        </x-slot>
+        <x-slot name='content'>
+            <div class="w-full flex justify-around">
+                <x-button wire:click="select_fisica">Fisica</x-button>
+                <x-button wire:click="select_moral">Moral</x-button>
+            </div>
+        </x-slot>
+        <x-slot name='footer'>
+            <div class="">
+                <x-danger-button wire:click="select_cancel">Cerrar</x-danger-button>
+            </div>
+        </x-slot>
+    </x-dialog-modal>
+
     <x-dialog-modal wire:model="new">
         <x-slot name='title'>
             <h2 class="text-center">Nuevo Cliente</h2>
         </x-slot>
         <x-slot name='content'>
             <form wire:submit="new_form">
+                <div>
+                    <x-label>Nombre:</x-label>
+                    <x-input wire:model="newRegister.nombre" type="text" class="block mt-1 w-full" />
+                    <x-input-error for="newRegister.nombre" />
+                </div>
+                <div class="w-full grid grid-cols-2 max-md:grid-cols-1 gap-3">
+                    <div>
+                        <x-label>A. Paterno:</x-label>
+                        <x-input wire:model="newRegister.paterno" type="text" class="block mt-1 w-full" />
+                        <x-input-error for="newRegister.paterno" />
+                    </div>
+                    <div>
+                        <x-label>A. Materno:</x-label>
+                        <x-input wire:model="newRegister.materno" type="text" class="block mt-1 w-full" />
+                        <x-input-error for="newRegister.materno" />
+                    </div>
+                </div>
+                <div class="w-full grid grid-cols-2 max-md:grid-cols-1 gap-3">
+                    <div>
+                        <x-label>RFC:</x-label>
+                        <x-input wire:model="newRegister.rfc" type="text" class="block mt-1 w-full" placeholder="Ejemplo: ABCD012345XYZ"/>
+                        <x-input-error for="newRegister.rfc" />
+                    </div>
+                    <div>
+                        <x-label>Correo:</x-label>
+                        <x-input wire:model="newRegister.correo" type="text" class="block mt-1 w-full" />
+                        <x-input-error for="newRegister.correo" />
+                    </div>
+                </div>
+
+                <div class="w-full grid grid-cols-2 max-md:grid-cols-1 gap-3">
+                    <div>
+                        <x-label>Contraseña:</x-label>
+                        <x-input wire:model="newRegister.contrasena" type="password" class="block mt-1 w-full" />
+                        <x-input-error for="newRegister.contrasena" />
+                    </div>
+                    <div>
+                        <x-label>Confirmar Contraseña:</x-label>
+                        <x-input wire:model="newRegister.contrasena_confirmation" type="password" class="block mt-1 w-full" />
+                        <x-input-error for="newRegister.contrasena_confirmation" />
+                    </div>
+                </div>
                 
                 <div class="mt-5 flex justify-around">
                     <x-button>Guardar</x-button>
                     <x-danger-button wire:click="new_cancel">Cancelar</x-danger-button>
+                </div>
+            </form>
+        </x-slot>
+        <x-slot name='footer'></x-slot>
+    </x-dialog-modal>
+
+    <x-dialog-modal wire:model="new_moral">
+        <x-slot name='title'>
+            <h2 class="text-center">Nuevo Cliente</h2>
+        </x-slot>
+        <x-slot name='content'>
+            <form wire:submit="new_form_moral">
+                <div>
+                    <x-label>Razon Zocial:</x-label>
+                    <x-input wire:model="newRegisterM.nombre" type="text" class="block mt-1 w-full" />
+                    <x-input-error for="newRegisterM.nombre" />
+                </div>
+                <div class="w-full grid grid-cols-2 max-md:grid-cols-1 gap-3">
+                    <div>
+                        <x-label>RFC:</x-label>
+                        <x-input wire:model="newRegisterM.rfc" type="text" class="block mt-1 w-full" placeholder="Ejemplo: ABCD012345XYZ"/>
+                        <x-input-error for="newRegisterM.rfc" />
+                    </div>
+                    <div>
+                        <x-label>Correo:</x-label>
+                        <x-input wire:model="newRegisterM.correo" type="text" class="block mt-1 w-full" />
+                        <x-input-error for="newRegisterM.correo" />
+                    </div>
+                </div>
+
+                <div class="w-full grid grid-cols-2 max-md:grid-cols-1 gap-3">
+                    <div>
+                        <x-label>Contraseña:</x-label>
+                        <x-input wire:model="newRegisterM.contrasena" type="password" class="block mt-1 w-full" />
+                        <x-input-error for="newRegisterM.contrasena" />
+                    </div>
+                    <div>
+                        <x-label>Confirmar Contraseña:</x-label>
+                        <x-input wire:model="newRegisterM.contrasena_confirmation" type="password" class="block mt-1 w-full" />
+                        <x-input-error for="newRegisterM.contrasena_confirmation" />
+                    </div>
+                </div>
+                
+                <div class="mt-5 flex justify-around">
+                    <x-button>Guardar</x-button>
+                    <x-danger-button wire:click="new_moral_cancel">Cancelar</x-danger-button>
                 </div>
             </form>
         </x-slot>
