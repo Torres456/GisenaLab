@@ -240,7 +240,7 @@ class Sucursales extends Component
         
         if ($property == 'newRegister.estado') {
             $this->newRegister['municipio'] = [];
-            $this->newRegister['coloni'] = [];
+            $this->newRegister['colonia'] = [];
             $estado= estado::find($value);
             $this->municipios = municipio::where('id_estado', $estado['clave_estado'])->orderBy('nombre', 'asc')->get();
         } elseif ($property == 'newRegister.municipio') {
@@ -252,7 +252,7 @@ class Sucursales extends Component
 
         if ($property == 'editRegister.estado') {
             $this->editRegister['municipio'] = [];
-            $this->editRegister['coloni'] = [];
+            $this->editRegister['colonia'] = [];
             $estado= estado::find($value);
             $this->municipios = municipio::where('id_estado', $estado['clave_estado'])->orderBy('nombre', 'asc')->get();
         } elseif ($property == 'editRegister.municipio') {
