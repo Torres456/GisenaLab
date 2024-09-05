@@ -25,7 +25,7 @@ class municipio extends Model
 
     public function estado(): BelongsTo
     {
-        return $this->belongsTo(estado::class, 'id_estado');
+        return $this->belongsTo(estado::class, 'id_estado','clave_estado');
     }
 
 

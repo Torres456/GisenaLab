@@ -24,7 +24,7 @@ class colonia extends Model
 
     public function municipio(): BelongsTo
     {
-        return $this->belongsTo(municipio::class, 'id_municipio');
+        return $this->belongsTo(municipio::class, 'id_municipio','clave_municipio');
     }
 
     public function sucursales(): HasMany
