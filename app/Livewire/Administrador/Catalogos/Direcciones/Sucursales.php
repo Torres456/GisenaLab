@@ -48,7 +48,7 @@ class Sucursales extends Component
     {
         //validations
         $this->validate([
-            'newRegister.nombre' => ['required','max:100','unique:municipio,nombre', new Les],
+            'newRegister.nombre' => ['required','max:100','unique:sucursales_gisena,nombre', new Les],
             'newRegister.numero' => 'required|numeric',
             'newRegister.estado' => 'required',
             'newRegister.municipio' => 'required',
