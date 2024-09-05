@@ -138,20 +138,20 @@
                 <div class="grid grid-cols-2 max-md:grid-cols-1 w-full gap-2">
                     <div>
                         <x-label>Estado:</x-label>
-                        <x-select wire:model="newRegister.estado" class="block mt-1 w-full" >
+                        <x-select wire:model.live="newRegister.estado" type="text" class="block mt-1 w-full">
                             <option value="">Seleccione un estado</option>
                             @foreach ($estados as $estado)
-                                <option value="{{ $estado->id_estado }}"> {{ $estado->nombre }}</option>
+                                <option value="{{ $estado->id_estado }}">{{ $estado->nombre }}</option>
                             @endforeach
                         </x-select>
                         <x-input-error for="newRegister.estado" />
                     </div>
                     <div>
                         <x-label>Municipio:</x-label>
-                        <x-select wire:model="newRegister.municipio"  class="block mt-1 w-full">
+                        <x-select wire:model.live="newRegister.municipio" type="text" class="block mt-1 w-full">
                             <option value="">Seleccione un municipio</option>
                             @foreach ($municipios as $municipio)
-                                <option value="{{ $municipio->id_municipio }}"> {{ $municipio->nombre }}</option>
+                                <option value="{{ $municipio->id_municipio}}">{{ $municipio->nombre }}</option>
                             @endforeach
                         </x-select>
                         <x-input-error for="newRegister.municipio" />
@@ -160,10 +160,10 @@
                 <div class="grid grid-cols-2 max-md:grid-cols-1 w-full gap-2">
                     <div>
                         <x-label>Colonia:</x-label>
-                        <x-select wire:model="newRegister.colonia" class="block mt-1 w-full" >
+                        <x-select wire:model="newRegister.colonia" type="text" class="block mt-1 w-full">
                             <option value="">Seleccione una colonia</option>
                             @foreach ($colonias as $colonia)
-                                <option value="{{ $colonia->id_colonia }}"> {{ $colonia->nombre }}</option>
+                                <option value="{{ $colonia->id_colonia }}">{{ $colonia->nombre }}</option>
                             @endforeach
                         </x-select>
                         <x-input-error for="newRegister.colonia" />

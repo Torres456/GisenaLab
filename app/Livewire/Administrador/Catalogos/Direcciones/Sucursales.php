@@ -6,6 +6,7 @@ use App\Models\colonia;
 use App\Models\estado;
 use App\Models\municipio;
 use App\Models\sucursales_gisena;
+use App\Rules\Les;
 use Livewire\Component;
 use Livewire\WithPagination;
 
@@ -23,14 +24,7 @@ class Sucursales extends Component
         $this->resetPage();
     }
 
-    //&================================================================= Datos
-    public $estados, $municipios, $colonias;
-    public function mount()
-    {
-        $this->estados = estado::all();
-        $this->municipios = municipio::all();
-        $this->colonias = colonia::all();
-    }
+    
 
     //&================================================================= Nuevo Registro
     public $new = false;
@@ -54,7 +48,7 @@ class Sucursales extends Component
     {
         //validations
         $this->validate([
-            'newRegister.nombre' => 'required|max:100|unique:municipio,nombre',
+            'newRegister.nombre' => ['required','max:100','unique:municipio,nombre', new Les],
             'newRegister.numero' => 'required|numeric',
             'newRegister.estado' => 'required',
             'newRegister.municipio' => 'required',
@@ -67,9 +61,9 @@ class Sucursales extends Component
             'newRegister.nombre.required' => __('El nombre de es requerido'),
             'newRegister.nombre.max' => __('El nombre debe tener máximo 100 caracteres'),
             'newRegister.nombre.unique' => __('Esta sucursal ya está registrada'),
-            'newRegister.numero.required' => __('El número es requerido'),
-            'newRegister.numero.numeric' => __('Este número es invalido'),
-            'newRegister.numero.unique' => __('Este numero de sucursal ya está registrado'),
+            'newRegister.numero.required' => __('El número de sucursal es requerido'),
+            'newRegister.numero.numeric' => __('El número de sucursales solo debe llevar números'),
+            'newRegister.numero.unique' => __('Este número de sucursal ya está registrado'),
             'newRegister.estado.required' => __('El estado es requerido'),
             'newRegister.municipio.required' => __('El municipio es requerido'),
             'newRegister.colonia.required' => __('La colonia es requerida'),
@@ -227,6 +221,46 @@ class Sucursales extends Component
     public function direct_cancel(){
         $this->direct = false;
         $this->reset('direcRegister');
+    }
+
+    //&================================================================= Datos
+
+    public $estados = [];
+    public $municipios = [];
+    public $colonias = [];
+
+
+    public function mount()
+    {
+        $this->estados = estado::all();
+    }
+
+    public function updated($property, $value)
+    {
+        
+        if ($property == 'newRegister.estado') {
+            $this->newRegister['municipio'] = [];
+            $this->newRegister['coloni'] = [];
+            $estado= estado::find($value);
+            $this->municipios = municipio::where('id_estado', $estado['clave_estado'])->orderBy('nombre', 'asc')->get();
+        } elseif ($property == 'newRegister.municipio') {
+            $this->colonias = [];
+            $municipio= municipio::find($value);
+            $this->colonias = colonia::where('id_municipio', $municipio['clave_municipio'])->orderBy('nombre', 'asc')->get();
+            
+        }
+
+        if ($property == 'editRegister.estado') {
+            $this->editRegister['municipio'] = [];
+            $this->editRegister['coloni'] = [];
+            $estado= estado::find($value);
+            $this->municipios = municipio::where('id_estado', $estado['clave_estado'])->orderBy('nombre', 'asc')->get();
+        } elseif ($property == 'editRegister.municipio') {
+            $this->colonias = [];
+            $municipio= municipio::find($value);
+            $this->colonias = colonia::where('id_municipio', $municipio['clave_municipio'])->orderBy('nombre', 'asc')->get();
+        }
+
     }
 
 
