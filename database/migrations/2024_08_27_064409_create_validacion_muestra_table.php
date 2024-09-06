@@ -25,6 +25,7 @@ return new class extends Migration
             $table->integer('prioridad');
             $table->unsignedBigInteger('id_empleado');
             $table->foreign('id_empleado')->references('id_empleado')->on('empleado');
+            $table->integer('estatus')->default(1);
             $table->timestamps();
         });
     }

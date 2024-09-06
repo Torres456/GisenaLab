@@ -29,6 +29,7 @@ return new class extends Migration
             $table->string('netsuite', 45)->nullable();
             $table->unsignedBigInteger('id_status_orden_servicio');
             $table->foreign('id_status_orden_servicio')->references('id_status_orden_servicio')->on('status_orden_servicio');
+            $table->integer('estatus')->default(1);
             $table->timestamps();
         });
     }

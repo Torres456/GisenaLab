@@ -28,6 +28,7 @@ return new class extends Migration
             $table->string('tiempo_respuesta_urgente', 45);
             $table->string('tiempo_respuesta_ordinario', 45);
             $table->string('capacidad_instalada', 45);
+            $table->integer('estatus')->default(1);
             $table->timestamps();
         });
     }

@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('recipientes', function (Blueprint $table) {
             $table->id('id_recipiente');
             $table->string('tipo_recipiente', 45);
+            $table->integer('estatus')->default(1);
             $table->timestamps();
         });
     }

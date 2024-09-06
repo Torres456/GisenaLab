@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('zona_representacion', function (Blueprint $table) {
             $table->id('id_zona_representacion');
             $table->string('nombre_zona', 150)->unique();
+            $table->integer('estatus')->default(1);
             $table->timestamps();
         });
     }

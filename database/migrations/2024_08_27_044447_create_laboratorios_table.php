@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('laboratorios', function (Blueprint $table) {
             $table->id('id_laboratorio');
             $table->string('descripcion_laboratorio', 100)->unique();
+            $table->integer('estatus')->default(1);
             $table->timestamps();
         });
     }

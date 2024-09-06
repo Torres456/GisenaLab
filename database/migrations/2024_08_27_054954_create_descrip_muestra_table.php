@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('nombre_descrip', 100);
             $table->unsignedBigInteger('id_tipo_muestra');
             $table->foreign('id_tipo_muestra')->references('id_tipo_muestra')->on('catalogo_tipo_muestra');
+            $table->integer('estatus')->default(1);
             $table->timestamps();
         });
     }

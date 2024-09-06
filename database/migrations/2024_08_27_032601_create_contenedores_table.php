@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('contenedores', function (Blueprint $table) {
             $table->id('id_contenedor');
             $table->string('tipo_contenedor', 45);
+            $table->integer('estatus')->default(1);
             $table->timestamps();
         });
     }

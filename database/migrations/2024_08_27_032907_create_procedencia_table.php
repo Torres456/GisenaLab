@@ -27,6 +27,7 @@ return new class extends Migration
             $table->integer('cp');
             $table->string('gps', 100);
             $table->string('registro_sader', 20);
+            $table->integer('estatus')->default(1);
             $table->timestamps();
         });
     }

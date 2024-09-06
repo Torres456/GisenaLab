@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('nom_subcategoria', 50)->unique();
             $table->unsignedBigInteger('id_categoria');
             $table->foreign('id_categoria')->references('id_categoria')->on('catalogo_categoria');
+            $table->integer('estatus')->default(1);
             $table->timestamps();
         });
     }

@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('procedencia_orden', function (Blueprint $table) {
             $table->id('id_procedencia_orden');
             $table->string('descripcion', 100);
+            $table->integer('estatus')->default(1);
             $table->timestamps();
         });
     }

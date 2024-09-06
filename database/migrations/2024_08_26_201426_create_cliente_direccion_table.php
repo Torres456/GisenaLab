@@ -17,6 +17,7 @@ return new class extends Migration
             $table->foreign('id_cliente')->references('id_cliente')->on('cliente');
             $table->unsignedBigInteger('id_direccion');
             $table->foreign('id_direccion')->references('id_direccion')->on('direccion');
+            $table->integer('estatus')->default(1);
             $table->timestamps();
         });
     }

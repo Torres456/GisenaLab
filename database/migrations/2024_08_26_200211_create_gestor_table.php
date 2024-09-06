@@ -25,6 +25,7 @@ return new class extends Migration
             $table->foreign('id_usuario_sistema')->references('id_usuario_sistema')->on('usuario_sistema');
             $table->unsignedBigInteger('id_zona_representacion');
             $table->foreign('id_zona_representacion')->references('id_zona_representacion')->on('zona_representacion');
+            $table->integer('estatus')->default(1);
             $table->timestamps();
         });
     }

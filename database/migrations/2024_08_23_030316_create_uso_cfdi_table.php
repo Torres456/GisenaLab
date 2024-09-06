@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('uso_cfdi', function (Blueprint $table) {
             $table->id('id_uso_cfdi');
             $table->string('descripcion', 150);
+            $table->integer('estatus')->default(1);
             $table->timestamps();
         });
     }

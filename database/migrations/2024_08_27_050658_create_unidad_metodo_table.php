@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('unidad_metodo', function (Blueprint $table) {
             $table->id('id_unidad_metodo');
             $table->string('descripcion', 100)->unique();
+            $table->integer('estatus')->default(1);
             $table->timestamps();
         });
     }

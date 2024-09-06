@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id('id_status_muestra');
             $table->string('nombre_status', 45)->unique();
             $table->string('descripcion', 45);
+            $table->integer('estatus')->default(1);
             $table->timestamps();
         });
     }

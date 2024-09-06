@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('descripcion');
             $table->unsignedBigInteger('id_orden_servicio');
             $table->foreign('id_orden_servicio')->references('id_orden_servicio')->on('orden_servicio');
+            $table->integer('estatus')->default(1);
             $table->timestamps();
         });
     }

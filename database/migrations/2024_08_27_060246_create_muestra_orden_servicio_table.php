@@ -45,6 +45,7 @@ return new class extends Migration
             $table->integer('tiempo_respuesta');
             $table->unsignedBigInteger('id_status_muestra');
             $table->foreign('id_status_muestra')->references('id_status_muestra')->on('status_muestra');
+            $table->integer('estatus')->default(1);
             $table->timestamps();
         });
     }

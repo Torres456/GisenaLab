@@ -35,6 +35,7 @@ return new class extends Migration
             $table->foreign('id_municipio')->references('id_municipio')->on('municipio');
             $table->unsignedBigInteger('id_colonia');
             $table->foreign('id_colonia')->references('id_colonia')->on('colonia');
+            $table->integer('estatus')->default(1);
             $table->timestamps();
         });
     }

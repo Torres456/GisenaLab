@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id('id_regimen_fiscal');
             $table->string('descripcion', 150);
             $table->integer('tipo');
+            $table->integer('estatus')->default(1);
             $table->timestamps();
         });
     }

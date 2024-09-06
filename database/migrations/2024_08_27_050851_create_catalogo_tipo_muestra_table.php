@@ -23,6 +23,7 @@ return new class extends Migration
             $table->foreign('id_unidad_medida')->references('id_unidad_medida')->on('unidad_medida');
             $table->unsignedBigInteger('id_unidad_metodo');
             $table->foreign('id_unidad_metodo')->references('id_unidad_metodo')->on('unidad_metodo');
+            $table->integer('estatus')->default(1);
             $table->timestamps();
         });
     }

@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('correo', 150)->unique();
             $table->string('telefono_alternativo', 20)->nullable();
             $table->string('correo_alternativo', 150)->nullable();
+            $table->integer('estatus')->default(1);
             $table->timestamps();
         });
     }

@@ -25,6 +25,7 @@ return new class extends Migration
             $table->string('no_exterior', 20);
             $table->string('no_interior', 20);
             $table->integer('cp');
+            $table->integer('estatus')->default(1);
             $table->timestamps();
         });
     }

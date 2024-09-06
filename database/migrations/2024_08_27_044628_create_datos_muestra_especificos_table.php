@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('descripcion_dato', 200);
             $table->unsignedBigInteger('id_laboratorio');
             $table->foreign('id_laboratorio')->references('id_laboratorio')->on('laboratorios');
+            $table->integer('estatus')->default(1);
             $table->timestamps();
         });
     }

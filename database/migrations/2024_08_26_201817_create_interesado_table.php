@@ -28,6 +28,7 @@ return new class extends Migration
             $table->foreign('id_direccion')->references('id_direccion')->on('direccion');
             $table->unsignedBigInteger('id_usuario_sistema');
             $table->foreign('id_usuario_sistema')->references('id_usuario_sistema')->on('usuario_sistema');
+            $table->integer('estatus')->default(1);
             $table->timestamps();
         });
     }

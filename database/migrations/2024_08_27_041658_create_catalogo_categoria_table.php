@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id('id_categoria');
             $table->string('nombre_categoria', 100);
             $table->string('descripcion');
+            $table->integer('estatus')->default(1);
             $table->timestamps();
         });
     }

@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id('id_status_orden_servicio');
             $table->string('nombre', 45);
             $table->string('descripcion', 50);
+            $table->integer('estatus')->default(1);
             $table->timestamps();
         });
     }

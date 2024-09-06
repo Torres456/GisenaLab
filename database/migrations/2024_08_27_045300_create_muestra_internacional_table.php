@@ -28,6 +28,7 @@ return new class extends Migration
             $table->string('otros_datos', 45);
             $table->unsignedBigInteger('id_direccion');
             $table->foreign('id_direccion')->references('id_direccion')->on('direccion');
+            $table->integer('estatus')->default(1);
             $table->timestamps();
         });
     }

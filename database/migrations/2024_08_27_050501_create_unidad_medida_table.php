@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id('id_unidad_medida');
             $table->string('nombre_unidad', 45)->unique();
             $table->string('abreviatura', 15);
+            $table->integer('estatus')->default(1);
             $table->timestamps();
         });
     }
