@@ -8,9 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class estatus_muestras extends Model
 {
     protected $table = 'status_muestra';
-    protected $primaryKey = 'idstatus_muestra';
+    protected $primaryKey = 'id_status_muestra';
     protected $fillable = [
-        'idstatus_muestra',
+        'id_status_muestra',
         'nombre_status',
         'descripcion',
     ];

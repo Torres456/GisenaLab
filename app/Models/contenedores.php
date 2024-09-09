@@ -8,9 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class contenedores extends Model
 {
     protected $table = 'contenedores';
-    protected $primaryKey = 'idcontenedor';
+    protected $primaryKey = 'id_contenedor';
     protected $fillable = [
-        'idcontenedor',
+        'id_contenedor',
         'tipo_contenedor',
     ];
     

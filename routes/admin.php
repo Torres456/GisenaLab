@@ -102,6 +102,10 @@ Route::get('/catalogo/rutas', function () {
     return view('rutas.index');
 })->name('drutas.index');
 
+Route::get('/catalogo/roles_empleados', function () {
+    return view('administrador.catalogos.tipo_empleado');
+})->name('catalogos.tipo_empleado');
+
 Route::get('/orden_servicio', function () {
     return view('administrador.ordenes');
 })->name('administrador.ordenes');

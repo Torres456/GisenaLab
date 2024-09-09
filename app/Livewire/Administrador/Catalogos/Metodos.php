@@ -103,6 +103,35 @@ class Metodos extends Component
         $this->reset('editRegister');
     }
 
+    //&================================================================= Estatus
+
+    public $estatus = false;
+    public $viewstatus;
+    public $statusId;
+    public function estatus_register($id)
+    {
+        $this->estatus = true;
+        $this->statusId = $id;
+        $statusregister = metodo::find($id);
+        $this->viewstatus = $statusregister->estatus;
+    }
+
+    public function status_update()
+    {
+        $date = metodo::find($this->statusId);
+        $date->estatus = ($this->viewstatus == 1) ? 0 : 1;
+        $date->save();
+        $this->estatus = false;
+        $this->reset('viewstatus');
+        session()->flash('blue', 'Estatus actualizado correctamente');
+    }
+
+    public function status_cancel()
+    {
+        $this->estatus = false;
+        $this->reset('viewstatus');
+    }
+
 
     //&================================================================= Lazy
     public function placeholder()

@@ -50,13 +50,15 @@
                     <th scope="col" class="px-6 py-3 text-center">
                         Editar
                     </th>
+                    <th scope="col" class="px-6 py-3 text-center">
+                        Estatus
+                    </th>
                 </tr>
             </thead>
             @if ($count != 0)
                 <tbody>
                     @foreach ($analisis_especificos as $analisis_especifico)
-                        <tr
-                            class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+                        <x-tr>
                             <th scope="row"
                                 class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white text-center">
                                 {{ $analisis_especifico->id_analisis_especifico }}
@@ -91,7 +93,36 @@
                                     </svg>
                                 </x-button>
                             </td>
-                        </tr>
+                            <x-td>
+                                @if ($analisis_especifico->estatus == 1)
+                                    <x-button wire:click="estatus_register({{ $analisis_especifico->id_analisis_especifico }})">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                            stroke-linecap="round" stroke-linejoin="round"
+                                            class="icon icon-tabler icons-tabler-outline icon-tabler-file-check">
+                                            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                            <path d="M14 3v4a1 1 0 0 0 1 1h4" />
+                                            <path
+                                                d="M17 21h-10a2 2 0 0 1 -2 -2v-14a2 2 0 0 1 2 -2h7l5 5v11a2 2 0 0 1 -2 2z" />
+                                            <path d="M9 15l2 2l4 -4" />
+                                        </svg>
+                                    </x-button>
+                                @else
+                                    <x-danger-button wire:click="estatus_register({{ $analisis_especifico->id_analisis_especifico }})">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                            stroke-linecap="round" stroke-linejoin="round"
+                                            class="icon icon-tabler icons-tabler-outline icon-tabler-file-x">
+                                            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                            <path d="M14 3v4a1 1 0 0 0 1 1h4" />
+                                            <path
+                                                d="M17 21h-10a2 2 0 0 1 -2 -2v-14a2 2 0 0 1 2 -2h7l5 5v11a2 2 0 0 1 -2 2z" />
+                                            <path d="M10 12l4 4m0 -4l-4 4" />
+                                        </svg>
+                                    </x-danger-button>
+                                @endif
+                            </x-td>
+                        </x-tr>
                     @endforeach
                 </tbody>
             @else
@@ -303,6 +334,19 @@
                     <x-danger-button wire:click="edit_cancel">Cancelar</x-danger-button>
                 </div>
             </form>
+        </x-slot>
+        <x-slot name='footer'></x-slot>
+    </x-dialog-modal>
+
+    <x-dialog-modal wire:model="status">
+        <x-slot name='title'>
+            <h2 class="text-center">¿Desea cambiar el estatus?</h2>
+        </x-slot>
+        <x-slot name='content'>
+            <div class="mt-5 flex justify-around">
+                <x-button wire:click="status_update">Guardar</x-button>
+                <x-danger-button wire:click="status_cancel">Cancelar</x-danger-button>
+            </div>
         </x-slot>
         <x-slot name='footer'></x-slot>
     </x-dialog-modal>

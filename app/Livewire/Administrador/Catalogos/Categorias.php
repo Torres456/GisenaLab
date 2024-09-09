@@ -110,6 +110,35 @@ class Categorias extends Component
         $this->reset('editRegister');
     }
 
+    //&================================================================= Estatus
+
+    public $status = false;
+    public $viewstatus;
+    public $statusId;
+    public function estatus_register($id)
+    {
+        $this->status = true;
+        $this->statusId = $id;
+        $statusregister = catalogo_categoria::find($id);
+        $this->viewstatus = $statusregister->estatus;
+    }
+
+    public function status_update()
+    {
+        $date = catalogo_categoria::find($this->statusId);
+        $date->estatus = ($this->viewstatus == 1) ? 0 : 1;
+        $date->save();
+        $this->status = false;
+        $this->reset('viewstatus');
+        session()->flash('blue', 'Estatus actualizado correctamente');
+    }
+
+    public function status_cancel()
+    {
+        $this->status = false;
+        $this->reset('viewstatus');
+    }
+
     //&================================================================= Lazy Load
     public function placeholder()
     {

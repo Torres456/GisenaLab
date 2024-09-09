@@ -304,8 +304,8 @@ class DatabaseSeeder extends Seeder
 
 
         $rutas20 = new rutas();
-        $rutas20->title = "Procedencias";
-        $rutas20->description = "Agregar y editar Procedencias";
+        $rutas20->title = "Roles de Empleados";
+        $rutas20->description = "Agregar y editar roles";
         $rutas20->route = "admin.direcciones.procedencias";
         $rutas20->estado = 1;
         $rutas20->tipo = 1;

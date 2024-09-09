@@ -26,7 +26,7 @@ class AnalisisEspecifico extends Component
     public $Tipo_Analisis;
     public function mount()
     {
-        $this->Tipo_Analisis = catalogo_tipo_analisis::all();
+        $this->Tipo_Analisis = catalogo_tipo_analisis::where('estatus','1')->get();
     }
 
     //&================================================================= Nuevo Registro
@@ -57,7 +57,7 @@ class AnalisisEspecifico extends Component
     {
         //validations
         $this->validate([
-            'newRegister.nombre' => ['required', 'max:50'],
+            'newRegister.nombre' => ['required', 'max:50', 'unique:catalogo_analisis_especifico,nombre_comercial'],
             'newRegister.descripcion' => ['required', 'max:250'],
             'newRegister.tipo' => ['required'],
             'newRegister.clave' => ['required', 'max:45'],
@@ -73,6 +73,7 @@ class AnalisisEspecifico extends Component
             'newRegister.capacidad' => ['required','numeric'],
         ], [
             'newRegister.nombre.required' => __('El nombre es requerido'),
+            'newRegister.nombre.unique' => __('Este nombre ya está registrado'),
             'newRegister.nombre.max' => __('El nombre debe tener máximo 50 caracteres'),
             'newRegister.descripcion.required' => __('La descripcion es requerida'),
             'newRegister.descripcion.max' => __('La descripcion debe tener máximo 250 caracteres'),
@@ -172,7 +173,7 @@ class AnalisisEspecifico extends Component
     {
         //validations
         $this->validate([
-            'editRegister.nombre' => ['required', 'max:50'],
+            'editRegister.nombre' => ['required', 'max:50','unique:catalogo_analisis_especifico,nombre_comercial,' . $this->editId . 'id_analisis_especifico'],
             'editRegister.descripcion' => ['required', 'max:250'],
             'editRegister.tipo' => ['required'],
             'editRegister.clave' => ['required', 'max:45'],
@@ -241,6 +242,35 @@ class AnalisisEspecifico extends Component
         $this->edit = false;
         $this->reset('editRegister');
     }
+
+     //&================================================================= Estatus
+
+     public $status = false;
+     public $viewstatus;
+     public $statusId;
+     public function estatus_register($id)
+     {
+         $this->status = true;
+         $this->statusId = $id;
+         $statusregister = catalogo_analisis_especifico::find($id);
+         $this->viewstatus = $statusregister->estatus;
+     }
+ 
+     public function status_update()
+     {
+         $date = catalogo_analisis_especifico::find($this->statusId);
+         $date->estatus = ($this->viewstatus == 1) ? 0 : 1;
+         $date->save();
+         $this->status = false;
+         $this->reset('viewstatus');
+         session()->flash('blue', 'Estatus actualizado correctamente');
+     }
+ 
+     public function status_cancel()
+     {
+         $this->status = false;
+         $this->reset('viewstatus');
+     }
 
     //&================================================================= Lazy Load
     public function placeholder()
