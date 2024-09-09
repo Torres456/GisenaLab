@@ -128,7 +128,7 @@
         </x-slot>
     </x-table>
 
-    <x-dialog-modal wire:model="new">
+    <x-dialog-modal wire:model="newRegister.new">
         <x-slot name='title'>
             <h2 class="text-center">Nuevo Empleado</h2>
         </x-slot>
@@ -159,14 +159,14 @@
                 <div class="grid grid-cols-2 max-md:grid-cols-1 w-full gap-3">
                     <div>
                         <x-label>Contraseña:</x-label>
-                        <x-input wire:model="newRegister.contrasena" type="password" class="block mt-1 w-full" />
-                        <x-input-error for="newRegister.contrasena" />
+                        <x-input wire:model="newRegister.contraseña" type="password" class="block mt-1 w-full" />
+                        <x-input-error for="newRegister.contraseña" />
                     </div>
                     <div>
                         <x-label>Confirmar Contraseña:</x-label>
-                        <x-input wire:model="newRegister.contrasena_confirmation" type="password"
+                        <x-input wire:model="newRegister.contraseña_confirmation" type="password"
                             class="block mt-1 w-full" />
-                        <x-input-error for="newRegister.contrasena_confirmation" />
+                        <x-input-error for="newRegister.contraseña_confirmation" />
                     </div>
                 </div>
 
@@ -346,7 +346,7 @@
         </x-slot>
     </x-dialog-modal>
 
-    <x-dialog-modal wire:model="edit">
+    <x-dialog-modal wire:model="editRegister.edit">
         <x-slot name='title'>
             <h2 class="text-center">Editar Empleado </h2>
         </x-slot>
@@ -536,7 +536,7 @@
             @endif
             <div class="mt-5 flex justify-around">
                 <x-button wire:click="down_acces">Guardar</x-button>
-                <x-danger-button wire:click="password_cancel">Cerrarr</x-danger-button>
+                <x-danger-button wire:click="acces_cancel">Cerrarr</x-danger-button>
             </div>
         </x-slot>
         <x-slot name='footer'>
