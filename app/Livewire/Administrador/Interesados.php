@@ -231,12 +231,11 @@ class Interesados extends Component
     //&================================================================= Render
     public function render()
     {
-        $count = interesado::where(function ($query) {
-            $query->where('nombre', 'LIKE', '%' . $this->search . '%')->orWhere('correo', 'LIKE', '%' . $this->search . '%');
-        })->count();
-        $interesados = interesado::where(function ($query) {
-            $query->where('nombre', 'LIKE', '%' . $this->search . '%')->orWhere('correo', 'LIKE', '%' . $this->search . '%');
-        })->paginate($this->view_dates);
+        $count = interesado::where(DB::raw('concat(nombre, " ", ap_paterno, " ", ap_materno)'), 'like', "%$this->search%")
+        ->orWhere('correo', 'like', "%$this->search%")->count();
+        
+        $interesados = interesado::where(DB::raw('concat(nombre, " ", ap_paterno, " ", ap_materno)'), 'like', "%$this->search%")
+        ->orWhere('correo', 'like', "%$this->search%")->paginate($this->view_dates);
         return view('livewire.administrador.interesados', compact('count', 'interesados'));
     }
 }

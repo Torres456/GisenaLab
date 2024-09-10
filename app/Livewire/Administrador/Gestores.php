@@ -197,12 +197,11 @@ class Gestores extends Component
     //&================================================================= Render
     public function render()
     {
-        $count = gestor::where(function ($query) {
-            $query->where('nombre', 'LIKE', '%' . $this->search . '%')->orWhere('correo', 'LIKE', '%' . $this->search . '%');
-        })->count();
-        $gestores = gestor::where(function ($query) {
-            $query->where('nombre', 'LIKE', '%' . $this->search . '%')->orWhere('correo', 'LIKE', '%' . $this->search . '%');
-        })->paginate($this->view_dates);
+        $count = gestor::where(DB::raw('concat(nombre, " ", ap_paterno, " ", ap_materno)'), 'like', "%$this->search%")
+        ->orWhere('correo', 'like', "%$this->search%")->count();
+
+        $gestores = gestor::where(DB::raw('concat(nombre, " ", ap_paterno, " ", ap_materno)'), 'like', "%$this->search%")
+        ->orWhere('correo', 'like', "%$this->search%")->paginate($this->view_dates);
         return view('livewire.administrador.gestores', compact('gestores', 'count'));
     }
 }
