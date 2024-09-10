@@ -95,7 +95,7 @@ class Empleados extends Component
     public function edit_form()
     {
         $this->editRegister->update();
-        session()->flash('blue', 'Editada correctamente');
+        
     }
 
     public function edit_cancel()
