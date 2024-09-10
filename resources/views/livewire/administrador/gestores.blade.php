@@ -52,6 +52,9 @@
                     <th scope="col" class="px-6 py-3 text-center">
                         Editar
                     </th>
+                    <th scope="col" class="px-6 py-3 text-center">
+                        Estatus
+                    </th>
                 </tr>
             </thead>
             @if ($count != 0)
@@ -64,7 +67,7 @@
                                 {{ $gestor->id_gestor }}
                             </th>
                             <td class="px-6 py-4 text-center">
-                                {{ $gestor->nombre . ' ' . $gestor->a_paterno . ' ' . $gestor->a_materno }}
+                                {{ $gestor->nombre . ' ' . $gestor->ap_paterno . ' ' . $gestor->ap_materno }}
                             </td>
                             <td class="px-6 py-4 text-center">
                                 {{ $gestor->telefono }}
@@ -110,6 +113,35 @@
                                     </svg>
                                 </x-button>
                             </td>
+                            <x-td>
+                                @if ($gestor->sistema->estatus == 1)
+                                    <x-button wire:click="estatus_register({{$gestor->id_gestor }})">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                            stroke-linecap="round" stroke-linejoin="round"
+                                            class="icon icon-tabler icons-tabler-outline icon-tabler-file-check">
+                                            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                            <path d="M14 3v4a1 1 0 0 0 1 1h4" />
+                                            <path
+                                                d="M17 21h-10a2 2 0 0 1 -2 -2v-14a2 2 0 0 1 2 -2h7l5 5v11a2 2 0 0 1 -2 2z" />
+                                            <path d="M9 15l2 2l4 -4" />
+                                        </svg>
+                                    </x-button>
+                                @else
+                                    <x-danger-button wire:click="estatus_register({{$gestor->id_gestor }})">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                            stroke-linecap="round" stroke-linejoin="round"
+                                            class="icon icon-tabler icons-tabler-outline icon-tabler-file-x">
+                                            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                            <path d="M14 3v4a1 1 0 0 0 1 1h4" />
+                                            <path
+                                                d="M17 21h-10a2 2 0 0 1 -2 -2v-14a2 2 0 0 1 2 -2h7l5 5v11a2 2 0 0 1 -2 2z" />
+                                            <path d="M10 12l4 4m0 -4l-4 4" />
+                                        </svg>
+                                    </x-danger-button>
+                                @endif
+                            </x-td>
                         </tr>
                     @endforeach
                 </tbody>
@@ -130,7 +162,7 @@
         {{ $gestores->links() }}
     </div>
 
-    <x-dialog-modal wire:model="new">
+    <x-dialog-modal wire:model="newRegister.new">
         <x-slot name='title'>
             <h2 class="text-center">Nuevo Gestor</h2>
         </x-slot>
@@ -181,13 +213,13 @@
                 <div class="w-full grid grid-cols-2 max-md:grid-cols-1 gap-3">
                     <div>
                         <x-label>Contraseña: <span class="text-slate-500">(Temporal)</span>:</x-label>
-                        <x-input wire:model="newRegister.contrasena" type="password" class="block mt-1 w-full" />
-                        <x-input-error for="newRegister.contrasena" />
+                        <x-input wire:model="newRegister.contraseña" type="password" class="block mt-1 w-full" />
+                        <x-input-error for="newRegister.contraseña" />
                     </div>
                     <div>
                         <x-label>Confirmar Contraseña: <span class="text-slate-500">(Temporal)</span>:</x-label>
-                        <x-input wire:model="newRegister.contrasena_confirmation" type="password" class="block mt-1 w-full" />
-                        <x-input-error for="newRegister.contrasena_confirmation" />
+                        <x-input wire:model="newRegister.contraseña_confirmation" type="password" class="block mt-1 w-full" />
+                        <x-input-error for="newRegister.contraseña_confirmation" />
                     </div>
                 </div>
                 <div>
@@ -284,7 +316,7 @@
         <x-slot name='footer'></x-slot>
     </x-dialog-modal>
 
-    <x-dialog-modal wire:model="edit">
+    <x-dialog-modal wire:model="editRegister.edit">
         <x-slot name='title'>
             <h2 class="text-center">Editar Gestor</h2>
         </x-slot>
@@ -490,5 +522,18 @@
                 <x-danger-button wire:click="direct_cancel">Cerrar</x-danger-button>
             </div>
         </x-slot>
+    </x-dialog-modal>
+
+    <x-dialog-modal wire:model="estatus">
+        <x-slot name='title'>
+            <h2 class="text-center">¿Desea cambiar el estatus?</h2>
+        </x-slot>
+        <x-slot name='content'>
+            <div class="mt-5 flex justify-around">
+                <x-button wire:click="status_update">Guardar</x-button>
+                <x-danger-button wire:click="status_cancel">Cancelar</x-danger-button>
+            </div>
+        </x-slot>
+        <x-slot name='footer'></x-slot>
     </x-dialog-modal>
 </div>

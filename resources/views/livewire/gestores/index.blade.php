@@ -260,7 +260,7 @@
                         <x-input-error for="newRegister.municipio" />
                     </div>
                     <div>
-                        <x-label>Colinia:</x-label>
+                        <x-label>Colonia:</x-label>
                         <x-select wire:model="newRegister.colonia" type="text" class="block mt-1 w-full">
                             <option value="">Seleccione una colonia</option>
                             @foreach ($colonias as $colonia)
@@ -402,7 +402,7 @@
                         <x-input-error for="editRegister.municipio" />
                     </div>
                     <div>
-                        <x-label>Colinia:</x-label>
+                        <x-label>Colonia:</x-label>
                         <x-select wire:model="editRegister.colonia" type="text" class="block mt-1 w-full">
                             <option value="">Seleccione una colonia</option>
                             @foreach ($colonias as $colonia)
