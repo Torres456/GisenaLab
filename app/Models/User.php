@@ -27,8 +27,6 @@ class User extends Authenticatable implements MustVerifyEmail
 
     protected $fillable = [
         'nombre',
-        'ap_paterno',
-        'ap_materno',
         'correo',
         'contraseña',
         'estatus',
@@ -73,6 +71,21 @@ class User extends Authenticatable implements MustVerifyEmail
     public function routeNotificationForMail(Notification $notification): array
     {
         return [$this->correo => $this->correo];
+    }
+
+    public function getEmailForVerification()
+    {
+        return $this->correo;
+    }
+
+    public function getAuthPassword()
+    {
+        return $this->contraseña;
+    }
+
+    public function getAuthPasswordName()
+    {
+        return 'contraseña';
     }
 
     //get Email for password reset form
