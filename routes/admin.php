@@ -110,19 +110,18 @@ Route::get('/orden_servicio', function () {
     return view('administrador.ordenes');
 })->name('administrador.ordenes');
 
-Route::get('/gestores', function () {
+Route::get('registro/gestores', function () {
     return view('administrador.gestores');
-})->name('administrador.gestores');
+})->name('registros.gestores');
 
 Route::get('/interesados', function () {
     return view('administrador.interesados');
 })->name('administrador.interesados');
 
-Route::get('/clientes', function () {
+Route::get('registro/clientes', function () {
     return view('administrador.clientes');
-})->name('administrador.clientes');
+})->name('registros.clientes');
 
-Route::get('/empleados', function () {
+Route::get('registro/empleados', function () {
     return view('administrador.empleados');
-})->name('administrador.empleados');
-
+})->name('registros.empleados');
