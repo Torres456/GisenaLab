@@ -31,7 +31,7 @@ class municipio extends Model
 
     public function colonia(): HasMany
     {
-        return $this->hasMany(colonia::class, 'id_municipio');
+        return $this->hasMany(colonia::class, 'clave_municipio','id_municipio');
     }
 
     public function sucursales(): HasMany

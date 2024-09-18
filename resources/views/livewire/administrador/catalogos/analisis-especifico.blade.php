@@ -158,26 +158,30 @@
                 </div>
                 <div>
                     <x-label>Descripción:</x-label>
-                    <x-input wire:model="newRegister.descripcion" type="text" class="block mt-1 w-full"
-                        onkeyup="mayuscula(this)" />
+                    <x-textarea wire:model="newRegister.descripcion" type="text" class="block mt-1 w-full"
+                        onkeyup="mayuscula(this)"></x-textarea>
                     <x-input-error for="newRegister.descripcion" />
                 </div>
-                <div>
-                    <x-label>Tipo Análisis:</x-label>
-                    <x-select wire:model="newRegister.tipo" type="text" class="block mt-1 w-full">\
-                        <option value="">Seleccione una opcion</option>
-                        @foreach ($Tipo_Analisis as $Tipo_Analisi)
-                            <option value="{{ $Tipo_Analisi->id_tipo_analisis }}">
-                                {{ $Tipo_Analisi->nomb_tipo_analisis }}</option>
-                        @endforeach
-                    </x-select>
-                    <x-input-error for="newRegister.tipo" />
+                <div class="grid grid-cols-2 max-md:grid-cols-1 gap-5">
+                    <div>
+                        <x-label>Tipo Análisis:</x-label>
+                        <x-select wire:model="newRegister.tipo" type="text" class="block mt-1 w-full">\
+                            <option value="">Seleccione una opcion</option>
+                            @foreach ($Tipo_Analisis as $Tipo_Analisi)
+                                <option value="{{ $Tipo_Analisi->id_tipo_analisis }}">
+                                    {{ $Tipo_Analisi->nomb_tipo_analisis }}</option>
+                            @endforeach
+                        </x-select>
+                        <x-input-error for="newRegister.tipo" />
+                    </div>
+                    <div>
+                        <x-label>Clave Análisis:</x-label>
+                        <x-input wire:model="newRegister.clave" type="text" class="block mt-1 w-full" />
+                        <x-input-error for="newRegister.clave" />
+                    </div>
+
                 </div>
-                <div>
-                    <x-label>Clave Análisis:</x-label>
-                    <x-input wire:model="newRegister.clave" type="text" class="block mt-1 w-full" />
-                    <x-input-error for="newRegister.clave" />
-                </div>
+
                 <div>
                     <x-label>Acreditación o control de calidad:</x-label>
                     <x-input wire:model="newRegister.reconocimiento" type="text" class="block mt-1 w-full" />
@@ -193,15 +197,17 @@
                     <x-input wire:model="newRegister.normativa" type="text" class="block mt-1 w-full" />
                     <x-input-error for="newRegister.normativa" />
                 </div>
-                <div>
-                    <x-label>Aprobación:</x-label>
-                    <x-input wire:model="newRegister.aprobacion" type="text" class="block mt-1 w-full" />
-                    <x-input-error for="newRegister.aprobacion" />
-                </div>
-                <div>
-                    <x-label>Autorización:</x-label>
-                    <x-input wire:model="newRegister.autorizacion" type="text" class="block mt-1 w-full" />
-                    <x-input-error for="newRegister.autorizacion" />
+                <div class="grid grid-cols-2 max-md:grid-cols-1 gap-5">
+                    <div>
+                        <x-label>Aprobación:</x-label>
+                        <x-input wire:model="newRegister.aprobacion" type="text" class="block mt-1 w-full" />
+                        <x-input-error for="newRegister.aprobacion" />
+                    </div>
+                    <div>
+                        <x-label>Autorización:</x-label>
+                        <x-input wire:model="newRegister.autorizacion" type="text" class="block mt-1 w-full" />
+                        <x-input-error for="newRegister.autorizacion" />
+                    </div>
                 </div>
                 <div class="grid grid-cols-2 max-md:grid-cols-1 gap-5">
                     <div>
@@ -257,8 +263,8 @@
                 </div>
                 <div>
                     <x-label>Descripción:</x-label>
-                    <x-input wire:model="editRegister.descripcion" type="text" class="block mt-1 w-full"
-                        onkeyup="mayuscula(this)" />
+                    <x-textarea wire:model="editRegister.descripcion" type="text" class="block mt-1 w-full"
+                        onkeyup="mayuscula(this)"></x-textarea>
                     <x-input-error for="editRegister.descripcion" />
                 </div>
                 <div>
@@ -272,15 +278,17 @@
                     </x-select>
                     <x-input-error for="editRegister.tipo" />
                 </div>
-                <div>
-                    <x-label>Clave Análisis:</x-label>
-                    <x-input wire:model="editRegister.clave" type="text" class="block mt-1 w-full" />
-                    <x-input-error for="editRegister.clave" />
-                </div>
-                <div>
-                    <x-label>Acreditación o control de calidad:</x-label>
-                    <x-input wire:model="editRegister.reconocimiento" type="text" class="block mt-1 w-full" />
-                    <x-input-error for="editRegister.reconocimiento" />
+                <div class="grid grid-cols-2 max-md:grid-cols-1 gap-5">
+                    <div>
+                        <x-label>Clave Análisis:</x-label>
+                        <x-input wire:model="editRegister.clave" type="text" class="block mt-1 w-full" />
+                        <x-input-error for="editRegister.clave" />
+                    </div>
+                    <div>
+                        <x-label>Acreditación o control de calidad:</x-label>
+                        <x-input wire:model="editRegister.reconocimiento" type="text" class="block mt-1 w-full" />
+                        <x-input-error for="editRegister.reconocimiento" />
+                    </div>
                 </div>
                 <div>
                     <x-label>Nombre Técnico:</x-label>
@@ -292,15 +300,17 @@
                     <x-input wire:model="editRegister.normativa" type="text" class="block mt-1 w-full" />
                     <x-input-error for="editRegister.normativa" />
                 </div>
-                <div>
-                    <x-label>Aprobación:</x-label>
-                    <x-input wire:model="editRegister.aprobacion" type="text" class="block mt-1 w-full" />
-                    <x-input-error for="editRegister.aprobacion" />
-                </div>
-                <div>
-                    <x-label>Autorización:</x-label>
-                    <x-input wire:model="editRegister.autorizacion" type="text" class="block mt-1 w-full" />
-                    <x-input-error for="editRegister.autorizacion" />
+                <div class="grid grid-cols-2 max-md:grid-cols-1 gap-5">
+                    <div>
+                        <x-label>Aprobación:</x-label>
+                        <x-input wire:model="editRegister.aprobacion" type="text" class="block mt-1 w-full" />
+                        <x-input-error for="editRegister.aprobacion" />
+                    </div>
+                    <div>
+                        <x-label>Autorización:</x-label>
+                        <x-input wire:model="editRegister.autorizacion" type="text" class="block mt-1 w-full" />
+                        <x-input-error for="editRegister.autorizacion" />
+                    </div>
                 </div>
                 <div class="grid grid-cols-2 max-md:grid-cols-1 gap-5">
                     <div>
