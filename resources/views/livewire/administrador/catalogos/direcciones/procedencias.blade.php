@@ -28,7 +28,7 @@
     </div>
 
 
-    <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
+    <div class="overflow-x-auto shadow-md sm:rounded-lg">
         <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
             <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                 <tr>
@@ -144,7 +144,7 @@
                 <div class="grid grid-cols-2 max-md:grid-cols-1 w-full gap-2">
                     <div>
                         <x-label>Estado:</x-label>
-                        <x-select wire:model="newRegister.estado" class="block mt-1 w-full" >
+                        <x-select wire:model="newRegister.estado" class="block mt-1 w-full">
                             <option value="">Seleccione un estado</option>
                             @foreach ($estados as $estado)
                                 <option value="{{ $estado->id_estado }}"> {{ $estado->nombre }}</option>
@@ -154,7 +154,7 @@
                     </div>
                     <div>
                         <x-label>Municipio:</x-label>
-                        <x-select wire:model="newRegister.municipio"  class="block mt-1 w-full">
+                        <x-select wire:model="newRegister.municipio" class="block mt-1 w-full">
                             <option value="">Seleccione un municipio</option>
                             @foreach ($municipios as $municipio)
                                 <option value="{{ $municipio->id_municipio }}"> {{ $municipio->nombre }}</option>
@@ -166,7 +166,7 @@
                 <div class="grid grid-cols-2 max-md:grid-cols-1 w-full gap-2">
                     <div>
                         <x-label>Colonia:</x-label>
-                        <x-select wire:model="newRegister.colonia" class="block mt-1 w-full" >
+                        <x-select wire:model="newRegister.colonia" class="block mt-1 w-full">
                             <option value="">Seleccione una colonia</option>
                             @foreach ($colonias as $colonia)
                                 <option value="{{ $colonia->id_colonia }}"> {{ $colonia->nombre }}</option>
@@ -194,7 +194,7 @@
                             onkeyup="mayuscula(this)" />
                         <x-input-error for="newRegister.interior" />
                     </div>
-                    
+
                 </div>
                 <div class="grid grid-cols-2 max-md:grid-cols-1 w-full gap-2">
                     <div>
@@ -255,7 +255,7 @@
                 <div class="grid grid-cols-2 max-md:grid-cols-1 w-full gap-2">
                     <div>
                         <x-label>Estado:</x-label>
-                        <x-select wire:model="editRegister.estado" class="block mt-1 w-full" >
+                        <x-select wire:model="editRegister.estado" class="block mt-1 w-full">
                             <option value="">Seleccione un estado</option>
                             @foreach ($estados as $estado)
                                 <option value="{{ $estado->id_estado }}"> {{ $estado->nombre }}</option>
@@ -265,7 +265,7 @@
                     </div>
                     <div>
                         <x-label>Municipio:</x-label>
-                        <x-select wire:model="editRegister.municipio"  class="block mt-1 w-full">
+                        <x-select wire:model="editRegister.municipio" class="block mt-1 w-full">
                             <option value="">Seleccione un municipio</option>
                             @foreach ($municipios as $municipio)
                                 <option value="{{ $municipio->id_municipio }}"> {{ $municipio->nombre }}</option>
@@ -277,7 +277,7 @@
                 <div class="grid grid-cols-2 max-md:grid-cols-1 w-full gap-2">
                     <div>
                         <x-label>Colonia:</x-label>
-                        <x-select wire:model="editRegister.colonia" class="block mt-1 w-full" >
+                        <x-select wire:model="editRegister.colonia" class="block mt-1 w-full">
                             <option value="">Seleccione una colonia</option>
                             @foreach ($colonias as $colonia)
                                 <option value="{{ $colonia->id_colonia }}"> {{ $colonia->nombre }}</option>
@@ -305,7 +305,7 @@
                             onkeyup="mayuscula(this)" />
                         <x-input-error for="editRegister.interior" />
                     </div>
-                    
+
                 </div>
                 <div class="grid grid-cols-2 max-md:grid-cols-1 w-full gap-2">
                     <div>
@@ -341,39 +341,39 @@
     <x-dialog-modal wire:model="direct">
         <x-slot name='title'>
             <h2 class="text-center">Dirección</h2>
-            <p class="text-center">Sucursal {{$nombre_sucursal}}</p>
+            <p class="text-center">Sucursal {{ $nombre_sucursal }}</p>
         </x-slot>
         <x-slot name='content'>
             <div class="grid grid-cols-2 max-md:grid-cols-1 w-full gap-2">
                 <div>
                     <x-label>Estado:</x-label>
-                    <x-input wire:model="direcRegister.estado" class="block mt-1 w-full" disabled/>
+                    <x-input wire:model="direcRegister.estado" class="block mt-1 w-full" disabled />
                     <x-input-error for="direcRegister.estado" />
                 </div>
                 <div>
                     <x-label>Municipio:</x-label>
-                    <x-input wire:model="direcRegister.municipio"  class="block mt-1 w-full" disabled/>
+                    <x-input wire:model="direcRegister.municipio" class="block mt-1 w-full" disabled />
                     <x-input-error for="direcRegister.municipio" />
                 </div>
             </div>
-            
+
             <div class="grid grid-cols-2 max-md:grid-cols-1 w-full gap-2">
                 <div>
                     <x-label>Colonia:</x-label>
-                    <x-input wire:model="direcRegister.colonia" class="block mt-1 w-full" disabled/>
+                    <x-input wire:model="direcRegister.colonia" class="block mt-1 w-full" disabled />
                     <x-input-error for="direcRegister.colonia" />
                 </div>
                 <div>
                     <x-label>Calle:</x-label>
-                    <x-input wire:model="direcRegister.calle" type="text" class="block mt-1 w-full" disabled/>
+                    <x-input wire:model="direcRegister.calle" type="text" class="block mt-1 w-full" disabled />
                     <x-input-error for="direcRegister.calle" />
                 </div>
             </div>
-        
+
             <div class="grid grid-cols-2 max-md:grid-cols-1 w-full gap-2">
                 <div>
                     <x-label>No. Exterior:</x-label>
-                    <x-input wire:model="direcRegister.exterior" type="text" class="block mt-1 w-full" disabled/>
+                    <x-input wire:model="direcRegister.exterior" type="text" class="block mt-1 w-full" disabled />
                     <x-input-error for="direcRegister.exterior" />
                 </div>
                 <div>
@@ -381,7 +381,7 @@
                     <x-input wire:model="direcRegister.interior" type="text" class="block mt-1 w-full" disabled />
                     <x-input-error for="direcRegister.interior" />
                 </div>
-                
+
             </div>
             <div class="grid grid-cols-2 max-md:grid-cols-1 w-full gap-2">
                 <div>
@@ -398,7 +398,7 @@
 
             <div>
                 <x-label>Registro SADER:</x-label>
-                <x-input wire:model="direcRegister.sader" type="text" class="block mt-1 w-full" disabled/>
+                <x-input wire:model="direcRegister.sader" type="text" class="block mt-1 w-full" disabled />
                 <x-input-error for="direcRegister.sader" />
             </div>
         </x-slot>

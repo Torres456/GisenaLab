@@ -12,7 +12,8 @@
             </div>
             <div class="flex flex-col w-full">
                 <label for="">Buscar:</label>
-                <x-input wire:model.live="search" placeholder="(Nombre estatus de ordenes de servicio)" class="w-full" />
+                <x-input wire:model.live="search" placeholder="(Nombre estatus de ordenes de servicio)"
+                    class="w-full" />
             </div>
         </div>
         <x-button wire:click="new_register"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
@@ -25,7 +26,7 @@
                 <path d="M9 14l6 0" />
             </svg> Nuevo</x-button>
     </div>
-    <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
+    <div class="overflow-x-auto shadow-md sm:rounded-lg">
         <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
             <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                 <tr>
@@ -77,7 +78,7 @@
                             </td>
                             <x-td>
                                 @if ($statu->estatus == 1)
-                                    <x-button wire:click="estatus_register({{  $statu->id_status_orden_servicio  }})">
+                                    <x-button wire:click="estatus_register({{ $statu->id_status_orden_servicio }})">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                                             viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                                             stroke-linecap="round" stroke-linejoin="round"
@@ -90,7 +91,8 @@
                                         </svg>
                                     </x-button>
                                 @else
-                                    <x-danger-button wire:click="estatus_register({{  $statu->id_status_orden_servicio  }})">
+                                    <x-danger-button
+                                        wire:click="estatus_register({{ $statu->id_status_orden_servicio }})">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                                             viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                                             stroke-linecap="round" stroke-linejoin="round"

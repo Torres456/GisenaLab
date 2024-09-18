@@ -5,7 +5,7 @@
             <div class="flex gap-2">
                 <div class="flex flex-col ">
                     <label for="">Mostrar:</label>
-                    <x-select wire:model.live="view_dates" >
+                    <x-select wire:model.live="view_dates">
                         <option value="10">10</option>
                         <option value="20">20</option>
                         <option value="30">30</option>
@@ -15,8 +15,8 @@
                     <label for="">Estados:</label>
                     <x-select wire:model.live="search_stade" class="max-md:w-full">
                         <option value="">Todos</option>
-                        @foreach($estados as $estado)
-                            <option value="{{$estado->id_estado }}">{{ $estado->nombre }}</option>
+                        @foreach ($estados as $estado)
+                            <option value="{{ $estado->id_estado }}">{{ $estado->nombre }}</option>
                         @endforeach
                     </x-select>
                 </div>
@@ -36,7 +36,7 @@
                 <path d="M9 14l6 0" />
             </svg> Nuevo</x-button>
     </div>
-    <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
+    <div class="overflow-x-auto shadow-md sm:rounded-lg">
         <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
             <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                 <tr>

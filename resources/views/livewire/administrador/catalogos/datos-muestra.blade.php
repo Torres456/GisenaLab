@@ -16,7 +16,8 @@
                     <x-select wire:model.live="search_lab" class="w-full">
                         <option value="">Seleccione una opcion</option>
                         @foreach ($laboratorios as $laboratorio)
-                            <option value="{{ $laboratorio->id_laboratorio }}">{{ $laboratorio->descripcion_laboratorio }}</option>
+                            <option value="{{ $laboratorio->id_laboratorio }}">
+                                {{ $laboratorio->descripcion_laboratorio }}</option>
                         @endforeach
                     </x-select>
                 </div>
@@ -36,7 +37,7 @@
                 <path d="M9 14l6 0" />
             </svg> Nuevo</x-button>
     </div>
-    <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
+    <div class="overflow-x-auto shadow-md sm:rounded-lg">
         <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
             <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                 <tr>
@@ -44,7 +45,7 @@
                         ID
                     </th>
                     <th scope="col" class="px-6 py-3 text-center ">
-                        
+
                         Descripcion
                     </th>
                     <th scope="col" class="px-6 py-3 text-center">
@@ -74,7 +75,8 @@
                                 {{ $datos_muestra->laboratorios->descripcion_laboratorio }}
                             </td>
                             <td class="px-6 py-4 text-center">
-                                <x-button wire:click="edit_register({{ $datos_muestra->id_datos_muestra_especificos }})">
+                                <x-button
+                                    wire:click="edit_register({{ $datos_muestra->id_datos_muestra_especificos }})">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                                         viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                                         stroke-linecap="round" stroke-linejoin="round"
@@ -89,7 +91,8 @@
                             </td>
                             <x-td>
                                 @if ($datos_muestra->estatus == 1)
-                                    <x-button wire:click="estatus_register({{  $datos_muestra->id_datos_muestra_especificos  }})">
+                                    <x-button
+                                        wire:click="estatus_register({{ $datos_muestra->id_datos_muestra_especificos }})">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                                             viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                                             stroke-linecap="round" stroke-linejoin="round"
@@ -102,7 +105,8 @@
                                         </svg>
                                     </x-button>
                                 @else
-                                    <x-danger-button wire:click="estatus_register({{  $datos_muestra->id_datos_muestra_especificos  }})">
+                                    <x-danger-button
+                                        wire:click="estatus_register({{ $datos_muestra->id_datos_muestra_especificos }})">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                                             viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                                             stroke-linecap="round" stroke-linejoin="round"
@@ -153,7 +157,8 @@
                     <x-select wire:model="newRegister.laboratorio" type="text" class="block mt-1 w-full">\
                         <option value="">Seleccione una opcion:</option>
                         @foreach ($laboratorios as $laboratorio)
-                            <option value="{{ $laboratorio->id_laboratorio }}">{{ $laboratorio->descripcion_laboratorio }}</option>
+                            <option value="{{ $laboratorio->id_laboratorio }}">
+                                {{ $laboratorio->descripcion_laboratorio }}</option>
                         @endforeach
                     </x-select>
                     <x-input-error for="newRegister.laboratorio" />
@@ -186,7 +191,8 @@
                     <x-select wire:model="editRegister.laboratorio" type="text" class="block mt-1 w-full">
                         <option value="">Seleccione una opcion</option>
                         @foreach ($laboratorios as $laboratorio)
-                            <option value="{{ $laboratorio->id_laboratorio }}">{{ $laboratorio->descripcion_laboratorio }}</option>
+                            <option value="{{ $laboratorio->id_laboratorio }}">
+                                {{ $laboratorio->descripcion_laboratorio }}</option>
                         @endforeach
                     </x-select>
                     <x-input-error for="editRegister.laboratorio" />

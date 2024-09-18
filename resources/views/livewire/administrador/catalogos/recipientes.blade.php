@@ -25,7 +25,7 @@
                 <path d="M9 14l6 0" />
             </svg> Nuevo</x-button>
     </div>
-    <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
+    <div class="overflow-x-auto shadow-md sm:rounded-lg">
         <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
             <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                 <tr>
@@ -71,7 +71,7 @@
                             </td>
                             <x-td>
                                 @if ($recipiente->estatus == 1)
-                                    <x-button wire:click="estatus_register({{  $recipiente->id_recipiente  }})">
+                                    <x-button wire:click="estatus_register({{ $recipiente->id_recipiente }})">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                                             viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                                             stroke-linecap="round" stroke-linejoin="round"
@@ -84,7 +84,7 @@
                                         </svg>
                                     </x-button>
                                 @else
-                                    <x-danger-button wire:click="estatus_register({{  $recipiente->id_recipiente  }})">
+                                    <x-danger-button wire:click="estatus_register({{ $recipiente->id_recipiente }})">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                                             viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                                             stroke-linecap="round" stroke-linejoin="round"

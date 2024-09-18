@@ -25,7 +25,7 @@
                 <path d="M9 14l6 0" />
             </svg> Nuevo</x-button>
     </div>
-    <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
+    <div class="overflow-x-auto shadow-md sm:rounded-lg">
         <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
             <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                 <tr>
@@ -96,7 +96,8 @@
                                         </svg>
                                     </x-button>
                                 @else
-                                    <x-danger-button wire:click="estatus_register({{ $tipo_analisi->id_tipo_analisis }})">
+                                    <x-danger-button
+                                        wire:click="estatus_register({{ $tipo_analisi->id_tipo_analisis }})">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                                             viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                                             stroke-linecap="round" stroke-linejoin="round"
@@ -191,7 +192,8 @@
                     <x-select wire:model="editRegister.muestra" type="text" class="block mt-1 w-full">\
                         <option value="">Seleccione una opción</option>
                         @foreach ($tipo_muestras as $tipo_muestra)
-                            <option value="{{ $tipo_muestra->id_tipo_muestra }}">{{ $tipo_muestra->nom_tipo_muestra }}
+                            <option value="{{ $tipo_muestra->id_tipo_muestra }}">
+                                {{ $tipo_muestra->nom_tipo_muestra }}
                             </option>
                         @endforeach
                     </x-select>

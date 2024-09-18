@@ -12,7 +12,7 @@
             </div>
             <div class="flex flex-col w-full">
                 <label for="">Buscar:</label>
-                <x-input wire:model.live="search" placeholder="(Nombre categoria)" class="w-full" />
+                <x-input wire:model.live="search" placeholder="(Nombre categoría)" class="w-full" />
             </div>
         </div>
         <x-button wire:click="new_register"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
@@ -25,7 +25,7 @@
                 <path d="M9 14l6 0" />
             </svg> Nuevo</x-button>
     </div>
-    <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
+    <div class="overflow-x-auto shadow-md sm:rounded-lg">
         <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
             <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                 <tr>

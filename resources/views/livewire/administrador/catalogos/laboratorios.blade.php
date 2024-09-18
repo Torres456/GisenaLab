@@ -23,9 +23,9 @@
                 <path d="M17 21h-10a2 2 0 0 1 -2 -2v-14a2 2 0 0 1 2 -2h7l5 5v11a2 2 0 0 1 -2 2z" />
                 <path d="M12 11l0 6" />
                 <path d="M9 14l6 0" />
-            </svg> Nuevo  </x-button>
+            </svg> Nuevo </x-button>
     </div>
-    <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
+    <div class="overflow-x-auto shadow-md sm:rounded-lg">
         <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
             <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                 <tr>
@@ -71,7 +71,7 @@
                             </td>
                             <x-td>
                                 @if ($dato->estatus == 1)
-                                    <x-button wire:click="estatus_register({{  $dato->id_laboratorio  }})">
+                                    <x-button wire:click="estatus_register({{ $dato->id_laboratorio }})">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                                             viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                                             stroke-linecap="round" stroke-linejoin="round"
@@ -84,7 +84,7 @@
                                         </svg>
                                     </x-button>
                                 @else
-                                    <x-danger-button wire:click="estatus_register({{  $dato->id_laboratorio  }})">
+                                    <x-danger-button wire:click="estatus_register({{ $dato->id_laboratorio }})">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                                             viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                                             stroke-linecap="round" stroke-linejoin="round"
@@ -126,7 +126,8 @@
             <form wire:submit="new_form">
                 <div>
                     <x-label>Nombre Laboratorio:</x-label>
-                    <x-input wire:model="newRegister.descripcion" type="text" class="block mt-1 w-full" onkeyup="mayuscula(this)"/>
+                    <x-input wire:model="newRegister.descripcion" type="text" class="block mt-1 w-full"
+                        onkeyup="mayuscula(this)" />
                     <x-input-error for="newRegister.descripcion" />
                 </div>
                 <div class="mt-5 flex justify-around">
@@ -148,7 +149,8 @@
             <form wire:submit="edit_form">
                 <div>
                     <x-label>Nombre Laboratorio:</x-label>
-                    <x-input wire:model="editRegister.descripcion" type="text" class="block mt-1 w-full" onkeyup="mayuscula(this)"/>
+                    <x-input wire:model="editRegister.descripcion" type="text" class="block mt-1 w-full"
+                        onkeyup="mayuscula(this)" />
                     <x-input-error for="editRegister.descripcion" />
                 </div>
                 <div class="mt-5 flex justify-around">
