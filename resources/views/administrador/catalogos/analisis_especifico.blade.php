@@ -1,17 +1,7 @@
-<x-app-layout>
-    <x-panel-menu>
-        <x-slot name="content">
-            @livewire('administrador.catalogos.analisis-especifico')
-        </x-slot>
-    </x-panel-menu>
-</x-app-layout>
-
-
-<script src="{{ asset('js/mayusculas.js') }}"></script>
-<style>
-     .custom-scroll {
-     overflow-y: scroll;
-     scrollbar-width: thin;
-     scrollbar-color: #5fa631 #111827;
- }
-</style>
+<x-paneles.personal>
+    <x-slot:titulo>
+        Análisis específicos
+    </x-slot>
+    @livewire('administrador.catalogos.analisis-especifico')
+    <script src="{{ asset('js/mayusculas.js') }}"></script>
+</x-paneles.personal>
