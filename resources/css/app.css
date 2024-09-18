@@ -36,6 +36,6 @@
     }
 
     .aside_section-title {
-        @apply w-[220px] flex items-center border-b border-cyan-50 pb-3 pt-5 overflow-hidden z-50 sticky top-0 left-0;
+        @apply w-[220px] flex items-center border-b border-cyan-50 pb-4 pt-5 overflow-hidden z-50 sticky top-0 left-0;
     }
 }
