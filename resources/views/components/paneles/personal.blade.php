@@ -300,7 +300,7 @@
         class="z-20 fixed top-0 left-0 w-[250px] h-screen bg-zinc-700 pb-5 pl-[15px] pr-[15px] -translate-x-full overflow-hidden  contenedor  md:translate-x-0 md:hover:w-[250px]  dark:bg-gray-800">
 
         {{-- Title page --}}
-        <div class="aside_section-title bg-zinc-700">
+        <div class="aside_section-title bg-zinc-700 dark:bg-gray-800">
             <img src="{{ asset('images/G_Logo.png') }}" alt="" class="list_image">
             <span class="text-2xl ml-[15px] text-slate-100">Gisenalabs</span>
         </div>
@@ -479,8 +479,9 @@
             {{ $slot }}
         </main>
 
-        <div class="h-[45px] w-full bg-white mt-auto flex items-center border-t border-gray-200 ">
-            <h2 class="ml-auto pr-5">Version 1.2.0</h2>
+        <div
+            class="h-[45px] w-full bg-white mt-auto flex items-center border-t border-gray-200 dark:bg-gray-800 dark:border-gray-700">
+            <h2 class="ml-auto pr-5 dark:text-gray-200">Version 1.2.0</h2>
         </div>
     </div>
 
