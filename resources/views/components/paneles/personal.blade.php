@@ -439,10 +439,10 @@
         class="z-10 fixed left-0 right-0 top-0 bottom-0 bg-gradient-to-l from-white/50  to-black/30 hidden md:hidden dark:bg-gradient-to-l dark:from-black/50  dark:to-white/30">
     </div>
 
-    <div id="home" class="pt-[58px] px-2 min-h-screen md:ml-[250px] bg-gray-100 dark:bg-gray-900 flex flex-col"
+    <div id="home" class="pt-[58px]  min-h-screen md:ml-[250px] bg-gray-100 dark:bg-gray-900 flex flex-col"
         style="transition:margin-left 0.5s;">
         <header class="bg-gray-100 dark:bg-gray-900 mt-4">
-            <div class="mx-auto py-3 px-1 md:flex md:justify-between">
+            <div class="mx-auto py-5 px-4 md:flex md:justify-between">
                 <div class="">
                     <h2 class="font-bold text-3xl text-dark dark:text-gray-200 leading-tight">
                         <strong>{{ $titulo }}</strong>
@@ -475,7 +475,7 @@
             </div>
         </header>
         <!-- Page Content -->
-        <main class="px-1 dark:text-gray-200 mt-2 mb-2">
+        <main class="px-4 dark:text-gray-200 mt-4 mb-2">
             {{ $slot }}
         </main>
 
