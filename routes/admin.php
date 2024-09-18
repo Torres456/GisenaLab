@@ -46,6 +46,10 @@ Route::get('/catalogo/analisi_esoecificos', function () {
     return view('administrador.catalogos.analisis_especifico');
 })->name('catalogos.analisis_especifico');
 
+Route::get('/catalogo/descripcion_muestra', function () {
+    return view('administrador.catalogos.descripcion_muestra');
+})->name('catalogos.descripcion_muetras');
+
 Route::get('/catalogo/contenedores', function () {
     return view('administrador.catalogos.contenedores');
 })->name('catalogos.contenedores');
@@ -109,6 +113,8 @@ Route::get('/catalogo/roles_empleados', function () {
 Route::get('/orden_servicio', function () {
     return view('administrador.ordenes');
 })->name('administrador.ordenes');
+
+
 
 Route::get('registro/gestores', function () {
     return view('administrador.gestores');

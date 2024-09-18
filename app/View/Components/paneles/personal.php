@@ -23,15 +23,15 @@ class personal extends Component
         switch (Auth::user()->id_tipo_usuario) {
 
             case 1:
-                $this->rutas = rutas::where('estado', 1)->where('tipo', 1)->get();
+                $this->rutas = rutas::where('estado', 1)->where('tipo', 1)->orderBy('title', 'asc')->get();
                 break;
 
             case 3:
-                $this->rutas = rutas::where('estado', 1)->where('tipo', 3)->get();
+                $this->rutas = rutas::where('estado', 1)->where('tipo', 3)->orderBy('title', 'asc')->get();
                 break;
 
             case 5:
-                $this->rutas = rutas::where('estado', 1)->where('tipo', 5)->get();
+                $this->rutas = rutas::where('estado', 1)->where('tipo', 5)->orderBy('title', 'asc')->get();
                 break;
         }
     }

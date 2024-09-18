@@ -39,5 +39,8 @@ class catalogo_tipo_muestra extends Model
         return $this->hasMany(muestra_orden_servicio::class, 'id_categoria', 'id_categoria');
     }
 
+    public function descripcion_muestra(){
+        return $this->hasMany(descripcion_muestra::class, 'id_tipo_analisis','id_tipo_analisis');
+    }
     use HasFactory;
 }

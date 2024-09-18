@@ -1,7 +1,7 @@
 <x-paneles.personal>
     <x-slot:titulo>
-        Registro de Interesados
+        Descripción de Muestras
     </x-slot>
-    @livewire('administrador.interesados')
+    @livewire('administrador.catalogos.descripcion-muestra')
     <script src="{{ asset('js/mayusculas.js') }}"></script>
 </x-paneles.personal>
