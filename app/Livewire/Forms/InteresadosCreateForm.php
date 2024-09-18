@@ -17,87 +17,35 @@ use Livewire\Form;
 
 class InteresadosCreateForm extends Form
 {
+    public $nombre;
+    public $paterno;
+    public $materno;
+    public $telefono;
+    public $telefono_alter;
+    public $correo;
+    public $correo_alter;
+    public $contrasena;
+    public $contrasena_confirmation;
+    public $gestor;
+    public $nombre_contac;
+    public $materno_contac;
+    public $paterno_contac;
+    public $correo_contact;
+    public $correo_alter_contact;
+    public $telefono_contact;
+    public $telefono_alter_contact;
+    public $calle;
+    public $exterior;
+    public $interior;
+    public $cp;
+    public $entre;
+    public $referencia;
+    public $estado;
+    public $municipio;
+    public $colonia;
+
 
     public $new = false;
-
-    #[Rule(['required', 'max:100', new Les])]
-    public $nombre;
-
-    #[Rule(['required', 'max:100', new Les])]
-    public $paterno;
-
-    #[Rule(['required', 'max:100', new Les])]
-    public $materno;
-
-    #[Rule(['required', 'numeric', new telefono])]
-    public $telefono;
-
-    #[Rule(['required', 'numeric', new telefono])]
-    public $telefono_alter;
-
-    #[Rule(['required', 'email', 'unique:usuario_sistema,correo'])]
-    public $correo;
-
-    #[Rule(['required', 'email'])]
-    public $correo_alter;
-
-    #[Rule(['required', 'min:8', 'confirmed', new RulesPassword(8)])]
-    public $contrasena;
-
-    #[Rule(['required'])]
-    public $contrasena_confirmation;
-
-    #[Rule(['required'])]
-    public $gestor;
-
-    #[Rule(['required', 'max:100', new Les])]
-    public $nombre_contac;
-
-    #[Rule(['required', 'max:100', new Les])]
-    public $materno_contac;
-
-    #[Rule(['required', 'max:100', new Les])]
-    public $paterno_contac;
-
-    #[Rule(['required', 'email'])]
-    public $correo_contact;
-
-    #[Rule(['required', 'email'])]
-    public $correo_alter_contact;
-
-    #[Rule(['required', 'numeric', new telefono])]
-    public $telefono_contact;
-
-    #[Rule(['required', 'numeric', new telefono])]
-    public $telefono_alter_contact;
-
-
-    #[Rule(['required', 'max:100'])]
-    public $calle;
-
-    #[Rule(['max:20'])]
-    public $exterior;
-
-    #[Rule(['max:20'])]
-    public $interior;
-
-    #[Rule(['required', 'numeric', 'digits:5'])]
-    public $cp;
-
-    #[Rule(['max:250'])]
-    public $entre;
-
-    #[Rule(['max:250'])]
-    public $referencia;
-
-    #[Rule(['required'])]
-    public $estado;
-
-    #[Rule(['required'])]
-    public $municipio;
-
-    #[Rule(['required'])]
-    public $colonia;
 
     public function create(){
         $this->new = true;
@@ -105,6 +53,26 @@ class InteresadosCreateForm extends Form
 
     public function save()
     {
+        $this->validate([
+
+            'nombre' => ['required', 'max:100', new Les],
+            'paterno' => ['required', 'max:100', new Les],
+            'materno' => ['required', 'max:100', new Les],
+            'telefono' => ['required', 'numeric', new telefono],
+            'telefono_alter' => ['required'],
+            'correo' => ['required', 'email', 'unique:interesado,correo'],
+            'correo_alter' => ['required', 'email'],
+            'gestor' => ['required'],
+            'calle' => ['required', 'max:100'],
+            'exterior' => ['max:20'],
+            'interior' => ['max:20'],
+            'cp' => ['required', 'numeric'],
+            'entre' => ['max:250'],
+            'referencia' => ['max:250'],
+            'estado' => ['required'],
+            'municipio' => ['required'],
+            'colonia' => [' required'],
+        ]);
         DB::beginTransaction();
         try {
             $usuario = User::create([

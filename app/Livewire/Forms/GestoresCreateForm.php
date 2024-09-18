@@ -17,67 +17,52 @@ use Livewire\Form;
 class GestoresCreateForm extends Form
 {
 
-    #[Rule(['required', 'max:100', new Les])]
     public $nombre;
-
-    #[Rule(['required', 'max:100', new Les])]
     public $paterno;
-
-    #[Rule(['required', 'max:100', new Les])]
     public $materno;
-
-    #[Rule(['required', 'numeric', new telefono])]
     public $telefono;
-
-    #[Rule(['required'])]
     public $sexo;
-
-    #[Rule(['required', 'email', 'unique:usuario_sistema,correo'])]
     public $correo;
-
-    #[Rule(['required', 'min:8', 'confirmed', new Password(8)])]
     public $contraseña;
-
-    #[Rule(['required'])]
     public $contraseña_confirmation;
-
-    #[Rule(['required'])]
     public $zona;
-
-    #[Rule(['required', 'max:100'])]
     public $calle;
-
-    #[Rule(['max:20'])]
     public $exterior;
-
-    #[Rule(['max:20'])]
     public $interior;
-
-    #[Rule(['required', 'numeric', 'digits:5'])]
     public $cp;
-
-    #[Rule(['max:250'])]
     public $entre;
-
-    #[Rule(['max:250'])]
     public $referencia;
-
-    #[Rule(['required'])]
     public $estado;
-
-    #[Rule(['required'])]
     public $municipio;
-
-    #[Rule(['required'])]
     public $colonia;
 
     public $new = false;
 
-    public function create(){
+    public function create()
+    {
         $this->new = true;
     }
 
-    public function save(){
+    public function save()
+    {
+        $this->validate([
+            'nombre' => ['required', 'max:100', new Les,],
+            'paterno' => ['required', 'max:100', new Les],
+            'materno' => ['required', 'max:100', new Les],
+            'telefono' => ['required', 'numeric', new telefono],
+            'sexo' => ['required'],
+            'correo' => ['required', 'email', 'unique:usuario_sistema,correo'],
+            'zona' => ['required'],
+            'calle' => ['required', 'max:100'],
+            'exterior' => ['max:20'],
+            'interior' => ['max:20'],
+            'cp' => ['required', 'numeric'],
+            'entre' => ['max:250'],
+            'referencia' => ['max:250'],
+            'estado' => ['required'],
+            'municipio' => ['required'],
+            'colonia' => [' required'],
+        ]);
 
         DB::beginTransaction();
         try {
@@ -120,6 +105,7 @@ class GestoresCreateForm extends Form
             $this->new = false;
             $this->reset();
             session()->flash('green', 'Agregada correctamente');
+
             DB::commit();
         } catch (\Exception $e) {
             DB::rollback();
@@ -127,7 +113,8 @@ class GestoresCreateForm extends Form
         }
     }
 
-    public function cancel(){
+    public function cancel()
+    {
         $this->new = false;
         $this->reset();
     }

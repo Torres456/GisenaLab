@@ -15,75 +15,58 @@ use Livewire\Form;
 
 class EmpleadosCreateForm extends Form
 {
-
-
-    #[Rule(['required', 'max:50', new Les])]
     public $nombre;
-
-    #[Rule(['required', 'max:50', new Les])]
     public $a_paterno;
-
-    #[Rule(['required', 'max:50', new Les])]
     public $a_materno;
-
-    #[Rule(['required', 'email', 'max:255', 'unique:usuario_sistema,correo'])]
     public $correo;
-
-    #[Rule(['required', 'min:8', 'confirmed'])]
     public $contraseña;
-
-    #[Rule(['required'])]
     public $contraseña_confirmation;
-
-    #[Rule(['required', 'numeric', 'unique:empleado,curp'])]
     public $empleado;
-
-    #[Rule(['required', 'numeric'])]
     public $telefono;
-
-    #[Rule(['required', 'min:18'])]
     public $curp;
-
-    #[Rule(['required', 'min:12', 'max:13', new Fisica])]
     public $rfc;
-
-    #[Rule(['required'])]
     public $sexo;
-
-    #[Rule(['required'])]
     public $tipo;
-
-    #[Rule(['required', 'max:100'])]
     public $calle;
-
-    #[Rule(['required', 'max:20'])]
     public $exterior;
-
-    #[Rule(['nullable', 'max:20'])]
     public $interior;
-
-    #[Rule(['required', 'numeric', 'digits:5'])]
     public $cp;
-
-    #[Rule(['required'])]
     public $estado;
-
-    #[Rule(['required'])]
     public $municipio;
-
-    #[Rule(['required'])]
     public $colonia;
 
     public $new = false;
 
-    public function create(){
+    public function create()
+    {
         $this->new = true;
     }
 
     public function save()
     {
+        $this->validate([
+            'nombre' => ['required','max:50', new Les],
+            'a_paterno' => ['required','max:50', new Les],
+            'a_materno' => ['required','max:50', new Les],
+            'correo' => ['required', 'email','max:255', 'unique:usuario_sistema,correo'],
+            'empleado' => ['required', 'numeric', 'unique:empleado,no_empleado'],
+            'telefono' => ['required', 'numeric'],
+            'curp' => ['required','min:18', 'unique:empleado,curp'],
+            'rfc' => ['required','min:12','max:13', 'unique:empleado,rfc'],
+            'sexo' => ['required'],
+            'tipo' => ['required'],
+            'calle' => ['required','max:100'],
+            'exterior' => ['required','max:20'],
+            'interior' => ['nullable','max:20'],
+            'cp' => ['required','numeric', 'digits:5'],
+            'estado' => ['required'],
+            'municipio' => ['required'],
+            'colonia' => ['required'],
+        ]);
+
         DB::beginTransaction();
         try {
+
             $usuario = User::create([
                 'nombre' => $this->nombre,
                 'ap_paterno' => $this->a_paterno,
@@ -117,6 +100,7 @@ class EmpleadosCreateForm extends Form
             $this->new = false;
             $this->reset();
             session()->flash('green', 'Agregada correctamente');
+
             DB::commit();
         } catch (\Exception $e) {
             DB::rollback();
@@ -124,7 +108,8 @@ class EmpleadosCreateForm extends Form
         }
     }
 
-    public function cancel(){
+    public function cancel()
+    {
         $this->new = false;
         $this->reset('newRegister');
     }
