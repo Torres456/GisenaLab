@@ -13,9 +13,7 @@ return new class extends Migration
     {
         Schema::create('usuario_sistema', function (Blueprint $table) {
             $table->id('id_usuario_sistema');
-            $table->string('nombre', 50);
-            $table->string('ap_paterno', 50);
-            $table->string('ap_materno', 50);
+            $table->string('nombre', 150)->unique();
             $table->string('correo', 150)->unique();
             $table->string('contraseña');
             $table->integer('estatus');
