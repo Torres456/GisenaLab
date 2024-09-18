@@ -122,15 +122,10 @@
 
         .contenedor {
             scrollbar-gutter: stable;
-            /* scrollbar-width: thin; */
             scrollbar-width: none;
             overflow-y: scroll;
             overflow-x: hidden;
         }
-
-        /* .contenedor:hover {
-            scrollbar-width: thin;
-        } */
     </style>
 </head>
 
@@ -142,8 +137,6 @@
             <div class="lds-dual-ring"></div>
         </div>
     </div>
-
-    <x-banner />
 
     <nav id="nav" x-data="data()" style="transition: margin-left 0.5s;"
         class="fixed top-0 left-0 right-0 bg-white border-b border-gray-200 dark:bg-gray-800 dark:border-gray-700 md:ml-[250px] ">
