@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Password;
+use Laravel\Jetstream\Http\Controllers\Livewire\UserProfileController;
 
 //web
 Route::get('/', function () {
@@ -44,5 +45,13 @@ Route::post('/forgot-password', function (Request $request) {
 Route::group(['middleware' => 'web'], function () {
     Route::fallback(function () {
         return view('errors.404');
-    }); 
+    });
+});
+
+//profile
+Route::middleware([
+    'auth:sanctum',
+    config('jetstream.auth_session'),
+])->group(function () {
+    Route::get('/admin/perfil', [UserProfileController::class, 'show'])->name('admin.perfil.show');
 });
