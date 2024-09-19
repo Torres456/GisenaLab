@@ -85,7 +85,7 @@ class Gestores extends Component
 
     public function mount()
     {
-        $this->zonas = zona_representacion::all();
+        $this->zonas = zona_representacion::where('estatus','1')->get();
         $this->estados = estado::all();
     }
 

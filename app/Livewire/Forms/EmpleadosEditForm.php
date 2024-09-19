@@ -130,6 +130,7 @@ class EmpleadosEditForm extends Form
         $usuario = User::updateOrCreate([
             'id_usuario_sistema' => $search_emple->id_usuario_sistema,
         ], [
+            'nombre' => $this->nombre,
             'correo' => $this->correo,
         ]);
 

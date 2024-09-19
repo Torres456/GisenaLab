@@ -55,3 +55,11 @@ Route::middleware([
 ])->group(function () {
     Route::get('/admin/perfil', [UserProfileController::class, 'show'])->name('admin.perfil.show');
 });
+
+
+Route::middleware([
+    'auth:sanctum',
+    config('jetstream.auth_session'),
+])->group(function () {
+    Route::get('/empleado/perfil', [UserProfileController::class, 'show'])->name('empleado.perfil.show');
+});

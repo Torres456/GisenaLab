@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('catalogo_tipo_muestra', function (Blueprint $table) {
 
             $table->id('id_tipo_muestra');
-            $table->string('nom_tipo_muestra', 100)->unique();
+            $table->string('nom_tipo_muestra', 100);
             $table->string('caracteristicas', 100);
             $table->double('cantidad_requerida');
             $table->unsignedBigInteger('id_subcategoria');

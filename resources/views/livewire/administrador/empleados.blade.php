@@ -97,19 +97,6 @@
                             </svg>
                         </x-button></x-td>
                     @if ($empleado->usuario_sistema->estatus == 1)
-                        <x-td><x-danger-button wire:click="down_register({{ $empleado->id_empleado }})">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                    viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                    stroke-linecap="round" stroke-linejoin="round"
-                                    class="icon icon-tabler icons-tabler-outline icon-tabler-user-down">
-                                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                                    <path d="M8 7a4 4 0 1 0 8 0a4 4 0 0 0 -8 0" />
-                                    <path d="M6 21v-2a4 4 0 0 1 4 -4h4c.342 0 .674 .043 .99 .124" />
-                                    <path d="M19 16v6" />
-                                    <path d="M22 19l-3 3l-3 -3" />
-                                </svg>
-                            </x-danger-button></x-td>
-                    @else
                         <x-td><x-button wire:click="down_register({{ $empleado->id_empleado }})">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                                     viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
@@ -122,6 +109,19 @@
                                     <path d="M22 19l-3 -3l-3 3" />
                                 </svg>
                             </x-button></x-td>
+                    @else
+                        <x-td><x-danger-button wire:click="down_register({{ $empleado->id_empleado }})">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                    viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                    stroke-linecap="round" stroke-linejoin="round"
+                                    class="icon icon-tabler icons-tabler-outline icon-tabler-user-down">
+                                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                    <path d="M8 7a4 4 0 1 0 8 0a4 4 0 0 0 -8 0" />
+                                    <path d="M6 21v-2a4 4 0 0 1 4 -4h4c.342 0 .674 .043 .99 .124" />
+                                    <path d="M19 16v6" />
+                                    <path d="M22 19l-3 3l-3 -3" />
+                                </svg>
+                            </x-danger-button></x-td>
                     @endif
                 </x-tr>
             @endforeach
@@ -153,7 +153,7 @@
                 </div>
                 <div>
                     <x-label>Correo:</x-label>
-                    <x-input wire:model="newRegister.correo" class="block mt-1 w-full" />
+                    <x-input wire:model="newRegister.correo" type="email" class="block mt-1 w-full" />
                     <x-input-error for="newRegister.correo" />
                 </div>
                 <div class="grid grid-cols-2 max-md:grid-cols-1 w-full gap-3">
@@ -178,7 +178,7 @@
                     </div>
                     <div>
                         <x-label>Teléfono:</x-label>
-                        <x-input wire:model="newRegister.telefono" class="block mt-1 w-full" />
+                        <x-input wire:model="newRegister.telefono" type="tel" class="block mt-1 w-full" />
                         <x-input-error for="newRegister.telefono" />
                     </div>
                 </div>
@@ -264,7 +264,7 @@
                         <x-select wire:model.live="newRegister.municipio" type="text" class="block mt-1 w-full">
                             <option value="">Seleccione un municipio</option>
                             @foreach ($municipios as $municipio)
-                                <option value="{{ $municipio->id_municipio}}">{{ $municipio->nombre }}</option>
+                                <option value="{{ $municipio->id_municipio }}">{{ $municipio->nombre }}</option>
                             @endforeach
                         </x-select>
                         <x-input-error for="newRegister.municipio" />
@@ -371,7 +371,7 @@
                 </div>
                 <div>
                     <x-label>Correo:</x-label>
-                    <x-input wire:model="editRegister.correo" class="block mt-1 w-full" />
+                    <x-input wire:model="editRegister.correo" type="email" class="block mt-1 w-full" />
                     <x-input-error for="editRegister.correo" />
                 </div>
 
@@ -383,7 +383,7 @@
                     </div>
                     <div>
                         <x-label>Teléfono:</x-label>
-                        <x-input wire:model="editRegister.telefono" class="block mt-1 w-full" />
+                        <x-input wire:model="editRegister.telefono" type="tel" class="block mt-1 w-full" />
                         <x-input-error for="editRegister.telefono" />
                     </div>
                 </div>

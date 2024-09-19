@@ -14,7 +14,7 @@
                 <div class="flex flex-col max-md:w-full">
                     <label for="">Laboratorio:</label>
                     <x-select wire:model.live="search_lab" class="w-full">
-                        <option value="">Seleccione una opcion</option>
+                        <option value="">Seleccione una opción</option>
                         @foreach ($laboratorios as $laboratorio)
                             <option value="{{ $laboratorio->id_laboratorio }}">
                                 {{ $laboratorio->descripcion_laboratorio }}</option>
@@ -155,7 +155,7 @@
                 <div>
                     <x-label>Laboratorio:</x-label>
                     <x-select wire:model="newRegister.laboratorio" type="text" class="block mt-1 w-full">\
-                        <option value="">Seleccione una opcion:</option>
+                        <option value="">Seleccione una opción:</option>
                         @foreach ($laboratorios as $laboratorio)
                             <option value="{{ $laboratorio->id_laboratorio }}">
                                 {{ $laboratorio->descripcion_laboratorio }}</option>
@@ -189,7 +189,7 @@
                 <div>
                     <x-label>Laboratorio:</x-label>
                     <x-select wire:model="editRegister.laboratorio" type="text" class="block mt-1 w-full">
-                        <option value="">Seleccione una opcion</option>
+                        <option value="">Seleccione una opción</option>
                         @foreach ($laboratorios as $laboratorio)
                             <option value="{{ $laboratorio->id_laboratorio }}">
                                 {{ $laboratorio->descripcion_laboratorio }}</option>

@@ -85,7 +85,7 @@ class Interesados extends Component
     public function mount()
     {
         $this->estados = estado::all();
-        $this->gestores = gestor::all();
+        $this->gestores = gestor::where('estatus','1')->get();
     }
 
     public function updated($property, $value)

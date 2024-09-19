@@ -4,7 +4,7 @@
             <x-nav-panel href="{{ route('admin.registros.gestores') }}" :active="request()->routeIs('admin.registros.gestores')">Gestores</x-nav-panel>
         </li>
         <li class="dark:text-white flex items-center">
-            <x-nav-panel href="{{ route('admin.administrador.interesados') }}" :active="request()->routeIs('admin.administrador.interesados')">Interesados</x-nav-panel>
+            <x-nav-panel href="{{ route('admin.registros.interesados') }}" :active="request()->routeIs('admin.registros.interesados')">Interesados</x-nav-panel>
         </li>
         <li class="dark:text-white flex items-center">
             <x-nav-panel href="{{ route('admin.registros.clientes') }}" :active="request()->routeIs('admin.registros.clientes')">Clientes</x-nav-panel>

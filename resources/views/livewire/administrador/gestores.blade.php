@@ -191,7 +191,7 @@
                 <div class="w-full grid grid-cols-2 max-md:grid-cols-1 gap-3">
                     <div>
                         <x-label>Teléfono:</x-label>
-                        <x-input wire:model="newRegister.telefono" type="text" class="block mt-1 w-full"
+                        <x-input wire:model="newRegister.telefono" type="tel" class="block mt-1 w-full"
                             onkeyup="mayuscula(this)" />
                         <x-input-error for="newRegister.telefono" />
                     </div>
@@ -207,7 +207,7 @@
                 </div>
                 <div>
                     <x-label>Correo:</x-label>
-                    <x-input wire:model="newRegister.correo" type="text" class="block mt-1 w-full" />
+                    <x-input wire:model="newRegister.correo" type="email" class="block mt-1 w-full" />
                     <x-input-error for="newRegister.correo" />
                 </div>
                 <div class="w-full grid grid-cols-2 max-md:grid-cols-1 gap-3">
@@ -258,7 +258,7 @@
                     </div>
                     <div>
                         <x-label>CP:</x-label>
-                        <x-input wire:model="newRegister.cp" type="text" class="block mt-1 w-full"
+                        <x-input wire:model="newRegister.cp" type="number" class="block mt-1 w-full"
                             onkeyup="mayuscula(this)" />
                         <x-input-error for="newRegister.cp" />
                     </div>
@@ -345,7 +345,7 @@
                 <div class="w-full grid grid-cols-2 max-md:grid-cols-1 gap-3">
                     <div>
                         <x-label>Teléfono:</x-label>
-                        <x-input wire:model="editRegister.telefono" type="text" class="block mt-1 w-full"
+                        <x-input wire:model="editRegister.telefono" type="tel" class="block mt-1 w-full"
                             onkeyup="mayuscula(this)" />
                         <x-input-error for="editRegister.telefono" />
                     </div>
@@ -361,7 +361,7 @@
                 </div>
                 <div>
                     <x-label>Correo:</x-label>
-                    <x-input wire:model="editRegister.correo" type="text" class="block mt-1 w-full" />
+                    <x-input wire:model="editRegister.correo" type="email" class="block mt-1 w-full" />
                     <x-input-error for="editRegister.correo" />
                 </div>
                 <div>
@@ -400,7 +400,7 @@
                     </div>
                     <div>
                         <x-label>CP:</x-label>
-                        <x-input wire:model="editRegister.cp" type="text" class="block mt-1 w-full"
+                        <x-input wire:model="editRegister.cp" type="number" class="block mt-1 w-full"
                             onkeyup="mayuscula(this)" />
                         <x-input-error for="editRegister.cp" />
                     </div>

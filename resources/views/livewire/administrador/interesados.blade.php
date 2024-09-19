@@ -211,13 +211,13 @@
                 <div class="w-full grid grid-cols-2 max-md:grid-cols-1 gap-3">
                     <div>
                         <x-label>Teléfono:</x-label>
-                        <x-input wire:model="newRegister.telefono" type="text" class="block mt-1 w-full"
+                        <x-input wire:model="newRegister.telefono" type="tel" class="block mt-1 w-full"
                             onkeyup="mayuscula(this)" />
                         <x-input-error for="newRegister.telefono" />
                     </div>
                     <div>
                         <x-label>Teléfono Alternativo:</x-label>
-                        <x-input wire:model="newRegister.telefono_alter" type="text" class="block mt-1 w-full"
+                        <x-input wire:model="newRegister.telefono_alter" type="tel" class="block mt-1 w-full"
                             onkeyup="mayuscula(this)" />
                         <x-input-error for="newRegister.telefono_alter" />
                     </div>
@@ -225,12 +225,12 @@
                 <div class="w-full grid grid-cols-2 max-md:grid-cols-1 gap-3">
                     <div>
                         <x-label>Correo:</x-label>
-                        <x-input wire:model="newRegister.correo" type="text" class="block mt-1 w-full" />
+                        <x-input wire:model="newRegister.correo" type="email" class="block mt-1 w-full" />
                         <x-input-error for="newRegister.correo" />
                     </div>
                     <div>
                         <x-label>Correo Alternativo:</x-label>
-                        <x-input wire:model="newRegister.correo_alter" type="text" class="block mt-1 w-full" />
+                        <x-input wire:model="newRegister.correo_alter" type="email" class="block mt-1 w-full" />
                         <x-input-error for="newRegister.correo_alter" />
                     </div>
                 </div>
@@ -249,7 +249,7 @@
                 </div>
                 <div>
                     <x-label>Gestor:</x-label>
-                    <x-select wire:model.live="newRegister.gestor" type="text" class="block mt-1 w-full">
+                    <x-select wire:model.live="newRegister.gestor" class="block mt-1 w-full">
                         <option value="">Seleccione un gestor</option>
                         @foreach ($gestores as $gestor)
                             <option value="{{ $gestor->id_gestor }}">{{ $gestor->nombre . ' ' . $gestor->ap_paterno . ' ' . $gestor->ap_materno }}
@@ -283,24 +283,24 @@
                 <div class="w-full grid grid-cols-2 max-md:grid-cols-1 gap-3">
                     <div>
                         <x-label>Correo:</x-label>
-                        <x-input wire:model="newRegister.correo_contact" type="text" class="block mt-1 w-full" />
+                        <x-input wire:model="newRegister.correo_contact" type="email" class="block mt-1 w-full" />
                         <x-input-error for="newRegister.correo_contact" />
                     </div>
                     <div>
                         <x-label>Correo Alternativo:</x-label>
-                        <x-input wire:model="newRegister.correo_alter_contact" type="text" class="block mt-1 w-full" />
+                        <x-input wire:model="newRegister.correo_alter_contact" type="email" class="block mt-1 w-full" />
                         <x-input-error for="newRegister.correo_alter_contact" />
                     </div>
                 </div>
                 <div class="w-full grid grid-cols-2 max-md:grid-cols-1 gap-3">
                     <div>
                         <x-label>Teléfono:</x-label>
-                        <x-input wire:model="newRegister.telefono_contact" type="text" class="block mt-1 w-full" />
+                        <x-input wire:model="newRegister.telefono_contact" type="tel" class="block mt-1 w-full" />
                         <x-input-error for="newRegister.telefono_contact" />
                     </div>
                     <div>
                         <x-label>Teléfono Alternativo:</x-label>
-                        <x-input wire:model="newRegister.telefono_alter_contact" type="text" class="block mt-1 w-full" />
+                        <x-input wire:model="newRegister.telefono_alter_contact" type="tel" class="block mt-1 w-full" />
                         <x-input-error for="newRegister.telefono_alter_contact" />
                     </div>
                 </div>
@@ -330,7 +330,7 @@
                     </div>
                     <div>
                         <x-label>CP:</x-label>
-                        <x-input wire:model="newRegister.cp" type="text" class="block mt-1 w-full"
+                        <x-input wire:model="newRegister.cp" type="number" class="block mt-1 w-full"
                             onkeyup="mayuscula(this)" />
                         <x-input-error for="newRegister.cp" />
                     </div>
@@ -418,13 +418,13 @@
                 <div class="w-full grid grid-cols-2 max-md:grid-cols-1 gap-3">
                     <div>
                         <x-label>Teléfono:</x-label>
-                        <x-input wire:model="editRegister.telefono" type="text" class="block mt-1 w-full"
+                        <x-input wire:model="editRegister.telefono" type="tel" class="block mt-1 w-full"
                             onkeyup="mayuscula(this)" />
                         <x-input-error for="editRegister.telefono" />
                     </div>
                     <div>
                         <x-label>Teléfono Alternativo:</x-label>
-                        <x-input wire:model="editRegister.telefono_alter" type="text" class="block mt-1 w-full"
+                        <x-input wire:model="editRegister.telefono_alter" type="tel" class="block mt-1 w-full"
                             onkeyup="mayuscula(this)" />
                         <x-input-error for="editRegister.telefono_alter" />
                     </div>
@@ -432,12 +432,12 @@
                 <div class="w-full grid grid-cols-2 max-md:grid-cols-1 gap-3">
                     <div>
                         <x-label>Correo:</x-label>
-                        <x-input wire:model="editRegister.correo" type="text" class="block mt-1 w-full" />
+                        <x-input wire:model="editRegister.correo" type="email" class="block mt-1 w-full" />
                         <x-input-error for="editRegister.correo" />
                     </div>
                     <div>
                         <x-label>Correo Alternativo:</x-label>
-                        <x-input wire:model="editRegister.correo_alter" type="text" class="block mt-1 w-full" />
+                        <x-input wire:model="editRegister.correo_alter" type="email" class="block mt-1 w-full" />
                         <x-input-error for="editRegister.correo_alter" />
                     </div>
                 </div>
@@ -477,24 +477,24 @@
                 <div class="w-full grid grid-cols-2 max-md:grid-cols-1 gap-3">
                     <div>
                         <x-label>Correo:</x-label>
-                        <x-input wire:model="editRegister.correo_contact" type="text" class="block mt-1 w-full" />
+                        <x-input wire:model="editRegister.correo_contact" type="email" class="block mt-1 w-full" />
                         <x-input-error for="editRegister.correo_contact" />
                     </div>
                     <div>
                         <x-label>Correo Alternativo:</x-label>
-                        <x-input wire:model="editRegister.correo_alter_contact" type="text" class="block mt-1 w-full" />
+                        <x-input wire:model="editRegister.correo_alter_contact" type="email" class="block mt-1 w-full" />
                         <x-input-error for="editRegister.correo_alter_contact" />
                     </div>
                 </div>
                 <div class="w-full grid grid-cols-2 max-md:grid-cols-1 gap-3">
                     <div>
                         <x-label>Teléfono:</x-label>
-                        <x-input wire:model="editRegister.telefono_contact" type="text" class="block mt-1 w-full" />
+                        <x-input wire:model="editRegister.telefono_contact" type="tel" class="block mt-1 w-full" />
                         <x-input-error for="editRegister.telefono_contact" />
                     </div>
                     <div>
                         <x-label>Teléfono Alternativo:</x-label>
-                        <x-input wire:model="editRegister.telefono_alter_contact" type="text" class="block mt-1 w-full" />
+                        <x-input wire:model="editRegister.telefono_alter_contact" type="tel" class="block mt-1 w-full" />
                         <x-input-error for="editRegister.telefono_alter_contact" />
                     </div>
                 </div>
@@ -524,7 +524,7 @@
                     </div>
                     <div>
                         <x-label>CP:</x-label>
-                        <x-input wire:model="editRegister.cp" type="text" class="block mt-1 w-full"
+                        <x-input wire:model="editRegister.cp" type="number" class="block mt-1 w-full"
                             onkeyup="mayuscula(this)" />
                         <x-input-error for="editRegister.cp" />
                     </div>

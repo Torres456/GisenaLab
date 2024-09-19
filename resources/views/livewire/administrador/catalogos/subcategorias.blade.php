@@ -173,7 +173,7 @@
                 <div>
                     <x-label>Categoría:</x-label>
                     <x-select wire:model="editRegister.categoria" type="text" class="block mt-1 w-full">
-                        <option value="">Seleccione una opcion</option>
+                        <option value="">Seleccione una opción</option>
                         @foreach ($categorias as $categoria)
                             <option value="{{ $categoria->id_categoria }}">{{ $categoria->nombre_categoria }}</option>
                         @endforeach

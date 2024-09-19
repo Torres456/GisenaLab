@@ -47,8 +47,6 @@ class DatabaseSeeder extends Seeder
 
         $user = new User();
         $user->nombre = "Luis";
-        $user->ap_paterno = "Luna";
-        $user->ap_materno = "Ojeda";
         $user->correo = "lued1006@gmail.com";
         $user->contraseña = "Hmcnjsa1*";
         $user->estatus = "1";
@@ -58,8 +56,6 @@ class DatabaseSeeder extends Seeder
 
         $user2 = new User();
         $user2->nombre = "Jovanny";
-        $user2->ap_paterno = "Torres";
-        $user2->ap_materno = "Barrientos";
         $user2->correo = "barrientostorres9@gmail.com";
         $user2->contraseña = "Torres123#";
         $user2->estatus = "1";
@@ -69,8 +65,6 @@ class DatabaseSeeder extends Seeder
 
         $user3 = new User();
         $user3->nombre = "Admin";
-        $user3->ap_paterno = "Admin";
-        $user3->ap_materno = "Admin";
         $user3->correo = "admin@gmail.com";
         $user3->contraseña = "Admin123#";
         $user3->estatus = "1";
@@ -80,8 +74,6 @@ class DatabaseSeeder extends Seeder
 
         $user4 = new User();
         $user4->nombre = "Fabian";
-        $user4->ap_paterno = "peres";
-        $user4->ap_materno = "dominguez";
         $user4->correo = "cliente@gmail.com";
         $user4->contraseña = "Cliente123#";
         $user4->estatus = "1";
@@ -91,8 +83,6 @@ class DatabaseSeeder extends Seeder
 
         $user5 = new User();
         $user5->nombre = "Carlos";
-        $user5->ap_paterno = "Enrique";
-        $user5->ap_materno = "Santos";
         $user5->correo = "gestor@gmail.com";
         $user5->contraseña = "Gestor123#";
         $user5->estatus = "1";
@@ -102,8 +92,6 @@ class DatabaseSeeder extends Seeder
 
         $user6 = new User();
         $user6->nombre = "Juan";
-        $user6->ap_paterno = "Peres";
-        $user6->ap_materno = "Martines";
         $user6->correo = "interesado@gmail.com";
         $user6->contraseña = "Interesado123#";
         $user6->estatus = "1";
@@ -113,8 +101,6 @@ class DatabaseSeeder extends Seeder
 
         $user6 = new User();
         $user6->nombre = "Diego";
-        $user6->ap_paterno = "Peres";
-        $user6->ap_materno = "Martines";
         $user6->correo = "empleado@gmail.com";
         $user6->contraseña = "empleado123#";
         $user6->estatus = "1";
@@ -311,5 +297,45 @@ class DatabaseSeeder extends Seeder
         $rutas20->tipo = 1;
         $rutas20->content = 1;
         $rutas20->save();
+
+
+
+        $rutas21 = new rutas();
+        $rutas21->title = "Empleados";
+        $rutas21->description = "Agregar, editar y dar de baja empleados";
+        $rutas21->route = "admin.registros.empleados";
+        $rutas21->estado = 1;
+        $rutas21->tipo = 1;
+        $rutas21->content = 2;
+        $rutas21->save();
+
+
+        $rutas22 = new rutas();
+        $rutas22->title = "Clientes";
+        $rutas22->description = "Agregar, editar y dar de baja clientes";
+        $rutas22->route = "admin.registros.clientes";
+        $rutas22->estado = 1;
+        $rutas22->tipo = 1;
+        $rutas22->content = 2;
+        $rutas22->save();
+
+
+        $rutas23 = new rutas();
+        $rutas23->title = "Interesados";
+        $rutas23->description = "Agregar, editar y dar de baja interesados";
+        $rutas23->route = "admin.registros.interesados";
+        $rutas23->estado = 1;
+        $rutas23->tipo = 1;
+        $rutas23->content = 2;
+        $rutas23->save();
+
+        $rutas24 = new rutas();
+        $rutas24->title = "Gestores";
+        $rutas24->description = "Agregar, editar y dar de baja gestores";
+        $rutas24->route = "admin.registros.gestores";
+        $rutas24->estado = 1;
+        $rutas24->tipo = 1;
+        $rutas24->content = 2;
+        $rutas24->save();
     }
 }

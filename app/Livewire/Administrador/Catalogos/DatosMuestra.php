@@ -27,7 +27,7 @@ class DatosMuestra extends Component
     public $laboratorios;
     public function mount()
     {
-        $this->laboratorios = laboratorios::all();
+        $this->laboratorios = laboratorios::where('estatus','1')->get();
     }
 
     //&================================================================= Nuevo Registro
