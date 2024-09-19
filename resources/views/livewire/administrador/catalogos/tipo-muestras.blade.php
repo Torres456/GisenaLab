@@ -149,22 +149,23 @@
                         onkeyup="mayuscula(this)" />
                     <x-input-error for="newRegister.nombre" />
                 </div>
+
                 <div>
-                    <x-label>Cantidad Requrida:</x-label>
-                    <x-input wire:model="newRegister.requerido" type="text" class="block mt-1 w-full" />
-                    <x-input-error for="newRegister.requerido" />
+                    <x-label>Características:</x-label>
+                    <x-textarea wire:model="newRegister.caracteristicas" type="text" class="block mt-1 w-full"
+                        onkeyup="mayuscula(this)"></x-textarea>
+                    <x-input-error for="newRegister.caracteristicas" />
                 </div>
                 <div class=" grid grid-cols-2 gap-5 max-md:grid-cols-1">
                     <div>
-                        <x-label>Características:</x-label>
-                        <x-input wire:model="newRegister.caracteristicas" type="text" class="block mt-1 w-full"
-                            onkeyup="mayuscula(this)" />
-                        <x-input-error for="newRegister.caracteristicas" />
+                        <x-label>Cantidad Requrida:</x-label>
+                        <x-input wire:model="newRegister.requerido" type="text" class="block mt-1 w-full" />
+                        <x-input-error for="newRegister.requerido" />
                     </div>
                     <div>
                         <x-label>Unidad Medida:</x-label>
                         <x-select wire:model="newRegister.unidad" type="text" class="block mt-1 w-full">\
-                            <option value="">Seleccione una opcion</option>
+                            <option value="">Seleccione una opción</option>
                             @foreach ($unidad_medidas as $unidad_medida)
                                 <option value="{{ $unidad_medida->id_unidad_medida }}">
                                     {{ $unidad_medida->abreviatura . ' - ' . $unidad_medida->nombre_unidad }}
@@ -174,30 +175,32 @@
                         <x-input-error for="newRegister.unidad" />
                     </div>
                 </div>
-                <div>
-                    <x-label>Subcategoría:</x-label>
-                    <x-select wire:model="newRegister.subcategoria" type="text" class="block mt-1 w-full">\
-                        <option value="">Seleccione una opcion</option>
-                        @foreach ($subcategorias as $subcategoria)
-                            <option value="{{ $subcategoria->id_subcategoria }}">
-                                {{ $subcategoria->nom_subcategoria }}
-                            </option>
-                        @endforeach
-                    </x-select>
-                    <x-input-error for="newRegister.subcategoria" />
+                <div class=" grid grid-cols-2 gap-5 max-md:grid-cols-1">
+                    <div>
+                        <x-label>Subcategoría:</x-label>
+                        <x-select wire:model="newRegister.subcategoria" type="text" class="block mt-1 w-full">\
+                            <option value="">Seleccione una opción</option>
+                            @foreach ($subcategorias as $subcategoria)
+                                <option value="{{ $subcategoria->id_subcategoria }}">
+                                    {{ $subcategoria->nom_subcategoria }}
+                                </option>
+                            @endforeach
+                        </x-select>
+                        <x-input-error for="newRegister.subcategoria" />
+                    </div>
+                    <div>
+                        <x-label>Unidad Metodo:</x-label>
+                        <x-select wire:model="newRegister.metodo" type="text" class="block mt-1 w-full">\
+                            <option value="">Seleccione una opción</option>
+                            @foreach ($unidad_metodos as $unidad_metodo)
+                                <option value="{{ $unidad_metodo->id_unidad_metodo }}">
+                                    {{ $unidad_metodo->descripcion }}
+                                </option>
+                            @endforeach
+                        </x-select>
+                        <x-input-error for="newRegister.metodo" />
+                    </div>
                 </div>
-                <div>
-                    <x-label>Unidad Metodo:</x-label>
-                    <x-select wire:model="newRegister.metodo" type="text" class="block mt-1 w-full">\
-                        <option value="">Seleccione una opcion</option>
-                        @foreach ($unidad_metodos as $unidad_metodo)
-                            <option value="{{ $unidad_metodo->id_unidad_metodo }}">{{ $unidad_metodo->descripcion }}
-                            </option>
-                        @endforeach
-                    </x-select>
-                    <x-input-error for="newRegister.metodo" />
-                </div>
-
 
                 <div class="mt-5 flex justify-around">
                     <x-button>Agregar</x-button>
@@ -222,22 +225,23 @@
                         onkeyup="mayuscula(this)" />
                     <x-input-error for="editRegister.nombre" />
                 </div>
+
                 <div>
-                    <x-label>Cantidad Requrida:</x-label>
-                    <x-input wire:model="editRegister.requerido" type="text" class="block mt-1 w-full" />
-                    <x-input-error for="editRegister.requerido" />
+                    <x-label>Características:</x-label>
+                    <x-textarea wire:model="editRegister.caracteristicas" type="text" class="block mt-1 w-full"
+                        onkeyup="mayuscula(this)"></x-textarea>
+                    <x-input-error for="editRegister.caracteristicas" />
                 </div>
                 <div class=" grid grid-cols-2 gap-5 max-md:grid-cols-1">
                     <div>
-                        <x-label>Características:</x-label>
-                        <x-input wire:model="editRegister.caracteristicas" type="text" class="block mt-1 w-full"
-                            onkeyup="mayuscula(this)" />
-                        <x-input-error for="editRegister.caracteristicas" />
+                        <x-label>Cantidad Requrida:</x-label>
+                        <x-input wire:model="editRegister.requerido" type="text" class="block mt-1 w-full" />
+                        <x-input-error for="editRegister.requerido" />
                     </div>
                     <div>
                         <x-label>Unidad Medida:</x-label>
                         <x-select wire:model="editRegister.unidad" type="text" class="block mt-1 w-full">\
-                            <option value="">Seleccione una opcion</option>
+                            <option value="">Seleccione una opción</option>
                             @foreach ($unidad_medidas as $unidad_medida)
                                 <option value="{{ $unidad_medida->id_unidad_medida }}">
                                     {{ $unidad_medida->nombre_unidad }}
@@ -247,29 +251,32 @@
                         <x-input-error for="editRegister.unidad" />
                     </div>
                 </div>
-                <div>
-                    <x-label>Subcategoría:</x-label>
-                    <x-select wire:model="editRegister.subcategoria" type="text" class="block mt-1 w-full">\
-                        <option value="">Seleccione una opcion</option>
-                        @foreach ($subcategorias as $subcategoria)
-                            <option value="{{ $subcategoria->id_subcategoria }}">
-                                {{ $subcategoria->nom_subcategoria }}
-                            </option>
-                        @endforeach
-                    </x-select>
-                    <x-input-error for="editRegister.subcategoria" />
-                </div>
+                <div class=" grid grid-cols-2 gap-5 max-md:grid-cols-1">
+                    <div>
+                        <x-label>Subcategoría:</x-label>
+                        <x-select wire:model="editRegister.subcategoria" type="text" class="block mt-1 w-full">\
+                            <option value="">Seleccione una opción</option>
+                            @foreach ($subcategorias as $subcategoria)
+                                <option value="{{ $subcategoria->id_subcategoria }}">
+                                    {{ $subcategoria->nom_subcategoria }}
+                                </option>
+                            @endforeach
+                        </x-select>
+                        <x-input-error for="editRegister.subcategoria" />
+                    </div>
 
-                <div>
-                    <x-label>Unidad Metodo:</x-label>
-                    <x-select wire:model="editRegister.metodo" type="text" class="block mt-1 w-full">\
-                        <option value="">Seleccione una opcion</option>
-                        @foreach ($unidad_metodos as $unidad_metodo)
-                            <option value="{{ $unidad_metodo->id_unidad_metodo }}">{{ $unidad_metodo->descripcion }}
-                            </option>
-                        @endforeach
-                    </x-select>
-                    <x-input-error for="editRegister.metodo" />
+                    <div>
+                        <x-label>Unidad Metodo:</x-label>
+                        <x-select wire:model="editRegister.metodo" type="text" class="block mt-1 w-full">\
+                            <option value="">Seleccione una opción</option>
+                            @foreach ($unidad_metodos as $unidad_metodo)
+                                <option value="{{ $unidad_metodo->id_unidad_metodo }}">
+                                    {{ $unidad_metodo->descripcion }}
+                                </option>
+                            @endforeach
+                        </x-select>
+                        <x-input-error for="editRegister.metodo" />
+                    </div>
                 </div>
 
                 <div class="mt-5 flex justify-around">

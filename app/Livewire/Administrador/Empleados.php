@@ -183,7 +183,7 @@ class Empleados extends Component
     public function mount()
     {
         $this->estados = estado::all();
-        $this->tipo_empleados = tipo_empleado::all();
+        $this->tipo_empleados = tipo_empleado::where('estatus','1')->get();
     }
 
     public function updated($property, $value)

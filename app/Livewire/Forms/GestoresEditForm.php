@@ -6,6 +6,7 @@ use App\Models\direccion;
 use App\Models\gestor;
 use App\Rules\Les;
 use App\Rules\telefono;
+use Illuminate\Foundation\Auth\User;
 use Livewire\Attributes\Validate;
 use Livewire\Form;
 
@@ -100,6 +101,15 @@ class GestoresEditForm extends Form
             'id_estado' => $this->estado,
             'id_municipio' => $this->municipio,
             'id_colonia' => $this->colonia,
+        ]);
+
+        $search_emple = gestor::find($this->editId);
+
+        $usuario = User::updateOrCreate([
+            'id_usuario_sistema' => $search_emple->id_usuario_sistema,
+        ], [
+            'nombre' => $this->nombre,
+            'correo' => $this->correo,
         ]);
 
         $this->edit = false;

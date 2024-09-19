@@ -29,7 +29,7 @@ class Ordenes extends Component
     public $estatus;
     public function mount()
     {
-        $this->estatus = estatus_orden_servicio::all();
+        $this->estatus = estatus_orden_servicio::where('estatus','1')->get();
     }
 
     public function render()

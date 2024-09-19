@@ -6,6 +6,7 @@ use App\Models\catalogo_subcategoria;
 use App\Models\catalogo_tipo_muestra;
 use App\Models\unidad_medida;
 use App\Models\unidad_metodo;
+use Illuminate\Validation\Rule;
 use Livewire\Attributes\Lazy;
 use Livewire\Component;
 use Livewire\WithPagination;
@@ -54,7 +55,7 @@ class TipoMuestras extends Component
     {
         //validations
         $this->validate([
-            'newRegister.nombre' => ['required', 'max:100'],
+            'newRegister.nombre' => ['required', 'max:100', Rule::unique('catalogo_tipo_muestra','nom_tipo_muestra')->where('id_subcategoria', $this->newRegister['subcategoria'])],
             'newRegister.requerido' => ['required', 'numeric',],
             'newRegister.caracteristicas' => ['required', 'max:100'],
             'newRegister.subcategoria' => ['required'],
@@ -70,6 +71,7 @@ class TipoMuestras extends Component
             'newRegister.subcategoria.required' => 'La subcategoría es requerida',
             'newRegister.unidad.required' => 'La unidad es requerida',
             'newRegister.metodo.required' => 'El metodo es requerido',
+            'newRegister.nombre.unique' => 'Este tipo de muestra ya está registrada',
         ]);
         //store
         catalogo_tipo_muestra::create([

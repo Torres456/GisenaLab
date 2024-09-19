@@ -27,7 +27,7 @@ class DescripcionMuestra extends Component
     public $tipos;
     public function mount()
     {
-        $this->tipos = catalogo_tipo_muestra::all();
+        $this->tipos = catalogo_tipo_muestra::where('estatus','1')->get();
     }
 
     //&================================================================= Nuevo Registro

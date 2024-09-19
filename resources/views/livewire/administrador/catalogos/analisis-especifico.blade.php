@@ -166,7 +166,7 @@
                     <div>
                         <x-label>Tipo Análisis:</x-label>
                         <x-select wire:model="newRegister.tipo" type="text" class="block mt-1 w-full">\
-                            <option value="">Seleccione una opcion</option>
+                            <option value="">Seleccione una opción</option>
                             @foreach ($Tipo_Analisis as $Tipo_Analisi)
                                 <option value="{{ $Tipo_Analisi->id_tipo_analisis }}">
                                     {{ $Tipo_Analisi->nomb_tipo_analisis }}</option>
@@ -212,30 +212,30 @@
                 <div class="grid grid-cols-2 max-md:grid-cols-1 gap-5">
                     <div>
                         <x-label>Precio Normal: <span class=" text-slate-500">(Sin IVA)</span></x-label>
-                        <x-input wire:model="newRegister.precio_ordinario" type="text"
+                        <x-input wire:model="newRegister.precio_ordinario" type="number"
                             class="block mt-1 w-full" />
                         <x-input-error for="newRegister.precio_ordinario" />
                     </div>
                     <div>
                         <x-label>Precio Urgente: <span class=" text-slate-500">(Sin IVA)</span></x-label>
-                        <x-input wire:model="newRegister.precio_urgente" type="text" class="block mt-1 w-full" />
+                        <x-input wire:model="newRegister.precio_urgente" type="number" class="block mt-1 w-full" />
                         <x-input-error for="newRegister.precio_urgente" />
                     </div>
                     <div>
                         <x-label>Tiempo Normal: <span class=" text-slate-500">(Días)</span></x-label>
-                        <x-input wire:model="newRegister.tiempo_ordinario" type="text"
+                        <x-input wire:model="newRegister.tiempo_ordinario" type="number"
                             class="block mt-1 w-full" />
                         <x-input-error for="newRegister.tiempo_ordinario" />
                     </div>
                     <div>
                         <x-label>Tiempo Urgente: <span class=" text-slate-500">(Días)</span></x-label>
-                        <x-input wire:model="newRegister.tiempo_urgente" type="text" class="block mt-1 w-full" />
+                        <x-input wire:model="newRegister.tiempo_urgente" type="number" class="block mt-1 w-full" />
                         <x-input-error for="newRegister.tiempo_urgente" />
                     </div>
                 </div>
                 <div>
                     <x-label>Capacidad Instalada: </x-label>
-                    <x-input wire:model="newRegister.capacidad" type="text" class="block mt-1 w-full" />
+                    <x-input wire:model="newRegister.capacidad" type="number" class="block mt-1 w-full" />
                     <x-input-error for="newRegister.capacidad" />
                 </div>
                 <div class="mt-5 flex justify-around">
@@ -270,7 +270,7 @@
                 <div>
                     <x-label>Tipo Análisis:</x-label>
                     <x-select wire:model="editRegister.tipo" type="text" class="block mt-1 w-full">\
-                        <option value="">Seleccione una opcion</option>
+                        <option value="">Seleccione una opción</option>
                         @foreach ($Tipo_Analisis as $Tipo_Analisi)
                             <option value="{{ $Tipo_Analisi->id_tipo_analisis }}">
                                 {{ $Tipo_Analisi->nomb_tipo_analisis }}</option>
@@ -315,30 +315,30 @@
                 <div class="grid grid-cols-2 max-md:grid-cols-1 gap-5">
                     <div>
                         <x-label>Precio Normal: <span class=" text-slate-500">(Sin IVA)</span></x-label>
-                        <x-input wire:model="editRegister.precio_ordinario" type="text"
+                        <x-input wire:model="editRegister.precio_ordinario" type="number"
                             class="block mt-1 w-full" />
                         <x-input-error for="editRegister.precio_ordinario" />
                     </div>
                     <div>
                         <x-label>Precio Urgente: <span class=" text-slate-500">(Sin IVA)</span></x-label>
-                        <x-input wire:model="editRegister.precio_urgente" type="text" class="block mt-1 w-full" />
+                        <x-input wire:model="editRegister.precio_urgente" type="number" class="block mt-1 w-full" />
                         <x-input-error for="editRegister.precio_urgente" />
                     </div>
                     <div>
                         <x-label>Tiempo Normal: <span class=" text-slate-500">(Días)</span></x-label>
-                        <x-input wire:model="editRegister.tiempo_ordinario" type="text"
+                        <x-input wire:model="editRegister.tiempo_ordinario" type="number"
                             class="block mt-1 w-full" />
                         <x-input-error for="editRegister.tiempo_ordinario" />
                     </div>
                     <div>
                         <x-label>Tiempo Urgente: <span class=" text-slate-500">(Días)</span></x-label>
-                        <x-input wire:model="editRegister.tiempo_urgente" type="text" class="block mt-1 w-full" />
+                        <x-input wire:model="editRegister.tiempo_urgente" type="number" class="block mt-1 w-full" />
                         <x-input-error for="editRegister.tiempo_urgente" />
                     </div>
                 </div>
                 <div>
                     <x-label>Capacidad Instalada: </x-label>
-                    <x-input wire:model="editRegister.capacidad" type="text" class="block mt-1 w-full" />
+                    <x-input wire:model="editRegister.capacidad" type="number" class="block mt-1 w-full" />
                     <x-input-error for="editRegister.capacidad" />
                 </div>
                 <div class="mt-5 flex justify-around">

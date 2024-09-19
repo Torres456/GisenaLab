@@ -138,8 +138,8 @@
                 </div>
                 <div>
                     <x-label>Descripcion Categoría:</x-label>
-                    <x-input wire:model="newRegister.descripcion" type="text" class="block mt-1 w-full"
-                        onkeyup="mayuscula(this)" />
+                    <x-textarea wire:model="newRegister.descripcion" type="text" class="block mt-1 w-full"
+                        onkeyup="mayuscula(this)" ></x-textarea>
                     <x-input-error for="newRegister.descripcion" />
                 </div>
                 <div class="mt-5 flex justify-around">

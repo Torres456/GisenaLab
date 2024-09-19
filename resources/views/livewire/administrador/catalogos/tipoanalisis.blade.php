@@ -153,7 +153,7 @@
                     <x-select wire:model="newRegister.muestra" type="text" class="block mt-1 w-full">\
                         <option value="">Seleccione una opción</option>
                         @foreach ($tipo_muestras as $tipo_muestra)
-                            <option value="{{ $tipo_muestra->id_tipo_muestra }}">{{ $tipo_muestra->nom_tipo_muestra }}
+                            <option value="{{ $tipo_muestra->id_tipo_muestra }}">{{ $tipo_muestra->nom_tipo_muestra . ' - ' . $tipo_muestra->subcategoria->nom_subcategoria }}
                             </option>
                         @endforeach
                     </x-select>

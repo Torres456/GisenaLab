@@ -117,17 +117,17 @@ Route::get('/orden_servicio', function () {
 
 
 Route::get('registro/gestores', function () {
-    return view('administrador.gestores');
+    return view('administrador.registros.gestores');
 })->name('registros.gestores');
 
-Route::get('/interesados', function () {
-    return view('administrador.interesados');
-})->name('administrador.interesados');
+Route::get('registro/interesados', function () {
+    return view('administrador.registros.interesados');
+})->name('registros.interesados');
 
 Route::get('registro/clientes', function () {
-    return view('administrador.clientes');
+    return view('administrador.registros.clientes');
 })->name('registros.clientes');
 
 Route::get('registro/empleados', function () {
-    return view('administrador.empleados');
+    return view('administrador.registros.empleados');
 })->name('registros.empleados');
