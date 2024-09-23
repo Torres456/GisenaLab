@@ -11,9 +11,6 @@ Route::get('/catalogos', function () {
 })->name('catalogos.index');
 
 
-
-
-
 Route::get('/catalogo/unidad_medidas', function () {
     return view('administrador.catalogos.unidad_medida');
 })->name('catalogos.unidad_medida');
@@ -131,3 +128,17 @@ Route::get('registro/clientes', function () {
 Route::get('registro/empleados', function () {
     return view('administrador.registros.empleados');
 })->name('registros.empleados');
+
+
+
+Route::get('/ordenes', function () {
+    return view('administrador.ordenes.ordenes');
+})->name('ordenes.ordenes');
+
+Route::get('/ordenes/create', function () {
+    return view('administrador.ordenes.new_register');
+})->name('ordenes.new_register');
+
+Route::get('/ordenes/create/{id}/muestras', function ($id) {
+    return view('administrador.ordenes.new_muestras');
+})->name('ordenes.new_muestras');
