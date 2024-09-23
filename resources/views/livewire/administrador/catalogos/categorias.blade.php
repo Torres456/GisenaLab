@@ -131,13 +131,13 @@
         <x-slot name='content'>
             <form wire:submit="new_form">
                 <div>
-                    <x-label>Nombre Categoría:</x-label>
+                    <x-label>Nombre Categoría:<span class="text-red-600">*</span></x-label>
                     <x-input wire:model="newRegister.nombre" type="text" class="block mt-1 w-full"
                         onkeyup="mayuscula(this)" />
                     <x-input-error for="newRegister.nombre" />
                 </div>
                 <div>
-                    <x-label>Descripcion Categoría:</x-label>
+                    <x-label>Descripcion Categoría:<span class="text-red-600">*</span></x-label>
                     <x-textarea wire:model="newRegister.descripcion" type="text" class="block mt-1 w-full"
                         onkeyup="mayuscula(this)" ></x-textarea>
                     <x-input-error for="newRegister.descripcion" />
@@ -152,7 +152,6 @@
     </x-dialog-modal>
 
 
-
     <x-dialog-modal wire:model="edit">
         <x-slot name='title'>
             <h2 class="text-center">Editar Categoría</h2>
@@ -160,13 +159,13 @@
         <x-slot name='content'>
             <form wire:submit="edit_form">
                 <div>
-                    <x-label>Nombre Categoría:</x-label>
+                    <x-label>Nombre Categoría:<span class="text-red-600">*</span></x-label>
                     <x-input wire:model="editRegister.nombre" type="text" class="block mt-1 w-full"
                         onkeyup="mayuscula(this)" />
                     <x-input-error for="editRegister.nombre" />
                 </div>
                 <div>
-                    <x-label>Descripcion Categoría:</x-label>
+                    <x-label>Descripcion Categoría:<span class="text-red-600">*</span></x-label>
                     <x-input wire:model="editRegister.descripcion" type="text" class="block mt-1 w-full"
                         onkeyup="mayuscula(this)" />
                     <x-input-error for="editRegister.descripcion" />

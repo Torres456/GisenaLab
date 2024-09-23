@@ -134,13 +134,13 @@
         <x-slot name='content'>
             <form wire:submit="new_form">
                 <div>
-                    <x-label>Nombre Estatus:</x-label>
+                    <x-label>Nombre Estatus:<span class="text-red-600">*</span></x-label>
                     <x-input wire:model="newRegister.nombre" type="text" class="block mt-1 w-full"
                         onkeyup="mayuscula(this)" />
                     <x-input-error for="newRegister.nombre" />
                 </div>
                 <div>
-                    <x-label>Descripción:</x-label>
+                    <x-label>Descripción:<span class="text-red-600">*</span></x-label>
                     <x-textarea wire:model="newRegister.descripcion" type="text" class="block mt-1 w-full"
                         onkeyup="mayuscula(this)" ></x-textarea>
                     <x-input-error for="newRegister.descripcion" />
@@ -166,13 +166,13 @@
         <x-slot name='content'>
             <form wire:submit="edit_form">
                 <div>
-                    <x-label>Nombre Estatus:</x-label>
+                    <x-label>Nombre Estatus:<span class="text-red-600">*</span></x-label>
                     <x-input wire:model="editRegister.nombre" type="text" class="block mt-1 w-full"
                         onkeyup="mayuscula(this)" />
                     <x-input-error for="editRegister.nombre" />
                 </div>
                 <div>
-                    <x-label>Descripción:</x-label>
+                    <x-label>Descripción:<span class="text-red-600">*</span></x-label>
                     <x-textarea wire:model="editRegister.descripcion" type="text" class="block mt-1 w-full"
                         onkeyup="mayuscula(this)" ></x-textarea>
                     <x-input-error for="editRegister.descripcion" />

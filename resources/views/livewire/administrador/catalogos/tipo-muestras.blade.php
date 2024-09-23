@@ -144,26 +144,26 @@
         <x-slot name='content'>
             <form wire:submit="new_form">
                 <div>
-                    <x-label>Nombre Tipo de Muestra:</x-label>
+                    <x-label>Nombre Tipo de Muestra:<span class="text-red-600">*</span></x-label>
                     <x-input wire:model="newRegister.nombre" type="text" class="block mt-1 w-full"
                         onkeyup="mayuscula(this)" />
                     <x-input-error for="newRegister.nombre" />
                 </div>
 
                 <div>
-                    <x-label>Características:</x-label>
+                    <x-label>Características:<span class="text-red-600">*</span></x-label>
                     <x-textarea wire:model="newRegister.caracteristicas" type="text" class="block mt-1 w-full"
                         onkeyup="mayuscula(this)"></x-textarea>
                     <x-input-error for="newRegister.caracteristicas" />
                 </div>
                 <div class=" grid grid-cols-2 gap-5 max-md:grid-cols-1">
                     <div>
-                        <x-label>Cantidad Requrida:</x-label>
+                        <x-label>Cantidad Requrida:<span class="text-red-600">*</span></x-label>
                         <x-input wire:model="newRegister.requerido" type="text" class="block mt-1 w-full" />
                         <x-input-error for="newRegister.requerido" />
                     </div>
                     <div>
-                        <x-label>Unidad Medida:</x-label>
+                        <x-label>Unidad Medida:<span class="text-red-600">*</span></x-label>
                         <x-select wire:model="newRegister.unidad" type="text" class="block mt-1 w-full">\
                             <option value="">Seleccione una opción</option>
                             @foreach ($unidad_medidas as $unidad_medida)
@@ -177,7 +177,7 @@
                 </div>
                 <div class=" grid grid-cols-2 gap-5 max-md:grid-cols-1">
                     <div>
-                        <x-label>Subcategoría:</x-label>
+                        <x-label>Subcategoría:<span class="text-red-600">*</span></x-label>
                         <x-select wire:model="newRegister.subcategoria" type="text" class="block mt-1 w-full">\
                             <option value="">Seleccione una opción</option>
                             @foreach ($subcategorias as $subcategoria)
@@ -189,7 +189,7 @@
                         <x-input-error for="newRegister.subcategoria" />
                     </div>
                     <div>
-                        <x-label>Unidad Metodo:</x-label>
+                        <x-label>Unidad Metodo:<span class="text-red-600">*</span></x-label>
                         <x-select wire:model="newRegister.metodo" type="text" class="block mt-1 w-full">\
                             <option value="">Seleccione una opción</option>
                             @foreach ($unidad_metodos as $unidad_metodo)
@@ -220,26 +220,26 @@
         <x-slot name='content'>
             <form wire:submit="edit_form">
                 <div>
-                    <x-label>Nombre Tipo de Muestra:</x-label>
+                    <x-label>Nombre Tipo de Muestra:<span class="text-red-600">*</span></x-label>
                     <x-input wire:model="editRegister.nombre" type="text" class="block mt-1 w-full"
                         onkeyup="mayuscula(this)" />
                     <x-input-error for="editRegister.nombre" />
                 </div>
 
                 <div>
-                    <x-label>Características:</x-label>
+                    <x-label>Características:<span class="text-red-600">*</span></x-label>
                     <x-textarea wire:model="editRegister.caracteristicas" type="text" class="block mt-1 w-full"
                         onkeyup="mayuscula(this)"></x-textarea>
                     <x-input-error for="editRegister.caracteristicas" />
                 </div>
                 <div class=" grid grid-cols-2 gap-5 max-md:grid-cols-1">
                     <div>
-                        <x-label>Cantidad Requrida:</x-label>
+                        <x-label>Cantidad Requrida:<span class="text-red-600">*</span></x-label>
                         <x-input wire:model="editRegister.requerido" type="text" class="block mt-1 w-full" />
                         <x-input-error for="editRegister.requerido" />
                     </div>
                     <div>
-                        <x-label>Unidad Medida:</x-label>
+                        <x-label>Unidad Medida:<span class="text-red-600">*</span></x-label>
                         <x-select wire:model="editRegister.unidad" type="text" class="block mt-1 w-full">\
                             <option value="">Seleccione una opción</option>
                             @foreach ($unidad_medidas as $unidad_medida)
@@ -253,7 +253,7 @@
                 </div>
                 <div class=" grid grid-cols-2 gap-5 max-md:grid-cols-1">
                     <div>
-                        <x-label>Subcategoría:</x-label>
+                        <x-label>Subcategoría:<span class="text-red-600">*</span></x-label>
                         <x-select wire:model="editRegister.subcategoria" type="text" class="block mt-1 w-full">\
                             <option value="">Seleccione una opción</option>
                             @foreach ($subcategorias as $subcategoria)
@@ -266,7 +266,7 @@
                     </div>
 
                     <div>
-                        <x-label>Unidad Metodo:</x-label>
+                        <x-label>Unidad Metodo:<span class="text-red-600">*</span></x-label>
                         <x-select wire:model="editRegister.metodo" type="text" class="block mt-1 w-full">\
                             <option value="">Seleccione una opción</option>
                             @foreach ($unidad_metodos as $unidad_metodo)

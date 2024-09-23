@@ -125,7 +125,7 @@
         <x-slot name='content'>
             <form wire:submit="new_form">
                 <div>
-                    <x-label>Nombre Rol:</x-label>
+                    <x-label>Nombre Rol:<span class="text-red-600">*</span></x-label>
                     <x-input wire:model="newRegister.nombre" type="text" class="block mt-1 w-full"
                         onkeyup="mayuscula(this)" />
                     <x-input-error for="newRegister.nombre" />
@@ -148,7 +148,7 @@
         <x-slot name='content'>
             <form wire:submit="edit_form">
                 <div>
-                    <x-label>Nombre Rol:</x-label>
+                    <x-label>Nombre Rol:<span class="text-red-600">*</span></x-label>
                     <x-input wire:model="editRegister.nombre" type="text" class="block mt-1 w-full"
                         onkeyup="mayuscula(this)" />
                     <x-input-error for="editRegister.nombre" />

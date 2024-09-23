@@ -120,7 +120,7 @@
         <x-slot name='content'>
             <form wire:submit="new_form">
                 <div>
-                    <x-label>Nombre Unidad de Método:</x-label>
+                    <x-label>Nombre Unidad de Método:<span class="text-red-600">*</span></x-label>
                     <x-input wire:model="newRegister.descripcion" type="text" class="block mt-1 w-full" />
                     <x-input-error for="newRegister.descripcion" />
                 </div>
@@ -142,7 +142,7 @@
         <x-slot name='content'>
             <form wire:submit="edit_form">
                 <div>
-                    <x-label>Nombre Unidad de Método:</x-label>
+                    <x-label>Nombre Unidad de Método:<span class="text-red-600">*</span></x-label>
                     <x-input wire:model="editRegister.descripcion" type="text" class="block mt-1 w-full" />
                     <x-input-error for="editRegister.descripcion" />
                 </div>

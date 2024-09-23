@@ -138,18 +138,18 @@
         <x-slot name='content'>
             <form wire:submit="new_form">
                 <div>
-                    <x-label>Nombre Analisis:</x-label>
+                    <x-label>Nombre Analisis:<span class="text-red-600">*</span></x-label>
                     <x-input wire:model="newRegister.nombre" type="text" class="block mt-1 w-full"
                         onkeyup="mayuscula(this)" />
                     <x-input-error for="newRegister.nombre" />
                 </div>
                 <div>
-                    <x-label>Clave:</x-label>
+                    <x-label>Clave:<span class="text-red-600">*</span></x-label>
                     <x-input wire:model="newRegister.clave" type="text" class="block mt-1 w-full" />
                     <x-input-error for="newRegister.clave" />
                 </div>
                 <div>
-                    <x-label>Tipo Muestras:</x-label>
+                    <x-label>Tipo Muestras:<span class="text-red-600">*</span></x-label>
                     <x-select wire:model="newRegister.muestra" type="text" class="block mt-1 w-full">\
                         <option value="">Seleccione una opción</option>
                         @foreach ($tipo_muestras as $tipo_muestra)
@@ -177,18 +177,18 @@
         <x-slot name='content'>
             <form wire:submit="edit_form">
                 <div>
-                    <x-label>Nombre Analisis:</x-label>
+                    <x-label>Nombre Analisis:<span class="text-red-600">*</span></x-label>
                     <x-input wire:model="editRegister.nombre" type="text" class="block mt-1 w-full"
                         onkeyup="mayuscula(this)" />
                     <x-input-error for="editRegister.nombre" />
                 </div>
                 <div>
-                    <x-label>Clave:</x-label>
+                    <x-label>Clave:<span class="text-red-600">*</span></x-label>
                     <x-input wire:model="editRegister.clave" type="text" class="block mt-1 w-full" />
                     <x-input-error for="editRegister.clave" />
                 </div>
                 <div>
-                    <x-label>Tipo Muestras:</x-label>
+                    <x-label>Tipo Muestras:<span class="text-red-600">*</span></x-label>
                     <x-select wire:model="editRegister.muestra" type="text" class="block mt-1 w-full">\
                         <option value="">Seleccione una opción</option>
                         @foreach ($tipo_muestras as $tipo_muestra)

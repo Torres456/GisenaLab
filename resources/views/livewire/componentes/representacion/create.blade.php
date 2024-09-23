@@ -5,7 +5,7 @@
     <x-slot name='content'>
         <form wire:submit="new_form">
             <div>
-                <x-label>Nombre:</x-label>
+                <x-label>Nombre:<span class="text-red-600">*</span></x-label>
                 <x-input wire:model="newRegister.nombre" type="text" class="block mt-1 w-full"
                     onkeyup="mayuscula(this)" />
                 <x-input-error for="newRegister.nombre" />

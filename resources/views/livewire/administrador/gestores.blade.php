@@ -169,20 +169,20 @@
         <x-slot name='content'>
             <form wire:submit="new_form">
                 <div>
-                    <x-label>Nombre(s):</x-label>
+                    <x-label>Nombre(s):<span class="text-red-600">*</span></x-label>
                     <x-input wire:model="newRegister.nombre" type="text" class="block mt-1 w-full"
                         onkeyup="mayuscula(this)" />
                     <x-input-error for="newRegister.nombre" />
                 </div>
                 <div class="w-full grid grid-cols-2 max-md:grid-cols-1 gap-3">
                     <div>
-                        <x-label>A. Paterno:</x-label>
+                        <x-label>A. Paterno:<span class="text-red-600">*</span></x-label>
                         <x-input wire:model="newRegister.paterno" type="text" class="block mt-1 w-full"
                             onkeyup="mayuscula(this)" />
                         <x-input-error for="newRegister.paterno" />
                     </div>
                     <div>
-                        <x-label>A. Materno:</x-label>
+                        <x-label>A. Materno:<span class="text-red-600">*</span></x-label>
                         <x-input wire:model="newRegister.materno" type="text" class="block mt-1 w-full"
                             onkeyup="mayuscula(this)" />
                         <x-input-error for="newRegister.materno" />
@@ -190,13 +190,13 @@
                 </div>
                 <div class="w-full grid grid-cols-2 max-md:grid-cols-1 gap-3">
                     <div>
-                        <x-label>Teléfono:</x-label>
+                        <x-label>Teléfono:<span class="text-red-600">*</span></x-label>
                         <x-input wire:model="newRegister.telefono" type="tel" class="block mt-1 w-full"
                             onkeyup="mayuscula(this)" />
                         <x-input-error for="newRegister.telefono" />
                     </div>
                     <div>
-                        <x-label>Sexo:</x-label>
+                        <x-label>Sexo:<span class="text-red-600">*</span></x-label>
                         <x-select wire:model="newRegister.sexo" type="text" class="block mt-1 w-full">
                             <option value="">Seleccione un sexo</option>
                             <option value="0">Masculino</option>
@@ -206,24 +206,24 @@
                     </div>
                 </div>
                 <div>
-                    <x-label>Correo:</x-label>
+                    <x-label>Correo:<span class="text-red-600">*</span></x-label>
                     <x-input wire:model="newRegister.correo" type="email" class="block mt-1 w-full" />
                     <x-input-error for="newRegister.correo" />
                 </div>
                 <div class="w-full grid grid-cols-2 max-md:grid-cols-1 gap-3">
                     <div>
-                        <x-label>Contraseña: <span class="text-slate-500">(Temporal)</span>:</x-label>
+                        <x-label>Contraseña:<span class="text-red-600">*</span> <span class="text-slate-500">(Temporal)</span>:</x-label>
                         <x-input wire:model="newRegister.contraseña" type="password" class="block mt-1 w-full" />
                         <x-input-error for="newRegister.contraseña" />
                     </div>
                     <div>
-                        <x-label>Confirmar Contraseña: <span class="text-slate-500">(Temporal)</span>:</x-label>
+                        <x-label>Confirmar Contraseña:<span class="text-red-600">*</span> <span class="text-slate-500">(Temporal)</span>:</x-label>
                         <x-input wire:model="newRegister.contraseña_confirmation" type="password" class="block mt-1 w-full" />
                         <x-input-error for="newRegister.contraseña_confirmation" />
                     </div>
                 </div>
                 <div>
-                    <x-label>Zona Representación:</x-label>
+                    <x-label>Zona Representación:<span class="text-red-600">*</span></x-label>
                     <x-select wire:model.live="newRegister.zona" type="text" class="block mt-1 w-full">
                         <option value="">Seleccione una zona</option>
                         @foreach ($zonas as $zona)
@@ -238,26 +238,26 @@
                 </div>
 
                 <div>
-                    <x-label>Calle:</x-label>
+                    <x-label>Calle:<span class="text-red-600">*</span></x-label>
                     <x-input wire:model="newRegister.calle" type="text" class="block mt-1 w-full"
                         onkeyup="mayuscula(this)" />
                     <x-input-error for="newRegister.calle" />
                 </div>
                 <div class="w-full grid grid-cols-3 max-md:grid-cols-1 gap-3">
                     <div>
-                        <x-label>No. Exterior:</x-label>
+                        <x-label>No. Exterior:<span class="text-red-600">*</span></x-label>
                         <x-input wire:model="newRegister.exterior" type="text" class="block mt-1 w-full"
                             onkeyup="mayuscula(this)" />
                         <x-input-error for="newRegister.exterior" />
                     </div>
                     <div>
-                        <x-label>No. Interior:</x-label>
+                        <x-label>No. Interior:<span class="text-red-600">*</span></x-label>
                         <x-input wire:model="newRegister.interior" type="text" class="block mt-1 w-full"
                             onkeyup="mayuscula(this)" />
                         <x-input-error for="newRegister.interior" />
                     </div>
                     <div>
-                        <x-label>CP:</x-label>
+                        <x-label>CP:<span class="text-red-600">*</span></x-label>
                         <x-input wire:model="newRegister.cp" type="number" class="block mt-1 w-full"
                             onkeyup="mayuscula(this)" />
                         <x-input-error for="newRegister.cp" />
@@ -277,7 +277,7 @@
                 </div>
                 <div class="w-full grid grid-cols-3 max-md:grid-cols-1 gap-3">
                     <div>
-                        <x-label>Estado:</x-label>
+                        <x-label>Estado:<span class="text-red-600">*</span></x-label>
                         <x-select wire:model.live="newRegister.estado" type="text" class="block mt-1 w-full">
                             <option value="">Seleccione un estado</option>
                             @foreach ($estados as $estado)
@@ -287,7 +287,7 @@
                         <x-input-error for="newRegister.estado" />
                     </div>
                     <div>
-                        <x-label>Municipio:</x-label>
+                        <x-label>Municipio:<span class="text-red-600">*</span></x-label>
                         <x-select wire:model.live="newRegister.municipio" type="text" class="block mt-1 w-full">
                             <option value="">Seleccione un municipio</option>
                             @foreach ($municipios as $municipio)
@@ -297,7 +297,7 @@
                         <x-input-error for="newRegister.municipio" />
                     </div>
                     <div>
-                        <x-label>Colonia:</x-label>
+                        <x-label>Colonia:<span class="text-red-600">*</span></x-label>
                         <x-select wire:model="newRegister.colonia" type="text" class="block mt-1 w-full">
                             <option value="">Seleccione una colonia</option>
                             @foreach ($colonias as $colonia)
@@ -323,20 +323,20 @@
         <x-slot name='content'>
             <form wire:submit="edit_form">
                 <div>
-                    <x-label>Nombre(s):</x-label>
+                    <x-label>Nombre(s):<span class="text-red-600">*</span></x-label>
                     <x-input wire:model="editRegister.nombre" type="text" class="block mt-1 w-full"
                         onkeyup="mayuscula(this)" />
                     <x-input-error for="editRegister.nombre" />
                 </div>
                 <div class="w-full grid grid-cols-2 max-md:grid-cols-1 gap-3">
                     <div>
-                        <x-label>A. Paterno:</x-label>
+                        <x-label>A. Paterno:<span class="text-red-600">*</span></x-label>
                         <x-input wire:model="editRegister.paterno" type="text" class="block mt-1 w-full"
                             onkeyup="mayuscula(this)" />
                         <x-input-error for="editRegister.paterno" />
                     </div>
                     <div>
-                        <x-label>A. Materno:</x-label>
+                        <x-label>A. Materno:<span class="text-red-600">*</span></x-label>
                         <x-input wire:model="editRegister.materno" type="text" class="block mt-1 w-full"
                             onkeyup="mayuscula(this)" />
                         <x-input-error for="editRegister.materno" />
@@ -344,13 +344,13 @@
                 </div>
                 <div class="w-full grid grid-cols-2 max-md:grid-cols-1 gap-3">
                     <div>
-                        <x-label>Teléfono:</x-label>
+                        <x-label>Teléfono:<span class="text-red-600">*</span></x-label>
                         <x-input wire:model="editRegister.telefono" type="tel" class="block mt-1 w-full"
                             onkeyup="mayuscula(this)" />
                         <x-input-error for="editRegister.telefono" />
                     </div>
                     <div>
-                        <x-label>Sexo:</x-label>
+                        <x-label>Sexo:<span class="text-red-600">*</span></x-label>
                         <x-select wire:model="editRegister.sexo" type="text" class="block mt-1 w-full">
                             <option value="">Seleccione un sexo</option>
                             <option value="0">Masculino</option>
@@ -360,12 +360,12 @@
                     </div>
                 </div>
                 <div>
-                    <x-label>Correo:</x-label>
+                    <x-label>Correo:<span class="text-red-600">*</span></x-label>
                     <x-input wire:model="editRegister.correo" type="email" class="block mt-1 w-full" />
                     <x-input-error for="editRegister.correo" />
                 </div>
                 <div>
-                    <x-label>Zona Representación:</x-label>
+                    <x-label>Zona Representación:<span class="text-red-600">*</span></x-label>
                     <x-select wire:model.live="editRegister.zona" type="text" class="block mt-1 w-full">
                         <option value="">Seleccione una zona</option>
                         @foreach ($zonas as $zona)
@@ -380,26 +380,26 @@
                 </div>
 
                 <div>
-                    <x-label>Calle:</x-label>
+                    <x-label>Calle:<span class="text-red-600">*</span></x-label>
                     <x-input wire:model="editRegister.calle" type="text" class="block mt-1 w-full"
                         onkeyup="mayuscula(this)" />
                     <x-input-error for="editRegister.calle" />
                 </div>
                 <div class="w-full grid grid-cols-3 max-md:grid-cols-1 gap-3">
                     <div>
-                        <x-label>No. Exterior:</x-label>
+                        <x-label>No. Exterior:<span class="text-red-600">*</span></x-label>
                         <x-input wire:model="editRegister.exterior" type="text" class="block mt-1 w-full"
                             onkeyup="mayuscula(this)" />
                         <x-input-error for="editRegister.exterior" />
                     </div>
                     <div>
-                        <x-label>No. Interior:</x-label>
+                        <x-label>No. Interior:<span class="text-red-600">*</span></x-label>
                         <x-input wire:model="editRegister.interior" type="text" class="block mt-1 w-full"
                             onkeyup="mayuscula(this)" />
                         <x-input-error for="editRegister.interior" />
                     </div>
                     <div>
-                        <x-label>CP:</x-label>
+                        <x-label>CP:<span class="text-red-600">*</span></x-label>
                         <x-input wire:model="editRegister.cp" type="number" class="block mt-1 w-full"
                             onkeyup="mayuscula(this)" />
                         <x-input-error for="editRegister.cp" />
@@ -419,7 +419,7 @@
                 </div>
                 <div class="w-full grid grid-cols-3 max-md:grid-cols-1 gap-3">
                     <div>
-                        <x-label>Estado:</x-label>
+                        <x-label>Estado:<span class="text-red-600">*</span></x-label>
                         <x-select wire:model.live="editRegister.estado" type="text" class="block mt-1 w-full">
                             <option value="">Seleccione un estado</option>
                             @foreach ($estados as $estado)
@@ -429,7 +429,7 @@
                         <x-input-error for="editRegister.estado" />
                     </div>
                     <div>
-                        <x-label>Municipio:</x-label>
+                        <x-label>Municipio:<span class="text-red-600">*</span></x-label>
                         <x-select wire:model.live="editRegister.municipio" type="text" class="block mt-1 w-full">
                             <option value="">Seleccione un municipio</option>
                             @foreach ($municipios as $municipio)
@@ -439,7 +439,7 @@
                         <x-input-error for="editRegister.municipio" />
                     </div>
                     <div>
-                        <x-label>Colonia:</x-label>
+                        <x-label>Colonia:<span class="text-red-600">*</span></x-label>
                         <x-select wire:model="editRegister.colonia" type="text" class="block mt-1 w-full">
                             <option value="">Seleccione una colonia</option>
                             @foreach ($colonias as $colonia)
@@ -465,7 +465,7 @@
         <x-slot name='content'>
             <div class="grid grid-cols-2 max-md:grid-cols-1 w-full gap-3">
                 <div>
-                    <x-label>Calle:</x-label>
+                    <x-label>Calle:<span class="text-red-600">*</span></x-label>
                     <x-input wire:model="direcRegister.calle" class="block mt-1 w-full" disabled />
                     <x-input-error for="direcRegister.calle" />
                 </div>
@@ -478,12 +478,12 @@
 
             <div class="grid grid-cols-2 max-md:grid-cols-1 w-full gap-2">
                 <div>
-                    <x-label>No. Interior:</x-label>
+                    <x-label>No. Interior:<span class="text-red-600">*</span></x-label>
                     <x-input wire:model="direcRegister.interior" class="block mt-1 w-full" disabled />
                     <x-input-error for="direcRegister.interior" />
                 </div>
                 <div>
-                    <x-label>CP:</x-label>
+                    <x-label>CP:<span class="text-red-600">*</span></x-label>
                     <x-input wire:model="direcRegister.cp" type="text" class="block mt-1 w-full" disabled />
                     <x-input-error for="direcRegister.cp" />
                 </div>
@@ -500,19 +500,19 @@
             </div>
             <div class="grid grid-cols-2 max-md:grid-cols-1 w-full gap-2">
                 <div>
-                    <x-label>Estado:</x-label>
+                    <x-label>Estado:<span class="text-red-600">*</span></x-label>
                     <x-input wire:model="direcRegister.estado" type="text" class="block mt-1 w-full" disabled />
                     <x-input-error for="direcRegister.estado" />
                 </div>
                 <div>
-                    <x-label>Municipio:</x-label>
+                    <x-label>Municipio:<span class="text-red-600">*</span></x-label>
                     <x-input wire:model="direcRegister.municipio" type="text" class="block mt-1 w-full"
                         disabled />
                     <x-input-error for="direcRegister.municipio" />
                 </div>
             </div>
             <div>
-                <x-label>Colonia:</x-label>
+                <x-label>Colonia:<span class="text-red-600">*</span></x-label>
                 <x-input wire:model="direcRegister.colonia" type="text" class="block mt-1 w-full" disabled />
                 <x-input-error for="direcRegister.colonia" />
             </div>

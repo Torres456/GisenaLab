@@ -132,13 +132,13 @@
         <x-slot name='content'>
             <form wire:submit="new_form">
                 <div>
-                    <x-label>Nombre Subcategoría:</x-label>
+                    <x-label>Nombre Subcategoría:<span class="text-red-600">*</span><span class="text-red-600">*</span></x-label>
                     <x-input wire:model="newRegister.nombre" type="text" class="block mt-1 w-full"
                         onkeyup="mayuscula(this)" />
                     <x-input-error for="newRegister.nombre" />
                 </div>
                 <div>
-                    <x-label>Categoría:</x-label>
+                    <x-label>Categoría:<span class="text-red-600">*</span></x-label>
                     <x-select wire:model="newRegister.categoria" type="text" class="block mt-1 w-full">\
                         <option value="">Seleccione una categoría</option>
                         @foreach ($categorias as $categoria)
@@ -165,13 +165,13 @@
         <x-slot name='content'>
             <form wire:submit="edit_form">
                 <div>
-                    <x-label>Nombre Subcategoría:</x-label>
+                    <x-label>Nombre Subcategoría:<span class="text-red-600">*</span><span class="text-red-600">*</span></x-label>
                     <x-input wire:model="editRegister.nombre" type="text" class="block mt-1 w-full"
                         onkeyup="mayuscula(this)" />
                     <x-input-error for="editRegister.nombre" />
                 </div>
                 <div>
-                    <x-label>Categoría:</x-label>
+                    <x-label>Categoría:<span class="text-red-600">*</span></x-label>
                     <x-select wire:model="editRegister.categoria" type="text" class="block mt-1 w-full">
                         <option value="">Seleccione una opción</option>
                         @foreach ($categorias as $categoria)

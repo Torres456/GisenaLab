@@ -126,13 +126,13 @@
         <x-slot name='content'>
             <form wire:submit="new_form" class="grid gap-2">
                 <div>
-                    <x-label>Sitio Muestreo:</x-label>
+                    <x-label>Sitio Muestreo:<span class="text-red-600">*</span></x-label>
                     <x-input wire:model="newRegister.sitio" type="text" class="block mt-1 w-full"
                         onkeyup="mayuscula(this)" />
                     <x-input-error for="newRegister.sitio" />
                 </div>
                 <div>
-                    <x-label>Nombre sitio muestreo:</x-label>
+                    <x-label>Nombre sitio muestreo:<span class="text-red-600">*</span></x-label>
                     <x-input wire:model="newRegister.nombre" type="text" class="block mt-1 w-full"
                         onkeyup="mayuscula(this)" />
                     <x-input-error for="newRegister.nombre" />
@@ -143,7 +143,7 @@
 
                 <div class="grid grid-cols-2 max-md:grid-cols-1 w-full gap-2">
                     <div>
-                        <x-label>Estado:</x-label>
+                        <x-label>Estado:<span class="text-red-600">*</span></x-label>
                         <x-select wire:model="newRegister.estado" class="block mt-1 w-full">
                             <option value="">Seleccione un estado</option>
                             @foreach ($estados as $estado)
@@ -153,7 +153,7 @@
                         <x-input-error for="newRegister.estado" />
                     </div>
                     <div>
-                        <x-label>Municipio:</x-label>
+                        <x-label>Municipio:<span class="text-red-600">*</span></x-label>
                         <x-select wire:model="newRegister.municipio" class="block mt-1 w-full">
                             <option value="">Seleccione un municipio</option>
                             @foreach ($municipios as $municipio)
@@ -165,7 +165,7 @@
                 </div>
                 <div class="grid grid-cols-2 max-md:grid-cols-1 w-full gap-2">
                     <div>
-                        <x-label>Colonia:</x-label>
+                        <x-label>Colonia:<span class="text-red-600">*</span></x-label>
                         <x-select wire:model="newRegister.colonia" class="block mt-1 w-full">
                             <option value="">Seleccione una colonia</option>
                             @foreach ($colonias as $colonia)
@@ -175,7 +175,7 @@
                         <x-input-error for="newRegister.colonia" />
                     </div>
                     <div>
-                        <x-label>Calle:</x-label>
+                        <x-label>Calle:<span class="text-red-600">*</span></x-label>
                         <x-input wire:model="newRegister.calle" type="text" class="block mt-1 w-full"
                             onkeyup="mayuscula(this)" />
                         <x-input-error for="newRegister.calle" />
@@ -183,7 +183,7 @@
                 </div>
                 <div class="grid grid-cols-2 max-md:grid-cols-1 w-full gap-2">
                     <div>
-                        <x-label>No. Exterior:</x-label>
+                        <x-label>No. Exterior:<span class="text-red-600">*</span></x-label>
                         <x-input wire:model="newRegister.exterior" type="text" class="block mt-1 w-full"
                             onkeyup="mayuscula(this)" />
                         <x-input-error for="newRegister.exterior" />
@@ -198,13 +198,13 @@
                 </div>
                 <div class="grid grid-cols-2 max-md:grid-cols-1 w-full gap-2">
                     <div>
-                        <x-label>Codigo Postal:</x-label>
+                        <x-label>Codigo Postal:<span class="text-red-600">*</span></x-label>
                         <x-input wire:model="newRegister.cp" type="text" class="block mt-1 w-full"
                             onkeyup="mayuscula(this)" />
                         <x-input-error for="newRegister.cp" />
                     </div>
                     <div>
-                        <x-label>GPS:</x-label>
+                        <x-label>GPS:<span class="text-red-600">*</span></x-label>
                         <x-input wire:model="newRegister.gps" type="text" class="block mt-1 w-full"
                             onkeyup="mayuscula(this)" />
                         <x-input-error for="newRegister.gps" />
@@ -212,7 +212,7 @@
                 </div>
 
                 <div>
-                    <x-label>Registro SADER:</x-label>
+                    <x-label>Registro SADER:<span class="text-red-600">*</span></x-label>
                     <x-input wire:model="newRegister.sader" type="text" class="block mt-1 w-full"
                         onkeyup="mayuscula(this)" />
                     <x-input-error for="newRegister.sader" />
@@ -236,13 +236,13 @@
         <x-slot name='content'>
             <form wire:submit="edit_form" class="grid gap-2">
                 <div>
-                    <x-label>Sitio Muestreo:</x-label>
+                    <x-label>Sitio Muestreo:<span class="text-red-600">*</span></x-label>
                     <x-input wire:model="editRegister.sitio" type="text" class="block mt-1 w-full"
                         onkeyup="mayuscula(this)" />
                     <x-input-error for="editRegister.sitio" />
                 </div>
                 <div>
-                    <x-label>Nombre sitio muestreo:</x-label>
+                    <x-label>Nombre sitio muestreo:<span class="text-red-600">*</span></x-label>
                     <x-input wire:model="editRegister.nombre" type="text" class="block mt-1 w-full"
                         onkeyup="mayuscula(this)" />
                     <x-input-error for="editRegister.nombre" />
@@ -254,7 +254,7 @@
 
                 <div class="grid grid-cols-2 max-md:grid-cols-1 w-full gap-2">
                     <div>
-                        <x-label>Estado:</x-label>
+                        <x-label>Estado:<span class="text-red-600">*</span></x-label>
                         <x-select wire:model="editRegister.estado" class="block mt-1 w-full">
                             <option value="">Seleccione un estado</option>
                             @foreach ($estados as $estado)
@@ -264,7 +264,7 @@
                         <x-input-error for="editRegister.estado" />
                     </div>
                     <div>
-                        <x-label>Municipio:</x-label>
+                        <x-label>Municipio:<span class="text-red-600">*</span></x-label>
                         <x-select wire:model="editRegister.municipio" class="block mt-1 w-full">
                             <option value="">Seleccione un municipio</option>
                             @foreach ($municipios as $municipio)
@@ -276,7 +276,7 @@
                 </div>
                 <div class="grid grid-cols-2 max-md:grid-cols-1 w-full gap-2">
                     <div>
-                        <x-label>Colonia:</x-label>
+                        <x-label>Colonia:<span class="text-red-600">*</span></x-label>
                         <x-select wire:model="editRegister.colonia" class="block mt-1 w-full">
                             <option value="">Seleccione una colonia</option>
                             @foreach ($colonias as $colonia)
@@ -286,7 +286,7 @@
                         <x-input-error for="editRegister.colonia" />
                     </div>
                     <div>
-                        <x-label>Calle:</x-label>
+                        <x-label>Calle:<span class="text-red-600">*</span></x-label>
                         <x-input wire:model="editRegister.calle" type="text" class="block mt-1 w-full"
                             onkeyup="mayuscula(this)" />
                         <x-input-error for="editRegister.calle" />
@@ -294,7 +294,7 @@
                 </div>
                 <div class="grid grid-cols-2 max-md:grid-cols-1 w-full gap-2">
                     <div>
-                        <x-label>No. Exterior:</x-label>
+                        <x-label>No. Exterior:<span class="text-red-600">*</span></x-label>
                         <x-input wire:model="editRegister.exterior" type="text" class="block mt-1 w-full"
                             onkeyup="mayuscula(this)" />
                         <x-input-error for="editRegister.exterior" />
@@ -309,13 +309,13 @@
                 </div>
                 <div class="grid grid-cols-2 max-md:grid-cols-1 w-full gap-2">
                     <div>
-                        <x-label>Codigo Postal:</x-label>
+                        <x-label>Codigo Postal:<span class="text-red-600">*</span></x-label>
                         <x-input wire:model="editRegister.cp" type="text" class="block mt-1 w-full"
                             onkeyup="mayuscula(this)" />
                         <x-input-error for="editRegister.cp" />
                     </div>
                     <div>
-                        <x-label>GPS:</x-label>
+                        <x-label>GPS:<span class="text-red-600">*</span></x-label>
                         <x-input wire:model="editRegister.gps" type="text" class="block mt-1 w-full"
                             onkeyup="mayuscula(this)" />
                         <x-input-error for="editRegister.gps" />
@@ -323,7 +323,7 @@
                 </div>
 
                 <div>
-                    <x-label>Registro SADER:</x-label>
+                    <x-label>Registro SADER:<span class="text-red-600">*</span></x-label>
                     <x-input wire:model="editRegister.sader" type="text" class="block mt-1 w-full"
                         onkeyup="mayuscula(this)" />
                     <x-input-error for="editRegister.sader" />
@@ -346,7 +346,7 @@
         <x-slot name='content'>
             <div class="grid grid-cols-2 max-md:grid-cols-1 w-full gap-2">
                 <div>
-                    <x-label>Estado:</x-label>
+                    <x-label>Estado:<span class="text-red-600">*</span></x-label>
                     <x-input wire:model="direcRegister.estado" class="block mt-1 w-full" disabled />
                     <x-input-error for="direcRegister.estado" />
                 </div>
@@ -359,12 +359,12 @@
 
             <div class="grid grid-cols-2 max-md:grid-cols-1 w-full gap-2">
                 <div>
-                    <x-label>Colonia:</x-label>
+                    <x-label>Colonia:<span class="text-red-600">*</span></x-label>
                     <x-input wire:model="direcRegister.colonia" class="block mt-1 w-full" disabled />
                     <x-input-error for="direcRegister.colonia" />
                 </div>
                 <div>
-                    <x-label>Calle:</x-label>
+                    <x-label>Calle:<span class="text-red-600">*</span></x-label>
                     <x-input wire:model="direcRegister.calle" type="text" class="block mt-1 w-full" disabled />
                     <x-input-error for="direcRegister.calle" />
                 </div>
@@ -372,7 +372,7 @@
 
             <div class="grid grid-cols-2 max-md:grid-cols-1 w-full gap-2">
                 <div>
-                    <x-label>No. Exterior:</x-label>
+                    <x-label>No. Exterior:<span class="text-red-600">*</span></x-label>
                     <x-input wire:model="direcRegister.exterior" type="text" class="block mt-1 w-full" disabled />
                     <x-input-error for="direcRegister.exterior" />
                 </div>
@@ -385,19 +385,19 @@
             </div>
             <div class="grid grid-cols-2 max-md:grid-cols-1 w-full gap-2">
                 <div>
-                    <x-label>Codigo Postal:</x-label>
+                    <x-label>Codigo Postal:<span class="text-red-600">*</span></x-label>
                     <x-input wire:model="direcRegister.cp" type="text" class="block mt-1 w-full" disabled />
                     <x-input-error for="direcRegister.cp" />
                 </div>
                 <div>
-                    <x-label>GPS:</x-label>
+                    <x-label>GPS:<span class="text-red-600">*</span></x-label>
                     <x-input wire:model="direcRegister.gps" type="text" class="block mt-1 w-full" disabled />
                     <x-input-error for="direcRegister.gps" />
                 </div>
             </div>
 
             <div>
-                <x-label>Registro SADER:</x-label>
+                <x-label>Registro SADER:<span class="text-red-600">*</span></x-label>
                 <x-input wire:model="direcRegister.sader" type="text" class="block mt-1 w-full" disabled />
                 <x-input-error for="direcRegister.sader" />
             </div>

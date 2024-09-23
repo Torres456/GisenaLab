@@ -130,7 +130,7 @@
         <x-slot name='content'>
             <x-table>
                 <x-slot name='titles'>
-                    <x-th>Estado</x-th>
+                    <x-th>Estado:<span class="text-red-600">*</span></x-th>
                 </x-slot>
                 <x-slot name='content'>
                     @foreach ($estadoszonas as $estado)

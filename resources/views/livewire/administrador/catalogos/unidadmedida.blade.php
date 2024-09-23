@@ -132,13 +132,13 @@
         <x-slot name='content'>
             <form wire:submit="new_form">
                 <div>
-                    <x-label>Nombre Unidad:</x-label>
+                    <x-label>Nombre Unidad:<span class="text-red-600">*</span></x-label>
                     <x-input wire:model="newRegister.descripcion" type="text" class="block mt-1 w-full"
                         onkeyup="mayuscula(this)" />
                     <x-input-error for="newRegister.descripcion" />
                 </div>
                 <div>
-                    <x-label>Abreviatura de Unidad:</x-label>
+                    <x-label>Abreviatura de Unidad:<span class="text-red-600">*</span></x-label>
                     <x-input wire:model="newRegister.abreviatura" type="text" class="block mt-1 w-full" />
                     <x-input-error for="newRegister.abreviatura" />
                 </div>
@@ -160,13 +160,13 @@
         <x-slot name='content'>
             <form wire:submit="edit_form">
                 <div>
-                    <x-label>Nombre Unidad:</x-label>
+                    <x-label>Nombre Unidad:<span class="text-red-600">*</span></x-label>
                     <x-input wire:model="editRegister.descripcion" type="text" class="block mt-1 w-full"
                         onkeyup="mayuscula(this)" />
                     <x-input-error for="editRegister.descripcion" />
                 </div>
                 <div>
-                    <x-label>Abreviatura de Unidad:</x-label>
+                    <x-label>Abreviatura de Unidad:<span class="text-red-600">*</span></x-label>
                     <x-input wire:model="editRegister.abreviatura" type="text" class="block mt-1 w-full" />
                     <x-input-error for="editRegister.abreviatura" />
                 </div>

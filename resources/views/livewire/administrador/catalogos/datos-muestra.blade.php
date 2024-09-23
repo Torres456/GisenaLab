@@ -12,7 +12,7 @@
                     </x-select>
                 </div>
                 <div class="flex flex-col max-md:w-full">
-                    <label for="">Laboratorio:</label>
+                    <label for="">Laboratorio:<span class="text-red-600">*</span></label>
                     <x-select wire:model.live="search_lab" class="w-full">
                         <option value="">Seleccione una opción</option>
                         @foreach ($laboratorios as $laboratorio)
@@ -147,13 +147,13 @@
         <x-slot name='content'>
             <form wire:submit="new_form">
                 <div>
-                    <x-label>Descripción:</x-label>
+                    <x-label>Descripción:<span class="text-red-600">*</span></x-label>
                     <x-input wire:model="newRegister.nombre" type="text" class="block mt-1 w-full"
                         onkeyup="mayuscula(this)" />
                     <x-input-error for="newRegister.nombre" />
                 </div>
                 <div>
-                    <x-label>Laboratorio:</x-label>
+                    <x-label>Laboratorio:<span class="text-red-600">*</span></x-label>
                     <x-select wire:model="newRegister.laboratorio" type="text" class="block mt-1 w-full">\
                         <option value="">Seleccione una opción:</option>
                         @foreach ($laboratorios as $laboratorio)
@@ -181,13 +181,13 @@
         <x-slot name='content'>
             <form wire:submit="edit_form">
                 <div>
-                    <x-label>Descripción:</x-label>
+                    <x-label>Descripción:<span class="text-red-600">*</span></x-label>
                     <x-input wire:model="editRegister.nombre" type="text" class="block mt-1 w-full"
                         onkeyup="mayuscula(this)" />
                     <x-input-error for="editRegister.nombre" />
                 </div>
                 <div>
-                    <x-label>Laboratorio:</x-label>
+                    <x-label>Laboratorio:<span class="text-red-600">*</span></x-label>
                     <x-select wire:model="editRegister.laboratorio" type="text" class="block mt-1 w-full">
                         <option value="">Seleccione una opción</option>
                         @foreach ($laboratorios as $laboratorio)

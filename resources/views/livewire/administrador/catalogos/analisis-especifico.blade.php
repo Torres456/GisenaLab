@@ -151,20 +151,20 @@
         <x-slot name='content'>
             <form wire:submit="new_form">
                 <div>
-                    <x-label>Nombre Comercial:</x-label>
+                    <x-label>Nombre Comercial:<span class="text-red-600">*</span></x-label>
                     <x-input wire:model="newRegister.nombre" type="text" class="block mt-1 w-full"
                         onkeyup="mayuscula(this)" />
                     <x-input-error for="newRegister.nombre" />
                 </div>
                 <div>
-                    <x-label>Descripción:</x-label>
+                    <x-label>Descripción:<span class="text-red-600">*</span></x-label>
                     <x-textarea wire:model="newRegister.descripcion" type="text" class="block mt-1 w-full"
                         onkeyup="mayuscula(this)"></x-textarea>
                     <x-input-error for="newRegister.descripcion" />
                 </div>
                 <div class="grid grid-cols-2 max-md:grid-cols-1 gap-5">
                     <div>
-                        <x-label>Tipo Análisis:</x-label>
+                        <x-label>Tipo Análisis:<span class="text-red-600">*</span></x-label>
                         <x-select wire:model="newRegister.tipo" type="text" class="block mt-1 w-full">\
                             <option value="">Seleccione una opción</option>
                             @foreach ($Tipo_Analisis as $Tipo_Analisi)
@@ -175,7 +175,7 @@
                         <x-input-error for="newRegister.tipo" />
                     </div>
                     <div>
-                        <x-label>Clave Análisis:</x-label>
+                        <x-label>Clave Análisis:<span class="text-red-600">*</span></x-label>
                         <x-input wire:model="newRegister.clave" type="text" class="block mt-1 w-full" />
                         <x-input-error for="newRegister.clave" />
                     </div>
@@ -188,12 +188,12 @@
                     <x-input-error for="newRegister.reconocimiento" />
                 </div>
                 <div>
-                    <x-label>Nombre Técnico:</x-label>
+                    <x-label>Nombre Técnico:<span class="text-red-600">*</span></x-label>
                     <x-input wire:model="newRegister.tecnico" type="text" class="block mt-1 w-full" />
                     <x-input-error for="newRegister.tecnico" />
                 </div>
                 <div>
-                    <x-label>Referencia Normativa:</x-label>
+                    <x-label>Referencia Normativa:<span class="text-red-600">*</span></x-label>
                     <x-input wire:model="newRegister.normativa" type="text" class="block mt-1 w-full" />
                     <x-input-error for="newRegister.normativa" />
                 </div>
@@ -211,30 +211,30 @@
                 </div>
                 <div class="grid grid-cols-2 max-md:grid-cols-1 gap-5">
                     <div>
-                        <x-label>Precio Normal: <span class=" text-slate-500">(Sin IVA)</span></x-label>
+                        <x-label>Precio Normal:<span class="text-red-600">*</span> <span class=" text-slate-500">(Sin IVA)</span></x-label>
                         <x-input wire:model="newRegister.precio_ordinario" type="number"
                             class="block mt-1 w-full" />
                         <x-input-error for="newRegister.precio_ordinario" />
                     </div>
                     <div>
-                        <x-label>Precio Urgente: <span class=" text-slate-500">(Sin IVA)</span></x-label>
+                        <x-label>Precio Urgente:<span class="text-red-600">*</span> <span class=" text-slate-500">(Sin IVA)</span></x-label>
                         <x-input wire:model="newRegister.precio_urgente" type="number" class="block mt-1 w-full" />
                         <x-input-error for="newRegister.precio_urgente" />
                     </div>
                     <div>
-                        <x-label>Tiempo Normal: <span class=" text-slate-500">(Días)</span></x-label>
+                        <x-label>Tiempo Normal:<span class="text-red-600">*</span> <span class=" text-slate-500">(Días)</span></x-label>
                         <x-input wire:model="newRegister.tiempo_ordinario" type="number"
                             class="block mt-1 w-full" />
                         <x-input-error for="newRegister.tiempo_ordinario" />
                     </div>
                     <div>
-                        <x-label>Tiempo Urgente: <span class=" text-slate-500">(Días)</span></x-label>
+                        <x-label>Tiempo Urgente:<span class="text-red-600">*</span> <span class=" text-slate-500">(Días)</span></x-label>
                         <x-input wire:model="newRegister.tiempo_urgente" type="number" class="block mt-1 w-full" />
                         <x-input-error for="newRegister.tiempo_urgente" />
                     </div>
                 </div>
                 <div>
-                    <x-label>Capacidad Instalada: </x-label>
+                    <x-label>Capacidad Instalada:<span class="text-red-600">*</span> </x-label>
                     <x-input wire:model="newRegister.capacidad" type="number" class="block mt-1 w-full" />
                     <x-input-error for="newRegister.capacidad" />
                 </div>
@@ -256,19 +256,19 @@
         <x-slot name='content'>
             <form wire:submit="edit_form">
                 <div>
-                    <x-label>Nombre Comercial:</x-label>
+                    <x-label>Nombre Comercial:<span class="text-red-600">*</span></x-label>
                     <x-input wire:model="editRegister.nombre" type="text" class="block mt-1 w-full"
                         onkeyup="mayuscula(this)" />
                     <x-input-error for="editRegister.nombre" />
                 </div>
                 <div>
-                    <x-label>Descripción:</x-label>
+                    <x-label>Descripción:<span class="text-red-600">*</span></x-label>
                     <x-textarea wire:model="editRegister.descripcion" type="text" class="block mt-1 w-full"
                         onkeyup="mayuscula(this)"></x-textarea>
                     <x-input-error for="editRegister.descripcion" />
                 </div>
                 <div>
-                    <x-label>Tipo Análisis:</x-label>
+                    <x-label>Tipo Análisis:<span class="text-red-600">*</span></x-label>
                     <x-select wire:model="editRegister.tipo" type="text" class="block mt-1 w-full">\
                         <option value="">Seleccione una opción</option>
                         @foreach ($Tipo_Analisis as $Tipo_Analisi)
@@ -280,7 +280,7 @@
                 </div>
                 <div class="grid grid-cols-2 max-md:grid-cols-1 gap-5">
                     <div>
-                        <x-label>Clave Análisis:</x-label>
+                        <x-label>Clave Análisis:<span class="text-red-600">*</span></x-label>
                         <x-input wire:model="editRegister.clave" type="text" class="block mt-1 w-full" />
                         <x-input-error for="editRegister.clave" />
                     </div>
@@ -291,12 +291,12 @@
                     </div>
                 </div>
                 <div>
-                    <x-label>Nombre Técnico:</x-label>
+                    <x-label>Nombre Técnico:<span class="text-red-600">*</span></x-label>
                     <x-input wire:model="editRegister.tecnico" type="text" class="block mt-1 w-full" />
                     <x-input-error for="editRegister.tecnico" />
                 </div>
                 <div>
-                    <x-label>Referencia Normativa:</x-label>
+                    <x-label>Referencia Normativa:<span class="text-red-600">*</span></x-label>
                     <x-input wire:model="editRegister.normativa" type="text" class="block mt-1 w-full" />
                     <x-input-error for="editRegister.normativa" />
                 </div>
@@ -314,30 +314,30 @@
                 </div>
                 <div class="grid grid-cols-2 max-md:grid-cols-1 gap-5">
                     <div>
-                        <x-label>Precio Normal: <span class=" text-slate-500">(Sin IVA)</span></x-label>
+                        <x-label>Precio Normal:<span class="text-red-600">*</span> <span class=" text-slate-500">(Sin IVA)</span></x-label>
                         <x-input wire:model="editRegister.precio_ordinario" type="number"
                             class="block mt-1 w-full" />
                         <x-input-error for="editRegister.precio_ordinario" />
                     </div>
                     <div>
-                        <x-label>Precio Urgente: <span class=" text-slate-500">(Sin IVA)</span></x-label>
+                        <x-label>Precio Urgente:<span class="text-red-600">*</span> <span class=" text-slate-500">(Sin IVA)</span></x-label>
                         <x-input wire:model="editRegister.precio_urgente" type="number" class="block mt-1 w-full" />
                         <x-input-error for="editRegister.precio_urgente" />
                     </div>
                     <div>
-                        <x-label>Tiempo Normal: <span class=" text-slate-500">(Días)</span></x-label>
+                        <x-label>Tiempo Normal:<span class="text-red-600">*</span> <span class=" text-slate-500">(Días)</span></x-label>
                         <x-input wire:model="editRegister.tiempo_ordinario" type="number"
                             class="block mt-1 w-full" />
                         <x-input-error for="editRegister.tiempo_ordinario" />
                     </div>
                     <div>
-                        <x-label>Tiempo Urgente: <span class=" text-slate-500">(Días)</span></x-label>
+                        <x-label>Tiempo Urgente:<span class="text-red-600">*</span> <span class=" text-slate-500">(Días)</span></x-label>
                         <x-input wire:model="editRegister.tiempo_urgente" type="number" class="block mt-1 w-full" />
                         <x-input-error for="editRegister.tiempo_urgente" />
                     </div>
                 </div>
                 <div>
-                    <x-label>Capacidad Instalada: </x-label>
+                    <x-label>Capacidad Instalada:<span class="text-red-600">*</span> </x-label>
                     <x-input wire:model="editRegister.capacidad" type="number" class="block mt-1 w-full" />
                     <x-input-error for="editRegister.capacidad" />
                 </div>

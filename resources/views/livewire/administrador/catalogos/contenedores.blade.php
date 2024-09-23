@@ -125,7 +125,7 @@
         <x-slot name='content'>
             <form wire:submit="new_form">
                 <div>
-                    <x-label>Nombre Contenedor:</x-label>
+                    <x-label>Nombre Contenedor:<span class="text-red-600">*</span></x-label>
                     <x-input wire:model="newRegister.tipo_contenedor" type="text" class="block mt-1 w-full"
                         onkeyup="mayuscula(this)" />
                     <x-input-error for="newRegister.tipo_contenedor" />
@@ -148,7 +148,7 @@
         <x-slot name='content'>
             <form wire:submit="edit_form">
                 <div>
-                    <x-label>Nombre Contenedor:</x-label>
+                    <x-label>Nombre Contenedor:<span class="text-red-600">*</span></x-label>
                     <x-input wire:model="editRegister.tipo_contenedor" type="text" class="block mt-1 w-full"
                         onkeyup="mayuscula(this)" />
                     <x-input-error for="editRegister.tipo_contenedor" />
