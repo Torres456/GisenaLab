@@ -4,7 +4,6 @@ namespace App\Actions\Fortify;
 
 use App\Models\User;
 use App\Models\cliente;
-use App\Models\contacto;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Laravel\Fortify\Contracts\CreatesNewUsers;
@@ -48,11 +47,20 @@ class CreateNewUser implements CreatesNewUsers
                 'id_tipo_usuario' => 2
             ]);
 
+            $id = DB::table('usuario_sistema')->where('correo', $input['correo'])->value('id_usuario_sistema');
+
+
+            $cliente = cliente::create([
+                'correo' => $input['correo'],
+                'id_usuario_sistema' => $id
+            ]);
+
             DB::commit();
             return $usuario_sistema;
         } catch (\Exception $e) {
             DB::rollback();
             abort(500);
+            // dd($e->getMessage());
         }
     }
 }
