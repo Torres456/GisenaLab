@@ -19,6 +19,9 @@ export default {
             screens: {
                 'mini': '350px',
             },
+            gridTemplateColumns: {
+                '16': 'repeat(auto-fit, minmax(300px, 1fr))',
+            },
         },
     },
 

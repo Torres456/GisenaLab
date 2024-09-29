@@ -183,14 +183,10 @@
                         <button type="button"
                             class="rounded-full focus:ring-4 focus:ring-lime-300 dark:focus:ring-gray-600"
                             @click="open = ! open">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24"
-                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                stroke-linejoin="round"
-                                class="icon icon-tabler icons-tabler-outline icon-tabler-user-circle">
-                                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                                <path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0" />
-                                <path d="M12 10m-3 0a3 3 0 1 0 6 0a3 3 0 1 0 -6 0" />
-                                <path d="M6.168 18.849a4 4 0 0 1 3.832 -2.849h4a4 4 0 0 1 3.834 2.855" />
+                            <svg xmlns="http://www.w3.org/2000/svg" height="36px" viewBox="0 -960 960 960"
+                                width="36px" class="fill-black dark:fill-white">
+                                <path
+                                    d="M227.04-264.95q58.84-41.85 120.85-64.7 62.02-22.85 132.2-22.85 70.18 0 132.7 23.09 62.53 23.09 120.84 64.54 40.44-49.91 58.88-102.74 18.43-52.84 18.43-112.39 0-139.76-95.58-235.35t-235.33-95.59q-139.75 0-235.36 95.59-95.61 95.59-95.61 235.35 0 59.46 18.65 112.26 18.65 52.79 59.33 102.79Zm252.84-179.88q-59.04 0-99.25-40.32-40.22-40.32-40.22-99.24 0-58.93 40.34-99.24 40.34-40.31 99.37-40.31 59.04 0 99.25 40.43 40.22 40.44 40.22 99.37 0 58.92-40.34 99.11-40.34 40.2-99.37 40.2Zm.33 371.53q-83.9 0-158.08-31.99-74.17-31.98-129.51-87.32-55.34-55.33-87.33-129.37Q73.3-396.02 73.3-480.2q0-84 32.02-157.94t87.31-129.23q55.29-55.29 129.33-87.39 74.05-32.1 158.24-32.1 84 0 157.94 32.1t129.23 87.39q55.29 55.29 87.39 129.27 32.1 73.99 32.1 157.89 0 83.9-32.1 158.09-32.1 74.2-87.39 129.49-55.29 55.29-129.27 87.31Q564.11-73.3 480.21-73.3Zm-.21-75.76q53.46 0 102.85-15.31 49.39-15.32 96.39-50.85-47.32-33.27-96.69-50.47-49.36-17.19-102.55-17.19t-102.43 17.19q-49.25 17.2-96.57 50.47 47 35.53 96.27 50.85 49.27 15.31 102.73 15.31Zm0-365.55q30.52 0 50.13-19.52 19.61-19.52 19.61-50.14 0-30.61-19.61-50.26-19.61-19.64-50.13-19.64-30.52 0-50.13 19.64-19.61 19.65-19.61 50.26 0 30.62 19.61 50.14T480-514.61Zm0-69.74Zm.24 368.46Z" />
                             </svg>
                             <div
                                 class="absolute inline-flex items-center justify-center w-3 h-3 mini:w-4 mini:h-4 
@@ -358,7 +354,7 @@
                     {{--  --}} @endif
                             class="list_item {{ request()->routeIs('*.panel') ? 'bg-lime-600' : '' }}">
                             <img src="{{ asset('images/dashboard.svg') }}" alt="" class="list_image">
-                            <span class="list_span">Dashboard</span>
+                            <span class="list_span">Principal</span>
                         </a>
                     </li>
 
@@ -441,8 +437,8 @@
 
     <div id="home" class="pt-[58px]  min-h-screen md:ml-[250px] bg-gray-100 dark:bg-gray-900 flex flex-col"
         style="transition:margin-left 0.5s;">
-        <header class="bg-gray-100 dark:bg-gray-900 mt-4">
-            <div class="mx-auto py-5 px-4 md:flex md:justify-between">
+        <header class="bg-gray-100 dark:bg-gray-900 mt-3">
+            <div class="mx-auto py-2 px-4 md:flex md:justify-between mt-5">
                 <div class="">
                     <h2 class="font-bold text-3xl text-dark dark:text-gray-200 leading-tight">
                         <strong>{{ $titulo }}</strong>
@@ -481,7 +477,7 @@
 
         <div
             class="h-[45px] w-full bg-white mt-auto flex items-center border-t border-gray-200 dark:bg-gray-800 dark:border-gray-700">
-            <h2 class="ml-auto pr-5 dark:text-gray-200">Version 1.2.0</h2>
+            <h2 class="ml-auto pr-5 dark:text-gray-200">Version 1.1.0</h2>
         </div>
     </div>
 
