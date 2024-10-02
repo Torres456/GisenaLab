@@ -43,11 +43,13 @@ class InteresadosCreateForm extends Form
     public $estado;
     public $municipio;
     public $colonia;
+    public $cliente;
 
 
     public $new = false;
 
-    public function create(){
+    public function create()
+    {
         $this->new = true;
     }
 
@@ -72,13 +74,14 @@ class InteresadosCreateForm extends Form
             'estado' => ['required'],
             'municipio' => ['required'],
             'colonia' => [' required'],
+            'cliente' => ['required'],
         ]);
+
+
         DB::beginTransaction();
         try {
             $usuario = User::create([
                 'nombre' => $this->nombre,
-                'ap_paterno' => $this->paterno,
-                'ap_materno' => $this->materno,
                 'correo' => $this->correo,
                 'contraseña' => Hash::make($this->contrasena),
                 'estatus' => 1,
@@ -120,11 +123,14 @@ class InteresadosCreateForm extends Form
                 'id_usuario_sistema' => $usuario->id_usuario_sistema,
                 'id_gestor' => $this->gestor,
                 'id_contacto' => $contacto->id_contacto,
+                'id_cliente' => $this->cliente,
             ]);
 
             $this->new = false;
             $this->reset();
             session()->flash('green', 'Agregada correctamente');
+
+
             DB::commit();
         } catch (\Exception $e) {
             DB::rollback();
@@ -132,7 +138,8 @@ class InteresadosCreateForm extends Form
         }
     }
 
-    public function cancel(){
+    public function cancel()
+    {
         $this->new = false;
         $this->reset();
     }

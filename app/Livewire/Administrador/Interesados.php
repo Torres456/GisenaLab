@@ -4,6 +4,7 @@ namespace App\Livewire\Administrador;
 
 use App\Livewire\Forms\InteresadosCreateForm;
 use App\Livewire\Forms\InteresadosEditForm;
+use App\Models\cliente;
 use App\Models\colonia;
 use App\Models\contacto;
 use App\Models\direccion;
@@ -80,12 +81,14 @@ class Interesados extends Component
     public $estados = [];
     public $municipios = [];
     public $colonias = [];
+    public $clientes;
 
 
     public function mount()
     {
         $this->estados = estado::all();
         $this->gestores = gestor::where('estatus','1')->get();
+        $this->clientes = cliente::where('estatus', 1)->get();
     }
 
     public function updated($property, $value)

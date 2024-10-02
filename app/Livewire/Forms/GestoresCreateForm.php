@@ -68,8 +68,6 @@ class GestoresCreateForm extends Form
         try {
             $usuario = User::create([
                 'nombre' => $this->nombre,
-                'ap_paterno' => $this->paterno,
-                'ap_materno' => $this->materno,
                 'correo' => $this->correo,
                 'contraseña' => Hash::make($this->contraseña),
                 'estatus' => 1,
@@ -105,8 +103,8 @@ class GestoresCreateForm extends Form
             $this->new = false;
             $this->reset();
             session()->flash('green', 'Agregada correctamente');
-
             DB::commit();
+            
         } catch (\Exception $e) {
             DB::rollback();
             abort(500);

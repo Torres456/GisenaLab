@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class cliente extends Model
@@ -49,6 +50,11 @@ class cliente extends Model
     public function direcciones(): BelongsToMany
     {
         return $this->belongsToMany(direccion::class, 'cliente_direccion','id_cliente','id_direccion');
+    }
+
+    public function interesados(): HasMany
+    {
+        return $this->hasMany(interesado::class ,'id_cliente','id_cliente');
     }
     
 

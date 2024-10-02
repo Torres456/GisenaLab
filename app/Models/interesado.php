@@ -23,6 +23,7 @@ class interesado extends Model
         'id_gestor',
         'id_direccion',
         'id_usuario_sistema',
+        'id_cliente',
     ];
 
     public function contacto(): BelongsTo
@@ -44,6 +45,11 @@ class interesado extends Model
     public function sistema(): belongsTo
     {
         return $this->belongsTo(User::class,'id_usuario_sistema');
+    }
+
+    public function cliente(): BelongsTo
+    {
+        return $this->belongsTo(cliente::class,'id_cliente');
     }
 
     use HasFactory;

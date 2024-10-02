@@ -14,57 +14,32 @@ use Livewire\Form;
 class InteresadosEditForm extends Form
 {
     public $nombre;
-
     public $paterno;
-
     public $materno;
-
     public $telefono;
-
     public $telefono_alter;
-
     public $correo;
-
     public $correo_alter;
-
     public $contrasena;
-
     public $contrasena_confirmation;
-
     public $gestor;
-
     public $nombre_contac;
-
     public $materno_contac;
-
     public $paterno_contac;
-
     public $correo_contact;
-
     public $correo_alter_contact;
-
     public $telefono_contact;
-
     public $telefono_alter_contact;
-
-
     public $calle;
-
     public $exterior;
-
     public $interior;
-
     public $cp;
-
     public $entre;
-
     public $referencia;
-
     public $estado;
-
     public $municipio;
-
     public $colonia;
+    public $cliente;
 
     public $edit = false;
     public $editId;
@@ -97,6 +72,7 @@ class InteresadosEditForm extends Form
         $this->estado = $register->direccion->id_estado;
         $this->municipio = $register->direccion->id_municipio;
         $this->colonia = $register->direccion->id_colonia;
+        $this->cliente = $register->id_cliente;
     }
 
     public function update(){
@@ -120,6 +96,7 @@ class InteresadosEditForm extends Form
             'estado' => ['required'],
             'municipio' => ['required'],
             'colonia' => [' required'],
+            'cliente' => ['required'],
         ]);
 
 
@@ -134,6 +111,7 @@ class InteresadosEditForm extends Form
             'telefono_alternativo' => $this->telefono_alter,
             'correo' => $this->correo,
             'correo_alternativo' => $this->correo_alter,
+            'id_cliente' => $this->cliente,
         ]);
 
         //solo actualizar contacto

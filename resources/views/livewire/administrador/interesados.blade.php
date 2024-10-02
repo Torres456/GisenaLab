@@ -47,6 +47,9 @@
                         Gestor
                     </th>
                     <th scope="col" class="px-6 py-3 text-center ">
+                        cliente
+                    </th>
+                    <th scope="col" class="px-6 py-3 text-center ">
                         Dirección
                     </th>
                     <th scope="col" class="px-6 py-3 text-center ">
@@ -80,6 +83,9 @@
                             </td>
                             <td class="px-6 py-4 text-center">
                                 {{ $interesado->gestor->nombre . ' ' . $interesado->gestor->ap_materno . ' ' . $interesado->gestor->ap_paterno }}
+                            </td>
+                            <td class="px-6 py-4 text-center">
+                                {{ $interesado->cliente->razon_social }}
                             </td>
                             <td class="px-6 py-4 text-center">
                                 <x-button wire:click='direc_register({{ $interesado->id_interesado }})'>
@@ -182,6 +188,11 @@
         {{ $interesados->links() }}
     </div>
 
+
+
+
+
+
     <x-dialog-modal wire:model="newRegister.new">
         <x-slot name='title'>
             <h2 class="text-center">Nuevo Interesado</h2>
@@ -196,13 +207,13 @@
                 </div>
                 <div class="w-full grid grid-cols-2 max-md:grid-cols-1 gap-3">
                     <div>
-                        <x-label>A. Paterno:<span class="text-red-600">*</span><span class="text-red-600">*</span></x-label>
+                        <x-label>A. Paterno:<span class="text-red-600">*</span></x-label>
                         <x-input wire:model="newRegister.paterno" type="text" class="block mt-1 w-full"
                             onkeyup="mayuscula(this)" />
                         <x-input-error for="newRegister.paterno" />
                     </div>
                     <div>
-                        <x-label>A. Materno:<span class="text-red-600">*</span><span class="text-red-600">*</span></x-label>
+                        <x-label>A. Materno:<span class="text-red-600">*</span></x-label>
                         <x-input wire:model="newRegister.materno" type="text" class="block mt-1 w-full"
                             onkeyup="mayuscula(this)" />
                         <x-input-error for="newRegister.materno" />
@@ -210,13 +221,13 @@
                 </div>
                 <div class="w-full grid grid-cols-2 max-md:grid-cols-1 gap-3">
                     <div>
-                        <x-label>Teléfono:<span class="text-red-600">*</span><span class="text-red-600">*</span></x-label>
+                        <x-label>Teléfono:<span class="text-red-600">*</span></x-label>
                         <x-input wire:model="newRegister.telefono" type="tel" class="block mt-1 w-full"
                             onkeyup="mayuscula(this)" />
                         <x-input-error for="newRegister.telefono" />
                     </div>
                     <div>
-                        <x-label>Teléfono Alternativo:<span class="text-red-600">*</span><span class="text-red-600">*</span></x-label>
+                        <x-label>Teléfono Alternativo:<span class="text-red-600">*</span></x-label>
                         <x-input wire:model="newRegister.telefono_alter" type="tel" class="block mt-1 w-full"
                             onkeyup="mayuscula(this)" />
                         <x-input-error for="newRegister.telefono_alter" />
@@ -224,12 +235,12 @@
                 </div>
                 <div class="w-full grid grid-cols-2 max-md:grid-cols-1 gap-3">
                     <div>
-                        <x-label>Correo:<span class="text-red-600">*</span><span class="text-red-600">*</span></x-label>
+                        <x-label>Correo:<span class="text-red-600">*</span></x-label>
                         <x-input wire:model="newRegister.correo" type="email" class="block mt-1 w-full" />
                         <x-input-error for="newRegister.correo" />
                     </div>
                     <div>
-                        <x-label>Correo Alternativo:<span class="text-red-600">*</span><span class="text-red-600">*</span></x-label>
+                        <x-label>Correo Alternativo:<span class="text-red-600">*</span></x-label>
                         <x-input wire:model="newRegister.correo_alter" type="email" class="block mt-1 w-full" />
                         <x-input-error for="newRegister.correo_alter" />
                     </div>
@@ -259,6 +270,18 @@
                     <x-input-error for="newRegister.gestor" />
                 </div>
 
+                <div>
+                    <x-label>Cliente:<span class="text-red-600">*</span></x-label>
+                    <x-select wire:model.live="newRegister.cliente" class="block mt-1 w-full">
+                        <option value="">Seleccione un cliente</option>
+                        @foreach ($clientes as $cliente)
+                            <option value="{{ $cliente->id_cliente }}">{{ $cliente->razon_social}}
+                            </option>
+                        @endforeach
+                    </x-select>
+                    <x-input-error for="newRegister.cliente" />
+                </div>
+
                 <div class="border-b-2 border-slate-700 my-3">
                     <p class="text-black dark:text-slate-500">Contacto</p>
                 </div>
@@ -269,12 +292,12 @@
                 </div>
                 <div class="w-full grid grid-cols-2 max-md:grid-cols-1 gap-3">
                     <div>
-                        <x-label>A. Materno:<span class="text-red-600">*</span><span class="text-red-600">*</span></x-label>
+                        <x-label>A. Materno:<span class="text-red-600">*</span></x-label>
                         <x-input wire:model="newRegister.materno_contac" type="text" class="block mt-1 w-full" />
                         <x-input-error for="newRegister.materno_contac" />
                     </div>
                     <div>
-                        <x-label>A. Paterno:<span class="text-red-600">*</span><span class="text-red-600">*</span></x-label>
+                        <x-label>A. Paterno:<span class="text-red-600">*</span></x-label>
                         <x-input wire:model="newRegister.paterno_contac" type="text"
                             class="block mt-1 w-full" />
                         <x-input-error for="newRegister.paterno_contac" />
@@ -282,24 +305,24 @@
                 </div>
                 <div class="w-full grid grid-cols-2 max-md:grid-cols-1 gap-3">
                     <div>
-                        <x-label>Correo:<span class="text-red-600">*</span><span class="text-red-600">*</span></x-label>
+                        <x-label>Correo:<span class="text-red-600">*</span></x-label>
                         <x-input wire:model="newRegister.correo_contact" type="email" class="block mt-1 w-full" />
                         <x-input-error for="newRegister.correo_contact" />
                     </div>
                     <div>
-                        <x-label>Correo Alternativo:<span class="text-red-600">*</span><span class="text-red-600">*</span></x-label>
+                        <x-label>Correo Alternativo:<span class="text-red-600">*</span></x-label>
                         <x-input wire:model="newRegister.correo_alter_contact" type="email" class="block mt-1 w-full" />
                         <x-input-error for="newRegister.correo_alter_contact" />
                     </div>
                 </div>
                 <div class="w-full grid grid-cols-2 max-md:grid-cols-1 gap-3">
                     <div>
-                        <x-label>Teléfono:<span class="text-red-600">*</span><span class="text-red-600">*</span></x-label>
+                        <x-label>Teléfono:<span class="text-red-600">*</span></x-label>
                         <x-input wire:model="newRegister.telefono_contact" type="tel" class="block mt-1 w-full" />
                         <x-input-error for="newRegister.telefono_contact" />
                     </div>
                     <div>
-                        <x-label>Teléfono Alternativo:<span class="text-red-600">*</span><span class="text-red-600">*</span></x-label>
+                        <x-label>Teléfono Alternativo:<span class="text-red-600">*</span></x-label>
                         <x-input wire:model="newRegister.telefono_alter_contact" type="tel" class="block mt-1 w-full" />
                         <x-input-error for="newRegister.telefono_alter_contact" />
                     </div>
@@ -389,6 +412,13 @@
         <x-slot name='footer'></x-slot>
     </x-dialog-modal>
 
+
+
+
+
+
+
+
     <x-dialog-modal wire:model="editRegister.edit">
         <x-slot name='title'>
             <h2 class="text-center">Editar Interesado</h2>
@@ -451,6 +481,18 @@
                         @endforeach
                     </x-select>
                     <x-input-error for="editRegister.gestor" />
+                </div>
+
+                <div>
+                    <x-label>Cliente:<span class="text-red-600">*</span></x-label>
+                    <x-select wire:model.live="editRegister.cliente" class="block mt-1 w-full">
+                        <option value="">Seleccione un cliente</option>
+                        @foreach ($clientes as $cliente)
+                            <option value="{{ $cliente->id_cliente }}">{{ $cliente->razon_social}}
+                            </option>
+                        @endforeach
+                    </x-select>
+                    <x-input-error for="newRegister.cliente" />
                 </div>
 
                 <div class="border-b-2 border-slate-700 my-3">
@@ -582,6 +624,12 @@
         </x-slot>
         <x-slot name='footer'></x-slot>
     </x-dialog-modal>
+
+
+
+
+
+
 
     <x-dialog-modal wire:model="direct">
         <x-slot name='title'>
