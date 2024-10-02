@@ -24,20 +24,35 @@ class Create extends Component
         return redirect()->route('admin.ordenes.new_muestras', ['id' => $this->id]);
     }
 
-    public function new_cancel()
-    {
-        // Redirigir al index
+    //&================================================================= CAncelar Orden
+
+    public $cancelar_orden=false;
+
+    public function cancel(){
+         $this->cancelar_orden = true;
+    }
+
+    public function cancel_orden(){
+        $this->reset();
         return redirect()->route('admin.ordenes.ordenes');
     }
 
+    public function continiu_orden(){
+        $this->cancelar_orden = false;
+    }
+
     //&================================================================= Lazy Load
+
     public function placeholder()
     {
         return view('livewire.placeholders.skeleton');
     }
+
     //&================================================================= Render
+
     public function render()
     {
         return view('livewire.administrador.ordenes.create');
     }
+    
 }
