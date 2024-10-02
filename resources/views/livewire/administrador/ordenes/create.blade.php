@@ -60,9 +60,22 @@
 
 
             <div class="flex justify-between md:col-span-2">
-                <x-danger-button type="reset" wire:click="new_cancel">Cancelar</x-danger-button>
+                <x-danger-button wire:click="cancel">Cancelar</x-danger-button>
                 <x-button>Siguiente</x-button>
             </div>
         </form>
     </div>
+
+    <x-dialog-modal wire:model="cancelar_orden">
+        <x-slot name='title'>
+            <h2 class="text-center">¿Desea cancelar esta orden de servicio?</h2>
+        </x-slot>
+        <x-slot name='content'>
+            <div class="flex justify-around md:col-span-2">
+                <x-danger-button type="reset" wire:click="cancel_orden">Cancelar</x-danger-button>
+                <x-button wire:click="continiu_orden">Continuar</x-button>
+            </div>
+        </x-slot>
+        <x-slot name='footer'></x-slot>
+    </x-dialog-modal>
 </div>
