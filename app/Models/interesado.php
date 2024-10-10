@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class interesado extends Model
@@ -50,6 +51,11 @@ class interesado extends Model
     public function cliente(): BelongsTo
     {
         return $this->belongsTo(cliente::class,'id_cliente');
+    }
+
+    public function orden_servicio():HasMany
+    {
+        return $this->hasMany(orden_servicio::class, 'id_interesado');
     }
 
     use HasFactory;

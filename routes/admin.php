@@ -140,5 +140,10 @@ Route::get('/ordenes/create', function () {
 })->name('ordenes.new_register');
 
 Route::get('/ordenes/create/{id}/muestras', function ($id) {
-    return view('administrador.ordenes.new_muestras');
+    return view('administrador.ordenes.new_muestras', ['orderId' => $id]);
 })->name('ordenes.new_muestras');
+
+
+Route::get('/ordenes/{id}/edit/', function ($id) {
+    return view('administrador.ordenes.edit_register', ['orderId' => $id]);
+})->name('ordenes.edit_register');

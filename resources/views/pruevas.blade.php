@@ -20,7 +20,7 @@
                     </button>
                     <a href="https://flowbite.com" class="flex ms-2 md:me-24">
                         {{-- <x-application-mark class="block h-6 me-3" /> --}}
-                        <img src="{{ asset('images/Gisena_Logo.png') }}" alt="" class="h-7 me-3">
+                        <img src="{{ asset('images/Gisena_Logo.webp') }}" alt="" class="h-7 me-3">
                     </a>
                 </div>
 
@@ -90,7 +90,7 @@
             class="fixed top-0 left-0 z-60 w-[244px] h-screen bg-zinc-700 transition-transform -translate-x-full px-3 py-2">
             <div class="">
                 <div class="flex items-center border-b-[0.1px] border-gray-500 w-full h-[50px]">
-                    <img src="{{ asset('images/G_Logo.png') }}" alt="" class="min-h-10 h-[40px]">
+                    <img src="{{ asset('images/G_Logo.webp') }}" alt="" class="min-h-10 h-[40px]">
                     <span class="ml-3 text-xl text-slate-300">GisenaLabs</span>
                 </div>
 

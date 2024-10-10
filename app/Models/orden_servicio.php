@@ -8,9 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class orden_servicio extends Model
 {
     protected $table = 'orden_servicio';
-    protected $primaryKey = 'numero_orden_servicio';
+    protected $primaryKey = 'id_orden_servicio';
     protected $fillable = [
-        'numero_orden_servicio',
+        'id_orden_servicio',
         'fecha_orden',
         'prioridad',
         'requiere_factura',
@@ -22,12 +22,18 @@ class orden_servicio extends Model
         'tipo_documento',
         'folio_documento',
         'netsuite',
-        'idstatus_orden_servicio',
+        'id_status_orden_servicio',
     ];
 
     public function cliente(){
         return $this->belongsTo(cliente::class, 'id_cliente','id_cliente');
     }
+
+    //interesado
+    public function interesado(){
+        return $this->belongsTo(interesado::class, 'id_interesado','id_interesado');
+    }
+    
 
     public function status_orden_servicio(){
         return $this->belongsTo(estatus_orden_servicio::class, 'idstatus_orden_servicio','idstatus_orden_servicio');

@@ -133,7 +133,7 @@
 
     <div class="preloader" id="onload">
         <div class="preloader_box">
-            <img src="{{ asset('images/G_Logo.png') }}" alt="" class="preloader_img">
+            <img src="{{ asset('images/G_Logo.webp') }}" alt="" class="preloader_img">
             <div class="lds-dual-ring"></div>
         </div>
     </div>
@@ -297,7 +297,7 @@
 
         {{-- Title page --}}
         <div class="aside_section-title bg-zinc-700 dark:bg-gray-800">
-            <img src="{{ asset('images/G_Logo.png') }}" alt="" class="list_image">
+            <img src="{{ asset('images/G_Logo.webp') }}" alt="" class="list_image">
             <span class="text-2xl ml-[15px] text-slate-100">Gisenalabs</span>
         </div>
 

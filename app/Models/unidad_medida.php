@@ -16,5 +16,9 @@ class unidad_medida extends Model
         return $this->hasMany(catalogo_tipo_muestra::class, 'id_unidad_medida','id_unidad_medida');
     }
 
+    public function muestra_orden_servicio(){
+        return $this->hasMany(muestra_orden_servicio::class, 'id_unidad_medida', 'id_unidad_medida');
+    }
+
     use HasFactory;
 }

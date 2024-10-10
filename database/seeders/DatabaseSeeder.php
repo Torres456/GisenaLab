@@ -2,9 +2,27 @@
 
 namespace Database\Seeders;
 
+use App\Models\catalogo_analisis_especifico;
+use App\Models\catalogo_categoria;
+use App\Models\catalogo_subcategoria;
+use App\Models\catalogo_tipo_analisis;
+use App\Models\catalogo_tipo_muestra;
+use App\Models\cliente;
+use App\Models\colonia;
+use App\Models\descripcion_muestra;
+use App\Models\estado;
+use App\Models\estatus_muestras;
+use App\Models\estatus_orden_servicio;
+use App\Models\gestor;
+use App\Models\interesado;
+use App\Models\municipio;
 use App\Models\rutas;
+use App\Models\sucursales_gisena;
 use App\Models\tipo_usuario;
+use App\Models\unidad_medida;
+use App\Models\unidad_metodo;
 use App\Models\User;
+use App\Models\zona_representacion;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -17,9 +35,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // User::factory(10)->create();
-
-
+        
         $TipoUser1 = new tipo_usuario();
         $TipoUser1->id_tipo_usuario = 1;
         $TipoUser1->descripcion = "Administrador";

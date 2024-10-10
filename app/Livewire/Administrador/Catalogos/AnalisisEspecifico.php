@@ -173,7 +173,7 @@ class AnalisisEspecifico extends Component
     {
         //validations
         $this->validate([
-            'editRegister.nombre' => ['required', 'max:50','unique:catalogo_analisis_especifico,nombre_comercial,' . $this->editId . 'id_analisis_especifico'],
+            'editRegister.nombre' => ['required', 'max:50','unique:catalogo_analisis_especifico,nombre_comercial,' . $this->editId . ',id_analisis_especifico'],
             'editRegister.descripcion' => ['required', 'max:250'],
             'editRegister.tipo' => ['required'],
             'editRegister.clave' => ['required', 'max:45'],

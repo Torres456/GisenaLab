@@ -1,2 +1,2 @@
 
-<img src="{{ asset('images/Gisena_Logo.png') }}" alt="GISENA" class="w-36">
+<img src="{{ asset('images/Gisena_Logo.webp') }}" alt="GISENA" class="w-36">

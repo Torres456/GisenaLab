@@ -69,8 +69,6 @@ class EmpleadosCreateForm extends Form
 
             $usuario = User::create([
                 'nombre' => $this->nombre,
-                'ap_paterno' => $this->a_paterno,
-                'ap_materno' => $this->a_materno,
                 'correo' => $this->correo,
                 'contraseña' => Hash::make($this->contraseña),
                 'estatus' => 1,
@@ -102,6 +100,7 @@ class EmpleadosCreateForm extends Form
             session()->flash('green', 'Agregada correctamente');
 
             DB::commit();
+            
         } catch (\Exception $e) {
             DB::rollback();
             abort(500);

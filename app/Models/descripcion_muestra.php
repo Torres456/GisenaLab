@@ -20,6 +20,11 @@ class descripcion_muestra extends Model
     {
         return $this->belongsTo(catalogo_tipo_muestra::class, 'id_tipo_muestra', 'id_tipo_muestra');
     }
+
+    //muestra orden servicio
+    public function muestra_orden_servicio(){
+        return $this->hasMany(muestra_orden_servicio::class, 'id_descripcion_muestra', 'id_descripcion_muestra');
+    }
     
     use HasFactory;
 }

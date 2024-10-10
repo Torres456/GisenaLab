@@ -5,18 +5,14 @@ namespace App\Livewire\Administrador\Ordenes;
 use App\Livewire\Forms\OrdenesAdminCreateForm;
 use App\Models\cliente;
 use App\Models\interesado;
-use App\Models\orden_servicio;
 use Livewire\Attributes\Lazy;
 use Livewire\Component;
 
 #[Lazy()]
-class Create extends Component
+class Edit extends Component
 {
 
     //&================================================================= new register
-
-    
-
     public OrdenesAdminCreateForm $newRegister;
 
     public function new_register()
@@ -78,9 +74,8 @@ class Create extends Component
     }
 
     //&================================================================= Render
-
     public function render()
     {
-        return view('livewire.administrador.ordenes.create');
+        return view('livewire.administrador.ordenes.edit');
     }
 }

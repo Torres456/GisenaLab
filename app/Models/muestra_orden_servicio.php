@@ -7,11 +7,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class muestra_orden_servicio extends Model
 {
-    protected $table ='muestra_orden_servicios';
+    protected $table ='muestra_orden_servicio';
     protected $primaryKey = 'id_muestra_orden_servicio';
     protected $fillable = [
         'id_muestra_orden_servicio',
-        'numero_orden_servicio',
+        'id_orden_servicio',
         'id_categoria',
         'id_subcategoria',
         'id_tipo_muestra',
@@ -25,10 +25,12 @@ class muestra_orden_servicio extends Model
         'otros_datos',
         'fecha_envio',
         'idioma_informe',
-        'idprocedencia_orden',
-        'idmuestra_internacional',
+        'id_procedencia',
+        'id_muestra_internacional',
         'tiempo_respuesta',
-        'idstatus_muestra',
+        'id_status_muestra',
+        'id_unidad_medida',
+        'id_procedencia_orden'
     ];
 
     public function categoria(){
@@ -55,6 +57,24 @@ class muestra_orden_servicio extends Model
 
     public function datos_muestra_especifico(){
         return $this->belongsToMany(datos_muestra_especificos::class);
+    }
+
+    public function descripcion_muestra(){
+        return $this->belongsTo(descripcion_muestra::class,'id_descrip_muestra','id_descrip_muestra');
+    }
+
+    public function unidad_medida(){
+        return $this->belongsTo(unidad_medida::class,'id_unidad_medida','id_unidad_medida');
+    }
+
+    //procedencia
+    public function procedencia(){
+        return $this->belongsTo(procedencias::class,'id_procedencia','id_procedencia');
+    }
+
+    //Estatus muestra
+    public function status_muestra(){
+        return $this->belongsTo(estatus_muestras::class,'id_status_muestra','id_status_muestra');
     }
 
 
