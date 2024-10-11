@@ -1,6 +1,13 @@
 <div>
     <div class="py-5">
-        <x-input wire:model.live="search"  type="text" placeholder="Buscar catalogo" class="w-full" />
+        <x-input wire:model.live="search" type="text" placeholder="Buscar catalogo" class="w-full" />
+    </div>
+    <div class="grid grid-cols-3 max-lg:grid-cols-2 max-md:grid-cols-1 gap-5 mb-4">
+        <x-cards>
+            <x-slot name="title">Flujo de Muestras</x-slot>
+            <x-slot name="content">Permite agregar de manera ordenada los diferentes regisdtros de muestras</x-slot>
+            <x-slot name="footer"><x-button-enter href="">Entrar</x-button-enter></x-slot>
+        </x-cards>
     </div>
     <div class="card-container">
         @if ($count == 0)

@@ -1,15 +1,7 @@
-<x-app-layout>
-    <x-panel-menu>
-        <x-slot name="content">
-            @livewire('administrador.catalogos.index')
-        </x-slot>
-    </x-panel-menu>
-</x-app-layout>
-
-<style>
-    .custom-scroll {
-    overflow-y: scroll;
-    scrollbar-width: thin;
-    scrollbar-color: #5fa631 #111827;
-}
-</style>
+<x-paneles.personal>
+    <x-slot:titulo>
+        Catalogos
+    </x-slot>
+    @livewire('administrador.catalogos.index')
+    <script src="{{ asset('js/mayusculas.js') }}"></script>
+</x-paneles.personal>
