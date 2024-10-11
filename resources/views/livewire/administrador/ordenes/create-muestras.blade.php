@@ -267,6 +267,159 @@
         <x-slot name='footer'></x-slot>
     </x-dialog-modal>
 
+    <x-dialog-modal wire:model="editMuestra">
+        <x-slot name='title'>
+            <h2 class="text-center">Editar Muestra</h2>
+        </x-slot>
+        <x-slot name='content'>
+            <form wire:submit="new_register" class="grid md:grid-cols-2 gap-3 w-full">
+
+                <div class="flex flex-col">
+                    <label for="editRegister.categoria">Categoria:<span class="text-red-600">*</span></label>
+                    <x-select wire:model.live="editRegister.categoria" class="w-full">
+                        <option value="">Seleccione una opción</option>
+                        @foreach ($categorias as $cat)
+                            <option value="{{ $cat->id_categoria }}">{{ $cat->descripcion }}</option>
+                        @endforeach
+                    </x-select>
+                    <x-input-error for="editRegister.categoria" />
+                </div>
+
+                <div class="flex flex-col">
+                    <label for="editRegister.categoria">Subcategoria:<span class="text-red-600">*</span></label>
+                    <x-select wire:model.live="editRegister.subcategoria" class="w-full">
+                        <option value="">Seleccione una opción</option>
+                        @foreach ($subcategorias as $sub)
+                            <option value="{{ $sub->id_subcategoria }}">{{ $sub->nom_subcategoria }}</option>
+                        @endforeach
+                    </x-select>
+                    <x-input-error for="editRegister.subcategoria" />
+                </div>
+
+                <div class="flex flex-col">
+                    <label for="categoria">Tipo muestra:<span class="text-red-600">*</span></label>
+                    <x-select wire:model.live="editRegister.tipo_muestra" class="w-full">
+                        <option value="">Seleccione una opción</option>
+                        @foreach ($tipo_muestras as $tipo)
+                            <option value="{{ $tipo->id_tipo_muestra }}">{{ $tipo->nom_tipo_muestra }}</option>
+                        @endforeach
+                    </x-select>
+                    <x-input-error for="editRegister.tipo_muestra" />
+                </div>
+
+                <div class="flex flex-col">
+                    <label for="editRegister.descripcion_muestra">Descripción Muestra:<span
+                            class="text-red-600">*</span></label>
+                    <x-select wire:model.live="editRegister.descripcion_muestra" class="w-full">
+                        <option value="">Seleccione una opción</option>
+                        @foreach ($descripcion_muestras as $descripcion)
+                            <option value="{{ $descripcion->id_descrip_muestra }}">{{ $descripcion->nombre_descrip }}
+                            </option>
+                        @endforeach
+                    </x-select>
+                    <x-input-error for="editRegister.descripcion_muestra" />
+                </div>
+
+                <div class="flex flex-col">
+                    <label for="editRegister.tipo_analisis">Tipo de análisis:<span class="text-red-600">*</span></label>
+                    <x-select wire:model.live="editRegister.tipo_analisis" class="w-full">
+                        <option value="">Seleccione una opción</option>
+                        @foreach ($tipo_analisis as $tipo)
+                            <option value="{{ $tipo->id_tipo_analisis }}">{{ $tipo->nomb_tipo_analisis }}</option>
+                        @endforeach
+                    </x-select>
+                    <x-input-error for="editRegister.tipo_analisis" />
+                </div>
+
+                <div class="flex flex-col">
+                    <label for="editRegister.analisis_especifico">Análisis específico:<span
+                            class="text-red-600">*</span></label>
+                    <x-select wire:model.live="editRegister.analisis_especifico" class="w-full">
+                        <option value="">Seleccione una opción</option>
+                        @foreach ($analisis_especifico as $analisis)
+                            <option value="{{ $analisis->id_analisis_especifico }}">{{ $analisis->nombre_comercial }}
+                            </option>
+                        @endforeach
+                    </x-select>
+                    <x-input-error for="editRegister.analisis_especifico" />
+                </div>
+
+                <div class="flex flex-col">
+                    <label for="editRegister.procedencia">Procedencia:<span class="text-red-600">*</span></label>
+                    <x-select wire:model.live="editRegister.procedencia" class="w-full">
+                        <option value="">Seleccione una opción</option>
+                        @foreach ($procedencias as $procedencia)
+                            <option value="{{ $procedencia->id_procedencia }}">
+                                {{ $procedencia->sitio_muestreo . ' - ' . $procedencia->nombre_sitio_muestreo }}
+                            </option>
+                        @endforeach
+                    </x-select>
+                    <x-input-error for="editRegister.procedencia" />
+                </div>
+
+                <div class="flex flex-col">
+                    <label for="editRegister.lote">Lote:<span class="text-red-600">*</span></label>
+                    <x-input wire:model.live="editRegister.lote" class="w-full" />
+                    <x-input-error for="editRegister.lote" />
+                </div>
+
+                <div class="flex flex-col">
+                    <label for="editRegister.cantidad">Cantidad enviada:<span class="text-red-600">*</span></label>
+                    <x-input wire:model.live="editRegister.cantidad" class="w-full" />
+                    <x-input-error for="editRegister.cantidad" />
+                </div>
+
+                <div class="flex flex-col">
+                    <label for="editRegister.unidad_medida">Unidad de medida:<span
+                            class="text-red-600">*</span></label>
+                    <x-select wire:model.live="editRegister.unidad_medida" class="w-full">
+                        <option value="">Seleccione una opción</option>
+                        @foreach ($unidad_medidas as $unidad_medida)
+                            <option value="{{ $unidad_medida->id_unidad_medida }}">
+                                {{ $unidad_medida->nombre_unidad }}
+                            </option>
+                        @endforeach
+                    </x-select>
+                    <x-input-error for="editRegister.unidad_medida" />
+                </div>
+
+                <div class="flex flex-col">
+                    <label for="editRegister.muestreo">Fecha muestreo:<span class="text-red-600">*</span></label>
+                    <x-input wire:model.live="editRegister.muestreo" class="w-full" type="date" />
+                    <x-input-error for="editRegister.muestreo" />
+                </div>
+
+                <div class="flex flex-col">
+                    <label for="editRegister.envio">Fecha envío:<span class="text-red-600">*</span></label>
+                    <x-input wire:model.live="editRegister.envio" class="w-full" type="date" />
+                    <x-input-error for="editRegister.envio" />
+                </div>
+
+                <div class="flex flex-col">
+                    <label for="editRegister.productor">Productor o Responsable:<span
+                            class="text-red-600">*</span></label>
+                    <x-input wire:model.live="editRegister.productor" class="w-full" />
+                    <x-input-error for="editRegister.productor" />
+                </div>
+
+                <div class="flex flex-col">
+                    <label for="editRegister.tiempo">Tiempo de respuesta:<span class="text-red-600">*</span><span
+                            class="text-slate-500">(Dias)</span></label>
+                    <x-input wire:model.live="editRegister.tiempo" class="w-full" />
+                    <x-input-error for="editRegister.tiempo" />
+                </div>
+
+
+
+                <div class="flex justify-between md:col-span-2">
+                    <x-danger-button type="reset" wire:click="edit_cancel">Cancelar</x-danger-button>
+                    <x-button>Guardar</x-button>
+                </div>
+            </form>
+        </x-slot>
+        <x-slot name='footer'></x-slot>
+    </x-dialog-modal>
+
     <x-dialog-modal wire:model="cancelar_orden">
         <x-slot name='title'>
             <h2 class="text-center">¿Desea cancelar esta orden de servicio?</h2>
@@ -286,6 +439,19 @@
         </x-slot>
         <x-slot name='content'>
             @livewire('componentes.muestras.procedencia', ['IdProce' => $IdProce])
+        </x-slot>
+        <x-slot name='footer'></x-slot>
+    </x-dialog-modal>
+
+    <x-dialog-modal wire:model="delte_muestra">
+        <x-slot name='title'>
+            <h2 class="text-center">¿Desea eliminar esta muestra?</h2>
+        </x-slot>
+        <x-slot name='content'>
+            <div class="flex justify-around md:col-span-2">
+                <x-danger-button type="reset" wire:click="eliminar_muestra">Eliminar</x-danger-button>
+                <x-button wire:click="cancelar_eliminar_muestra">Cancelar</x-button>
+            </div>
         </x-slot>
         <x-slot name='footer'></x-slot>
     </x-dialog-modal>

@@ -73,7 +73,7 @@ class CreateMuestras extends Component
             'newRegister.envio' => ['required'],
             'newRegister.productor' => ['required'],
             'newRegister.tiempo' => ['required'],
-        ],[
+        ], [
             'newRegister.categoria.required' => 'La categoria es requerida',
             'newRegister.subcategoria.required' => 'La sub categoria es requerida',
             'newRegister.tipo_muestra.required' => 'El tipo de muestra es requerido',
@@ -106,10 +106,10 @@ class CreateMuestras extends Component
             'fecha_muestreo' => $this->newRegister['muestreo'],
             'fecha_envio' => $this->newRegister['envio'],
             'idioma_informe' => "es",
-            'id_procedencia_orden'=>'1',
+            'id_procedencia_orden' => '1',
             'productor_responsable' => $this->newRegister['productor'],
             'tiempo_respuesta' => $this->newRegister['tiempo'],
-            'id_status_muestra'=>'1'
+            'id_status_muestra' => '1'
         ]);
 
         $this->new_cancel();
@@ -121,34 +121,102 @@ class CreateMuestras extends Component
         $this->reset('newRegister');
     }
 
-    //&================================================================= Procedencias
 
-    public $procedencias_orden=false;
-    public $IdProce;
+    //&================================================================= Editar
+    public $editRegister = [
+        'categoria',
+        'subcategoria',
+        'tipo_muestra',
+        'descripcion_muestra',
+        'tipo_analisis',
+        'analisis_especifico',
+        'procedencia',
+        'lote',
+        'cantidad',
+        'unidad_medida',
+        'muestreo',
+        'envio',
+        'productor',
+        'tiempo'
+    ];
 
-    public function procedencia_register($id){
+    public $editMuestra = false;
+    public $editMuestraId;
 
-        $this->procedencias_orden=true;
-        $this->IdProce=$id;
+    public function edit_register($id)
+    {
+        $this->editMuestra = true;
+        $this->editMuestraId = $id;
+        $Muestra_edit = muestra_orden_servicio::find($id);
+
+        $this->editRegister = [
+            'categoria' => $Muestra_edit->id_categoria,
+            'subcategoria' => $Muestra_edit->id_subcategoria,
+            'tipo_muestra' => $Muestra_edit->id_tipo_muestra,
+            'descripcion_muestra' => $Muestra_edit->id_descrip_muestra,
+            'tipo_analisis' => $Muestra_edit->id_tipo_analisis,
+            'analisis_especifico' => $Muestra_edit->id_analisis_especifico,
+            'procedencia' => $Muestra_edit->id_procedencia,
+            'lote' => $Muestra_edit->no_lote,
+            'cantidad' => $Muestra_edit->cantidad_enviada,
+            'unidad_medida' => $Muestra_edit->id_unidad_medida,
+            'muestreo' => $Muestra_edit->fecha_muestreo,
+            'envio' => $Muestra_edit->fecha_envio,
+            'productor' => $Muestra_edit->productor_responsable,
+            'tiempo' => $Muestra_edit->tiempo_respuesta
+        ];
     }
 
-    public function procedencia_cancel(){
-        $this->procedencias_orden=false;
+
+    //&================================================================= Eliminar muestra
+
+    public $delte_muestra=false;
+    public $deleteMuestraId;
+
+    public function delete_register($id){
+        $this->delte_muestra = true;
+        $this->deleteMuestraId = $id;
+    }
+
+    public function eliminar_muestra(){
+        muestra_orden_servicio::destroy($this->deleteMuestraId);
+        $this->delte_muestra = false;
+    }
+
+    public function cancelar_eliminar_muestra(){
+        $this->delte_muestra = false;
+    }
+
+    //&================================================================= Procedencias
+
+    public $procedencias_orden = false;
+    public $IdProce;
+
+    public function procedencia_register($id)
+    {
+
+        $this->procedencias_orden = true;
+        $this->IdProce = $id;
+    }
+
+    public function procedencia_cancel()
+    {
+        $this->procedencias_orden = false;
     }
     //&================================================================= Datos
 
     public $categorias, $subcategorias = [], $tipo_muestras = [], $descripcion_muestras = [], $tipo_analisis = [];
-    public $analisis_especifico = [], $procedencias = [], $unidad_medidas = [] ;
+    public $analisis_especifico = [], $procedencias = [], $unidad_medidas = [];
 
     public function mount()
     {
         $this->categorias = catalogo_categoria::where('estatus', '1')->get();
-        $this->procedencias = procedencias::where('estatus','1')->get();
+        $this->procedencias = procedencias::where('estatus', '1')->get();
     }
 
     public function updated($property, $value)
     {
-        if ($property == 'newRegister.categoria') {
+        if ($property == 'newRegister.categoria' || $property == 'editRegister.categoria') {
             $this->subcategorias = [];
             $this->tipo_muestras = [];
             $this->descripcion_muestras = [];
@@ -157,7 +225,7 @@ class CreateMuestras extends Component
 
 
             $this->subcategorias = catalogo_subcategoria::where('id_categoria', $value)->orderBy('nom_subcategoria', 'asc')->get();
-        } else if ($property == 'newRegister.subcategoria') {
+        } else if ($property == 'newRegister.subcategoria' || $property == 'editRegister.subcategoria') {
             $this->tipo_muestras = [];
             $this->descripcion_muestras = [];
             $this->tipo_analisis = [];
@@ -165,26 +233,27 @@ class CreateMuestras extends Component
 
 
             $this->tipo_muestras = catalogo_tipo_muestra::where('id_subcategoria', $value)->orderBy('nom_tipo_muestra', 'asc')->get();
-        }else if ($property == 'newRegister.tipo_muestra') {
+        } else if ($property == 'newRegister.tipo_muestra' || $property == 'editRegister.tipo_muestra') {
             $this->descripcion_muestras = [];
             $this->tipo_analisis = [];
             $this->analisis_especifico = [];
             $this->unidad_medidas = [];
 
 
-            $unidad= catalogo_tipo_muestra::find($value); 
+            $unidad = catalogo_tipo_muestra::find($value);
             $this->descripcion_muestras = descripcion_muestra::where('id_tipo_muestra', $value)->orderBy('nombre_descrip', 'asc')->get();
             $this->tipo_analisis = catalogo_tipo_analisis::where('id_tipo_muestra', $value)->orderBy('nomb_tipo_analisis', 'asc')->get();
-            $this->unidad_medidas = unidad_medida::where('id_unidad_medida',$unidad->id_unidad_medida)->get();
-        }
-        else if ($property == 'newRegister.tipo_analisis') {
+            $this->unidad_medidas = unidad_medida::where('id_unidad_medida', $unidad->id_unidad_medida)->get();
+        } else if ($property == 'newRegister.tipo_analisis' || $property == 'editRegister.tipo_analisis') {
             $this->analisis_especifico = [];
 
 
             $this->analisis_especifico = catalogo_analisis_especifico::where('id_tipo_analisis', $value)->orderBy('nombre_comercial', 'asc')->get();
         }
     }
+
     
+
 
     //&================================================================= CAncelar Orden
 
