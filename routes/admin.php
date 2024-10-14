@@ -10,6 +10,9 @@ Route::get('/catalogos', function () {
     return view('administrador.catalogos.index');
 })->name('catalogos.index');
 
+Route::get('flujos/flujos_muestras', function () {
+    return view('administrador.flujos.flujo_muestras');
+})->name('flujos.flujo_muestras');
 
 Route::get('/catalogo/unidad_medidas', function () {
     return view('administrador.catalogos.unidad_medida');
