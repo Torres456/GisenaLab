@@ -10,9 +10,6 @@ Route::get('/catalogos', function () {
     return view('administrador.catalogos.index');
 })->name('catalogos.index');
 
-Route::get('flujos/flujos_muestras', function () {
-    return view('administrador.flujos.flujo_muestras');
-})->name('flujos.flujo_muestras');
 
 Route::get('/catalogo/unidad_medidas', function () {
     return view('administrador.catalogos.unidad_medida');
@@ -150,3 +147,8 @@ Route::get('/ordenes/create/{id}/muestras', function ($id) {
 Route::get('/ordenes/{id}/edit/', function ($id) {
     return view('administrador.ordenes.edit_register', ['orderId' => $id]);
 })->name('ordenes.edit_register');
+
+
+Route::get('flujos/flujos_muestras', function () {
+    return view('administrador.flujos.flujo_muestras');
+})->name('flujos.flujo_muestras');
