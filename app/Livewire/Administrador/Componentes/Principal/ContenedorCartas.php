@@ -25,7 +25,7 @@ class ContenedorCartas extends Component
 
     public function mount()
     {
-        $this->usuarios = User::where('id_tipo_usuario', '2')->count();
+        $this->usuarios = User::count();
 
         $this->clientes = cliente::count();
 
@@ -40,7 +40,7 @@ class ContenedorCartas extends Component
     public function refresh()
     {
 
-        $this->usuarios = User::where('id_tipo_usuario', '2')->count();
+        $this->usuarios = User::count();
 
         $this->clientes = cliente::count();
 
