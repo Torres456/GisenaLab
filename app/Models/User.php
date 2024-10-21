@@ -101,4 +101,9 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         return $this->where('correo', $this->correo)->where('id_tipo_usuario', $role)->exists();
     }
+
+    public function isSuperAdmin()
+    {
+        return $this->id_tipo_usuario == '6';
+    }
 }
