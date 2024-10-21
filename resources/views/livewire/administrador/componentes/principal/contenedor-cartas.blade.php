@@ -24,9 +24,9 @@
             </div>
 
             <div class="pt-2 flex justify-between">
-                <div class="w-12 h-12 bg-purple-200 rounded-md flex items-center justify-center"><svg
-                        xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px"
-                        fill="#56145b">
+                <div class="w-12 h-12 bg-purple-200 rounded-md flex items-center justify-center cursor-help"
+                    data-tippy-content="Usuarios registrados en el sistema."><svg xmlns="http://www.w3.org/2000/svg"
+                        height="24px" viewBox="0 -960 960 960" width="24px" fill="#56145b">
                         <path
                             d="M720-400v-120H600v-80h120v-120h80v120h120v80H800v120h-80Zm-360-80q-66 0-113-47t-47-113q0-66 47-113t113-47q66 0 113 47t47 113q0 66-47 113t-113 47ZM40-160v-112q0-34 17.5-62.5T104-378q62-31 126-46.5T360-440q66 0 130 15.5T616-378q29 15 46.5 43.5T680-272v112H40Zm80-80h480v-32q0-11-5.5-20T580-306q-54-27-109-40.5T360-360q-56 0-111 13.5T140-306q-9 5-14.5 14t-5.5 20v32Zm240-320q33 0 56.5-23.5T440-640q0-33-23.5-56.5T360-720q-33 0-56.5 23.5T280-640q0 33 23.5 56.5T360-560Zm0-80Zm0 400Z" />
                     </svg></div>
@@ -45,9 +45,9 @@
             </div>
 
             <div class="pt-2 flex justify-between">
-                <div class="w-12 h-12 bg-blue-200 rounded-md flex items-center justify-center"><svg
-                        xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px"
-                        fill="#0000F5">
+                <div class="w-12 h-12 bg-blue-200 rounded-md flex items-center justify-center cursor-help"
+                    data-tippy-content="Clientes registrados en el sistema."><svg xmlns="http://www.w3.org/2000/svg"
+                        height="24px" viewBox="0 -960 960 960" width="24px" fill="#0000F5">
                         <path
                             d="M720-400v-120H600v-80h120v-120h80v120h120v80H800v120h-80Zm-360-80q-66 0-113-47t-47-113q0-66 47-113t113-47q66 0 113 47t47 113q0 66-47 113t-113 47ZM40-160v-112q0-34 17.5-62.5T104-378q62-31 126-46.5T360-440q66 0 130 15.5T616-378q29 15 46.5 43.5T680-272v112H40Zm80-80h480v-32q0-11-5.5-20T580-306q-54-27-109-40.5T360-360q-56 0-111 13.5T140-306q-9 5-14.5 14t-5.5 20v32Zm240-320q33 0 56.5-23.5T440-640q0-33-23.5-56.5T360-720q-33 0-56.5 23.5T280-640q0 33 23.5 56.5T360-560Zm0-80Zm0 400Z" />
                     </svg></div>
@@ -65,7 +65,8 @@
             </div>
 
             <div class="pt-2 flex justify-between">
-                <div class="w-12 h-12 bg-green-200 rounded-md flex items-center justify-center"><svg
+                <div class="w-12 h-12 bg-green-200 rounded-md flex items-center justify-center cursor-help"
+                    data-tippy-content="Clientes registrados en el sistema que aún no tienen gestor."><svg
                         xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px"
                         fill="#228B22">
                         <path
@@ -85,9 +86,9 @@
             </div>
 
             <div class="pt-2 flex justify-between">
-                <div class="w-12 h-12 bg-red-200 rounded-md flex items-center justify-center"><svg
-                        xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px"
-                        fill="#FF0000">
+                <div class="w-12 h-12 bg-red-200 rounded-md flex items-center justify-center cursor-help"
+                    data-tippy-content="Gestores registrados en el sistema."><svg xmlns="http://www.w3.org/2000/svg"
+                        height="24px" viewBox="0 -960 960 960" width="24px" fill="#FF0000">
                         <path
                             d="M720-400v-120H600v-80h120v-120h80v120h120v80H800v120h-80Zm-360-80q-66 0-113-47t-47-113q0-66 47-113t113-47q66 0 113 47t47 113q0 66-47 113t-113 47ZM40-160v-112q0-34 17.5-62.5T104-378q62-31 126-46.5T360-440q66 0 130 15.5T616-378q29 15 46.5 43.5T680-272v112H40Zm80-80h480v-32q0-11-5.5-20T580-306q-54-27-109-40.5T360-360q-56 0-111 13.5T140-306q-9 5-14.5 14t-5.5 20v32Zm240-320q33 0 56.5-23.5T440-640q0-33-23.5-56.5T360-720q-33 0-56.5 23.5T280-640q0 33 23.5 56.5T360-560Zm0-80Zm0 400Z" />
                     </svg></div>
@@ -105,9 +106,9 @@
             </div>
 
             <div class="pt-2 flex justify-between">
-                <div class="w-12 h-12 bg-yellow-200 rounded-md flex items-center justify-center"><svg
-                        xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px"
-                        fill="#808000">
+                <div class="w-12 h-12 bg-yellow-200 rounded-md flex items-center justify-center cursor-help"
+                    data-tippy-content="Empleados registrados en el sistema."><svg xmlns="http://www.w3.org/2000/svg"
+                        height="24px" viewBox="0 -960 960 960" width="24px" fill="#808000">
                         <path
                             d="M160-80q-33 0-56.5-23.5T80-160v-440q0-33 23.5-56.5T160-680h200v-120q0-33 23.5-56.5T440-880h80q33 0 56.5 23.5T600-800v120h200q33 0 56.5 23.5T880-600v440q0 33-23.5 56.5T800-80H160Zm0-80h640v-440H600q0 33-23.5 56.5T520-520h-80q-33 0-56.5-23.5T360-600H160v440Zm80-80h240v-18q0-17-9.5-31.5T444-312q-20-9-40.5-13.5T360-330q-23 0-43.5 4.5T276-312q-17 8-26.5 22.5T240-258v18Zm320-60h160v-60H560v60Zm-200-60q25 0 42.5-17.5T420-420q0-25-17.5-42.5T360-480q-25 0-42.5 17.5T300-420q0 25 17.5 42.5T360-360Zm200-60h160v-60H560v60ZM440-600h80v-200h-80v200Zm40 220Z" />
                     </svg></div>
