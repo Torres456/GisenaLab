@@ -141,11 +141,23 @@ class Colonias extends Component
     public function render()
     {
         $count = colonia::where(function ($query) {
-            $query->where('nombre', 'LIKE', '%' . $this->search . '%')->orWhere('clave_colonia', 'LIKE', '%' . $this->search . '%');
-        })->where('id_municipio', 'LIKE', '%' . $this->search_stade . '%')->count();
+            $query->where('nombre', 'LIKE', '%' . $this->search . '%')
+                  ->orWhere('clave_colonia', 'LIKE', '%' . $this->search . '%');
+        })
+        ->when(isset($this->search_stade), function ($query) {
+            $query->where('id_municipio', $this->search_stade);
+        })
+        ->count();
+
         $colonias = colonia::where(function ($query) {
-            $query->where('nombre', 'LIKE', '%' . $this->search . '%')->orWhere('clave_colonia', 'LIKE', '%' . $this->search . '%');
-        })->where('id_municipio', 'LIKE', '%' . $this->search_stade . '%')->paginate($this->view_dates);
+            $query->where('nombre', 'LIKE', '%' . $this->search . '%')
+                  ->orWhere('clave_colonia', 'LIKE', '%' . $this->search . '%');
+        })
+        ->when(isset($this->search_stade), function ($query) {
+            $query->where('id_municipio', $this->search_stade);
+        })
+        ->paginate($this->view_dates);
+        
         return view('livewire.administrador.catalogos.direcciones.colonias', compact('count','colonias'));
     }
 }

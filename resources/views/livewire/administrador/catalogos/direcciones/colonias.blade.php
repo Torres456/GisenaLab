@@ -13,7 +13,7 @@
                 </div>
                 <div class="flex flex-col max-md:w-full">
                     <label for="">Municipio:</label>
-                    <x-select wire:model.live="search_stade" class="max-md:w-full">
+                    <x-select wire:model.live="search_stade" >
                         <option value="">Todos</option>
                         @foreach ($municipios as $municipio)
                             <option value="{{ $municipio->id_municipio }}">{{ $municipio->nombre }}</option>
@@ -100,7 +100,7 @@
         </table>
     </div>
     <div class="p-5">
-        {{ $colonias->links() }}
+        {{  $colonias->onEachSide(1)->links() }}
     </div>
 
     <x-dialog-modal wire:model="new">

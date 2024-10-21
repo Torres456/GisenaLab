@@ -136,11 +136,24 @@ class Municipios extends Component
     public function render()
     {
         $count = municipio::where(function ($query) {
-            $query->where('nombre', 'LIKE', '%' . $this->search . '%')->orWhere('clave_municipio', 'LIKE', '%' . $this->search . '%');
-        })->where('id_estado','LIKE','%' . $this->search_stade . '%')->count();
+            $query->where('nombre', 'LIKE', '%' . $this->search . '%')
+                  ->orWhere('clave_municipio', 'LIKE', '%' . $this->search . '%');
+        })
+        ->when(isset($this->search_stade), function ($query) {
+            $query->where('id_estado', $this->search_stade);
+        })
+        ->count();
+        
         $municipios = municipio::where(function ($query) {
-            $query->where('nombre', 'LIKE', '%' . $this->search . '%')->orWhere('clave_municipio', 'LIKE', '%' . $this->search . '%');
-        })->where('id_estado','LIKE','%' . $this->search_stade . '%')->paginate($this->view_dates);
+            $query->where('nombre', 'LIKE', '%' . $this->search . '%')
+                  ->orWhere('clave_municipio', 'LIKE', '%' . $this->search . '%');
+        })
+        ->when(isset($this->search_stade), function ($query) {
+            $query->where('id_estado', $this->search_stade);
+        })
+        ->orderBy('nombre') // Ordenar por nombre de municipio
+        ->paginate($this->view_dates);
+
         return view('livewire.administrador.catalogos.direcciones.municipios' , compact('count','municipios'));
     }
 }

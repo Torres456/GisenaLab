@@ -16,7 +16,7 @@
                     <x-select wire:model.live="search_stade" class="max-md:w-full">
                         <option value="">Todos</option>
                         @foreach ($estados as $estado)
-                            <option value="{{ $estado->id_estado }}">{{ $estado->nombre }}</option>
+                            <option value="{{ $estado->clave_estado}}">{{ $estado->nombre }}</option>
                         @endforeach
                     </x-select>
                 </div>
@@ -100,7 +100,7 @@
         </table>
     </div>
     <div class="p-5">
-        {{ $municipios->links() }}
+        {{ $municipios->onEachSide(1)->links() }}
     </div>
 
     <x-dialog-modal wire:model="new">
