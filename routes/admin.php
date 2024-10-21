@@ -129,6 +129,9 @@ Route::get('registro/empleados', function () {
     return view('administrador.registros.empleados');
 })->name('registros.empleados');
 
+Route::get('registro/usuarios', function () {
+    return view('administrador.registros.usuarios');
+})->name('registros.usuarios');
 
 
 Route::get('/ordenes', function () {
