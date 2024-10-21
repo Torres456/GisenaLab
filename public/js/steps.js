@@ -4,23 +4,27 @@ var form2 = document.getElementById('form2');
 var form3 = document.getElementById('form3');
 var form4 = document.getElementById('form4');
 var form5 = document.getElementById('form5');
+var form6 = document.getElementById('form6');
 
 var title1 = document.getElementById('title1');
 var title2 = document.getElementById('title2');
 var title3 = document.getElementById('title3');
 var title4 = document.getElementById('title4');
 var title5 = document.getElementById('title5');
+var title6 = document.getElementById('title6');
 
 var buttonNext1 = document.getElementById('butonNext1')
 var buttonNext2 = document.getElementById('butonNext2')
 var buttonNext3 = document.getElementById('butonNext3')
 var buttonNext4 = document.getElementById('butonNext4')
+var buttonNext5 = document.getElementById('butonNext5')
 
 var butonPrevius1 = document.getElementById('butonPrevius1');
 var butonPrevius2 = document.getElementById('butonPrevius2');
 var butonPrevius3 = document.getElementById('butonPrevius3');
 var butonPrevius4 = document.getElementById('butonPrevius4');
 var butonPrevius5 = document.getElementById('butonPrevius5');
+var butonPrevius6 = document.getElementById('butonPrevius6');
 
 
 //&========================================================================================Categoria
@@ -104,7 +108,6 @@ subId.addEventListener('input', function () {
 
 });
 butonNext2.addEventListener('click', function () {
-
 	if (subId.value.length) {
 		form2.classList.remove('flex');
 		form2.classList.toggle('hidden');
@@ -115,9 +118,10 @@ butonNext2.addEventListener('click', function () {
 
 		form3.classList.remove('hidden');
 		form3.classList.toggle('flex');
+		
 
 	} else if (subName.value.length) {
-		
+
 		form2.classList.remove('flex');
 		form2.classList.toggle('hidden');
 
@@ -202,7 +206,7 @@ butonPrevius3.addEventListener('click', function () {
 	form4.classList.toggle('hidden');
 });
 
-//&========================================================================================Unidad Medida
+//&========================================================================================unidad de Medida
 
 var medId = document.getElementById('unidadmedidaId');
 var medName = document.getElementById('unidadmedidaName');
@@ -258,4 +262,62 @@ butonPrevius4.addEventListener('click', function () {
 
 	form5.classList.remove('flex');
 	form5.classList.toggle('hidden');
+});
+
+//&========================================================================================Tipo Muestra
+
+var descripId = document.getElementById('tipomuestraId');
+var descripName = document.getElementById('tipomuestraName');
+
+descripId.addEventListener('input', function () {
+
+
+	if (this.value.length) {
+		descripName.disabled = true;
+		descripName.value = '';
+
+	} else {
+		descripName.disabled = false;
+	}
+
+});
+
+buttonNext5.addEventListener('click', function () {
+
+	if (descripId.value.length) {
+		form5.classList.remove('flex');
+		form5.classList.toggle('hidden');
+
+		title5.classList.remove('text-sky-500');
+		title5.classList.toggle('text-lime-500');
+		title6.classList.toggle('text-sky-500');
+
+		form6.classList.remove('hidden');
+		form6.classList.toggle('flex');
+	} else if (medName.value.length) {
+		form5.classList.remove('flex');
+		form5.classList.toggle('hidden');
+
+		title5.classList.remove('text-sky-500');
+		title5.classList.toggle('text-lime-500');
+		title6.classList.toggle('text-sky-500');
+
+		form6.classList.remove('hidden');
+		form6.classList.toggle('flex');
+	} else {
+		alert('Debe seleccionar una unidad de metodo o agregar un nombre');
+	}
+});
+
+butonPrevius5.addEventListener('click', function () {
+	form5.classList.remove('hidden');
+	form5.classList.toggle('flex');
+
+	title6.classList.remove('text-sky-500');
+	title5.classList.remove('text-lime-500');
+	title5.classList.toggle('text-sky-500');
+
+
+	form6.classList.remove('flex');
+	form6.classList.toggle('hidden');
 });
