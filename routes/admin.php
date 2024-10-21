@@ -129,6 +129,9 @@ Route::get('registro/empleados', function () {
     return view('administrador.registros.empleados');
 })->name('registros.empleados');
 
+Route::get('registro/usuarios', function () {
+    return view('administrador.registros.usuarios');
+})->name('registros.usuarios');
 
 
 Route::get('/ordenes', function () {
@@ -143,11 +146,9 @@ Route::get('/ordenes/create/{id}/muestras', function ($id) {
     return view('administrador.ordenes.new_muestras', ['orderId' => $id]);
 })->name('ordenes.new_muestras');
 
-
 Route::get('/ordenes/{id}/edit/', function ($id) {
     return view('administrador.ordenes.edit_register', ['orderId' => $id]);
 })->name('ordenes.edit_register');
-
 
 Route::get('flujos/flujos_muestras', function () {
     return view('administrador.flujos.flujo_muestras');

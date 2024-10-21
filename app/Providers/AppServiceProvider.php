@@ -7,6 +7,10 @@ use Laravel\Fortify\Contracts\LoginResponse;
 use Laravel\Fortify\Contracts\RegisterResponse;
 use Illuminate\Support\Facades\Auth;
 
+use Illuminate\Support\Facades\Gate;
+use App\Models\User;
+
+
 class AppServiceProvider extends ServiceProvider
 {
 
@@ -17,6 +21,10 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        //
+        Gate::define('admin-options', function (User $user, $role) {
+            if ($user->hasRole($role)) {
+                return true;
+            }
+        });
     }
 }
