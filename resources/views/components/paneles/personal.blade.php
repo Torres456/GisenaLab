@@ -481,10 +481,13 @@
         </div>
     </div>
 
+
     @stack('modals')
 
-    @livewireScripts
+    
+    @livewireScripts  
 </body>
+
 <script>
     function data() {
 
@@ -546,6 +549,8 @@
 
     });
 </script>
+
+
 
 <script src="{{ asset('js/preloader.js') }}"></script>
 <script src="{{ asset('js/jquery.js') }}"></script>

@@ -1,6 +1,6 @@
 <div>
     <!-- multistep form -->
-    <form id="msform" class="w-full bg-slate-300 dark:bg-slate-800 p-5">
+    <form id="msform" wire:submit="FormRegister" class="w-full bg-slate-300 dark:bg-slate-800 p-5">
         <!-- progressbar -->
         <ul class="flex gap-3">
             <li id="title1" class="text-sky-500 ">Categorias</li>
@@ -36,6 +36,14 @@
                 <path d="M13 7l5 5l-5 5" />
             </svg>
             <li id="title5" class="">Tipo de Muestra</li>
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                class="icon icon-tabler icons-tabler-outline icon-tabler-chevrons-right">
+                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                <path d="M7 7l5 5l-5 5" />
+                <path d="M13 7l5 5l-5 5" />
+            </svg>
+            <li id="title6" class="">Descripcion de Muestra</li>
         </ul>
         <!-- ========================================================================Categoria -->
         <fieldset id="form1" class="flex flex-col w-full">
@@ -69,7 +77,7 @@
         <fieldset id="form2" class="hidden flex-col w-full">
             <h2 class="text-2xl mt-3 mb-3">Subcategorias</h2>
             <div class="grid gap-3">
-                <x-select id="subcategoriaId" wire:model.live="newRegister.subcategoriaid">
+                <x-select id="subcategoriaId" wire:model="newRegister.subcategoriaid">
                     <option value="">Seleccione una opción</option>
                     @foreach ($subcategorias as $sub)
                         <option value="{{ $sub->id_subcategoria }}">{{ $sub->nom_subcategoria }}</option>
@@ -136,7 +144,7 @@
         <fieldset id="form5" class="hidden flex-col w-full">
             <h2 class="text-2xl mt-3 mb-3">Tipo de muestra</h2>
             <div class="grid gap-3">
-                <x-select id="unidadmetodoId" wire:model="unidad_metodoid">
+                <x-select id="tipomuestraId" wire:model="newRegister.tipomuestraid">
                     <option value="">Seleccione una opción</option>
                     @foreach ($tipo_muestra as $nuestra)
                         <option value="{{ $nuestra->id_tipo_muestra }}">{{ $nuestra->nom_tipo_muestra }}</option>
@@ -167,8 +175,23 @@
                 <x-button-next type="button" id="butonNext5">Next</x-button-next>
             </div>
         </fieldset>
+
+        <!-- ========================================================================Descripcion de muestra -->
+        <fieldset id="form6" class="hidden flex-col w-full">
+            <h2 class="text-2xl mt-3 mb-3">Descripcion de muestra</h2>
+            <div class="grid gap-3">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div class="flex flex-col w-full col-span-2">
+                        <x-label-tooltip value="{{ __('Descripcion de Muestra: ') }}"
+                            message-text="Este campo es en caso de que no exista la descripcion de muetra requerida" />
+                        <x-input type="text" id="descripcionMuetra" wire:model="newRegister.descripcionmuetra" />
+                    </div>
+                </div>
+            </div>
+            <div class="flex justify-between mt-3">
+                <x-danger-button id="butonPrevius5">previus</x-danger-button>
+                <x-button  id="butonNext6">Guardar</x-button>
+            </div>
+        </fieldset>
     </form>
-
-
-
 </div>

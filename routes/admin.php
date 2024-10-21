@@ -153,3 +153,7 @@ Route::get('/ordenes/{id}/edit/', function ($id) {
 Route::get('flujos/flujos_muestras', function () {
     return view('administrador.flujos.flujo_muestras');
 })->name('flujos.flujo_muestras');
+
+Route::get('flujos/flujos_subcategorias', function () {
+    return view('administrador.flujos.flujo_subcategorias');
+})->name('flujos.flujos_subcategorias');
