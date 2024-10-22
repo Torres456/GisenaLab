@@ -13,4 +13,15 @@
         }
     </style>
 
+    <script>
+        document.addEventListener('livewire:initialized', () => {
+            Livewire.on('dataSend', () => {
+                const modal = document.getElementById('modal');
+                modal.classList.remove('hidden');
+                modal.classList.add('flex');
+                alert('hola');
+            });
+        })
+    </script>
+
 </x-paneles.personal>

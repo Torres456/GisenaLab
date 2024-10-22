@@ -3,9 +3,9 @@
 
     <form wire:submit="submitForm" class="w-full bg-slate-300 dark:bg-slate-800 p-5 rounded-md flex flex-col gap-5">
         <fieldset>
-            <h2>Paso 1: Categoria</h2>
+            <h2>Paso 1: Categoría</h2>
             <div class="flex flex-col mb-3">
-                <label for="category">Categoria:</label>
+                <label for="category">Categoría:</label>
                 <x-select name="Category" id="categorySelect" wire:model="category">
                     <option value="">Seleccione una opción</option>
                     @foreach ($categories as $cat)
@@ -13,26 +13,30 @@
                     @endforeach
                 </x-select>
             </div>
-            <div class="flex justify-end">
-                <span class="text-slate-500"> ¿No exite la Categoria? <x-input type="checkbox" id="viwCategory" /></span>
-            </div>
-            <div id="newCategory">
+
+            <x-checkbox type="checkbox" wire:model="mostrarContenido" class="peer w-5 h-5" /><span class="text-slate-500 ml-3"> ¿No existe la Categoría? </span>
+            <div id="newCategory" class="peer-checked:block hidden transition-all duration-3000 ease-in-out">
                 <div class="flex flex-row items-center gap-3 mt-3">
-                    <x-input type="text" id="nameCategoy" wire:model="name_category" class="w-full" placeholder="Nombre de Categoria"/>
+                    <x-input type="text" id="nameCategoy" wire:model="name_category" class="w-full"
+                        placeholder="Nombre de Categoría" />
                     <x-input-error for="name_category" />
                 </div>
                 <div class="flex flex-row items-center gap-3 mt-3">
-                    <x-input type="text" id="descriptionCategory" wire:model="description_category" class="w-full" placeholder="Descripcion de Categoria" />
+                    <x-input type="text" id="descriptionCategory" wire:model="description_category" class="w-full"
+                        placeholder="Descripción de Categoría" />
                     <x-input-error for="description_category" />
                 </div>
             </div>
+
+            
         </fieldset>
 
         <fieldset>
-            <h2>Paso 2: Subcategoria</h2>
+            <h2>Paso 2: Subcategoría</h2>
             <div class="mb-3 flex justify-between items-center gap-3">
                 <div class="w-full">
-                    <x-input type="text" placeholder="Nombre Subcategoria" class="w-full" wire:model="name_subcategoria" />
+                    <x-input type="text" placeholder="Nombre Subcategoría" class="w-full"
+                        wire:model="name_subcategoria" />
                     <x-input-error for="name_subcategoria" />
                 </div>
                 <x-button type="button" wire:click="addSubcategory"><svg xmlns="http://www.w3.org/2000/svg"
@@ -48,10 +52,14 @@
 
             <div id="subcategoriesContainer" class="grid gap-3 subcategory">
                 <div class="subcategory w-full flex gap-3">
-                    <ul class="list-inside list-disc space-y-2">
+                    <ul class="list-inside list-disc space-y-2 w-full">
                         @foreach ($list_sub as $index => $subcat)
-                            <li wire:key="sub-{{ $index }}">
-                                {{ $subcat }}
+                            <li wire:key="sub-{{ $index }}"
+                                class="flex justify-between items-center border-b-2 border-slate-500 p-3">
+                                <p>
+                                    <span class="text-slate-500 mr-2">{{ $index + 1 }} .-</span>
+                                    {{ $subcat }}
+                                </p>
                                 <x-danger-button type="button" wire:click="deteSubcategory({{ $index }})"><svg
                                         xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                                         viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
@@ -71,7 +79,7 @@
 
         <div class="flex justify-between">
             <x-danger-button wire:click="cancelSub">Cancelar</x-danger-button>
-            <x-button>Enviar</x-button>
+            <x-button>Guardar</x-button>
         </div>
     </form>
 </div>

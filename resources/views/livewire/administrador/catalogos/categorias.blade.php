@@ -48,12 +48,12 @@
             </thead>
             @if ($count != 0)
                 <tbody>
-                    @foreach ($categorias as $categoria)
+                    @foreach ($categorias as $index => $categoria)
                         <tr
                             class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
                             <th scope="row"
-                                class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white text-center">
-                                {{ $categoria->id_categoria }}
+                                class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white text-center" wire:key="cat-{{$categoria->id_categoria}}">
+                                {{ $index }}
                             </th>
                             <td class="px-6 py-4 text-center">
                                 {{ $categoria->nombre_categoria }}
@@ -121,7 +121,7 @@
         </table>
     </div>
     <div class="p-5">
-        {{ $categorias->links() }}
+        {{ $categorias->onEachSide(1)->links() }}
     </div>
 
     <x-dialog-modal wire:model="new">
