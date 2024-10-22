@@ -39,7 +39,7 @@ Route::get('/catalogo/tipo_analisis', function () {
     return view('administrador.catalogos.tipo_analisis');
 })->name('catalogos.tipo_analisis');
 
-Route::get('/catalogo/analisi_esoecificos', function () {
+Route::get('/catalogo/analisi_especificos', function () {
     return view('administrador.catalogos.analisis_especifico');
 })->name('catalogos.analisis_especifico');
 
@@ -149,6 +149,10 @@ Route::get('/ordenes/create/{id}/muestras', function ($id) {
 Route::get('/ordenes/{id}/edit/', function ($id) {
     return view('administrador.ordenes.edit_register', ['orderId' => $id]);
 })->name('ordenes.edit_register');
+
+
+
+
 
 Route::get('flujos/flujos_muestras', function () {
     return view('administrador.flujos.flujo_muestras');

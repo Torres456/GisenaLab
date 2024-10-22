@@ -126,6 +126,10 @@
             overflow-y: scroll;
             overflow-x: hidden;
         }
+
+        .logo {
+            transition: opacity 0.3s ease-in-out;
+        }
     </style>
 </head>
 
@@ -297,8 +301,7 @@
 
         {{-- Title page --}}
         <div class="aside_section-title bg-zinc-700 dark:bg-gray-800">
-            <img src="{{ asset('images/G_Logo.webp') }}" alt="" class="list_image">
-            <span class="text-2xl ml-[15px] text-slate-100">Gisenalabs</span>
+            <img src="{{ asset('images/Gisena_Logo.webp') }}" alt="" class="logo" id="LogoGisena">
         </div>
 
         {{-- user type  --}}
@@ -385,6 +388,20 @@
                                                 </li>
                                             @endif
                                         @endforeach
+                                        <span class="dark:text-slate-500">Direcciones ---------------</span>
+                                        @foreach ($rutas as $ruta)
+                                            @if ($ruta->content == 2)
+                                                <li class="">
+                                                    <div class="h-1"></div>
+                                                    <a href="{{ route($ruta->route) }}"
+                                                        class="list_item {{ request()->routeIs($ruta->route) ? 'link_select' : '' }} ">
+                                                        <img src="{{ asset('images/option.svg') }}" alt=""
+                                                            class="list_image">
+                                                        <span class="list_span-aside">{{ $ruta->title }}</span>
+                                                    </a>
+                                                </li>
+                                            @endif
+                                        @endforeach
 
                                     </ul>
                                 </li>
@@ -400,7 +417,32 @@
 
                                     <ul class="h-0">
                                         @foreach ($rutas as $ruta)
-                                            @if ($ruta->content == 2)
+                                            @if ($ruta->content == 3)
+                                                <li class="">
+                                                    <div class="h-1"></div>
+                                                    <a href="{{ route($ruta->route) }}"
+                                                        class="list_item {{ request()->routeIs($ruta->route) ? 'link_select' : '' }} ">
+                                                        <img src="{{ asset('images/option.svg') }}" alt=""
+                                                            class="list_image">
+                                                        <span class="list_span-aside">{{ $ruta->title }}</span>
+                                                    </a>
+                                                </li>
+                                            @endif
+                                        @endforeach
+                                    </ul>
+                                </li>
+                                <li class="mt-3 link">
+                                    <div
+                                        class="list_item list_button {{ request()->routeIs('admin.flujos.*') ? 'bg-lime-600' : '' }}">
+                                        <img src="{{ asset('images/flow.svg') }}" alt="" class="list_image">
+                                        <span class="list_span">Flujos de Catalogos</span>
+                                        <img src="{{ asset('images/arrow.svg') }}" alt=""
+                                            class="list_arrow h-8 ml-auto">
+                                    </div>
+
+                                    <ul class="h-0">
+                                        @foreach ($rutas as $ruta)
+                                            @if ($ruta->content == 4)
                                                 <li class="">
                                                     <div class="h-1"></div>
                                                     <a href="{{ route($ruta->route) }}"
@@ -484,8 +526,8 @@
 
     @stack('modals')
 
-    
-    @livewireScripts  
+
+    @livewireScripts
 </body>
 
 <script>
@@ -497,6 +539,7 @@
             nav: document.getElementById('nav'),
             open: false,
             home: document.getElementById('home'),
+            logo: document.getElementById('LogoGisena'),
 
             public() {
                 var ancho = window.innerWidth;
@@ -510,12 +553,18 @@
                         this.nav.classList.remove('md:ml-[80px]');
                         this.home.classList.remove('md:ml-[80px]');
                         this.aside.classList.remove('md:w-[80px]');
+                        this.logo.src = "{{ asset('images/Gisena_Logo.webp') }}";
+                        this.logo.classList.remove('md:w-[52px]');
                         this.open = !this.open;
                     } else {
                         this.nav.classList.add('md:ml-[80px]');
                         this.aside.classList.add('md:w-[80px]');
                         this.home.classList.add('md:ml-[80px]');
+                        this.logo.src = "{{ asset('images/G_Logo.webp') }}";
+                        this.logo.classList.add('md:w-[52px]');
+                        
                         this.open = !this.open;
+
                     }
                 }
             },
