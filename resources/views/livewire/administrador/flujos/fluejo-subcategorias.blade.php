@@ -3,19 +3,20 @@
 
     <form wire:submit="submitForm" class="w-full bg-slate-300 dark:bg-slate-800 p-5 rounded-md flex flex-col gap-5">
         <fieldset>
-            <h2>Paso 1: Categoría</h2>
-            <div class="flex flex-col mb-3">
-                <label for="category">Categoría:</label>
+            <h2 class="mb-3">Paso 1: Categoría - Seleccionar o llenar datos de categoría</h2>
+            <x-checkbox type="checkbox" wire:model="mostrarcontenido" id="Changeselect"  class="peer/docs w-5 h-5" /><label class="text-slate-500 ml-3"> ¿No existe la Categoría? </label>
+            <div class="peer-checked/docs:hidden flex flex-col col-span-2 mt-3" id="selectCategory" id="published">
+                
                 <x-select name="Category" id="categorySelect" wire:model="category">
-                    <option value="">Seleccione una opción</option>
+                    <option value="">Seleccione una categoría</option>
                     @foreach ($categories as $cat)
                         <option value="{{ $cat->id_categoria }}">{{ $cat->nombre_categoria }}</option>
                     @endforeach
                 </x-select>
             </div>
 
-            <x-checkbox type="checkbox" wire:model="mostrarContenido" class="peer w-5 h-5" /><span class="text-slate-500 ml-3"> ¿No existe la Categoría? </span>
-            <div id="newCategory" class="peer-checked:block hidden transition-all duration-3000 ease-in-out">
+            
+            <div id="newCategory" class="peer-checked/docs:block hidden transition-all duration-3000 ease-in-out col-span-2">
                 <div class="flex flex-row items-center gap-3 mt-3">
                     <x-input type="text" id="nameCategoy" wire:model="name_category" class="w-full"
                         placeholder="Nombre de Categoría" />
@@ -27,7 +28,6 @@
                     <x-input-error for="description_category" />
                 </div>
             </div>
-
             
         </fieldset>
 

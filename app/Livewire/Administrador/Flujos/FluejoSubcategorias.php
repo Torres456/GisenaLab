@@ -13,8 +13,10 @@ class FluejoSubcategorias extends Component
 {
     public $name_category, $description_category, $name_subcategoria;
     public $categories;
+    public $category;
     public $list_sub = [];
-    public $mostrarContenido = false;
+    public $mostrarcontenido = false;
+
 
     //reglas para neme_subcategoria
     protected $rules = [
@@ -67,9 +69,6 @@ class FluejoSubcategorias extends Component
         unset($this->list_sub[$index]);
     }
 
-
-    public $category;
-
     public function submitForm()
     {
 
@@ -77,7 +76,7 @@ class FluejoSubcategorias extends Component
         $this->validate();
 
         try {
-            if ($this->category != null) {
+            if ($this->mostrarcontenido == false) {
 
                 $categoryId = $this->category;
 
@@ -89,7 +88,7 @@ class FluejoSubcategorias extends Component
                 }
                 session()->flash('green', 'Subcategorías agregadas correctamente');
                 $this->reset(['name_category', 'description_category', 'list_sub', 'name_subcategoria', 'category']);
-            } else if ($this->mostrarContenido == true) {
+            } else if ($this->mostrarcontenido == true) {
                 //validaciones
                 $this->validate([
                     'name_category' => 'required|min:3|max:100',
