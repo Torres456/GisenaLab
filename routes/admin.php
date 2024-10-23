@@ -6,10 +6,11 @@ Route::get('/panel', function () {
     return view('administrador.panel');
 })->name('administrador.panel');
 
+
+// ----------------------------------------------------------------Catalogos
 Route::get('/catalogos', function () {
     return view('administrador.catalogos.index');
 })->name('catalogos.index');
-
 
 Route::get('/catalogo/unidad_medidas', function () {
     return view('administrador.catalogos.unidad_medida');
@@ -75,6 +76,8 @@ Route::get('/catalogo/tipo_empleado', function () {
     return view('administrador.catalogos.tipo_empleado');
 })->name('catalogos.tipo_empleado');
 
+
+// ----------------------------------------------------------------Direcciones
 Route::get('/catalogo/estados', function () {
     return view('administrador.direcciones.estados');
 })->name('direcciones.estados');
@@ -103,16 +106,12 @@ Route::get('/catalogo/rutas', function () {
     return view('rutas.index');
 })->name('drutas.index');
 
-Route::get('/catalogo/roles_empleados', function () {
-    return view('administrador.catalogos.tipo_empleado');
-})->name('catalogos.tipo_empleado');
-
 Route::get('/orden_servicio', function () {
     return view('administrador.ordenes');
 })->name('administrador.ordenes');
 
 
-
+// ----------------------------------------------------------------Registros
 Route::get('registro/gestores', function () {
     return view('administrador.registros.gestores');
 })->name('registros.gestores');
@@ -134,6 +133,7 @@ Route::get('registro/usuarios', function () {
 })->name('registros.usuarios');
 
 
+// ----------------------------------------------------------------Ordenes
 Route::get('/ordenes', function () {
     return view('administrador.ordenes.ordenes');
 })->name('ordenes.ordenes');
@@ -153,11 +153,19 @@ Route::get('/ordenes/{id}/edit/', function ($id) {
 
 
 
+// ----------------------------------------------------------------Flujos
+
+Route::get('flujos/flujos_subcategorias', function () {
+    return view('administrador.flujos.flujo_subcategorias');
+})->name('flujos.flujos_subcategorias');
+
+Route::get('flujos/flujos_Tipo_Muestras', function () {
+    return view('administrador.flujos.flujo_tipo_muestra');
+})->name('flujos.flujo_tipo_muestra');
+
 
 Route::get('flujos/flujos_muestras', function () {
     return view('administrador.flujos.flujo_muestras');
 })->name('flujos.flujo_muestras');
 
-Route::get('flujos/flujos_subcategorias', function () {
-    return view('administrador.flujos.flujo_subcategorias');
-})->name('flujos.flujos_subcategorias');
+
