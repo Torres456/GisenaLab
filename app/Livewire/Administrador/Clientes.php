@@ -43,19 +43,22 @@ class Clientes extends Component
         $this->select = false;
     }
 
-
-
     public $new = false;
     public $new_moral = false;
     public $newRegister = [
         //datos cliente
         'nombre' => '',
-        'paterno' => '',
-        'materno' => '',
         'rfc' => '',
         'correo' => '',
         'contrasena' => '',
         'contrasena_confirmation' => '',
+        'nombre_contac'=> '',
+        'paterno_contac'=>'',
+        'materno_contac'=>'',
+        'correo_contact'=>'',
+        'correo_alter_contact'=>'',
+        'telefono_contact'=>'',
+        'telefono_alter_contact'=>'',
     ];
 
     public function select_fisica()
@@ -73,28 +76,26 @@ class Clientes extends Component
     public function new_form()
     {
         $this->validate([
-            'newRegister.nombre' => ['required', 'string', 'max:50', new Les],
-            'newRegister.paterno' => ['required', 'string', 'max:50', new Les],
-            'newRegister.materno' => ['required', 'string', 'max:50', new Les],
+            'newRegister.nombre' => ['required', 'string', 'max:50', new Les, 'unique:usuario_sistema,nombre'],
             'newRegister.rfc' => ['required', 'string', 'min:13', 'max:13', new Fisica, 'unique:cliente,rfc'],
             'newRegister.correo' => ['required', 'email', 'max:255', 'unique:usuario_sistema,correo'],
             'newRegister.contrasena' => ['required', 'string', 'min:8', 'confirmed', Password::default()],
             'newRegister.contrasena_confirmation' => ['required'],
+           
+            'newRegister.nombre_contac' => ['required', 'string', 'max:50', new Les],
+            'newRegister.paterno_contac' => ['required', 'string', 'max:50', new Les],
+            'newRegister.materno_contac' => ['required', 'string', 'max:50', new Les],
+            'newRegister.correo_contact' => ['required', 'email', 'max:255', 'unique:usuario_sistema,correo'],
+            'newRegister.correo_alter_contact' => ['required', 'email', 'max:255', 'unique:usuario_sistema,correo'],
+            'newRegister.telefono_contact' => ['required', 'string', 'max:50'],
+            'newRegister.telefono_alter_contact' => ['required', 'string', 'max:50' ],
+            
         ], [
+            'newRegister.nombre.unique'=> 'El nombre deve ser unico',
             'newRegister.nombre.required' => 'El nombre es obligatorio',
             'newRegister.nombre.string' => 'El nombre debe ser un texto',
             'newRegister.nombre.max' => 'El nombre no puede tener más de 50 caracteres',
             'newRegister.nombre.les' => 'El nombre no puede contener caracteres especiales o números',
-
-            'newRegister.paterno.required' => 'El apellido paterno es obligatorio',
-            'newRegister.paterno.string' => 'El apellido paterno debe ser un texto',
-            'newRegister.paterno.max' => 'El apellido paterno no puede tener más de 50 caracteres',
-            'newRegister.paterno.les' => 'El apellido paterno no puede contener caracteres especiales o números',
-
-            'newRegister.materno.required' => 'El apellido materno es obligatorio',
-            'newRegister.materno.string' => 'El apellido materno debe ser un texto',
-            'newRegister.materno.max' => 'El apellido materno no puede tener más de 50 caracteres',
-            'newRegister.materno.les' => 'El apellido materno no puede contener caracteres especiales o números',
 
             'newRegister.rfc.required' => 'El RFC es obligatorio',
             'newRegister.rfc.string' => 'El RFC debe ser un texto',
@@ -114,46 +115,52 @@ class Clientes extends Component
             'newRegister.contrasena_confirmation.required' => 'Confirmar el correo es requerido'
         ]);
 
-        DB::beginTransaction();
+        /*DB::beginTransaction();
+
         try {
 
-            $usuario_sistema = User::create([
-                'nombre' => $this->newRegister['nombre'],
-                'ap_paterno' => $this->newRegister['paterno'],
-                'ap_materno' => $this->newRegister['materno'],
-                'correo' => $this->newRegister['correo'],
-                'contraseña' => Hash::make($this->newRegister['contrasena']),
-                'estatus' => 1,
-                'id_tipo_usuario' => 2
-            ]);
 
-            $id = DB::table('usuario_sistema')->where('correo', $this->newRegister['correo'])->value('id_usuario_sistema');
-
-            $contacto = contacto::create([
-                'nombre' => $this->newRegister['nombre'],
-                'ap_paterno' => $this->newRegister['paterno'],
-                'ap_materno' => $this->newRegister['materno'],
-                'correo' => $this->newRegister['correo']
-            ]);
-
-            $id2 = DB::table('contacto')->where('correo', $this->newRegister['correo'])->value('id_contacto');
-
-            $cliente = cliente::create([
-                'rfc' => strtoupper($this->newRegister['rfc']),
-                'tipo' => 1,
-                'correo' => $this->newRegister['correo'],
-                'id_usuario_sistema' => $id,
-                'id_contacto' => $id2
-            ]);
-
-            $this->reset('newRegister');
-            $this->new = false;
-            session()->flash('green', 'Agregada correctamente');
             DB::commit();
         } catch (\Exception $e) {
             DB::rollback();
             abort(500);
-        }
+        }*/
+        $usuario_sistema = User::create([
+            'nombre' => $this->newRegister['nombre'],
+            
+            'correo' => $this->newRegister['correo'],
+            'contraseña' => Hash::make($this->newRegister['contrasena']),
+
+            'estatus' => 1,
+            'id_tipo_usuario' => 2
+        ]);
+
+        $id = DB::table('usuario_sistema')->where('correo', $this->newRegister['correo'])->value('id_usuario_sistema');
+
+        $contacto = contacto::create([
+            'nombre' => $this->newRegister['nombre_contac'],
+            'ap_paterno' => $this->newRegister['paterno_contac'],
+            'ap_materno' => $this->newRegister['materno_contac'],
+            'correo' => $this->newRegister['correo_contact'],
+            'correo_alternativo' => $this->newRegister['correo_alter_contact'],
+            'telefono'=> $this->newRegister['telefono_contact'],
+            'telefono_alternativo'=> $this->newRegister['telefono_alter_contact'],
+        
+        ]);
+  
+        $id2 = DB::table('contacto')->where('correo', $this->newRegister['correo'])->value('id_contacto');
+
+        $cliente = cliente::create([
+            'rfc' => strtoupper($this->newRegister['rfc']),
+            'tipo' => 1,
+            'correo' => $this->newRegister['correo'],
+            'id_usuario_sistema' => $id,
+            'id_contacto' => $contacto->id_contacto
+        ]);
+
+        $this->reset('newRegister');
+        $this->new = false;
+        session()->flash('green', 'Agregada correctamente');
     }
 
     public $newRegisterM = [
@@ -221,13 +228,26 @@ class Clientes extends Component
             ]);
 
             $id = DB::table('usuario_sistema')->where('correo', $this->newRegisterM['correo'])->value('id_usuario_sistema');
+ 
+            $contacto = contacto::create([
+                'nombre_contac'=> $this->newRegisterM['nombre_contac'],
+                'materno_contac'=> $this->newRegisterM['materno_contac'],
+                'paterno_contac'=> $this->newRegisterM['paterno_contac'],
+                'correo_contact' => $this->newRegisterM['correo_contact'],
+                'correo_alter_contact' => $this->newRegisterM['correo_alter_contactr'],
+                'telefono_contact'=> $this->newRegisterM['telefono_contact'],
+                'telefono_alter_contact'=> $this->newRegisterM['telefono_alter_contact'],
+
+            ]);
 
             $cliente = cliente::create([
+
                 'rfc' => strtoupper($this->newRegisterM['rfc']),
                 'razon_social' => $this->newRegisterM['nombre'],
                 'tipo' => 2,
                 'correo' => $this->newRegisterM['correo'],
                 'id_usuario_sistema' => $id,
+                'id_contacto' => $contacto-> id_contacto,
             ]);
 
             $this->reset('newRegisterM');
@@ -332,7 +352,7 @@ class Clientes extends Component
         'telefono_alter_contact' => '',
     ];
 
-    public function contac_register($id)
+    public function views($id)
     {
         $this->contac = true;
         $this->contactId = $id;

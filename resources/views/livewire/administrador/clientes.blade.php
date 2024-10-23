@@ -47,9 +47,6 @@
                         Correos
                     </th>
                     <th scope="col" class="px-6 py-3 text-center">
-                        Teléfonos
-                    </th>
-                    <th scope="col" class="px-6 py-3 text-center">
                         Gestor
                     </th>
                     <th scope="col" class="px-6 py-3 text-center">
@@ -91,9 +88,7 @@
                             <td class="px-6 py-4 text-center">
                                 {{ $cliente->correo }}
                             </td>
-                            <td class="px-6 py-4 text-center">
-                                {{ $cliente->telefono }}
-                            </td>
+                           
                             <td class="px-6 py-4 text-center">
                                 @if ($cliente->id_gestor)
                                     <x-button wire:click="gestor_register({{ $cliente->id_cliente }})">
@@ -149,7 +144,7 @@
                                 </x-button>
                             </td>
                             <td class="px-6 py-4 text-center">
-                                <x-button wire:click="contac_register({{ $cliente->id_cliente }})">
+                                <x-button wire:click="views({{ $cliente->id_cliente }})">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                                         viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                                         stroke-linecap="round" stroke-linejoin="round"
@@ -217,19 +212,7 @@
                 </div>
                 <div class="w-full grid grid-cols-2 max-md:grid-cols-1 gap-3">
                     <div>
-                        <x-label>A. Paterno:</x-label>
-                        <x-input wire:model="newRegister.paterno" type="text" class="block mt-1 w-full" />
-                        <x-input-error for="newRegister.paterno" />
-                    </div>
-                    <div>
-                        <x-label>A. Materno:</x-label>
-                        <x-input wire:model="newRegister.materno" type="text" class="block mt-1 w-full" />
-                        <x-input-error for="newRegister.materno" />
-                    </div>
-                </div>
-                <div class="w-full grid grid-cols-2 max-md:grid-cols-1 gap-3">
-                    <div>
-                        <x-label>RFC:</x-label>
+                        <x-label>RFC:<span class="text-red-600">*</span></x-label>
                         <x-input wire:model="newRegister.rfc" type="text" class="block mt-1 w-full" placeholder="Ejemplo: ABCD012345XYZ"/>
                         <x-input-error for="newRegister.rfc" />
                     </div>
@@ -242,16 +225,64 @@
 
                 <div class="w-full grid grid-cols-2 max-md:grid-cols-1 gap-3">
                     <div>
-                        <x-label>Contraseña:</x-label>
+                        <x-label>Contraseña:<span class="text-red-600">*</span></x-label>
                         <x-input wire:model="newRegister.contrasena" type="password" class="block mt-1 w-full" />
                         <x-input-error for="newRegister.contrasena" />
                     </div>
                     <div>
-                        <x-label>Confirmar Contraseña:</x-label>
+                        <x-label>Confirmar Contraseña:<span class="text-red-600">*</span></x-label>
                         <x-input wire:model="newRegister.contrasena_confirmation" type="password" class="block mt-1 w-full" />
                         <x-input-error for="newRegister.contrasena_confirmation" />
                     </div>
                 </div>
+
+                <div class="border-b-2 border-slate-700 my-3">
+                    <p class="text-black dark:text-slate-500">Contacto</p>
+                </div>
+                <div>
+                    <x-label>Nombre Contacto:<span class="text-red-600">*</span></x-label>
+                    <x-input wire:model="newRegister.nombre_contac" type="text" class="block mt-1 w-full" />
+                    <x-input-error for="newRegister.nombre_contac" />
+                </div>
+                <div class="w-full grid grid-cols-2 max-md:grid-cols-1 gap-3">
+                    
+                    <div>
+                        <x-label>A. Paterno:<span class="text-red-600">*</span><span class="text-red-600"></span></x-label>
+                        <x-input wire:model="newRegister.paterno_contac" type="text"
+                            class="block mt-1 w-full" />
+                        <x-input-error for="newRegister.paterno_contac" />
+                    </div>
+                    <div>
+                        <x-label>A. Materno:<span class="text-red-600">*</span><span class="text-red-600"></span></x-label>
+                        <x-input wire:model="newRegister.materno_contac" type="text" class="block mt-1 w-full" />
+                        <x-input-error for="newRegister.materno_contac" />
+                    </div>
+                </div>
+                <div class="w-full grid grid-cols-2 max-md:grid-cols-1 gap-3">
+                    <div>
+                        <x-label>Correo:<span class="text-red-600">*</span><span class="text-red-600"></span></x-label>
+                        <x-input wire:model="newRegister.correo_contact" type="email" class="block mt-1 w-full" />
+                        <x-input-error for="newRegister.correo_contact" />
+                    </div>
+                    <div>
+                        <x-label>Correo Alternativo:<span class="text-red-600">*</span><span class="text-red-600"></span></x-label>
+                        <x-input wire:model="newRegister.correo_alter_contact" type="email" class="block mt-1 w-full" />
+                        <x-input-error for="newRegister.correo_alter_contact" />
+                    </div>
+                </div>
+                <div class="w-full grid grid-cols-2 max-md:grid-cols-1 gap-3">
+                    <div>
+                        <x-label>Teléfono:<span class="text-red-600">*</span><span class="text-red-600"></span></x-label>
+                        <x-input wire:model="newRegister.telefono_contact" type="tel" class="block mt-1 w-full" />
+                        <x-input-error for="newRegister.telefono_contact" />
+                    </div>
+                    <div>
+                        <x-label>Teléfono Alternativo:<span class="text-red-600">*</span><span class="text-red-600"></span></x-label>
+                        <x-input wire:model="newRegister.telefono_alter_contact" type="tel" class="block mt-1 w-full" />
+                        <x-input-error for="newRegister.telefono_alter_contact" />
+                    </div>
+                </div>
+
                 
                 <div class="mt-5 flex justify-around">
                     <x-button>Guardar</x-button>
@@ -298,6 +329,52 @@
                         <x-input-error for="newRegisterM.contrasena_confirmation" />
                     </div>
                 </div>
+                <div class="border-b-2 border-slate-700 my-3">
+                    <p class="text-black dark:text-slate-500">Contacto</p>
+                </div>
+                <div>
+                    <x-label>Nombre Contacto:<span class="text-red-600">*</span></x-label>
+                    <x-input wire:model="newRegister.nombre_contac" type="text" class="block mt-1 w-full" />
+                    <x-input-error for="newRegister.nombre_contac" />
+                </div>
+                <div class="w-full grid grid-cols-2 max-md:grid-cols-1 gap-3">
+                    <div>
+                        <x-label>A. Materno:<span class="text-red-600">*</span><span class="text-red-600"></span></x-label>
+                        <x-input wire:model="newRegister.materno_contac" type="text" class="block mt-1 w-full" />
+                        <x-input-error for="newRegister.materno_contac" />
+                    </div>
+                    <div>
+                        <x-label>A. Paterno:<span class="text-red-600">*</span><span class="text-red-600"></span></x-label>
+                        <x-input wire:model="newRegister.paterno_contac" type="text"
+                            class="block mt-1 w-full" />
+                        <x-input-error for="newRegister.paterno_contac" />
+                    </div>
+                </div>
+                <div class="w-full grid grid-cols-2 max-md:grid-cols-1 gap-3">
+                    <div>
+                        <x-label>Correo:<span class="text-red-600">*</span><span class="text-red-600"></span></x-label>
+                        <x-input wire:model="newRegister.correo_contact" type="email" class="block mt-1 w-full" />
+                        <x-input-error for="newRegister.correo_contact" />
+                    </div>
+                    <div>
+                        <x-label>Correo Alternativo:<span class="text-red-600">*</span><span class="text-red-600"></span></x-label>
+                        <x-input wire:model="newRegister.correo_alter_contact" type="email" class="block mt-1 w-full" />
+                        <x-input-error for="newRegister.correo_alter_contact" />
+                    </div>
+                </div>
+                <div class="w-full grid grid-cols-2 max-md:grid-cols-1 gap-3">
+                    <div>
+                        <x-label>Teléfono:<span class="text-red-600">*</span><span class="text-red-600"></span></x-label>
+                        <x-input wire:model="newRegister.telefono_contact" type="tel" class="block mt-1 w-full" />
+                        <x-input-error for="newRegister.telefono_contact" />
+                    </div>
+                    <div>
+                        <x-label>Teléfono Alternativo:<span class="text-red-600">*</span><span class="text-red-600"></span></x-label>
+                        <x-input wire:model="newRegister.telefono_alter_contact" type="tel" class="block mt-1 w-full" />
+                        <x-input-error for="newRegister.telefono_alter_contact" />
+                    </div>
+                </div>
+
                 
                 <div class="mt-5 flex justify-around">
                     <x-button>Guardar</x-button>
