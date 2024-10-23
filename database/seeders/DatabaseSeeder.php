@@ -46,6 +46,15 @@ class DatabaseSeeder extends Seeder
         $TipoUser5->save();
 
         $user = new User();
+        $user->nombre = "MarleneBernal";
+        $user->correo = "andresfglezv28@gmail.com";
+        $user->contraseña = "marlenlelo04020710";
+        $user->estatus = "1";
+        $user->id_tipo_usuario = 1;
+        $user->email_verified_at = '05/08/2024';
+        $user->save();
+
+        $user = new User();
         $user->nombre = "Luis";
         $user->correo = "lued1006@gmail.com";
         $user->contraseña = "Hmcnjsa1*";
